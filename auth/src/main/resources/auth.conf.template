@@ -1,0 +1,48 @@
+akka.loglevel = DEBUG
+akka.loggers = [akka.event.slf4j.Slf4jLogger]
+akka.logging-filter = akka.event.slf4j.Slf4jLoggingFilter
+#event-handlers = [akka.event.slf4j.Slf4jEventHandler]
+akka.jvm-exit-on-fatal-error = off
+akka.log-dead-letters-during-shutdown = off
+#akka.extensions = [akka.cluster.client.ClusterClientReceptionist] #
+#akka.actor.provider = akka.remote.RemoteActorRefProvider #
+#akka.actor.provider = akka.cluster.ClusterActorRefProvider #
+
+# 集群操作的 ACK 超时, 例如检查 actor 等 #
+akka.remote.remote-daemon-ack-timeout = 30s
+akka.remote.log-remote-lifecycle-events = off
+akka.remote.retry-gate-closed-for = 100000
+akka.remote.watch-failure-detector.threshold = 10
+akka.remote.watch-failure-detector.heartbeat-interval = 10s
+akka.remote.watch-failure-detector.acceptable-heartbeat-pause = 1s
+
+# default 4s, changed to 1000s to avoid gated issue #
+akka.remote.transport-failure-detector.heartbeat-interval = 1000s
+
+# default 10s, changed to 6000s to avoid gated issue #
+akka.remote.transport-failure-detector.acceptable-heartbeat-pause = 6000s
+
+akka.io.tcp.trace-logging = off
+
+# We wont't flatten the unchanged parameters #
+porter {
+  validators: [
+    { class: "porter.auth.PasswordValidator", params: {} }
+    { class: "porter.auth.DigestValidator", params: {} }
+    { class: "porter.auth.DerivedValidator", params: {} }
+  ]
+  stores: [{
+class:"porter.app.PropertyFileStore", params: { file = "./db/store.properties" }
+  }]
+  permissionFactories: []
+}
+
+porter.telnet.enabled = false
+porter.telnet.host = localhost
+porter.telnet.port = 2345
+
+porter.http.enabled = true
+porter.http.host = localhost
+porter.http.port = 6789
+porter.http.decider=porter.auth.DefaultPasswordVote
+porter.openid.enabled = true

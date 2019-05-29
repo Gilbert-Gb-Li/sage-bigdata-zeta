@@ -1,0 +1,41 @@
+<component>	
+	<dependencySets>
+		<dependencySet>
+			<useProjectArtifact>true</useProjectArtifact>
+			<outputDirectory>lib</outputDirectory>
+		</dependencySet>
+	</dependencySets>
+
+	<fileSets>
+        <!-- logger -->
+        <fileSet>
+            <directory>target</directory>
+            <outputDirectory>lib</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>../sage-bigdata-zeta-common/src/main/plugin</directory>
+            <outputDirectory>plugin</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>../build/src/main/scripts</directory>
+            <outputDirectory>bin</outputDirectory>
+            <includes>
+                <include>*.sh</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>../sage-bigdata-zeta-common/src/main/resources</directory>
+            <outputDirectory>conf</outputDirectory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+            <excludes>
+                <exclude>*.sql</exclude>
+                <exclude>estmpl/*</exclude>
+            </excludes>
+        </fileSet>
+      </fileSets>
+</component>

@@ -1,0 +1,2 @@
+app.streaming.analyzer.timeseries = com.haima.sage.bigdata.analyzer.timeseries.streaming.StreamTimeSeriesAnalyzer
+app.modeling.analyzer.timeseries = com.haima.sage.bigdata.analyzer.timeseries.modeling.ModelingTimeSeriesAnalyzer

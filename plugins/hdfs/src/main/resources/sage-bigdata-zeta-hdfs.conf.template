@@ -1,0 +1,4 @@
+app.monitor.hdfs=com.haima.sage.bigdata.etl.monitor.file.HDFSMonitor
+app.writer.hdfs=com.haima.sage.bigdata.etl.writer.HDFSDataWriter
+app.checker.hdfs=com.haima.sage.bigdata.etl.driver.usable.HDFSUsabilityChecker
+app.modeling.reader.hdfs=com.haima.sage.bigdata.etl.reader.FlinkHDFSModelingReader

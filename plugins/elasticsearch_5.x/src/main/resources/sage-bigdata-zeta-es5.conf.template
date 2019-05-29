@@ -1,0 +1,4 @@
+app.monitor.es5=com.haima.sage.bigdata.etl.plugin.es_5.monitor.ESMonitor
+app.writer.es5=com.haima.sage.bigdata.etl.plugin.es_5.writer.ElasticSearchWriter
+app.checker.es5=com.haima.sage.bigdata.etl.plugin.es_5.driver.usable.ESUsabilityChecker
+app.modeling.reader.es5=com.haima.sage.bigdata.etl.plugin.es_5.reader.FlinkES5ModelingReader

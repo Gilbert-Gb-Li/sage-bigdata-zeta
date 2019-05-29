@@ -1,0 +1,4 @@
+app.monitor.net=com.haima.sage.bigdata.etl.monitor.NetMonitor
+app.reader.snmpwalk=com.haima.sage.bigdata.etl.reader.SnmpWalkLogReader
+app.reader.snmptrap=com.haima.sage.bigdata.etl.reader.SnmpTrapLogReader
+app.checker.net=com.haima.sage.bigdata.etl.checker.NetChecker

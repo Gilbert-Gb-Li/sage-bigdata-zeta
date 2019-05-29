@@ -1,0 +1,6 @@
+app.monitor.es6=com.haima.sage.bigdata.etl.plugin.es_6.monitor.ESMonitor
+app.writer.es6=com.haima.sage.bigdata.etl.plugin.es_6.writer.ElasticSearchWriter
+app.checker.es6=com.haima.sage.bigdata.etl.plugin.es_6.driver.usable.ESUsabilityChecker
+app.modeling.reader.es6=com.haima.sage.bigdata.etl.plugin.es_6.reader.FlinkES6ModelingReader
+app.flink.sql.sink.table.all.es6=com.haima.sage.bigdata.etl.plugin.es_6.flink.side.ElasticsearchAllReqRow
+app.flink.sql.sink.table.async.es6=com.haima.sage.bigdata.etl.plugin.es_6.flink.side.ElasticsearchAsyncReqRow

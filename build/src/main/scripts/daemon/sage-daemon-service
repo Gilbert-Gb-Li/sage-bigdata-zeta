@@ -1,0 +1,56 @@
+#!/bin/sh
+  # sage-bigdata-etl-daemon-service This shell script takes care of starting and stopping
+  #
+  # chkconfig: - 60 50
+  # description: sage-bigdata-etl-daemon-service stat is a stat data daemon.
+  # processname: sage-bigdata-etl-daemon-service
+  # Source function library.
+function classpath() {
+    list=("$( ls $1 )")
+    first="1"
+    cp=""
+    for jar in ${list}; do
+        if [[ "$first" = "1" ]]; then
+            first="0"
+            cp="$1/$jar"
+        else
+            cp="$cp:$1/$jar"
+        fi
+    done;
+    echo $cp;
+}
+
+  . /etc/rc.d/init.d/functions
+
+  prog="sage-bigdata-etl-daemon-service"
+  JAVA_HOME=JAVA_HOME_REPLACE
+  # set system env else well not find java for /start worker
+  export JAVA_HOME=${JAVA_HOME}
+
+  JSVC=JSVC_REPLACE
+  HOME=HOME_REPLACE
+  USER=$USER
+
+  PID_FILE="$HOME/pids/sage-bigdata-etl-daemon-service.pid"
+
+  CLASSPATH="$HOME/conf:$( classpath "$HOME/lib" )"
+
+  case "$1" in
+  start)
+  #
+  # Start sage-bigdata-etl-daemon Service
+  #
+  ${JSVC} -user ${USER} -home ${JAVA_HOME} -wait 10 -pidfile ${PID_FILE} -outfile $HOME/logs/sage-bigdata-etl-daemon-service.out -errfile '&1' -cp ${CLASSPATH}  com.haima.sage.bigdata.etl.daemon.sage-bigdata-etlDaemon
+
+  ;;
+  stop)
+  #
+  # Stop sage-bigdata-etl-daemon Service
+  #
+  ${JSVC} -stop -pidfile ${PID_FILE} com.haima.sage.bigdata.etl.daemon.sage-bigdata-etlDaemon
+  exit $?
+  ;;
+  *)
+  echo "Usage sage-bigdata-etl-daemon-service start/stop"
+  exit 1;;
+  esac

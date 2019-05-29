@@ -1,0 +1,74 @@
+#app.store.driver.url = "jdbc:derby:./db/worker;create = true"
+app.store.driver.url="jdbc:h2:./db/worker;AUTO_SERVER=TRUE"
+app.store.log.location="./logs/derby-worker.log"
+app.knowledge.helper=com.haima.sage.bigdata.etl.server.worker.KnowledgeHelper
+# sage-bigdata-etl app采集器ip&port #
+akka.actor.provider=akka.remote.RemoteActorRefProvider
+akka.remote.netty.tcp.hostname=127.0.0.1
+akka.remote.netty.tcp.port=19093
+# sage-bigdata-etl worker id #
+worker.id=#workerid#
+# sage-bigdata-etl worker连接master配置 #
+# cluster config
+worker.connect-to = cluster
+worker.remote = ["akka.tcp://master@127.0.0.1:19091"]
+#cluster config end
+#transfer config
+#worker.connect-to= transfer
+# sage-bigdata-etl worker连接master配置 #
+#worker.remote = ["akka.tcp://worker@127.0.0.1:19093/user/transfer"]
+
+# sage-bigdata-etl daemon连接配置 #
+worker.daemon.host=127.0.0.1
+worker.daemon.port=19095
+worker.daemon.enable=on
+# 添加采集器信息到数据记录 #
+worker.add.collector.info=off
+# 添原始数据文件的附加信息到数据记录 #
+worker.add.raw.attr=off
+# 添原始数据到数据记录 #
+worker.add.raw.data=off
+# 添加采集时间到数据记录 #
+worker.add.receive.time=off
+# 添加采集来源信息,文件路径,网络ip,端口等 #
+worker.add.source.info=off
+# metric信息采集时间间隔 #
+# metric信息采集时间单位，可选s(秒)、m(分)、h(小时)、d(天)、w(周)、M(月)、y(年) #
+# eg：10s(10秒)、5m(5分钟) #
+# 秒表记录间隔时间
+worker.metric.interval.second=10s
+# 分钟表记录间隔时间
+worker.metric.interval.minute=5m
+# 小时表记录间隔时间
+worker.metric.interval.hour=1h
+# 天表记录间隔时间
+worker.metric.interval.day=1d
+# Metrics切换查询表的最小数据量：数量小于该值时，使用短时间周期的数据表
+worker.metric.table.min=100
+# Metrics切换查询表的最大数据量：数据量大于该值时，使用长时间周期的数据表
+worker.metric.table.max=2000
+# Metrics数据抽取时依据的字段名称
+worker.metric.extract.field= 1-minute rate
+# Metrics数据保留天数
+worker.metric.save.days=1
+# 处理程序数据读取线程（针对数据源是文件（HDFS，FTP，本地目录），及一次读取几个文件）#
+worker.process.size=2
+# 处理程序最少等待缓存的数据条数，当数据缓存达到这个数值处理程序将等待，直到缓存数据低于这个值 #
+worker.process.cache.size=1000
+# 处理程序最多使用解析器的个数 #
+worker.process.lexer.size=1
+# on/off 当解析出错时 忽略子过滤错误信息 #
+worker.process.filter.error.ignore=on
+# 每一个处理程序写writer的并发数 #
+worker.process.writer.size=4
+# 处理程序一次等待的时间(单位：毫秒) #
+worker.process.wait.times=500
+# 最大缓存文件个数 100万 #
+worker.process.file.max-cache = 1000000
+# 只处理新创建的文件 #
+worker.process.file.only-new = false
+# 多长时间后 处理新创建的文件 #
+worker.process.file.delay-after-create = 0 m
+
+# HIGH (2seconds),MEDIUM (10seconds),LOW(30seconds) #
+worker.process.file.watch-model= MEDIUM

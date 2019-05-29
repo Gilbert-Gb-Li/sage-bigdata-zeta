@@ -1,0 +1,2 @@
+app.monitor.prometheus=com.haima.sage.bigdata.etl.monitor.PrometheusMonitor
+app.checker.prometheus=com.haima.sage.bigdata.etl.driver.usable.PrometheusUsabilityChecker

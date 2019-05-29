@@ -1,0 +1,28 @@
+<div class="input-group col-sm-3 col-md-3 " style="float:left;padding-bottom:5px;"
+     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field'].$dirty||add_form.$submitted)}"
+><span
+  class="input-group-addon">字段</span>
+  <input class="form-control ui-autocomplete-input"
+         ng-model="case.rule.field"
+         uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+         placeholder="字段名称"
+         name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field" required>
+</div>
+<div class="input-group col-sm-3 col-md-3 " style="float:left"
+     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.from'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.from'].$dirty||add_form.$submitted)}"
+><span
+  class="input-group-addon">开始位置</span>
+  <input class="form-control"
+         ng-model="case.rule.from"
+         placeholder="开始位置" type="number"
+         name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.from" required></div>
+<div class="input-group col-sm-3 col-md-3 " style="float:left"
+     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.limit'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.limit'].$dirty||add_form.$submitted)}"
+>
+  <span
+    class="input-group-addon">长度</span>
+  <input class="form-control"
+         ng-model="case.rule.limit"
+         placeholder="长度" type="number"
+         name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.limit" required>
+</div>

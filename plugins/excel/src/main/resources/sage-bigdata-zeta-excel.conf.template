@@ -1,0 +1,1 @@
+app.reader.excel=com.haima.sage.bigdata.etl.reader.ExcelFileLogReader

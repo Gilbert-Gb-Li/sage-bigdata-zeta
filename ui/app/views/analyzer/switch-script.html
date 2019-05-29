@@ -1,0 +1,58 @@
+<div style="display: inline;padding-left: 0px" class="col-sm-10 col-md-10 control-box"
+     ng-class="{'has-error':add_form['filter[{{$index}}].script'].$invalid&&(add_form['filter[{{$index}}].script'].$dirty||add_form.$submitted)}">
+    <div id="script_id" ui-ace="{
+                           require: ['ace/ext/language_tools','ace/ext/themelist'],
+                          advanced: {
+                              enableSnippets: true,
+                              enableBasicAutocompletion: true,
+                              enableLiveAutocompletion: true
+                          },
+                          useWrapMode : true,
+                          showGutter: false,
+                          theme:'chrome',
+                          mode: 'javascript',
+                          firstLineNumber: 5,
+                          onLoad: aceLoaded,
+                          onChange: aceChanged
+                }"
+         name="sqlQueryStr" ng-model="filter.script"></div>
+    <span><em>说明:</em>过滤脚本:内置数据对象event Map类型；可以put(key,value),remove(key),get(key);最后一项是返回内容，需要返回基础类型！</span>
+</div>
+<div style="display: inline;padding-top:5px;padding-left: 20px" class="col-sm-12 col-md-12 control-box"
+     ng-repeat="case in filter.cases" ng-init="caseIndex=$index">
+    <div>
+        <div class="input-group col-sm-10 col-md-10" style="padding-top:5px;"
+             ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{$index}}].value'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{$index}}].value'].$dirty||add_form.$submitted)}">
+            <input ng-model="case.name" value="case" type="hidden">
+            <span class="input-group-addon">CASE:</span>
+            <input ng-model="case.value" placeholder="匹配的值" class="form-control"
+                   name="filter[{{filterIndex}}].cases[{{$index}}].value"
+                   required>
+            <span class="input-group-addon"><i class="fa fa-link"></i></span>
+            <select class="form-control" ng-model="case.rule.name"
+                    ng-change="caseChange(filterIndex,$index)">
+                <option value="reAnalyzer">进一步分析</option>
+                <option value="analyzerParser">使用解析规则</option>
+            </select>
+            <span class="input-group-addon btn btn-danger" ng-disabled="filter.cases.length==1"
+                  ng-click="filter.cases.length==1||removeCase(filterIndex,$index)">
+                <i class="fa fa-minus"></i></span>
+        </div>
+        <div ng-switch="case.rule.name">
+            <div style="padding-top:2px" class="col-sm-10 col-md-10 control-box" ng-switch-when="reAnalyzer">
+                <div class="media" ng-include="'views/analyzer/case-analyzer.html'"></div>
+            </div>
+            <div style="padding-top:2px" class="col-sm-10 col-md-10 control-box"
+                 ng-switch-when="analyzerParser">
+                <div class="media" ng-include="'views/analyzer/case-parser.html'"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<label class="col-sm-3 col-md-3" style="margin-top: 5px">
+  <span class="btn btn-primary btn-sm bg-success" title="添加" ng-click="addCase($index)"><i
+          class="fa fa-plus"></i>CASE</span></label><label class="col-sm-3 col-md-3 control-label"></label>
+<div class="" ng-include="'views/analyzer/filter-default.html'"></div>
+
+

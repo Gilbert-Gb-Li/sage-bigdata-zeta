@@ -1,0 +1,1 @@
+{separate:'\t',fields:['segment','@timestamp','date','time','c_ip','s_ip','c_port','s_port','time_taken','cs_method','sc_status','rsp_text','cs_bytes','cs_host','cs_uri_stem','url','request_via','pragma','transfer_encoding','cs_useragent','cs_referer','accept','accept_charset','accept_encoding','accept_language','expect','from','server','sc_bytes','load_time','keep_alive']}

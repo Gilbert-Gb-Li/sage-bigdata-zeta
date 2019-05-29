@@ -1,0 +1,21 @@
+<div style="padding-top:2px;" class="col-sm-12 col-md-12">
+  <div class="clearfix" style="padding-top:5px;padding-bottom:5px;">
+    <div class="input-group col-sm-6 col-md-6 " style="float:left"
+         ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field'].$dirty||add_form.$submitted)}"
+    ><span class="input-group-addon">字段</span>
+      <input class="form-control ui-autocomplete-input" ng-model="case.rule.field" placeholder="字段名称"
+             uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+             name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field" required>
+    </div>
+    <div class="input-group col-sm-6 col-md-6 " style="float:left"
+         ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.ref'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.ref'].$dirty||add_form.$submitted)}">
+      <label class="input-group-addon" for="case_ref">解析规则</label>
+      <select id="case_ref" class="form-control" ng-model="case.rule.ref"
+              name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.ref" required>
+        <option value="{{x.id}}" ng-repeat="x in all" ng-hide="x.id==rule.id">
+          {{x.name}}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

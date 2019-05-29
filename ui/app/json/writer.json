@@ -1,0 +1,111 @@
+[
+  {
+    "name": "数据存储-es",
+    "createtime": "2016-06-07 19:37:00",
+    "lasttime": "2016-06-07 19:37:42",
+    "data": {
+      "name": "es",
+      "hostPorts": [
+        [
+          "192.168.1.11",
+          9300
+        ]
+      ],
+      "indexType": "int",
+      "cache": 1000,
+      "cluster": "集群名称",
+      "id": "",
+      "routingField": "routing",
+      "idFields": [
+        "id"
+      ],
+      "index": "index1"
+    },
+    "id": "2af4f819-c214-4132-b84d-cf636030c563"
+  },
+  {
+    "name": "资产名称001-es002",
+    "createtime": "2016-06-07 19:49:59",
+    "lasttime": "2016-06-07 19:49:59",
+    "data": {
+      "name": "es",
+      "hostPorts": [
+        [
+          "192.168.1.11",
+          9300
+        ]
+      ],
+      "indexType": "int",
+      "cache": 1000,
+      "cluster": "192.168.111.11",
+      "id": "",
+      "routingField": "touting",
+      "idFields": [
+        "ijd"
+      ],
+      "index": "index"
+    },
+    "id": "04f56a25-31ff-40f9-ac0e-27c8c0528d81"
+  },
+  {
+    "name": "数据存储-kafka",
+    "createtime": "2016-06-07 20:27:25",
+    "lasttime": "2016-06-07 20:27:25",
+    "data": {
+      "name": "kafka",
+      "zookeeperConnect": [
+        [
+          "192.168.1.11",
+          2181
+        ]
+      ],
+      "cache": 1000,
+      "id": "",
+      "properties": {
+        "encoding": "utf-8"
+      },
+      "topic": "topic",
+      "partitions": 10,
+      "metadataBrokerList": [
+        [
+          "192.168.1.11",
+          9092
+        ]
+      ]
+    },
+    "id": "f99e09da-ac7d-4fce-9198-ea61ecc712bc"
+  },
+  {
+    "name": "数据存储-转发",
+    "createtime": "2016-06-07 20:39:57",
+    "lasttime": "2016-06-07 20:39:57",
+    "data": {
+      "name": "dataForward",
+      "id": "",
+      "cache": 1000
+    },
+    "id": "247f40aa-9863-4dde-aead-262371b2b032"
+  },
+  {
+    "name": "数据存储-网络",
+    "createtime": "2016-06-07 20:40:31",
+    "lasttime": "2016-06-07 20:40:31",
+    "data": {
+      "name": "net",
+      "id": "",
+      "cache": 1000
+    },
+    "id": "6fef5694-c88b-4031-abde-eb65f2b1ab87"
+  },
+  {
+    "name": "数据存储-网络2",
+    "createtime": "2016-06-07 20:41:01",
+    "lasttime": "2016-06-07 20:41:01",
+    "data": {
+      "name": "net",
+      "id": "",
+      "cache": 1000
+    },
+    "id": "0b481f77-2a3a-4a37-88c8-253b44e78164"
+  }
+]

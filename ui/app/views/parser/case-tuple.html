@@ -1,0 +1,28 @@
+<div class="input-group col-sm-6 col-md-6" ng-repeat="field in case.rule.fields"
+     style="float:left;padding-top: 2px; padding-left:2px;padding-right: 20px;margin-bottom:5px;"
+     ng-class="{'has-error':
+     (add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}].r[0]'].$invalid||
+        add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}].r[1]'].$invalid) &&
+     (add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}].r[0]'].$dirty ||
+      add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}].r[1]'].$dirty ||
+      add_form.$submitted)}">
+
+  <input placeholder="字段名称" ng-model="field[0]"
+         class="form-control"
+
+         name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}].r[0]"
+         required>
+  <span class="input-group-addon"><i class="fa fa-link"></i></span>
+  <input placeholder="内容(%{field}可以引用其他字段的值)" ng-model="field[1]"
+         class="form-control"
+         name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}].r[1]" required>
+  <span class="input-group-addon btn btn-inverse" ng-disabled="case.rule.fields.length==1"
+        ng-click="case.rule.fields.length==1||removeCaseTuple(filterIndex,caseIndex,$index)">
+      <i class="fa fa-remove"></i>
+    </span>
+</div>
+<label style="padding-left: -2px;padding-top: 5px;">
+  <span class=" btn btn-primary btn-sm bg-success" ng-click="addCaseTuple(filterIndex,$index)" title="添加内容">
+    &nbsp;&nbsp;<i class="fa fa-plus"></i>&nbsp;&nbsp;
+  </span>
+</label>

@@ -1,0 +1,3 @@
+app.monitor.es2=com.haima.sage.bigdata.etl.plugin.es_2.monitor.ESMonitor
+app.writer.es2=com.haima.sage.bigdata.etl.plugin.es_2.writer.ElasticSearchWriter
+app.checker.es2=com.haima.sage.bigdata.etl.plugin.es_2.driver.usable.ESUsabilityChecker

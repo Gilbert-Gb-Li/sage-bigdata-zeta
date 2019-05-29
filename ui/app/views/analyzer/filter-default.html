@@ -1,0 +1,40 @@
+<div style="display: inline;padding-left: 0px" class="col-sm-12 col-md-12 control-box">
+    <div style="padding-top:5px">
+        <div class="input-group col-sm-10 col-md-10" style="padding-top:5px;padding-left: 20px">
+            <input ng-model="case.name" value="case" type="hidden">
+            <span class="input-group-addon">DEFAULT:</span>
+            <select class="form-control" ng-model="filter.default.name" ng-change="caseDefaultChange(filterIndex)">
+                <option value="">无</option>
+                <option value="reAnalyzer">进一步分析</option>
+                <option value="analyzerParser">使用解析规则</option>
+            </select>
+        </div>
+        <div ng-switch="filter.default.name" class="col-sm-10 col-md-10 ">
+            <div style="padding-top:2px;padding-left: 20px"
+                 class="col-sm-12 col-md-12 control-box input-group"
+                 ng-class="{'has-error':add_form['filter[{{$index}}].default.ref'].$invalid&&(add_form['filter[{{$index}}].default.ref'].$dirty||add_form.$submitted)}"
+                 ng-switch-when="reAnalyzer">
+
+                <span class="input-group-addon">分析规则:</span>
+                <select class="form-control" ng-model="filter.default.ref"
+                        name="filter[{{$index}}].default.ref" required>
+                    <option value="{{x.id}}" ng-repeat="x in analyzers" ng-hide="x.id==rule.id">
+                        {{x.name}}
+                    </option>
+                </select>
+            </div>
+            <div style="padding-top:2px;padding-left: 20px" class="col-sm-12 col-md-12 control-box input-group"
+                 ng-class="{'has-error':add_form['filter[{{$index}}].default.ref'].$invalid&&(add_form['filter[{{$index}}].default.ref'].$dirty||add_form.$submitted)}"
+                 ng-switch-when="analyzerParser">
+
+                <span class="input-group-addon">解析规则:</span>
+                <select class="form-control" ng-model="filter.default.ref"
+                        name="filter[{{$index}}].default.ref" required>
+                    <option value="{{x.id}}" ng-repeat="x in parsers" ng-hide="x.id==rule.id">
+                        {{x.name}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

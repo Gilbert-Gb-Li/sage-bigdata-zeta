@@ -1,0 +1,72 @@
+<ul class="nav masthead-aside" style="margin:0;" bs-nav>
+  <li>
+    <a ng-href="#!/" reload-when-click ng-class="{active: $path() == '/'}">
+      <i class="glyphicon glyphicon-leaf"></i>
+      数据通道
+    </a>
+  </li>
+  <li>
+    <a ng-href="#!/datasource" reload-when-click ng-class="{active: $path() == '^/datasource'}">
+    <i class="glyphicon glyphicon-leaf"></i>
+    数据源
+    </a>
+  </li>
+  <li>
+    <a ng-href="#!/parser" reload-when-click ng-class="{active: $path().match('^/parser')}">
+    <i class="glyphicon glyphicon-wrench"></i>
+    解析规则
+    </a>
+  </li>
+  <li>
+      <a ng-href="#!/analyzer" reload-when-click ng-class="{active: $path().match('^/analyzer')}">
+    <i class="fa fa-magic"></i>
+    分析规则
+    </a>
+  </li>
+    <li>
+        <a ng-href="#!/modeling" reload-when-click ng-class="{active: $path() == '/modeling'}">
+            <i class="fa fa-calculator"></i>
+            数据建模
+        </a>
+    </li>
+  <!--<li><a ng-href="#/assets" reload-when-click ng-class="{active: $path().match('^/assets')}">资产管理</a></li>-->
+  <!--<li>-->
+    <!--<a ng-href="#!/assetType" reload-when-click ng-class="{active: $path().match('^/assetType')}">-->
+    <!--<i class="glyphicon glyphicon-indent-right"></i>-->
+    <!--资产类型-->
+    <!--</a>-->
+  <!--</li>-->
+    <li>
+        <a ng-href="#!/knowledge" reload-when-click ng-class="{active: $path().match('^/knowledge')}">
+            <i class="glyphicon glyphicon-indent-right"></i>
+            知识库管理
+        </a>
+    </li>
+
+  <li>
+    <a ng-href="#!/knowledgeinfo" reload-when-click ng-class="{active: $path().match('^/knowledgeinfo')}">
+      <i class="glyphicon glyphicon-indent-right"></i>
+      知识库信息管理
+    </a>
+  </li>
+  <!--<li><a ng-href="#/dictionary" reload-when-click ng-class="{active: $path() == '/dictionary'}">数据字典管理</a></li>-->
+  <li>
+    <a ng-href="#!/writer" reload-when-click ng-class="{active: $path() == '/writer'}">
+    <i class="glyphicon glyphicon-hdd"></i>
+    数据存储
+    </a>
+    </li>
+  <!--<li><a ng-href="#/metrics" reload-when-click ng-class="{active: $path() == '/metrics'}">采集进度</a></li>-->
+  <li>
+    <a ng-href="#!/taskManager" reload-when-click ng-class="{active: $path() == '/taskManager'}">
+    <i class="glyphicon glyphicon-time"></i>
+    任务调度
+    </a>
+  </li>
+  <li>
+    <a ng-href="#!/collector" reload-when-click ng-class="{active: $path() == '/collector'}">
+    <i class="glyphicon glyphicon-transfer"></i>
+    采集器
+    </a>
+  </li>
+</ul>

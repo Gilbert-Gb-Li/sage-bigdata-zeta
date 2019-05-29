@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <property name="appName" value="worker"/>
+
+    <property name="encoderPattern"
+              value="%date{ISO8601} %-5level %logger (%file:%line\\) %X{akkaSource} %msg%n"/>
+    <contextName>${appName}</contextName>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <!-- <pattern>%date{ISO8601} %logger %X{akkaSource} %-5level %msg%n</pattern>-->
+            <pattern>${encoderPattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="DAY_MANY_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>logs/${appName}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <!-- each file should be at most 100MB, keep 60 days worth of history, but at most 20GB -->
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>50MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${encoderPattern}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.haima" level="INFO"/>
+
+    <logger name="org.reflections" level="ERROR"/>
+    <logger name="org.apache.flink" level="ERROR"/>
+    <logger name="slick" level="ERROR"/>
+    <logger name="org.apache" level="ERROR"/>
+    <logger name="org.spark_project.jetty" level="ERROR"/>
+    <logger name="io.netty" level="ERROR"/>
+    <logger name="akka" level="ERROR"/>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="DAY_MANY_FILE"/>
+    </root>
+</configuration>
+
+
+

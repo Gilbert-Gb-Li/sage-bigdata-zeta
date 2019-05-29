@@ -1,0 +1,5 @@
+app.streaming.analyzer.pca=com.haima.sage.bigdata.analyzer.optimization.streaming.StreamPCAAnalyzer
+app.modeling.analyzer.pca=com.haima.sage.bigdata.analyzer.optimization.modeling.ModelingPCAAnalyzer
+app.streaming.analyzer.lda=com.haima.sage.bigdata.analyzer.optimization.streaming.StreamLDAAnalyzer
+app.modeling.analyzer.lda=com.haima.sage.bigdata.analyzer.optimization.modeling.ModelingLDAAnalyzer
+

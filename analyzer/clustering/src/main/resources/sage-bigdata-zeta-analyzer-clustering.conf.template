@@ -1,0 +1,2 @@
+app.streaming.analyzer.dbscan=com.haima.sage.bigdata.analyzer.dbscan.streaming.StreamDBSCANAnalyzer
+app.modeling.analyzer.dbscan=com.haima.sage.bigdata.analyzer.clustering.modeling.ModelingDBSCANAnalyzer

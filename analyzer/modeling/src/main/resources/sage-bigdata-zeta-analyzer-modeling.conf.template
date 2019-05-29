@@ -1,0 +1,3 @@
+# model filter #
+app.modeling.processor=com.haima.sage.bigdata.analyzer.modeling.processor.ModelingProcessor
+app.modeling.previewer=com.haima.sage.bigdata.analyzer.modeling.previewer.ModelingPreviewer

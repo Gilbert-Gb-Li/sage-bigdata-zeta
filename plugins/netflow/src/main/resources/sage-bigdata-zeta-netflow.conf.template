@@ -1,0 +1,4 @@
+app.monitor.net=com.haima.sage.bigdata.etl.monitor.NetMonitor
+app.protocol.netflow="netflow"
+app.protocol.jflow="jflow"
+app.checker.net=com.haima.sage.bigdata.etl.checker.NetChecker

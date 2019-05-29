@@ -1,0 +1,6 @@
+RELEASE DATE 2016 06 13
+add feature
+    1.ES 输出支持配置routing 个iD自定义指定
+    2.支持数据过滤,对于指定条件的数据 可以使用删除操作删除 ,不存储到存贮系统中去
+bug fixed
+Release branch cmb_pl_2.x base on branch 2.3

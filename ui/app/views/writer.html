@@ -1,0 +1,2357 @@
+<div class="row" xmlns="http://www.w3.org/1999/html">
+    <div class="col-sm-12 col-md-12">
+        <div class="hla-main">数据存储</div>
+        <div class="hla-widget">
+            <div class="hla-widget-head">
+                <div class="btn-group-xs pull-right">
+
+                    <button title="增加" class="btn btn-success" type="button" id="op_add_writer_button"
+                            ng-click="show('add')"><i class="fa fa-plus"></i></button>
+                    <button title="上传" class="btn btn-success" type="button" id="op_upload_writer_button"
+                            ng-click="show('upload')"><i class="fa fa-upload"></i></button>
+                    <button title="查询" class="btn btn-primary" id="op_show_writer_search" ng-click="show('search')"><i
+                            class="fa fa-search"></i></button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="hla-widget-content">
+                <div ng-show="message"
+                     ng-class="{'alert-danger':message.status!='200','alert-success':message.status=='200'}"
+                     class="col-sm-12 col-md-12 alert  " role="alert">
+                    {{message.message}}
+                </div>
+                <div class="hla-widget-upload-table form-horizontal" style="margin-bottom: 10px">
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-4">
+
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <input file-input type="file" file-model="myFile" id="fileInput" name="fileInput"
+                                   class="file" accept="application/json">
+
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-4">
+
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <b>说明：</b>数据上传功能会上传完整的数据(包含主键字段),对于已经存在系统的数据（主键相同），会被<b>覆盖</b>;
+                            如果是要基于一个原来的源新增一个，建议使用列表中的"复制"功能！
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-4">
+
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <button class="btn btn-success" ng-click="uploadFile()">上传</button>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="hla-widget-search-table">
+                    <form name="search_ds_form" class="form-horizontal" ng-submit="reload()" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label">名称</label>
+                            <div class="col-sm-3 col-md-3">
+                                <input type="text" placeholder="名称" name="name" class="form-control"
+                                       ng-model="page.search.name">
+                            </div>
+                            <label class="col-sm-2 col-md-2 control-label">类型</label>
+                            <div class="col-sm-3 col-md-3">
+                                <select name="writeType" class="form-control" ng-model="page.search.writeType">
+                                    <option value="">请选择</option>
+                                    <option value="es6">ELASTICSEARCH-6.X</option>
+                                    <option value="es5">ELASTICSEARCH-5.X</option>
+                                    <option value="es2">ELASTICSEARCH-2.X</option>
+                                    <option value="rabbitmq">RabbitMQ</option>
+                                    <option value="kafka">KAFKA</option>
+                                    <!-- <option value="syslog">SYSLOG</option>-->
+                                    <option value="net">网络</option>
+                                    <option value="jdbc">数据库</option>
+                                    <option value="file">本地文件</option>
+                                    <option value="hdfs">HDFS</option>
+                                    <option value="orc">HDFS-ORC文件</option>
+                                    <option value="forward">数据发布</option>
+                                    <option value="switch">条件输出</option>
+                                    <option value="restful">RESTFUL</option>
+                                </select>
+                            </div>
+
+                            <div class="col-sm-2 col-md-2">
+                                <button id="op_search_button" class="btn btn-primary" type="submit">查询
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="hla-widget-add-table">
+                    <form name="ds_form" class="form-horizontal" ng-submit="saveWriter(ds_form.valid)" novalidate>
+                        <div ng-show="!ds_form.valid&&ds_form.$submitted" class="col-sm-12 col-md-12 alert alert-danger"
+                             role="alert">
+                            表单填写有误，请检查表单！
+                            <div ng-hide="true">
+                                {{ds_form.valid=ds_form.$valid
+                                &&(writer.data.name=='es'?writer.data.hostPorts.length>0:true)}}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>名称</label>
+
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.name.$invalid&&(ds_form.name.$dirty||ds_form.$submitted)}">
+                                <input type="text" placeholder="名称" name="name" class="form-control"
+                                       ng-model="writer.name" required>
+                            </div>
+                            <label for="writeType" class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>类型</label>
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form['data[name]'].$invalid&&(ds_form['data[name]'].$dirty||ds_form.$submitted)}">
+                                <select id="writeType" name="data[name]" class="form-control"
+                                        ng-model="writer.data.name"
+                                        ng-change="changeName()" required>
+                                    <option value="es6">ELASTICSEARCH-6.X</option>
+                                    <option value="es5">ELASTICSEARCH-5.X</option>
+                                    <option value="es2">ELASTICSEARCH-2.X</option>
+                                    <option value="rabbitmq">RabbitMQ</option>
+                                    <option value="kafka">KAFKA</option>
+                                    <!--  <option value="syslog">SYSLOG</option>-->
+                                    <option value="net">网络</option>
+                                    <option value="jdbc">数据库</option>
+                                    <option value="file">本地文件</option>
+                                    <option value="hdfs">HDFS</option>
+                                    <option value="orc">HDFS-ORC文件</option>
+                                    <option value="forward">数据转发</option>
+                                    <option value="switch">条件输出</option>
+                                    <option value="restful">RESTFUL</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div ng-switch="writer.data.name">
+                            <div class="writerContent" ng-switch-when="es2|es5|es6" ng-switch-when-separator="|">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>集群名称</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[cluster]'].$invalid&&(ds_form['data[cluster]'].$dirty||ds_form.$submitted)}">
+                                        <input name="data[cluster]" type="text" class="form-control" placeholder="集群名称"
+                                               ng-model="writer.data.cluster" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">集群地址</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <button type="button" class="btn btn-success btn-sm" title="增加"
+                                                ng-click="addHostPort()"><i class="fa fa-plus"></i></button>
+                                        <label class="text-danger"
+                                               ng-show="!writer.data.hostPorts||writer.data.hostPorts.length===0">至少要有一个地址！</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-repeat="hostPort in writer.data.hostPorts">
+                                    <div class="col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+                                        <div class="input-group"
+                                             ng-class="{'has-error':(ds_form['data[hostPorts][{{$index}}][host]'].$invalid&&(ds_form['data[hostPorts][{{$index}}][host]'].$dirty||ds_form.$submitted))||(ds_form['data[hostPorts][{{$index}}][port]'].$invalid&&(ds_form['data[hostPorts][{{$index}}][port]'].$dirty||ds_form.$submitted))}">
+                                            <span class="input-group-addon">主机</span>
+                                            <input type="text" class="form-control" placeholder="主机"
+                                                   ng-model="hostPort[0]" name="data[hostPorts][{{$index}}][host]"
+                                                   required>
+                                            <span class="input-group-addon">端口</span>
+                                            <input type="number" class="form-control" placeholder="端口"
+                                                   ng-pattern="/^((65[1-4]\d{2})|(6[1-4]\d{3})|([1-5]\d{4})|([1-9]\d{0,3}))$/"
+                                                   ng-model="hostPort[1]" name="data[hostPorts][{{$index}}][port]"
+                                                   required><span class="input-group-addon mouse-on" title="删除"
+                                                                  ng-click="removeHostPort($index)"><i
+                                                class="fa fa-minus fa-fw op_minus op_delete_event_relate"></i> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>索引</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[index]'].$invalid&&(ds_form['data[index]'].$dirty||ds_form.$submitted)}"
+                                         title="ES的索引，可以使用 $ 引用其他字段的内容">
+                                        <input name="data[index]" type="text" class="form-control"
+                                               placeholder="ES的索引，可以使用 $ 引用其他字段的内容" ng-model="writer.data.index"
+                                               required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>索引类型</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[indexType]'].$invalid&&(ds_form['data[indexType]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[indexType]"
+                                               placeholder="索引类型限定为data" ng-model="writer.data.indexType" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        脚本更新文档:
+                                    </label>
+                                    <div class="col-sm-4 col-md-4">
+                                        <switch class="green" ng-model="writer.data.isScript" name="data[isScript]"
+                                                on="是"
+                                                off="否"></switch>
+                                    </div>
+                                </div>
+                                <media ng-switch="writer.data.isScript">
+                                    <media ng-switch-when="true">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">脚本内容</label>
+                                            <div class="col-sm-8 col-md-8">
+                                                <div id="script_id" ui-ace="{ require: ['ace/ext/language_tools','ace/ext/themelist'],
+                                                      advanced: {
+                                                          enableSnippets: true,
+                                                          enableBasicAutocompletion: true,
+                                                          enableLiveAutocompletion: true
+                                                      },
+                                                      useWrapMode : true,
+                                                      showGutter: false,
+                                                      theme:'chrome',
+                                                      mode: 'groovy',
+                                                      firstLineNumber: 5,
+                                                      onLoad: aceLoaded,
+                                                      onChange: aceChanged
+                                                      }" name="sqlQueryStr" ng-model="writer.data.script"></div>
+
+                                                <span><em>说明:</em>内置数据对象params Map类型;</span>
+
+                                            </div>
+                                        </div>
+
+                                    </media>
+                                    <media ng-switch-default="">
+                                        <div class="form-group">
+
+                                            <label class="col-sm-2 col-md-2 control-label">参考父类字段</label>
+
+                                            <div class="col-sm-3 col-md-3">
+                                                <input type="text" class="form-control" placeholder="参考父类字段"
+                                                       ng-model="writer.data.parentField">
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">子表项名称（NestObject作为子表项）</label>
+
+                                            <div class="col-sm-3 col-md-3">
+                                                <input type="text" class="form-control" placeholder="子表项名称"
+                                                       ng-model="writer.data.asChild">
+                                            </div>
+
+                                        </div>
+
+
+                                    </media>
+                                </media>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">路由字段</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="text" class="form-control" placeholder="路由字段"
+                                               ng-model="writer.data.routingField">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">ID域</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="text" class="form-control" placeholder="ID域,用','隔开的字段列表"
+                                               ng-model="writer.data.idFields">
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">自动识别数字</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <switch name="data[numeric_detection]" ng-model="writer.data.numeric_detection"
+                                                on="是" off="否" class="green"></switch>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">自动识别日期</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <switch name="data[date_detection]" ng-model="writer.data.date_detection" on="是"
+                                                off="否" class="green"></switch>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 col-md-2 control-label">分片数</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="number" class="form-control" name="data[number_of_shards]"
+                                               ng-model="writer.data.number_of_shards" placeholder="分片数"
+                                               validate="required,digits">
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label">副本数</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="number" class="form-control" name="data[number_of_replicas]"
+                                               ng-model="writer.data.number_of_replicas" placeholder="副本数"
+                                               validate="required,digits">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 col-md-2 control-label">数据缓存</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="number" class="form-control" name="data[cache]"
+                                               ng-model="writer.data.cache" placeholder="数据缓存条数"
+                                               validate="required,digits">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">索引字段参考</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[persisRef][name]" class="form-control"
+                                                ng-model="writer.data.persisRef.name">
+                                            <option value="none">无</option>
+                                            <option value="ref">引用</option>
+                                            <option value="date">参考时间字段</option>
+                                            <option value="truncate">截取字段内容</option>
+                                            <option value="mod">HASH值取模计算</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-switch="writer.data.persisRef.name">
+                                    <div class="form-group" ng-switch-when="ref">
+                                        <label class="col-sm-2 col-md-2 control-label">参考字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-switch-when="date">
+                                        <label class="col-sm-2 col-md-2 control-label">时间字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">时间格式化方式</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][format]'].$invalid&&(ds_form['data[persisRef][format]'].$dirty||ds_form.$submitted)}"
+                                             title="参考JDK时间格式化规则如：yyyyMMdd">
+                                            <input type="text" class="form-control" name="data[persisRef][format]"
+                                                   ng-model="writer.data.persisRef.format"
+                                                   placeholder="参考JDK时间格式化规则如：yyyyMMdd" required>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="truncate">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">要截断的字段名称</label>
+
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" class="form-control" name="data[persisRef][field]"
+                                                       ng-model="writer.data.persisRef.field" placeholder="参考字段名称"
+                                                       required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">开始截取位置</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <switch id="enabled" name="data[persisRef][end]"
+                                                        ng-model="writer.data.persisRef.end" on="尾部" off="头部"
+                                                        class="green"></switch>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">偏移量</label>
+
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[persisRef][from]"
+                                                       ng-model="writer.data.persisRef.from" class="form-control"
+                                                       placeholder="开始位置" type="number" required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">长度</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[persisRef][length]"
+                                                       ng-model="writer.data.persisRef.length" placeholder="长度"
+                                                       type="number" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-switch-when="mod">
+                                        <label class="col-sm-2 col-md-2 control-label">HASH字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">取模参考</label>
+
+                                        <div class="col-sm-3 col-md-3">
+                                            <input type="number" class="form-control" name="data[persisRef][mod]"
+                                                   ng-model="writer.data.persisRef.mod" placeholder="数据缓存条数"
+                                                   validate="required,digits">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">启用_size属性</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <switch name="data[enable_size]" ng-model="writer.data.enable_size" on="是"
+                                                off="否" class="green"></switch>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="writerContent" ng-switch-when="jdbc">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>数据库类型</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[protocol]'].$invalid&&(ds_form['data[protocol]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[protocol]" required
+                                                ng-model="writer.data.protocol" ng-change="changeDBType()">
+                                            <option value="mysql">mysql</option>
+                                            <option value="oracle">oracle</option>
+                                            <option value="sqlserver">sqlserver</option>
+                                            <option value="DB2">DB2</option>
+                                            <option value="sybase">sybase</option>
+                                            <option value="postgresql">postgresql</option>
+                                            <option value="sqlite">sqlite</option>
+                                            <option value="derby">derby</option>
+                                            <option value="phoenix">hbase</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>驱动类型</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[driver]'].$invalid&&(ds_form['data[driver]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[driver]" required
+                                                ng-model="writer.data.driver">
+                                            <!--<option ng-repeat="x in drivers" value="{{x}}">{{x}}</option>-->
+                                            <option ng-if="writer.data.protocol == 'mysql'"
+                                                    value="com.mysql.jdbc.Driver">com.mysql.jdbc.Driver
+                                            </option>
+                                            <option ng-if="writer.data.protocol == 'oracle'"
+                                                    value="oracle.jdbc.driver.OracleDriver">
+                                                oracle.jdbc.driver.OracleDriver
+                                            </option>
+                                            <option ng-if="writer.data.protocol == 'sqlserver'"
+                                                    value="com.microsoft.jdbc.sqlserver.SQLServerDriver">
+                                                com.microsoft.jdbc.sqlserver.SQLServerDriver
+                                            </option>
+                                            <option ng-if="writer.data.protocol == 'sqlserver'"
+                                                    value="net.sourceforge.jtds.jdbc.Driver">
+                                                net.sourceforge.jtds.jdbc.Driver
+                                            </option>
+                                            <option ng-if="writer.data.protocol == 'DB2'"
+                                                    value="com.ibm.db2.jcc.DB2Driver">com.ibm.db2.jcc.DB2Driver
+                                            </option>
+                                            <option ng-if="writer.data.protocol == 'sybase'"
+                                                    value="com.sybase.jdbc3.jdbc.SybDriver">
+                                                com.sybase.jdbc3.jdbc.SybDriver
+                                            </option>
+                                            <option ng-if="writer.data.protocol == 'sybase'"
+                                                    value="net.sourceforge.jtds.jdbc.Driver">
+                                                net.sourceforge.jtds.jdbc.Driver
+                                            </option>
+                                            <option ng-if="writer.data.protocol == 'postgresql'"
+                                                    value="org.postgresql.Driver">org.postgresql.Driver
+                                            </option>
+                                            <option ng-if="writer.data.protocol == 'sqlite'" value="org.sqlite.JDBC">
+                                                org.sqlite.JDBC
+                                            </option>
+                                            <option ng-if="writer.data.protocol == 'derby'"
+                                                    value="org.apache.derby.jdbc.EmbeddedDriver">
+                                                org.apache.derby.jdbc.EmbeddedDriver
+                                            </option>
+                                            <option ng-if="writer.data.protocol == 'phoenix'"
+                                                    value="org.apache.phoenix.jdbc.PhoenixDriver">
+                                                org.apache.phoenix.jdbc.PhoenixDriver
+                                            </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>库或实例名</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[schema]'].$invalid&&(ds_form['data[schema]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[schema]"
+                                               ng-model="writer.data.schema" placeholder="库或实例名称" required>
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>数据库地址</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[host]'].$invalid&&(ds_form['data[host]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[host]"
+                                               ng-model="writer.data.host" placeholder="主机名或IP地址" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>端口</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[port]'].$invalid&&(ds_form['data[port]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[port]"
+                                               placeholder="端口"
+                                               ng-pattern="/^((65[1-4]\d{2})|(6[1-4]\d{3})|([1-5]\d{4})|([1-9]\d{0,3}))$/"
+                                               ng-model="writer.data.port" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">用户名</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[properties][user]'].$invalid&&(ds_form['data[properties][user]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[properties][user]"
+                                               ng-model="writer.data.properties.user" placeholder="数据库用户名" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">密码</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[properties][password]'].$invalid&&(ds_form['data[properties][password]'].$dirty||ds_form.$submitted)}">
+                                        <input type="password" class="form-control"
+                                               ng-model="writer.data.properties.password"
+                                               name="data[properties][password]" placeholder="密码">
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>数据表</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[table]'].$invalid&&(ds_form['data[table]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[table]"
+                                               ng-model="writer.data.table" placeholder="数据表" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">编码</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <input class="form-control" name="data[properties][encoding]"
+                                               ng-model="writer.data.properties.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">数据缓存</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="number" class="form-control" name="data[cache]"
+                                               ng-model="writer.data.cache" placeholder="数据缓存条数"
+                                               validate="required,digits">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 col-md-2 control-label"
+                                           ng-if="writer.data.protocol != 'phoenix'">表名字段参考</label>
+                                    <div class="col-sm-3 col-md-3" ng-if="writer.data.protocol != 'phoenix'">
+                                        <select name="data[name]" class="form-control"
+                                                ng-model="writer.data.persisRef.name">
+                                            <option value="none">无</option>
+                                            <option value="ref">引用</option>
+                                            <option value="date">参考时间字段</option>
+                                            <option value="truncate">截取字段内容</option>
+                                            <option value="mod">HASH值取模计算</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div id="log_property_list">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-md-2 control-label">字段及类型</label>
+                                        <div class="col-sm-8 col-md-8">
+                                            <div id="properties">
+                                                <div style="padding-left: 15px;" class="form-group op_eve   nt_relate"
+                                                     ng-repeat="field in writer.data.metadata track by $index">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><em
+                                                                class="hla-required-input">*</em>字段名</span>
+                                                        <input type="text" class="form-control" placeholder="字段"
+                                                               ng-model="field.name" required style="width: 140px;">
+                                                        <span class="input-group-addon"><em
+                                                                class="hla-required-input">*</em>类型</span>
+                                                        <select class="form-control" ng-model="field.type"
+                                                                ng-change="changeType($index)" style="width: 110px;">
+                                                            <option value="BOOLEAN">boolean</option>
+                                                            <option value="INTEGER">integer</option>
+                                                            <option value="LONG">long</option>
+                                                            <option value="DOUBLE">double</option>
+                                                            <option value="FLOAT">float</option>
+                                                            <option value="CHAR">char</option>
+                                                            <option value="VARCHAR">varchar</option>
+                                                            <option value="VARCHAR2">varchar2</option>
+                                                            <option value="NUMBER">number</option>
+                                                            <option value="NUMERIC">number</option>
+                                                            <option value="DECIMAL">decimal</option>
+                                                            <option value="TEXT">text</option>
+                                                            <option value="TIMESTAMP">timestamp</option>
+                                                            <option value="CLOB">clob</option>
+                                                            <option value="BLOB">blob</option>
+                                                        </select>
+                                                        <span class="input-group-addon">长度</span>
+                                                        <input type="number" class="form-control" style="width: 60px;"
+                                                               ng-model="field.length">
+                                                        <span class="input-group-addon">精度</span>
+                                                        <input type="number" class="form-control" style="width: 60px;"
+                                                               ng-model="field.decimal">
+                                                        <span class="input-group-addon">空</span>
+                                                        <select class="form-control" ng-model="field.nullable"
+                                                                style="width: 55px;">
+                                                            <option value="Y">是</option>
+                                                            <option value="N">否</option>
+                                                        </select>
+                                                        <span class="input-group-addon">主键</span>
+                                                        <select class="form-control " ng-model="field.pk"
+                                                                style="width: 55px;">
+                                                            <option value="Y">是</option>
+                                                            <option value="N">否</option>
+                                                        </select>
+                                                        <span class="input-group-addon mouse-on" title="删除"
+                                                              ng-click="deleteField($index)"><i
+                                                                class="fa fa-minus fa-fw op_minus op_delete_event_relate"></i> </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span class="btn btn-success" ng-click="addField();"
+                                                  title="添加字段属性"><i class="fa fa-plus"></i>添加字段属性</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-switch="writer.data.persisRef.name">
+                                    <div class="form-group" ng-switch-when="ref">
+                                        <label class="col-sm-2 col-md-2 control-label">参考字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-switch-when="date">
+                                        <label class="col-sm-2 col-md-2 control-label">时间字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">时间格式化方式</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][format]'].$invalid&&(ds_form['data[persisRef][format]'].$dirty||ds_form.$submitted)}"
+                                             title="参考JDK时间格式化规则如：yyyyMMdd">
+                                            <input type="text" class="form-control" name="data[persisRef][format]"
+                                                   ng-model="writer.data.persisRef.format"
+                                                   placeholder="参考JDK时间格式化规则如：yyyyMMdd" required>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="truncate">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">要截断的字段名称</label>
+
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" class="form-control" name="data[persisRef][field]"
+                                                       ng-model="writer.data.persisRef.field" placeholder="参考字段名称"
+                                                       required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">开始截取位置</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <switch id="enabled" name="data[persisRef][start]"
+                                                        ng-model="writer.data.persisRef.start" on="尾部" off="头部"
+                                                        class="green"></switch>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">偏移量</label>
+
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[persisRef][from]"
+                                                       ng-model="writer.data.persisRef.from" class="form-control"
+                                                       placeholder="开始位置" type="number" required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">长度</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[persisRef][length]"
+                                                       ng-model="writer.data.persisRef.length" placeholder="长度"
+                                                       type="number" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-switch-when="mod">
+                                        <label class="col-sm-2 col-md-2 control-label">HASH字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">取模参考</label>
+
+                                        <div class="col-sm-3 col-md-3">
+                                            <input type="number" class="form-control" name="data[persisRef][mod]"
+                                                   ng-model="writer.data.persisRef.mod" placeholder="数据缓存条数"
+                                                   validate="required,digits">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="writerContent" ng-switch-when="kafka">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>TOPIC</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data_topic'].$invalid&&(ds_form['data_topic'].$dirty||ds_form.$submitted)}"
+                                         title="kafka 的topic，可以使用 $ 引用其他字段的内容">
+                                        <input type="text" name="data_topic" placeholder="kafka 的topic，可以使用 $ 引用其他字段的内容"
+                                               class="form-control" ng-model="writer.data.topic" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">数据缓存</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="number" class="form-control" name="data[cache]"
+                                               ng-model="writer.data.cache" placeholder="数据缓存条数"
+                                               validate="required,digits">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">权限校验</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <select class="form-control" name="data[authentication]"
+                                                ng-model="writer.data.authentication">
+                                            <option value="NONE">无</option>
+                                            <option value="PLAIN">PLAIN</option>
+                                            <option value="KERBEROS">KERBEROS</option>
+                                            <option value="SSL">SSL</option>
+                                            <option value="PLAIN_SSL">PLAIN+SSL</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">集群连接超时时间</label>
+                                    <div class="col-sm-3 col-md-3" title="CLUSTER_CONNECT_TIMEOUT">
+                                        <input name="data[properties][connectTimeout]" class="form-control" ,value="300"
+                                               ng-model="writer.data.properties.connectTimeout"
+                                               placeholder="CLUSTER_CONNECT_TIMEOUT">
+                                    </div>
+                                </div>
+                                <media ng-switch="writer.data.authentication">
+                                    <div ng-switch-when="PLAIN">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>JAAS配置文件</label>
+                                            <div class="col-sm-8 col-md-8"
+                                                 ng-class="{'has-error':ds_form['data[properties][auth_config]'].$invalid&&(ds_form['data[properties][auth_config]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="JAAS配置文件"
+                                                       name="data[properties][auth_config]" class="form-control"
+                                                       ng-model="writer.data.properties.auth_config">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="KERBEROS">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>JAAS配置文件</label>
+                                            <div class="col-sm-8 col-md-8"
+                                                 ng-class="{'has-error':ds_form['data[properties][auth_config]'].$invalid&&(ds_form['data[properties][auth_config]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="JAAS配置文件"
+                                                       name="data[properties][auth_config]" class="form-control"
+                                                       ng-model="writer.data.properties.auth_config">
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KRB5配置文件</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][kerberos_path]'].$invalid&&(ds_form['data[properties][kerberos_path]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="KRB5配置文件"
+                                                       name="data[properties][kerberos_path]" class="form-control"
+                                                       ng-model="writer.data.properties.kerberos_path">
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KERBEROS服务名称</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][principal]'].$invalid&&(ds_form['data[properties][principal]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="KERBEROS服务名称"
+                                                       name="data[properties][principal]" class="form-control"
+                                                       ng-model="writer.data.properties.principal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="SSL">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>TRUST文件</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][trust_file]'].$invalid&&(ds_form['data[properties][trust_file]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="TRUST文件"
+                                                       name="data[properties][trust_file]" class="form-control"
+                                                       ng-model="writer.data.properties.trust_file">
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>TRUST密码</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][trust_password]'].$invalid&&(ds_form['data[properties][trust_password]'].$dirty||ds_form.$submitted)}">
+                                                <input type="password" required="" placeholder="TRUST密码"
+                                                       name="data[properties][trust_password]" class="form-control"
+                                                       ng-model="writer.data.properties.trust_password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KEYSTORE文件</label>
+                                            <div class="col-sm-8 col-md-8"
+                                                 ng-class="{'has-error':ds_form['data[properties][keystore_file]'].$invalid&&(ds_form['data[properties][keystore_file]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="KEYSTORE文件"
+                                                       name="data[properties][keystore_file]" class="form-control"
+                                                       ng-model="writer.data.properties.keystore_file">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KEYSTORE密码</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][keystore_password]'].$invalid&&(ds_form['data[properties][keystore_password]'].$dirty||ds_form.$submitted)}">
+                                                <input type="password" required="" placeholder="KEYSTORE密码"
+                                                       name="data[properties][keystore_password]" class="form-control"
+                                                       ng-model="writer.data.properties.keystore_password">
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KEY密码</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][key_password]'].$invalid&&(ds_form['data[properties][key_password]'].$dirty||ds_form.$submitted)}">
+                                                <input type="password" required="" placeholder="KEY密码"
+                                                       name="data[properties][key_password]" class="form-control"
+                                                       ng-model="writer.data.properties.key_password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="PLAIN_SSL">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>JAAS配置文件</label>
+                                            <div class="col-sm-8 col-md-8"
+                                                 ng-class="{'has-error':ds_form['data[properties][auth_config]'].$invalid&&(ds_form['data[properties][auth_config]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="JAAS配置文件"
+                                                       name="data[properties][auth_config]" class="form-control"
+                                                       ng-model="writer.data.properties.auth_config">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>TRUST文件</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][trust_file]'].$invalid&&(ds_form['data[properties][trust_file]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="TRUST文件"
+                                                       name="data[properties][trust_file]" class="form-control"
+                                                       ng-model="writer.data.properties.trust_file">
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>TRUST密码</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][trust_password]'].$invalid&&(ds_form['data[properties][trust_password]'].$dirty||ds_form.$submitted)}">
+                                                <input type="password" required="" placeholder="TRUST密码"
+                                                       name="data[properties][trust_password]" class="form-control"
+                                                       ng-model="writer.data.properties.trust_password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KEYSTORE文件</label>
+                                            <div class="col-sm-8 col-md-8"
+                                                 ng-class="{'has-error':ds_form['data[properties][keystore_file]'].$invalid&&(ds_form['data[properties][keystore_file]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="KEYSTORE文件"
+                                                       name="data[properties][keystore_file]" class="form-control"
+                                                       ng-model="writer.data.properties.keystore_file">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KEYSTORE密码</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][keystore_password]'].$invalid&&(ds_form['data[properties][keystore_password]'].$dirty||ds_form.$submitted)}">
+                                                <input type="password" required="" placeholder="KEYSTORE密码"
+                                                       name="data[properties][keystore_password]" class="form-control"
+                                                       ng-model="writer.data.properties.keystore_password">
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KEY密码</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][key_password]'].$invalid&&(ds_form['data[properties][key_password]'].$dirty||ds_form.$submitted)}">
+                                                <input type="password" required="" placeholder="KEY密码"
+                                                       name="data[properties][key_password]" class="form-control"
+                                                       ng-model="writer.data.properties.key_password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </media>
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>KAFKA地址</label>
+
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[hostPorts]'].$invalid&&(ds_form['data[hostPorts]'].$dirty||ds_form.$submitted)}"
+                                         title="IP地址或者：端口, IP地址或者：端口, IP地址或者：端口   例如：192.168.0.2:9092,192.168.0.3:9092">
+                                        <input type="text" required
+                                               placeholder="IP地址或者：端口, IP地址或者：端口, IP地址或者：端口   例如：192.168.0.2:9092,192.168.0.3:9092"
+                                               name="data[hostPorts]" class="form-control"
+                                               ng-model="writer.data.hostPorts">
+                                    </div>
+                                </div>
+                                <div class="form-group"><label class="col-sm-2 col-md-2 control-label">TOPIC参考字段</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[name]" class="form-control"
+                                                ng-model="writer.data.persisRef.name">
+                                            <option value="none">无</option>
+                                            <option value="ref">引用</option>
+                                            <option value="date">参考时间字段</option>
+                                            <option value="truncate">截取字段内容</option>
+                                            <option value="mod">HASH值取模计算</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-switch="writer.data.persisRef.name">
+                                    <div class="form-group" ng-switch-when="ref">
+                                        <label class="col-sm-2 col-md-2 control-label">参考字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称">
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-switch-when="date">
+                                        <label class="col-sm-2 col-md-2 control-label">时间字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">时间格式化方式</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][format]'].$invalid&&(ds_form['data[persisRef][format]'].$dirty||ds_form.$submitted)}"
+                                             title="参考JDK时间格式化规则如：yyyyMMdd">
+                                            <input type="text" class="form-control" name="data[persisRef][format]"
+                                                   ng-model="writer.data.persisRef.format"
+                                                   placeholder="参考JDK时间格式化规则如：yyyyMMdd" required>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="truncate">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">要截断的字段名称</label>
+
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" class="form-control" name="data[persisRef][field]"
+                                                       ng-model="writer.data.persisRef.field" placeholder="参考字段名称"
+                                                       required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">开始截取位置</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <switch id="enabled" name="data[persisRef][start]"
+                                                        ng-model="writer.data.persisRef.start" on="尾部" off="头部"
+                                                        class="green"></switch>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">偏移量</label>
+
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[persisRef][from]"
+                                                       ng-model="writer.data.persisRef.from" class="form-control"
+                                                       placeholder="开始位置" type="number" required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">长度</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[persisRef][length]"
+                                                       ng-model="writer.data.persisRef.length" placeholder="长度"
+                                                       type="number" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-switch-when="mod">
+                                        <label class="col-sm-2 col-md-2 control-label">HASH字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">取模参考</label>
+
+                                        <div class="col-sm-3 col-md-3">
+                                            <input type="number" class="form-control" name="data[persisRef][mod]"
+                                                   ng-model="writer.data.persisRef.mod" placeholder="数据缓存条数"
+                                                   validate="required,digits">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="writerContent" ng-switch-when="rabbitmq">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>主机地址</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data_host'].$invalid&&(ds_form['data_host'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data_host"
+                                               ng-model="writer.data.host" placeholder="主机名或IP地址" required
+                                               ng-pattern="/((?:(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d))))/">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>端口</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[port]'].$invalid&&(ds_form['data[port]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[port]" placeholder="端口"
+                                               ng-model="writer.data.port" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">虚拟主机</label>
+
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[virtualHost]'].$invalid&&(ds_form['data[virtualHost]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[host]"
+                                               ng-model="writer.data.virtualHost" placeholder="虚拟主机">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>队列名称</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[queue]'].$invalid&&(ds_form['data[queue]'].$dirty||ds_form.$submitted)}"
+                                         title="MQ的队列名称，可以使用 $ 引用其他字段的内容">
+                                        <input type="text" class="form-control" name="data[queue]"
+                                               ng-model="writer.data.queue" required
+                                               placeholder="MQ的队列名称，可以使用 $ 引用其他字段的内容">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">持久化队列</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[durable]'].$invalid&&(ds_form['data[durable]'].$dirty||ds_form.$submitted)}">
+
+                                        <switch id="enabled" name="data[durable]" ng-model="writer.data.durable" on="是"
+                                                off="否" class="green"></switch>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 col-md-2 control-label">用户名</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[username]'].$invalid&&(ds_form['data[username]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[username]"
+                                               ng-model="writer.data.username" placeholder="用户名">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">密码</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[password]'].$invalid&&(ds_form['data[password]'].$dirty||ds_form.$submitted)}">
+                                        <input type="password" class="form-control" ng-model="writer.data.password"
+                                               name="data[password]" placeholder="密码">
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">数据缓存</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="number" class="form-control" name="data[cache]"
+                                               ng-model="writer.data.cache" placeholder="数据缓存条数"
+                                               validate="required,digits">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">队列名称参考字段</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[name]" class="form-control"
+                                                ng-model="writer.data.persisRef.name">
+                                            <option value="none" selected>无</option>
+                                            <option value="ref">引用</option>
+                                            <option value="date">参考时间字段</option>
+                                            <option value="truncate">截取字段内容</option>
+                                            <option value="mod">HASH值取模计算</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-switch="writer.data.persisRef.name">
+                                    <div class="form-group" ng-switch-when="ref">
+                                        <label class="col-sm-2 col-md-2 control-label">参考字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-switch-when="date">
+                                        <label class="col-sm-2 col-md-2 control-label">时间字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">时间格式化方式</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][format]'].$invalid&&(ds_form['data[persisRef][format]'].$dirty||ds_form.$submitted)}"
+                                             title="参考JDK时间格式化规则如：yyyyMMdd">
+                                            <input type="text" class="form-control" name="data[persisRef][format]"
+                                                   ng-model="writer.data.persisRef.format"
+                                                   placeholder="参考JDK时间格式化规则如：yyyyMMdd" required>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="truncate">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">要截断的字段名称</label>
+
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" class="form-control" name="data[persisRef][field]"
+                                                       ng-model="writer.data.persisRef.field" placeholder="参考字段名称"
+                                                       required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">开始截取位置</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <switch id="enabled" name="data[persisRef][start]"
+                                                        ng-model="writer.data.persisRef.start" on="尾部" off="头部"
+                                                        class="green"></switch>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">偏移量</label>
+
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[persisRef][from]"
+                                                       ng-model="writer.data.persisRef.from" class="form-control"
+                                                       placeholder="开始位置" type="number" required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">长度</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[persisRef][length]"
+                                                       ng-model="writer.data.persisRef.length" placeholder="长度"
+                                                       type="number" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-switch-when="mod">
+                                        <label class="col-sm-2 col-md-2 control-label">HASH字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">取模参考</label>
+
+                                        <div class="col-sm-3 col-md-3">
+                                            <input type="number" class="form-control" name="data[persisRef][mod]"
+                                                   ng-model="writer.data.persisRef.mod" placeholder="数据缓存条数"
+                                                   validate="required,digits">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="writerContent" ng-switch-when-separator="|" ng-switch-when="syslog|net">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>发送到的地址</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[host]'].$invalid&&(ds_form['data[host]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[host]"
+                                               ng-model="writer.data.host"
+                                               placeholder="主机名或IP地址" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>发送到的端口</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[port]'].$invalid&&(ds_form['data[port]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[port]" placeholder="端口"
+                                               ng-model="writer.data.port"
+                                               ng-pattern="/^((65[1-4]\d{2})|(6[1-4]\d{3})|([1-5]\d{4})|([1-9]\d{0,3}))$/"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>通信协议</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[protocol]'].$invalid&&(ds_form['data[protocol]'].$dirty||ds_form.$submitted)}">
+                                        <select name="data[protocol]" class="form-control"
+                                                ng-model="writer.data.protocol.name" required>
+                                            <option value="udp">udp</option>
+                                            <option value="tcp">tcp</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">数据缓存</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="number" class="form-control" name="data[cache]"
+                                               ng-model="writer.data.cache" placeholder="数据缓存条数"
+                                               validate="required,digits">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="writerContent" ng-switch-when="forward">
+                                <div class="form-group">
+                                    <label for="collectorOption" class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>采集器</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form.collectorName.$invalid&&(ds_form.collectorName.$dirty||ds_form.$submitted)}">
+                                        <select id="collectorOption" name="collectorName"
+                                                class="form-control op_log_collector_list" ng-change="collectorChange()"
+                                                ng-options="x.id as (x.host+':'+x.port)  for x in collectors"
+                                                ng-model="writer.data.id" required>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="writerContent" ng-switch-when="switch">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>条件字段</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[field]'].$invalid&&(ds_form['data[field]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[field]"
+                                               ng-model="writer.data.field" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>模式</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[type]'].$invalid&&(ds_form['data[type]'].$dirty||ds_form.$submitted)}">
+                                        <select name="data[type]" class="form-control" ng-model="writer.data.type"
+                                                required>
+                                            <option value="Match" selected>完全匹配</option>
+                                            <option value="StartWith">匹配字段开头</option>
+                                            <option value="EndWith">完全字段结尾</option>
+                                            <option value="Contain">包含</option>
+                                            <option value="Regex">正则匹配</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>默认数据输出</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[default]'].$invalid&&(ds_form['data[default]'].$dirty||ds_form.$submitted)}">
+                                        <select name="data[default]" class="form-control"
+                                                ng-change="defaultWriterChange()"
+                                                ng-options="x.id as x.name group by x.writeType|writerTypeName for x in writers "
+                                                ng-model="writer.data.default.id" required>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>模式输出</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <button type="button" class="btn btn-success btn-sm" title="增加"
+                                                ng-click="addWriter()"><i class="fa fa-plus"></i></button>
+                                    </div>
+
+                                </div>
+                                <div ng-repeat="case in writer.data.writers">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 col-md-2 control-label"></label>
+                                        <div class="input-group col-sm-8 col-md-8"
+                                             style="padding-left: 15px;padding-right: 15px" ng-class="{'has-error':(ds_form['data[writers][{{$index}}][1]'].$invalid
+                         ||ds_form['data[writers][{{$index}}][0]'].$invalid)&&
+                         (ds_form['data[writers][{{$index}}][1]'].$dirty
+                         ||ds_form['data[writers][{{$index}}][0]'].$dirty||ds_form.$submitted)}">
+                                            <label class="input-group-addon "><em
+                                                    class="hla-required-input">*</em>CASE:</label>
+                                            <input type="text" class="form-control" name="data[writers][{{$index}}][0]"
+                                                   ng-model="case[0]" required>
+                                            <label class="input-group-addon"><em
+                                                    class="hla-required-input">*</em>数据输出</label>
+                                            <select name="data[writers][{{$index}}][1]" class="form-control"
+                                                    ng-change="caseWriterChange($index)"
+                                                    ng-options="x.id as x.name group by x.writeType| writerTypeName for x in writers"
+                                                    ng-model="case[1].id" required>
+                                            </select><span class="input-group-addon mouse-on" title="移除"
+                                                           ng-click="removeWriter($index)"><i
+                                                class="fa fa-minus fa-fw op_minus op_delete_event_relate"></i> </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="writerContent" ng-switch-when="file">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>文件路径</label>
+
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[path]'].$invalid&&(ds_form['data[path]'].$dirty||ds_form.$submitted)}"
+                                         title="文件路径，支持使用 $ 引用其他字段的内容">
+                                        <input type="text" class="form-control" name="data[path]"
+                                               placeholder="文件路径，支持使用 $ 引用其他字段的内容" ng-model="writer.data.path"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">数据缓存</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="number" class="form-control" name="data[cache]"
+                                               ng-model="writer.data.cache" placeholder="数据缓存条数"
+                                               validate="required,digits">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">路径参考字段</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[name]" class="form-control"
+                                                ng-model="writer.data.persisRef.name">
+                                            <option value="none">无</option>
+                                            <option value="ref">引用</option>
+                                            <option value="date">参考时间字段</option>
+                                            <option value="truncate">截取字段内容</option>
+                                            <option value="mod">HASH值取模计算</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-switch="writer.data.persisRef.name">
+                                    <div class="form-group" ng-switch-when="ref">
+                                        <label class="col-sm-2 col-md-2 control-label">参考字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-switch-when="date">
+                                        <label class="col-sm-2 col-md-2 control-label">时间字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">时间格式化方式</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][format]'].$invalid&&(ds_form['data[persisRef][format]'].$dirty||ds_form.$submitted)}"
+                                             title="参考JDK时间格式化规则如：yyyyMMdd">
+                                            <input type="text" class="form-control" name="data[persisRef][format]"
+                                                   ng-model="writer.data.persisRef.format"
+                                                   placeholder="参考JDK时间格式化规则如：yyyyMMdd" required>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="truncate">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">要截断的字段名称</label>
+
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" class="form-control" name="data[persisRef][field]"
+                                                       ng-model="writer.data.persisRef.field" placeholder="参考字段名称"
+                                                       required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">开始截取位置</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <switch id="enabled" name="data[persisRef][start]"
+                                                        ng-model="writer.data.persisRef.start" on="尾部" off="头部"
+                                                        class="green"></switch>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">偏移量</label>
+
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[persisRef][from]"
+                                                       ng-model="writer.data.persisRef.from" class="form-control"
+                                                       placeholder="开始位置" type="number" required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">长度</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[persisRef][length]"
+                                                       ng-model="writer.data.persisRef.length" placeholder="长度"
+                                                       type="number" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-switch-when="mod">
+                                        <label class="col-sm-2 col-md-2 control-label">HASH字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[persisRef][field]'].$invalid&&(ds_form['data[persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[persisRef][field]"
+                                                   ng-model="writer.data.persisRef.field" placeholder="参考字段名称" required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">取模参考</label>
+
+                                        <div class="col-sm-3 col-md-3">
+                                            <input type="number" class="form-control" name="data[persisRef][mod]"
+                                                   ng-model="writer.data.persisRef.mod" placeholder="数据缓存条数"
+                                                   validate="required,digits">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="writerContent" ng-switch-when="hdfs">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>NameServic</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[NameService]'].$invalid&&(ds_form['data[host]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[nameService]"
+                                               ng-model="writer.data.nameService"
+                                               placeholder="例：HaimaDev" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>NameNodes</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[NameNodes]'].$invalid&&(ds_form['data[port]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[nameNodes]" placeholder="例：nn1,nn2"
+                                               ng-model="writer.data.nameNodes"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>HDFS地址</label>
+
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[host]'].$invalid&&(ds_form['data[host]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[host]"
+                                               placeholder="主机名或IP地址:端口,主机名或IP地址:端口... 例如：bigdata-dev01:8020,bigdata-dev02:8020"
+                                               ng-model="writer.data.host" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>文件路径</label>
+
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[path]'].$invalid&&(ds_form['data[path]'].$dirty||ds_form.$submitted)}">
+                                        <input type="hidden" ng-init="writer.data.path.name='file'"
+                                               ng-model="writer.data.path.name">
+                                        <input type="text" class="form-control" name="data[path]"
+                                               placeholder="文件路径，支持使用 $ 引用其他字段的内容"
+                                               ng-model="writer.data.path.path" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">数据缓存</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="number" class="form-control" name="data[cache]"
+                                               ng-model="writer.data.cache" placeholder="数据缓存条数"
+                                               validate="required,digits">
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label">路径参考字段</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[path][persisRef][name]" class="form-control"
+                                                ng-model="writer.data.path.persisRef.name">
+                                            <option value="none">无</option>
+                                            <option value="ref">引用</option>
+                                            <option value="date">参考时间字段</option>
+                                            <option value="truncate">截取字段内容</option>
+                                            <option value="mod">HASH值取模计算</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">权限校验</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <select class="form-control" name="data[authentication]"
+                                                ng-model="writer.data.authentication">
+                                            <option value="NONE">无</option>
+                                            <option value="KERBEROS">KERBEROS</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-switch="writer.data.path.persisRef.name">
+                                    <div class="form-group" ng-switch-when="ref">
+                                        <label class="col-sm-2 col-md-2 control-label">参考字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[path][persisRef][field]'].$invalid&&(ds_form['data[path][persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[path][persisRef][field]"
+                                                   ng-model="writer.data.path.persisRef.field" placeholder="参考字段名称"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-switch-when="date">
+                                        <label class="col-sm-2 col-md-2 control-label">时间字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[path][persisRef][field]'].$invalid&&(ds_form['data[path][persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[path][persisRef][field]"
+                                                   ng-model="writer.data.path.persisRef.field" placeholder="参考字段名称"
+                                                   required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">时间格式化方式</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[path][persisRef][format]'].$invalid&&(ds_form['data[path][persisRef][format]'].$dirty||ds_form.$submitted)}"
+                                             title="参考JDK时间格式化规则如：yyyyMMdd">
+                                            <input type="text" class="form-control" name="data[path][persisRef][format]"
+                                                   ng-model="writer.data.path.persisRef.format"
+                                                   placeholder="参考JDK时间格式化规则如：yyyyMMdd" required>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="truncate">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">要截断的字段名称</label>
+
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[path][persisRef][field]'].$invalid&&(ds_form['data[path][persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" class="form-control"
+                                                       name="data[path][persisRef][field]"
+                                                       ng-model="writer.data.path.persisRef.field" placeholder="参考字段名称"
+                                                       required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">开始截取位置</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <switch id="enabled" name="data[path][persisRef][start]"
+                                                        ng-model="writer.data.path.persisRef.start" on="尾部" off="头部"
+                                                        class="green"></switch>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">偏移量</label>
+
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[path][persisRef][from]"
+                                                       ng-model="writer.data.path.persisRef.from" class="form-control"
+                                                       placeholder="开始位置" type="number" required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">长度</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[path][persisRef][length]"
+                                                       ng-model="writer.data.path.persisRef.length" placeholder="长度"
+                                                       type="number" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-switch-when="mod">
+                                        <label class="col-sm-2 col-md-2 control-label">HASH字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[path][persisRef][field]'].$invalid&&(ds_form['data[path][persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[path][persisRef][field]"
+                                                   ng-model="writer.data.path.persisRef.field" placeholder="参考字段名称"
+                                                   required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">取模参考</label>
+
+                                        <div class="col-sm-3 col-md-3">
+                                            <input type="number" class="form-control" name="data[path][persisRef][mod]"
+                                                   ng-model="writer.data.path.persisRef.mod" placeholder="数据缓存条数"
+                                                   validate="required,digits">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="writerContent" ng-switch-when="orc">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>HOST</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[host]'].$invalid&&(ds_form['data[host]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[host]"
+                                               ng-model="writer.data.host"
+                                               placeholder="主机名或IP地址" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>PORT</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[port]'].$invalid&&(ds_form['data[port]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[port]" placeholder="端口"
+                                               ng-model="writer.data.port"
+                                               ng-pattern="/^((65[1-4]\d{2})|(6[1-4]\d{3})|([1-5]\d{4})|([1-9]\d{0,3}))$/"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>文件路径</label>
+
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[path]'].$invalid&&(ds_form['data[path]'].$dirty||ds_form.$submitted)}">
+                                        <input type="hidden" ng-init="writer.data.path.name='file'"
+                                               ng-model="writer.data.path.name">
+                                        <input type="text" class="form-control" name="data[path]"
+                                               placeholder="文件路径，支持使用 $ 引用其他字段的内容"
+                                               ng-model="writer.data.path.path" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">权限校验</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <select class="form-control" name="data[authentication]"
+                                                ng-model="writer.data.authentication">
+                                            <option value="NONE">无</option>
+                                            <option value="KERBEROS">KERBEROS</option>
+                                        </select>
+                                    </div>
+
+                                    <input type="hidden" value="orc" ng-model="writer.data.path.contentType.name">
+                                    <label class="col-sm-2 col-md-2 control-label">编码</label>
+                                    <div class="col-sm-3 col-md-3" ng-if="writer.data.path.contentType.name !='syslog'">
+                                        <input class="form-control" name="data[path][contentType][encoding]"
+                                               ng-model="writer.data.path.contentType.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+                                    </div>
+                                    <div class="col-sm-3 col-md-3" ng-if="writer.data.path.contentType.name =='syslog'">
+                                        <input class="form-control"
+                                               name="data[path][contentType][contentType][encoding]"
+                                               ng-model="writer.data.path.contentType.contentType.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">数据缓存</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="number" class="form-control" name="data[cache]"
+                                               ng-model="writer.data.cache" placeholder="数据缓存条数"
+                                               validate="required,digits">
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label">路径参考字段</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[path][persisRef][name]" class="form-control"
+                                                ng-model="writer.data.path.persisRef.name">
+                                            <option value="none">无</option>
+                                            <option value="ref">引用</option>
+                                            <option value="date">参考时间字段</option>
+                                            <option value="truncate">截取字段内容</option>
+                                            <option value="mod">HASH值取模计算</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-switch="writer.data.path.persisRef.name">
+                                    <div class="form-group" ng-switch-when="ref">
+                                        <label class="col-sm-2 col-md-2 control-label">参考字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[path][persisRef][field]'].$invalid&&(ds_form['data[path][persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[path][persisRef][field]"
+                                                   ng-model="writer.data.path.persisRef.field" placeholder="参考字段名称"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-switch-when="date">
+                                        <label class="col-sm-2 col-md-2 control-label">时间字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[path][persisRef][field]'].$invalid&&(ds_form['data[path][persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[path][persisRef][field]"
+                                                   ng-model="writer.data.path.persisRef.field" placeholder="参考字段名称"
+                                                   required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">时间格式化方式</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[path][persisRef][format]'].$invalid&&(ds_form['data[path][persisRef][format]'].$dirty||ds_form.$submitted)}"
+                                             title="参考JDK时间格式化规则如：yyyyMMdd">
+                                            <input type="text" class="form-control" name="data[path][persisRef][format]"
+                                                   ng-model="writer.data.path.persisRef.format"
+                                                   placeholder="参考JDK时间格式化规则如：yyyyMMdd" required>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="truncate">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">要截断的字段名称</label>
+
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[path][persisRef][field]'].$invalid&&(ds_form['data[path][persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" class="form-control"
+                                                       name="data[path][persisRef][field]"
+                                                       ng-model="writer.data.path.persisRef.field" placeholder="参考字段名称"
+                                                       required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">开始截取位置</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <switch id="enabled" name="data[path][persisRef][start]"
+                                                        ng-model="writer.data.path.persisRef.start" on="尾部" off="头部"
+                                                        class="green"></switch>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label">偏移量</label>
+
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[path][persisRef][from]"
+                                                       ng-model="writer.data.path.persisRef.from" class="form-control"
+                                                       placeholder="开始位置" type="number" required>
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label">长度</label>
+                                            <div class="col-sm-3 col-md-3">
+                                                <input name="data[path][persisRef][length]"
+                                                       ng-model="writer.data.path.persisRef.length" placeholder="长度"
+                                                       type="number" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" ng-switch-when="mod">
+                                        <label class="col-sm-2 col-md-2 control-label">HASH字段名称</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[path][persisRef][field]'].$invalid&&(ds_form['data[path][persisRef][field]'].$dirty||ds_form.$submitted)}">
+                                            <input type="text" class="form-control" name="data[path][persisRef][field]"
+                                                   ng-model="writer.data.path.persisRef.field" placeholder="参考字段名称"
+                                                   required>
+                                        </div>
+                                        <label class="col-sm-2 col-md-2 control-label">取模参考</label>
+
+                                        <div class="col-sm-3 col-md-3">
+                                            <input type="number" class="form-control" name="data[path][persisRef][mod]"
+                                                   ng-model="writer.data.path.persisRef.mod" placeholder="数据缓存条数"
+                                                   validate="required,digits">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="writerContent" ng-switch-when="restful">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>服务器IP地址</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[host]'].$invalid&&(ds_form['data[host]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[host]"
+                                               ng-model="writer.data.host" placeholder="WEB 服务器IP地址" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>服务器的端口</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[port]'].$invalid&&(ds_form['data[port]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[port]"
+                                               ng-pattern="/^((65[1-4]\d{2})|(6[1-4]\d{3})|([1-5]\d{4})|([1-9]\d{0,3}))$/"
+                                               placeholder="端口"
+                                               ng-model="writer.data.port" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>网络协议</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[protocol]'].$invalid&&(ds_form['data[protocol]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[protocol]" required
+                                                ng-model="writer.data.protocol">
+                                            <option value="http">http</option>
+                                            <option value="https">https</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>API路径</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path]'].$invalid&&(ds_form['data[path]'].$dirty||ds_form.$submitted)}"
+                                         title="HTTP 或 HTTPS API 路径">
+                                        <input type="text" class="form-control" name="data[path]"
+                                               placeholder="HTTP 或 HTTPS API 路径" ng-model="writer.data.path" required>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group">
+
+                                     <label class="col-sm-2 col-md-2 control-label">编码</label>
+                                     <div class="col-sm-3 col-md-3">
+                                         <input class="form-control" name="data[properties][charset]"
+                                                ng-model="writer.data.properties.encoding"
+                                                uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+                                     </div>
+                                 </div>-->
+
+                            </div>
+                            <media ng-if="writer.data.name=='file' || writer.data.name=='net'|| writer.data.name=='restful' || writer.data.name=='kafka' || writer.data.name=='rabbitmq'">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">数据输出格式</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[contentType][name]" class="form-control"
+                                                ng-model="writer.data.contentType.name" ng-change="contentTypeChange()">
+                                            <option value="json">JSON格式</option>
+                                            <option value="xml">XML格式</option>
+                                            <option value="del">分隔符格式</option>
+                                            <option value="delkv">键值对格式</option>
+                                            <option value="syslog">SYSLOG</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">编码</label>
+                                    <div class="col-sm-3 col-md-3" ng-if="writer.data.contentType.name !='syslog'">
+                                        <input class="form-control" name="data[contentType][encoding]"
+                                               ng-model="writer.data.contentType.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+                                    </div>
+                                    <div class="col-sm-3 col-md-3" ng-if="writer.data.contentType.name =='syslog'">
+                                        <input class="form-control" name="data[contentType][contentType][encoding]"
+                                               ng-model="writer.data.contentType.contentType.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.contentType.name =='syslog'">
+                                    <label class="col-sm-2 col-md-2 control-label">优先级设置方式</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[contentType][syslogFormat][priorityType]"
+                                                class="form-control"
+                                                ng-model="writer.data.contentType.syslogFormat.priorityType">
+                                            <option value="NULL">不设置</option>
+                                            <option value="DATA" ng-selected="DATA">引用数据字段</option>
+                                            <option value="VAL">固定值</option>
+                                        </select>
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"
+                                           ng-if="writer.data.contentType.syslogFormat.priorityType =='DATA'">
+                                        <em class="hla-required-input">*</em>优先级</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-if="writer.data.contentType.syslogFormat.priorityType =='DATA'">
+                                        <input class="form-control" name="data[contentType][syslogFormat][priority]"
+                                               ng-model="writer.data.contentType.syslogFormat.priority">
+                                    </div>
+
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.contentType.name =='syslog' && writer.data.contentType.syslogFormat.priorityType =='VAL' ">
+                                    <label class="col-sm-2 col-md-2 control-label">消息来源Facility</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[contentType][syslogFormat][facility]" class="form-control"
+                                                ng-model="writer.data.contentType.syslogFormat.facility">
+                                            <option value="0" ng-selected="0">kernel messages</option>
+                                            <option value="1">user-level messages</option>
+                                            <option value="2">mail system</option>
+                                            <option value="3">system daemons</option>
+                                            <option value="4">security/authorization messages</option>
+                                            <option value="5">messages generated internally by syslogd</option>
+                                            <option value="6">line printer subsystem</option>
+                                            <option value="7">network news subsystem</option>
+                                            <option value="8">UUCP subsystem</option>
+                                            <option value="9">clock daemon</option>
+                                            <option value="10">security/authorization messages</option>
+                                            <option value="11">FTP daemon</option>
+                                            <option value="12">NTP subsystem</option>
+                                            <option value="13">log audit</option>
+                                            <option value="14">log alert</option>
+                                            <option value="15">clock daemon</option>
+                                            <option value="16">local use 0 (local0)</option>
+                                            <option value="17">local use 1 (local1)</option>
+                                            <option value="18">local use 2 (local2)</option>
+                                            <option value="19">local use 3 (local3)</option>
+                                            <option value="20">local use 4 (local4)</option>
+                                            <option value="21">local use 5 (local5)</option>
+                                            <option value="22">local use 6 (local6)</option>
+                                            <option value="23">local use 7 (local7)</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">消息严重程度Severity</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[contentType][syslogFormat][level]" class="form-control"
+                                                ng-model="writer.data.contentType.syslogFormat.level">
+                                            <option value="0" ng-selected="0">Emergency</option>
+                                            <option value="1">Alert</option>
+                                            <option value="2">Critical</option>
+                                            <option value="3">Error</option>
+                                            <option value="4">Warning</option>
+                                            <option value="5">Notice</option>
+                                            <option value="6">Informational</option>
+                                            <option value="7">Debug</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.contentType.name =='syslog'">
+                                    <label class="col-sm-2 col-md-2 control-label">时间设置方式</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[contentType][syslogFormat][timestampType]"
+                                                class="form-control"
+                                                ng-model="writer.data.contentType.syslogFormat.timestampType"
+                                                ng-change="timestampTypeChange()">
+                                            <option value="NULL">不设置</option>
+                                            <option value="DATA" ng-selected="DATA">引用数据字段</option>
+                                            <option value="VAL">固定值</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"
+                                           ng-if="writer.data.contentType.syslogFormat.timestampType =='DATA'">
+                                        <em class="hla-required-input">*</em>时间</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-if="writer.data.contentType.syslogFormat.timestampType =='DATA'">
+                                        <input class="form-control" name="data[contentType][syslogFormat][timestamp]"
+                                               ng-model="writer.data.contentType.syslogFormat.timestamp">
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"
+                                           ng-if="writer.data.contentType.syslogFormat.timestampType =='VAL'">
+                                        <em class="hla-required-input">*</em>时间</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-if="writer.data.contentType.syslogFormat.timestampType =='VAL'">
+                                        <input type="text" class="form-control"
+                                               name="data[contentType][syslogFormat][timestamp]"
+                                               ng-model="writer.data.contentType.syslogFormat.timestamp"
+                                               datetime-picker="{format:'YYYY-MM-DD HH:mm:ss',showTodayButton:true,sideBySide:true,tooltips:{today:'今天',selectTime:'选择时间'}}"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.contentType.name =='syslog'">
+                                    <label class="col-sm-2 col-md-2 control-label">主机</label>
+                                    <div class="col-sm-3 col-md-3" title="$开头表示引用数据字段，否则指定IP|主机名">
+                                        <input class="form-control" name="data[contentType][syslogFormat][hostname]"
+                                               ng-model="writer.data.contentType.syslogFormat.hostname"
+                                               placeholder="$开头表示引用数据字段，否则指定IP|主机名">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">TAG</label>
+                                    <div class="col-sm-3 col-md-3" title="$开头表示引用数据字段，否则是指定配置">
+                                        <input class="form-control" name="data[contentType][syslogFormat][tag]"
+                                               ng-model="writer.data.contentType.syslogFormat.tag"
+                                               placeholder="$开头表示引用数据字段，否则是指定配置">
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.contentType.name =='syslog'">
+                                    <label class="col-sm-2 col-md-2 control-label">Syslog数据内容格式</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[contentType][contentType][name]" class="form-control"
+                                                ng-model="writer.data.contentType.contentType.name">
+                                            <option value="json">JSON格式</option>
+                                            <option value="xml">XML格式</option>
+                                            <option value="del">分隔符格式</option>
+                                            <option value="delkv">键值对格式</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.contentType.name =='syslog' && writer.data.contentType.contentType.name=='del'">
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>分隔符</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[contentType][contentType][delimit]'].$invalid&&(ds_form['data[contentType][contentType][delimit]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control"
+                                               name="data[contentType][contentType][delimit]"
+                                               ng-model="writer.data.contentType.contentType.delimit" required
+                                               placeholder="分隔符:使用\转义,使用\t->tab,\s->空格,\n->换行"></div>
+
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>字段列表</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[contentType][contentType][fields]'].$invalid&&(ds_form['data[contentType][contentType][fields]'].$dirty||ds_form.$submitted)}"
+                                         title="字段列表（用','分割，用以规划输出数据字段的顺序">
+                                        <input type="text" class="form-control"
+                                               name="data[contentType][contentType][fields]"
+                                               required ng-model="writer.data.contentType.contentType.fields"
+                                               placeholder="字段列表（用','分割，用以规划输出数据字段的顺序"></div>
+
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.contentType.name =='syslog' && writer.data.contentType.contentType.name=='delkv'">
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>分隔符</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[contentType][contentType][delimit]'].$invalid&&(ds_form['data[contentType][contentType][delimit]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control"
+                                               name="data[contentType][contentType][delimit]"
+                                               ng-model="writer.data.contentType.contentType.delimit" required
+                                               placeholder="分隔符:使用\转义,使用\t->tab,\s->空格,\n->换行"></div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>键值分隔符</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[contentType][contentType][tab]'].$invalid&&(ds_form['data[contentType][contentType][tab]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control"
+                                               name="data[contentType][contentType][tab]"
+                                               ng-model="writer.data.contentType.contentType.tab" required
+                                               placeholder="键值分隔符:使用\转义,使用\t->tab,\s->空格,\n->换行">
+                                    </div>
+
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.contentType.name=='del'">
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>分隔符</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[contentType][delimit]'].$invalid&&(ds_form['data[contentType][delimit]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[contentType][delimit]"
+                                               ng-model="writer.data.contentType.delimit" required placeholder="分隔符:使用\转义,使用\t->tab,\s->空格,\n->换行">
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>字段列表</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[contentType][fields]'].$invalid&&(ds_form['data[contentType][fields]'].$dirty||ds_form.$submitted)}"
+                                         title="字段列表（用','分割，用以规划输出数据字段的顺序">
+                                        <input type="text" class="form-control" name="data[contentType][fields]"
+                                               required ng-model="writer.data.contentType.fields"
+                                               placeholder="字段列表（用','分割，用以规划输出数据字段的顺序"></div>
+
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.contentType.name=='delkv'">
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>分隔符</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[contentType][delimit]'].$invalid&&(ds_form['data[contentType][delimit]'].$dirty||ds_form.$submitted)}"
+                                    >
+                                        <input type="text" class="form-control" name="data[contentType][delimit]"
+                                               ng-model="writer.data.contentType.delimit" required placeholder="分隔符:使用\转义,使用\t->tab,\s->空格,\n->换行">
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>键值分隔符</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[contentType][tab]'].$invalid&&(ds_form['data[contentType][tab]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[contentType][tab]"
+                                               ng-model="writer.data.contentType.tab" required placeholder="键值分隔符:使用\转义,使用\t->tab,\s->空格,\n->换行">
+                                    </div>
+
+                                </div>
+                            </media>
+                            <media ng-if="writer.data.name=='hdfs' || writer.data.name=='ftp'|| writer.data.name=='sftp'">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">数据输出格式</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[path][contentType][name]" class="form-control"
+                                                ng-model="writer.data.path.contentType.name"
+                                                ng-change="pathContentTypeChange()">
+                                            <option value="json">JSON格式</option>
+                                            <option value="xml">XML格式</option>
+                                            <option value="del">分隔符格式</option>
+                                            <option value="delkv">键值对格式</option>
+                                            <option value="syslog">SYSLOG</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">编码</label>
+                                    <div class="col-sm-3 col-md-3" ng-if="writer.data.path.contentType.name !='syslog'">
+                                        <input class="form-control" name="data[path][contentType][encoding]"
+                                               ng-model="writer.data.path.contentType.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+                                    </div>
+                                    <div class="col-sm-3 col-md-3" ng-if="writer.data.path.contentType.name =='syslog'">
+                                        <input class="form-control"
+                                               name="data[path][contentType][contentType][encoding]"
+                                               ng-model="writer.data.path.contentType.contentType.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+                                    </div>
+                                </div>
+
+                                <div class="form-group"
+                                     ng-if="writer.data.path.contentType.name =='syslog'">
+                                    <label class="col-sm-2 col-md-2 control-label">优先级设置方式</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[path][contentType][syslogFormat][priorityType]"
+                                                class="form-control"
+                                                ng-model="writer.data.path.contentType.syslogFormat.priorityType">
+                                            <option value="NULL">不设置</option>
+                                            <option value="DATA" ng-selected="DATA">引用数据字段</option>
+                                            <option value="VAL">固定值</option>
+                                        </select>
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"
+                                           ng-if="writer.data.path.contentType.syslogFormat.priorityType =='DATA'">
+                                        <em class="hla-required-input">*</em>优先级</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-if="writer.data.path.contentType.syslogFormat.priorityType =='DATA'">
+                                        <input class="form-control"
+                                               name="data[path][contentType][syslogFormat][priority]"
+                                               ng-model="writer.data.path.contentType.syslogFormat.priority">
+                                    </div>
+
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.path.contentType.name =='syslog' && writer.data.path.contentType.syslogFormat.priorityType =='VAL' ">
+                                    <label class="col-sm-2 col-md-2 control-label">消息来源Facility</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[path][contentType][syslogFormat][facility]"
+                                                class="form-control"
+                                                ng-model="writer.data.path.contentType.syslogFormat.facility">
+                                            <option value="0" ng-selected="0">kernel messages</option>
+                                            <option value="1">user-level messages</option>
+                                            <option value="2">mail system</option>
+                                            <option value="3">system daemons</option>
+                                            <option value="4">security/authorization messages</option>
+                                            <option value="5">messages generated internally by syslogd</option>
+                                            <option value="6">line printer subsystem</option>
+                                            <option value="7">network news subsystem</option>
+                                            <option value="8">UUCP subsystem</option>
+                                            <option value="9">clock daemon</option>
+                                            <option value="10">security/authorization messages</option>
+                                            <option value="11">FTP daemon</option>
+                                            <option value="12">NTP subsystem</option>
+                                            <option value="13">log audit</option>
+                                            <option value="14">log alert</option>
+                                            <option value="15">clock daemon</option>
+                                            <option value="16">local use 0 (local0)</option>
+                                            <option value="17">local use 1 (local1)</option>
+                                            <option value="18">local use 2 (local2)</option>
+                                            <option value="19">local use 3 (local3)</option>
+                                            <option value="20">local use 4 (local4)</option>
+                                            <option value="21">local use 5 (local5)</option>
+                                            <option value="22">local use 6 (local6)</option>
+                                            <option value="23">local use 7 (local7)</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">消息严重程度Severity</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[path][contentType][syslogFormat][level]" class="form-control"
+                                                ng-model="writer.data.path.contentType.syslogFormat.level">
+                                            <option value="0" ng-selected="0">Emergency</option>
+                                            <option value="1">Alert</option>
+                                            <option value="2">Critical</option>
+                                            <option value="3">Error</option>
+                                            <option value="4">Warning</option>
+                                            <option value="5">Notice</option>
+                                            <option value="6">Informational</option>
+                                            <option value="7">Debug</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.path.contentType.name =='syslog'">
+                                    <label class="col-sm-2 col-md-2 control-label">时间设置方式</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[path][contentType][syslogFormat][timestampType]"
+                                                class="form-control"
+                                                ng-model="writer.data.path.contentType.syslogFormat.timestampType"
+                                                ng-change="pathTimestampTypeChange()">
+                                            <option value="NULL">不设置</option>
+                                            <option value="DATA" ng-selected="DATA">引用数据字段</option>
+                                            <option value="VAL">固定值</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"
+                                           ng-if="writer.data.path.contentType.syslogFormat.timestampType =='DATA'">
+                                        <em class="hla-required-input">*</em>时间</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-if="writer.data.path.contentType.syslogFormat.timestampType =='DATA'">
+                                        <input class="form-control"
+                                               name="data[path][contentType][syslogFormat][timestamp]"
+                                               ng-model="writer.data.path.contentType.syslogFormat.timestamp">
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"
+                                           ng-if="writer.data.path.contentType.syslogFormat.timestampType =='VAL'">
+                                        <em class="hla-required-input">*</em>时间</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-if="writer.data.path.contentType.syslogFormat.timestampType =='VAL'">
+                                        <input type="text" class="form-control"
+                                               name="data[path][contentType][syslogFormat][timestamp]"
+                                               ng-model="writer.data.path.contentType.syslogFormat.timestamp"
+                                               datetime-picker="{format:'YYYY-MM-DD HH:mm:ss',showTodayButton:true,sideBySide:true,tooltips:{today:'今天',selectTime:'选择时间'}}"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.path.contentType.name =='syslog'">
+                                    <label class="col-sm-2 col-md-2 control-label">主机</label>
+                                    <div class="col-sm-3 col-md-3" title="$开头表示引用数据字段，否则指定IP|主机名">
+                                        <input class="form-control"
+                                               name="data[path][contentType][syslogFormat][hostname]"
+                                               ng-model="writer.data.path.contentType.syslogFormat.hostname"
+                                               placeholder="$开头表示引用数据字段，否则指定IP|主机名">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">TAG</label>
+                                    <div class="col-sm-3 col-md-3" title="$开头表示引用数据字段，否则是指定配置">
+                                        <input class="form-control" name="data[path][contentType][syslogFormat][tag]"
+                                               ng-model="writer.data.path.contentType.syslogFormat.tag"
+                                               placeholder="$开头表示引用数据字段，否则是指定配置">
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.path.contentType.name =='syslog'">
+                                    <label class="col-sm-2 col-md-2 control-label">Syslog数据内容格式</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select name="data[path][contentType][contentType][name]" class="form-control"
+                                                ng-model="writer.data.path.contentType.contentType.name">
+                                            <option value="json">JSON格式</option>
+                                            <option value="xml">XML格式</option>
+                                            <option value="del">分隔符格式</option>
+                                            <option value="delkv">键值对格式</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.path.contentType.name =='syslog' && writer.data.path.contentType.contentType.name=='del'">
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>分隔符</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][contentType][contentType][delimit]'].$invalid&&
+                                         (ds_form['data[path][contentType][contentType][delimit]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control"
+                                               name="data[path][contentType][contentType][delimit]"
+                                               ng-model="writer.data.path.contentType.contentType.delimit" required
+                                               placeholder="分隔符:使用\转义,使用\t->tab,\s->空格,\n->换行"></div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>字段列表</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][contentType][contentType][fields]'].$invalid&&
+                                         (ds_form['data[path][contentType][contentType][fields]'].$dirty||ds_form.$submitted)}"
+                                         title="字段列表（用','分割，用以规划输出数据字段的顺序">
+                                        <input type="text" class="form-control"
+                                               name="data[path][contentType][contentType][fields]"
+                                               required ng-model="writer.data.path.contentType.contentType.fields"
+                                               placeholder="字段列表（用','分割，用以规划输出数据字段的顺序"></div>
+
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.path.contentType.name =='syslog' && writer.data.path.contentType.contentType.name=='delkv'">
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>分隔符</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][contentType][contentType][delimit]'].$invalid&&
+                                         (ds_form['data[path][contentType][contentType][delimit]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control"
+                                               name="data[path][contentType][contentType][delimit]"
+                                               ng-model="writer.data.path.contentType.contentType.delimit" required
+                                               placeholder="分隔符:使用\转义,使用\t->tab,\s->空格,\n->换行"></div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>键值分隔符</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][contentType][contentType][tab]'].$invalid&&
+                                         (ds_form['data[path][contentType][contentType][tab]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control"
+                                               name="data[path][contentType][contentType][tab]"
+                                               ng-model="writer.data.path.contentType.contentType.tab" required
+                                               placeholder="键值分分隔符:使用\转义,使用\t->tab,\s->空格,\n->换行">
+                                    </div>
+
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.path.contentType.name=='del'">
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>分隔符</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][contentType][delimit]'].$invalid&&
+                                         (ds_form['data[path][contentType][delimit]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[path][contentType][delimit]"
+                                               ng-model="writer.data.path.contentType.delimit" required
+                                               placeholder="分隔符:使用\转义,使用\t->tab,\s->空格,\n->换行"></div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>字段列表</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][contentType][fields]'].$invalid&&
+                                         (ds_form['data[path][contentType][fields]'].$dirty||ds_form.$submitted)}"
+                                         title="字段列表（用','分割，用以规划输出数据字段的顺序">
+                                        <input type="text" class="form-control" name="data[path][contentType][fields]"
+                                               required ng-model="writer.data.path.contentType.fields"
+                                               placeholder="字段列表（用','分割，用以规划输出数据字段的顺序"></div>
+
+                                </div>
+                                <div class="form-group"
+                                     ng-if="writer.data.path.contentType.name=='delkv'">
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>分隔符</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][contentType][delimit]'].$invalid&&
+                                         (ds_form['data[path][contentType][delimit]'].$dirty||ds_form.$submitted)}"
+                                    >
+                                        <input type="text" class="form-control" name="data[path][contentType][delimit]"
+                                               ng-model="writer.data.path.contentType.delimit" required
+                                               placeholder="分隔符:使用\转义,使用\t->tab,\s->空格,\n->换行"></div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>键值分隔符</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][contentType][tab]'].$invalid&&
+                                         (ds_form['data[path][contentType][tab]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[path][contentType][tab]"
+                                               ng-model="writer.data.path.contentType.tab" required placeholder="键值分隔符:使用\转义,使用\t->tab,\s->空格,\n->换行">
+                                    </div>
+
+                                </div>
+                            </media>
+
+                            <div class="form-group">
+                                <button id="op_save_log_source_button" class="btn btn-primary" type="submit">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="hla-widget-data-table">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>名称</th>
+                            <th>类型</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="op_writer_table" class="">
+
+                        <tr ng-repeat="writer in list.result">
+                            <th scope="row">{{$index+1}}</th>
+                            <td>{{writer.name}}</td>
+                            <td>{{writer.data.name | writerTypeName}}</td>
+                            <td>
+                                <div class="btn-group-xs">
+                                    <button ng-if="writer.isSample==0" title="修改" class="btn btn-warning op_edit"
+                                            ng-click="show('edit',writer.id)"><i
+                                            class="fa fa-file-text-o"></i></button>
+                                    <button ng-if="writer.isSample==0" title="删除" class="btn btn-danger op_delete"
+                                            ng-click="delete(writer.id)"><i
+                                            class="fa fa-minus"></i></button>
+                                    <button class="btn btn-primary op_edit" title="复制"
+                                            ng-click="show('copy',writer.id)">
+                                        <i class="fa fa-copy"></i></button>
+                                    <!--<a class="btn btn-primary op_edit" title="下载" target="_blank"
+                                                       href="../writer/{{writer.id}}?pretty" download="store-{{writer.id}}.json">
+                                                        <i class="fa fa-download"></i></a>-->
+                                    <a class="btn btn-primary " title="下载" data-ng-click="downloadFile(writer.id)">
+                                        <i class="fa fa-download"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div page method="reload"></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

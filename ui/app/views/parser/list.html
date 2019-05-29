@@ -1,0 +1,133 @@
+<!--资产类型树-->
+<!--<div id="op_asset_type_content" class="tree_content" style="display:none; position: absolute; z-index: 999">
+    <ul id="op_asset_type_tree" class="ztree">
+    </ul>
+</div>
+<div id="op_add_asset_type_content" class="tree_content" style="display:none; position: absolute; z-index: 9999">
+    <ul id="op_add_asset_type_tree" class="ztree">
+    </ul>
+</div>-->
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+    <div class="hla-main">解析规则</div>
+    <div class="hla-widget">
+      <div class="hla-widget-head">
+        <div class="btn-group-xs pull-right">
+
+          <button title="增加" class="btn btn-success" type="button" id="op_add_log_rule_button"
+                  ng-click="show('add')"><i class="fa fa-plus"></i></button>
+          <button title="上传" class="btn btn-success" type="button" id="op_upload_datasource_button"
+                  ng-click="show('upload')"><i class="fa fa-upload"></i></button>
+          <button title="查询" class="btn btn-primary" id="op_show_log_rule_search" ng-click="show('search')"><i
+            class="fa fa-search"></i></button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="hla-widget-content">
+        <div ng-show="message"
+             ng-class="{'alert-danger':message.status!='200','alert-success':message.status=='200'}"
+             class="col-sm-12 col-md-12 alert" role="alert">
+          {{message.message}}
+        </div>
+        <div class="media" ng-include="'views/parser/search.html'"></div>
+        <div class="media" ng-include="'views/parser/edit.html'"></div>
+        <div class="hla-widget-upload-table form-horizontal" style="margin-bottom: 10px">
+
+          <div class="form-group">
+            <div class="col-sm-4 col-md-4">
+
+            </div>
+            <div class="col-sm-4 col-md-4">
+              <input file-input type="file" file-model="myFile"
+                     id="fileInput" name="fileInput" class="file" accept="application/json">
+              <!--<input type="file" id="input-1" title="上传" file-model="myFile" class="file" accept="application/json"/>-->
+            </div>
+            <div class="col-sm-4 col-md-4">
+
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-4 col-md-4">
+
+            </div>
+            <div class="col-sm-4 col-md-4">
+              <b>说明：</b>数据上传功能会上传完整的数据(包含主键字段),对于已经存在系统的数据（主键相同），会被<b>覆盖</b>;
+              对于有依赖关系的数据，先上传依赖的数据然后再上传当前的数据，依赖关系为："解析规则";
+              如果是要基于一个原来的源新增一个，建议使用列表中的"复制"功能！
+            </div>
+            <div class="col-sm-4 col-md-4">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-4 col-md-4">
+
+            </div>
+            <div class="col-sm-4 col-md-4">
+              <button class="btn btn-success" ng-click="uploadFile()">上传</button>
+            </div>
+            <div class="col-sm-4 col-md-4">
+
+            </div>
+          </div>
+        </div>
+
+        <div class="hla-widget-data-table">
+          <!--<table class="table table-striped">-->
+            <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>名称</th>
+              <th>类型</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="op_log_rule_table" class="">
+
+            <tr ng-repeat="item in list.result">
+              <th scope="row">{{$index+1}}</th>
+              <td>{{item.name}}</td>
+              <td>{{item.parser.name | ParserTypeName}}</td>
+              <td>
+                <div class="btn-group-xs">
+                  <button ng-if="item.isSample==0" title="修改" class="btn btn-warning op_edit" ng-click="show('edit',item.id)"><i
+                    class="fa fa-file-text-o"></i></button>
+                  <button ng-if="item.isSample==0" title="删除" class="btn btn-danger op_delete" ng-click="delete(item.id)"><i
+                    class="fa fa-minus"></i></button>
+                  <button title="复制" class="btn btn-primary " ng-click="show('copy',item.id)"><i
+                    class="fa fa-copy"></i></button>
+                  <!--<a class="btn btn-primary op_edit" title="下载" target="_blank" href="../resolver/{{item.id}}?pretty"
+                     download="parser-{{item.id}}.json">
+                    <i class="fa fa-download"></i></a>-->
+                  <a class="btn btn-primary " title="下载" data-ng-click="downloadFile(item.id)">
+                    <i class="fa fa-download"></i></a>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div page method="reload"></div>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body text-danger text-center">
+                <p>该规则已存在，请选择操作!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary op_yes" ng-click="saveOrEdit('save')">新增</button>
+                <button type="button" class="btn btn-primary op_yes" ng-click="saveOrEdit('edit')">更新</button>
+            </div>
+        </div>
+    </div>
+</div>

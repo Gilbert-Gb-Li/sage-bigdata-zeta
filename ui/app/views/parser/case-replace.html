@@ -1,0 +1,28 @@
+<div class="input-group col-sm-4 col-md-4 " style="float:left;padding-bottom:5px;"
+     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field'].$dirty||add_form.$submitted)}"
+><span
+        class="input-group-addon">字段</span>
+    <input class="form-control ui-autocomplete-input"
+           ng-model="case.rule.field"
+           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+           placeholder="字段名称"
+           name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field" required>
+</div>
+<div class="input-group col-sm-4 col-md-4 " style="float:left"
+     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.from'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.from'].$dirty||add_form.$submitted)}"
+><span
+        class="input-group-addon">原始内容</span>
+    <input class="form-control"
+           ng-model="case.rule.from"
+           placeholder="要替换的值" type="text"
+           name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.from" required></div>
+<div class="input-group col-sm-4 col-md-4 "
+
+     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.to'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.to'].$dirty||add_form.$submitted)}"
+     style="float:left">
+    <span class="input-group-addon">替换后的值</span>
+    <input class="form-control"
+           ng-model="case.rule.to"
+           placeholder="替换后的内容:可以引用其他字段%{字段名字}" type="text"
+           name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.to">
+</div>

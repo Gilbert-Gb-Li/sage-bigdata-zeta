@@ -1,0 +1,85 @@
+@charset "UTF-8";
+body,
+.login {
+  min-width: 1000px;
+  min-height: 800px;
+  background-color: #060612;
+}
+.logo {
+  display: block;
+  width: 180px;
+  position: fixed;
+  left: 50px;
+  top: 60px;
+}
+.login {
+  background-image: url('../images/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: #108CF9;
+}
+.login .con {
+  width: 480px;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  margin-left: -240px;
+  margin-top: -173.5px;
+}
+.login h1 {
+  font-size: 36px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 54px;
+}
+.login form {
+  background-color: #fff;
+  border-radius: 4px;
+  height: 132px;
+  overflow: hidden;
+}
+.login form > div {
+  position: relative;
+  padding-right: 30%;
+}
+.login input {
+  height: 66px;
+  padding: 25px 0 25px 30px;
+  line-height: 16px;
+  font-size: 14px;
+  color: #222222;
+  width: 100%;
+  border-bottom: 1px solid #e6e6e6;
+}
+.login p {
+  line-height: 66px;
+  font-size: 14px;
+  color: #ff4848;
+  position: absolute;
+  top: 0;
+  right: 30px;
+  text-align: right;
+  z-index: 1;
+}
+.login .btn {
+  width: 100%;
+  font-size: 16px;
+  color: #FFFFFF;
+  line-height: 66px;
+  background: #1890FF;
+  border-radius: 4px;
+  display: block;
+  text-align: center;
+  margin-top: 48px;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.login .btn:hover {
+  background: #096dd9;
+}

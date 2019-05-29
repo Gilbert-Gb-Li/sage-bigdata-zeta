@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  list-style: none;
+  font-style: normal;
+  font-weight: normal;
+  box-sizing: border-box;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Hiragino Sans GB,Microsoft Yahei,Microsoft Jhenghei,sans-serif;
+}
+
+a {
+  color: #000;
+  font-size: 100%;
+  text-decoration: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+textarea {
+  resize: none;
+  overflow: auto;
+  vertical-align: top;
+}
+
+input:-webkit-autofill, 
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+input::-ms-reveal {
+  display: none;
+}
+
+::-webkit-input-placeholder {
+  color: #c8c8c8;
+  font-size: 14px;
+}
+
+:-moz-placeholder {
+  color: #c8c8c8;
+  font-size: 14px;
+}
+
+::-moz-placeholder {
+  color: #c8c8c8;
+  font-size: 14px;
+}
+
+:-ms-input-placeholder {
+  color: #c8c8c8;
+  font-size: 14px;
+}
+
+input::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+

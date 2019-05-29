@@ -1,0 +1,19 @@
+<div class="hla-widget-search-table">
+  <form class="form-horizontal" id="op_search_log_rule_form">
+    <div class="form-group">
+      <label class="col-sm-2 col-md-2 control-label">分析规则名称</label>
+      <div class="col-sm-3 col-md-3">
+        <input type="text" class="form-control" ng-model="page.search.name" placeholder="分析规则名称">
+      </div>
+      <!--<label class="col-sm-2 col-md-2 control-label">资产类型</label>
+      <div class="col-sm-3 col-md-3">
+        <div tree-input ng-model="page.search.assetType" data="tree.datas"></div>
+      </div>-->
+      <div class="col-sm-2 col-md-2">
+        <button type="button" class="btn btn-primary" id="op_search_log_rule_button"
+                ng-click="reload()">查询
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

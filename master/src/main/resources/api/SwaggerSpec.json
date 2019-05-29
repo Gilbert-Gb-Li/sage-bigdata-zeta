@@ -1,0 +1,5192 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "",
+    "version" : "",
+    "title" : "",
+    "termsOfService" : ""
+  },
+  "basePath" : "/",
+  "tags" : [ {
+    "name" : "分析规则使用"
+  }, {
+    "name" : "数据建模使用"
+  }, {
+    "name" : "数据通道配置"
+  }, {
+    "name" : "数据通道检查"
+  }, {
+    "name" : "数据源配置"
+  }, {
+    "name" : "知识库管理"
+  }, {
+    "name" : "知识库配置"
+  }, {
+    "name" : "Metric使用"
+  }, {
+    "name" : "解析规则"
+  }, {
+    "name" : "提前预览"
+  }, {
+    "name" : "任务管理配置"
+  }, {
+    "name" : "数据存储相关"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/analyzer" : {
+      "get" : {
+        "tags" : [ "分析规则使用" ],
+        "summary" : "获分析规则信息",
+        "description" : "当start为空时，返回所分析规则信息list[]",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$AnalyzerRouter$$list",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "start",
+          "in" : "formData",
+          "description" : "开始位置",
+          "required" : false
+        }, {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "是否美化",
+          "required" : false
+        }, {
+          "name" : "limit",
+          "in" : "formData",
+          "description" : "每页显示条数",
+          "required" : false
+        }, {
+          "name" : "orderBy",
+          "in" : "formData",
+          "description" : "排序依据字段",
+          "required" : false
+        }, {
+          "name" : "order",
+          "in" : "formData",
+          "description" : "正序/反序",
+          "required" : false
+        }, {
+          "name" : "search",
+          "in" : "formData",
+          "description" : "检索条件",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "分页的数据列表",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "分析规则使用" ],
+        "summary" : "新增或者更新",
+        "description" : "新增或者更新分析规则",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$AnalyzerRouter$$addOrUpdate",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AnalyzerWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/analyzer/{id}" : {
+      "get" : {
+        "tags" : [ "分析规则使用" ],
+        "summary" : "获取分析规则",
+        "description" : "根据ID获取分析规则",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$AnalyzerRouter$$byId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "想获取的分析规则ID",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "规则配置",
+            "schema" : {
+              "$ref" : "#/definitions/AnalyzerWrapper"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "分析规则使用" ],
+        "summary" : "删除",
+        "description" : "根据ID删分析规则",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$AnalyzerRouter$$_delete",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/analyzer/pre-check" : {
+      "post" : {
+        "tags" : [ "分析规则使用" ],
+        "summary" : "检查规则合法性",
+        "description" : "检查规则合法性",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$AnalyzerRouter$$preCheck",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AnalyzerWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "规则列表",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/analyzer/preview" : {
+      "post" : {
+        "tags" : [ "分析规则使用" ],
+        "summary" : "分析规则预览",
+        "description" : "分析规则预览",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$AnalyzerRouter$$analyzerPreview",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AnalyzerWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "规则列表",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/collector/collect/{Segment}" : {
+      "get" : {
+        "tags" : [ "数据建模使用" ],
+        "summary" : "获取采集器配置",
+        "description" : "根据ID获取采集器配置",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$CollectorRouter$$byId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "通道配置",
+            "schema" : {
+              "$ref" : "#/definitions/DataSourceWrapper"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/collector" : {
+      "get" : {
+        "tags" : [ "数据建模使用" ],
+        "summary" : "获取分页的采集器信息",
+        "description" : "当start为空时，返回所有采集器信息list[]",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$CollectorRouter$$list",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "start",
+          "in" : "formData",
+          "description" : "开始位置",
+          "required" : false
+        }, {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "是否美化",
+          "required" : false
+        }, {
+          "name" : "limit",
+          "in" : "formData",
+          "description" : "每页显示条数",
+          "required" : false
+        }, {
+          "name" : "orderBy",
+          "in" : "formData",
+          "description" : "排序依据字段",
+          "required" : false
+        }, {
+          "name" : "order",
+          "in" : "formData",
+          "description" : "正序/反序",
+          "required" : false
+        }, {
+          "name" : "search",
+          "in" : "formData",
+          "description" : "检索条件",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "分页的数据列表",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/collector/{CollectId}/{action}" : {
+      "put" : {
+        "tags" : [ "数据建模使用" ],
+        "summary" : "操作",
+        "description" : "关闭/开启采集器",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$CollectorRouter$$stopOrstartCollector",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "action",
+          "in" : "query",
+          "description" : "关闭/开启",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/collector/{id}" : {
+      "delete" : {
+        "tags" : [ "数据建模使用" ],
+        "summary" : "删除",
+        "description" : "根据ID删除数据源",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$CollectorRouter$$_delete",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/config" : {
+      "get" : {
+        "tags" : [ "数据通道配置" ],
+        "summary" : "获取分页的数据通道配置信息",
+        "description" : "获取分页的数据通道配置信息,当`start` 是空时,返回所有数据:list[]",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ConfigRouter$$list",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "start",
+          "in" : "formData",
+          "description" : "开始位置",
+          "required" : false
+        }, {
+          "name" : "limit",
+          "in" : "formData",
+          "description" : "条数",
+          "required" : false
+        }, {
+          "name" : "orderBy",
+          "in" : "formData",
+          "description" : "排序字段",
+          "required" : false
+        }, {
+          "name" : "order",
+          "in" : "formData",
+          "description" : "正序,反序",
+          "required" : false
+        }, {
+          "name" : "search",
+          "in" : "formData",
+          "description" : "检索条件",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "分页的数据列表",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "数据通道配置" ],
+        "summary" : "新增或者更新",
+        "description" : "新增或者更新通道配置",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ConfigRouter$$addOrUpdate",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ConfigWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "数据通道配置" ],
+        "summary" : "更新",
+        "description" : "更新通道配置",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ConfigRouter$$update",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ConfigWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/config/{id}" : {
+      "get" : {
+        "tags" : [ "数据通道配置" ],
+        "summary" : "获取数据通道配置",
+        "description" : "根据ID获取数据通道配置",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ConfigRouter$$byId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "通道配置",
+            "schema" : {
+              "$ref" : "#/definitions/ConfigWrapper"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "数据通道配置" ],
+        "summary" : "删除",
+        "description" : "根据ID删除数据通道",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ConfigRouter$$_delete",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/config/pre-check" : {
+      "post" : {
+        "tags" : [ "数据通道配置" ],
+        "summary" : "检查配置的合法性",
+        "description" : "检查配置的合法性",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ConfigRouter$$preCheck",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ConfigWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "数据列表",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/config/{opt}/{id}" : {
+      "put" : {
+        "tags" : [ "数据通道配置" ],
+        "summary" : "启动/停止",
+        "description" : "启动/停止数据通道",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ConfigRouter$$startOrStop",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "opt",
+          "in" : "path",
+          "description" : "消息体",
+          "required" : true
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "消息体",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/usability" : {
+      "get" : {
+        "tags" : [ "数据通道检查" ],
+        "summary" : "数据通道检查",
+        "description" : "数据通道是否可用",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ConfigUsabilityRouter$$checkConfig",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "规则配置",
+            "schema" : {
+              "$ref" : "#/definitions/AnalyzerWrapper"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/datasource" : {
+      "get" : {
+        "tags" : [ "数据源配置" ],
+        "summary" : "获取分页的数据源信息",
+        "description" : "当start为空时，返回所有数据源信息list[]",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$DataSourceRouter$$list",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "start",
+          "in" : "formData",
+          "description" : "开始位置",
+          "required" : false
+        }, {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "是否美化",
+          "required" : false
+        }, {
+          "name" : "limit",
+          "in" : "formData",
+          "description" : "每页显示条数",
+          "required" : false
+        }, {
+          "name" : "orderBy",
+          "in" : "formData",
+          "description" : "排序依据字段",
+          "required" : false
+        }, {
+          "name" : "order",
+          "in" : "formData",
+          "description" : "正序/反序",
+          "required" : false
+        }, {
+          "name" : "search",
+          "in" : "formData",
+          "description" : "检索条件",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "分页的数据列表",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "数据源配置" ],
+        "summary" : "新增或者更新",
+        "description" : "新增或者更新数据源",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$DataSourceRouter$$addOrUpdate",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/DataSourceWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/datasource/pre-check" : {
+      "post" : {
+        "tags" : [ "数据源配置" ],
+        "summary" : "检查配置合法性",
+        "description" : "检查配置合法性",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$DataSourceRouter$$preCheck",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/DataSourceWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "数据列表",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/datasource/preview" : {
+      "post" : {
+        "tags" : [ "数据源配置" ],
+        "summary" : "数据源预览",
+        "description" : "数据源预览",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$DataSourceRouter$$datasourcePreview",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/DataSourceWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "数据列表",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/datasource/type/{Segment}" : {
+      "get" : {
+        "tags" : [ "数据源配置" ],
+        "summary" : "显示分类",
+        "description" : "显示分类",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$DataSourceRouter$$type_list",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "type",
+          "in" : "path",
+          "description" : "类型",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "分页的数据列表",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/datasource/{id}" : {
+      "get" : {
+        "tags" : [ "数据源配置" ],
+        "summary" : "获取数据通道配置",
+        "description" : "根据ID获取数据通道配置",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$DataSourceRouter$$byId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "通道配置",
+            "schema" : {
+              "$ref" : "#/definitions/DataSourceWrapper"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "数据源配置" ],
+        "summary" : "删除",
+        "description" : "根据ID删除数据源",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$DataSourceRouter$$_delete",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/knowledgeinfo" : {
+      "get" : {
+        "tags" : [ "知识库管理" ],
+        "summary" : "获取分页的知识库相关信息",
+        "description" : "当start为空时，返回所有知识库信息list[]",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$KnowledgeInfoRouter$$knowledgeInfo",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "start",
+          "in" : "formData",
+          "description" : "开始位置",
+          "required" : false
+        }, {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "是否美化",
+          "required" : false
+        }, {
+          "name" : "limit",
+          "in" : "formData",
+          "description" : "每页显示条数",
+          "required" : false
+        }, {
+          "name" : "orderBy",
+          "in" : "formData",
+          "description" : "排序依据字段",
+          "required" : false
+        }, {
+          "name" : "order",
+          "in" : "formData",
+          "description" : "正序/反序",
+          "required" : false
+        }, {
+          "name" : "search",
+          "in" : "formData",
+          "description" : "检索条件",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "分页的数据建模列表",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/knowledge" : {
+      "get" : {
+        "tags" : [ "知识库配置" ],
+        "summary" : "获取分页的知识库配置信息",
+        "description" : "获取分页的知识库配置信息,当`start` 是空时,返回所有数据:list[]",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$KnowledgeRouter$$list",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "start",
+          "in" : "formData",
+          "description" : "开始位置",
+          "required" : false,
+          "default" : "0"
+        }, {
+          "name" : "limit",
+          "in" : "formData",
+          "description" : "条数",
+          "required" : false,
+          "default" : "10"
+        }, {
+          "name" : "orderBy",
+          "in" : "formData",
+          "description" : "排序字段",
+          "required" : false
+        }, {
+          "name" : "order",
+          "in" : "formData",
+          "description" : "正序,反序",
+          "required" : false
+        }, {
+          "name" : "search",
+          "in" : "formData",
+          "description" : "检索条件",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "分页的数据列表",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "知识库配置" ],
+        "summary" : "新增或者更新",
+        "description" : "新增或者更新知识库配置",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$KnowledgeRouter$$addOrUpdate",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Knowledge"
+          }
+        }, {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/knowledge/pre-check" : {
+      "post" : {
+        "tags" : [ "知识库配置" ],
+        "summary" : "检查知识库配置的合法性",
+        "description" : "检查知识库配置的合法性",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$KnowledgeRouter$$preCheck",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Knowledge"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "数据列表",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/knowledge/{id}" : {
+      "get" : {
+        "tags" : [ "知识库配置" ],
+        "summary" : "获取知识库配置",
+        "description" : "根据ID获取知识库配置",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$KnowledgeRouter$$byId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "知识库ID",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "知识库",
+            "schema" : {
+              "$ref" : "#/definitions/Knowledge"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "知识库配置" ],
+        "summary" : "删除",
+        "description" : "根据ID删除知识库",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$KnowledgeRouter$$_delete",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "知识库ID",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/knowledge/{opt}/{id}" : {
+      "put" : {
+        "tags" : [ "知识库配置" ],
+        "summary" : "启动/停止",
+        "description" : "启动/停止知识库",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$KnowledgeRouter$$startOrStop",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "opt",
+          "in" : "path",
+          "description" : "消息体",
+          "required" : true
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "消息体",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/knowledge/queryByStatus" : {
+      "post" : {
+        "tags" : [ "知识库配置" ],
+        "summary" : "获取状态是完成的知识库列表",
+        "description" : "获取状态是完成的知识库列表",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$KnowledgeRouter$$queryByStatus",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/metrics" : {
+      "get" : {
+        "tags" : [ "Metric使用" ],
+        "summary" : "Metrics相关操作",
+        "description" : "metrics相关操作",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$MetricsRouter$$metrics",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "mType",
+          "in" : "formData",
+          "description" : "Metric类型",
+          "required" : false
+        }, {
+          "name" : "mPhase",
+          "in" : "formData",
+          "required" : false
+        }, {
+          "name" : "from",
+          "in" : "formData",
+          "required" : false
+        }, {
+          "name" : "to",
+          "in" : "formData",
+          "required" : false
+        }, {
+          "name" : "interval",
+          "in" : "formData",
+          "required" : false
+        }, {
+          "name" : "pretty",
+          "in" : "query",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Metrics列表",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/Modeling" : {
+      "get" : {
+        "tags" : [ "数据建模使用" ],
+        "summary" : "获取数据建模",
+        "description" : "根据ID获取数据建模",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ModelingRouter$$byId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "模型配置",
+            "schema" : {
+              "$ref" : "#/definitions/ModelingWrapper"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "数据建模使用" ],
+        "summary" : "新增或者更新",
+        "description" : "新增或者更新模型",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ModelingRouter$$addOrUpdate",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ModelingWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/Modeling/check" : {
+      "post" : {
+        "tags" : [ "数据建模使用" ],
+        "summary" : "检查模型合法性",
+        "description" : "检查模型合法性",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ModelingRouter$$preCheck",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ModelingWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "模型列表",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/Modeling/{opt}/{id}" : {
+      "put" : {
+        "tags" : [ "数据建模使用" ],
+        "summary" : "启动/停止",
+        "description" : "启动/停止数据建模",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ModelingRouter$$startOrStop",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "opt",
+          "in" : "path",
+          "description" : "消息体",
+          "required" : true
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "消息体",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/Modeling/type/{Segment}" : {
+      "get" : {
+        "tags" : [ "数据建模使用" ],
+        "summary" : "显示分类",
+        "description" : "显示分类",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ModelingRouter$$typeList",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "type",
+          "in" : "path",
+          "description" : "类型",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "建模的数据列表",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/Modeling/{id}" : {
+      "delete" : {
+        "tags" : [ "数据建模使用" ],
+        "summary" : "删除",
+        "description" : "根据ID删除数据建模",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ModelingRouter$$_delete",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/Parser" : {
+      "get" : {
+        "tags" : [ "解析规则" ],
+        "summary" : "获取解析规则信息",
+        "description" : "当start为空时，返回所有解析规则信息list[]",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ParserRouter$$list",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "start",
+          "in" : "formData",
+          "description" : "开始位置",
+          "required" : false
+        }, {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "是否美化",
+          "required" : false
+        }, {
+          "name" : "limit",
+          "in" : "formData",
+          "description" : "每页显示条数",
+          "required" : false
+        }, {
+          "name" : "orderBy",
+          "in" : "formData",
+          "description" : "排序依据字段",
+          "required" : false
+        }, {
+          "name" : "order",
+          "in" : "formData",
+          "description" : "正序/反序",
+          "required" : false
+        }, {
+          "name" : "search",
+          "in" : "formData",
+          "description" : "检索条件",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "分页的解析规则列表",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "解析规则" ],
+        "summary" : "新增或者更新",
+        "description" : "新增或者更新分析规则",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ParserRouter$$addOrUpdate",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Parser"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/Parser/{id}" : {
+      "get" : {
+        "tags" : [ "解析规则" ],
+        "summary" : "获取解析规则",
+        "description" : "根据ID获取解析规则",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ParserRouter$$byId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "想获取的解析规则ID",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "规则配置",
+            "schema" : {
+              "$ref" : "#/definitions/Parser"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "解析规则" ],
+        "summary" : "删除",
+        "description" : "根据ID删除解析规则",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ParserRouter$$_delete",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/Parser/pre-check" : {
+      "post" : {
+        "tags" : [ "解析规则" ],
+        "summary" : "检查规则合法性",
+        "description" : "检查规则合法性",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$ParserRouter$$preCheck",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Parser"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "规则列表",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/previewer" : {
+      "post" : {
+        "tags" : [ "提前预览" ],
+        "summary" : "显示分析数据",
+        "description" : "显示分析数据相关操作",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$PreviewRouter$$previewParser",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "提前预览"
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "提前预览" ],
+        "summary" : "显示预览数据",
+        "description" : "显示预览数据相关操作",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$PreviewRouter$$startPreview",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "提前预览",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "提前预览" ],
+        "summary" : "删除预览",
+        "description" : "删除预览",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$PreviewRouter$$_delete",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "删除成功",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/previewer/preview" : {
+      "get" : {
+        "tags" : [ "提前预览" ],
+        "summary" : "显示预览",
+        "description" : "显示预览相关操作",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$PreviewRouter$$preview",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "提前预览",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/previewer/detect" : {
+      "post" : {
+        "tags" : [ "提前预览" ],
+        "summary" : "显示探测结果",
+        "description" : "探测器相关操作",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$PreviewRouter$$detect",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "提前预览",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/previewer/previewWithSample" : {
+      "post" : {
+        "tags" : [ "提前预览" ],
+        "summary" : "样本预览",
+        "description" : "在有样本的情况下预览",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$PreviewRouter$$previewWithSample",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "提前预览",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/taskManager" : {
+      "get" : {
+        "tags" : [ "任务管理配置" ],
+        "summary" : "获取分页任务信息列表",
+        "description" : "获取分页的调度任务信息,当`start` 是空时,返回所有数据:list[]",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$TaskManagerRouter$$list",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "start",
+          "in" : "formData",
+          "description" : "开始位置",
+          "required" : false
+        }, {
+          "name" : "limit",
+          "in" : "formData",
+          "description" : "条数",
+          "required" : false
+        }, {
+          "name" : "orderBy",
+          "in" : "formData",
+          "description" : "排序字段",
+          "required" : false
+        }, {
+          "name" : "order",
+          "in" : "formData",
+          "description" : "正序,反序",
+          "required" : false
+        }, {
+          "name" : "search",
+          "in" : "formData",
+          "description" : "检索条件",
+          "required" : false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "分页的数据列表",
+            "schema" : {
+              "$ref" : "#/definitions/Pagination"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "任务管理配置" ],
+        "summary" : "新增或者更新调度任务信息",
+        "description" : "新增或者更新调度任务信息",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$TaskManagerRouter$$addOrUpdate",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/TaskWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/BuildResult"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/BuildResult"
+            }
+          }
+        }
+      }
+    },
+    "/taskManager/{id}" : {
+      "get" : {
+        "tags" : [ "任务管理配置" ],
+        "summary" : "获取调度任务信息",
+        "description" : "根据ID获取调度任务信息",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$TaskManagerRouter$$byId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "唯一标识ID",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "调度任务信息",
+            "schema" : {
+              "$ref" : "#/definitions/TaskWrapper"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "任务管理配置" ],
+        "summary" : "删除",
+        "description" : "根据ID删除调度任务信息",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$TaskManagerRouter$$_delete",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "唯一标识ID",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/BuildResult"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/taskManager/timerId/{timerId}" : {
+      "get" : {
+        "tags" : [ "任务管理配置" ],
+        "summary" : "获取调度任务日志列表",
+        "description" : "根据ID获取调度任务日志信息",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$TaskManagerRouter$$getTimerMsg",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "taskId",
+          "in" : "path",
+          "description" : "调度任务ID",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    },
+    "/taskManager/pre-check" : {
+      "post" : {
+        "tags" : [ "任务管理配置" ],
+        "summary" : "检查配置的合法性",
+        "description" : "检查配置的合法性",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$TaskManagerRouter$$preCheck",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/TaskWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "数据列表",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/BuildResult"
+            }
+          }
+        }
+      }
+    },
+    "/writer" : {
+      "get" : {
+        "tags" : [ "数据存储相关" ],
+        "summary" : "获取数据存储",
+        "description" : "根据ID获取数据存储",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$WriterRouter$$byId",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "数据存储配置",
+            "schema" : {
+              "$ref" : "#/definitions/WriteWrapper"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "数据存储相关" ],
+        "summary" : "新增或者更新",
+        "description" : "新增或者更新数据存储",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$WriterRouter$$addOrUpdate",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/WriteWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/writer/pre-check" : {
+      "post" : {
+        "tags" : [ "数据存储相关" ],
+        "summary" : "检查数据存储合法性",
+        "description" : "检查数据存储合法性",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$WriterRouter$$preCheck",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "消息体",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/WriteWrapper"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "数据存储列表",
+            "schema" : {
+              "type" : "number"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "/writer/{id}" : {
+      "delete" : {
+        "tags" : [ "数据存储相关" ],
+        "summary" : "删除",
+        "description" : "根据ID删除数据存储",
+        "operationId" : "com$raysdata$sage-bigdata-etl$server$route$WriterRouter$$_delete",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "pretty",
+          "in" : "query",
+          "description" : "结果是否美化",
+          "required" : false
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "开始位置",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "操作结果",
+            "schema" : {
+              "$ref" : "#/definitions/Result"
+            }
+          },
+          "500" : {
+            "description" : "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : { },
+  "definitions" : {
+    "Function1" : {
+      "type" : "object"
+    },
+    "Function1RequestContextFutureRouteResult" : {
+      "type" : "object"
+    },
+    "Pagination" : {
+      "type" : "object",
+      "required" : [ "currentPage", "lastRow", "limit", "result", "start", "totalCount", "totalPage" ],
+      "properties" : {
+        "start" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "limit" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "totalCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "currentPage" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "totalPage" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "result" : {
+          "type" : "array",
+          "items" : {
+            "type" : "number"
+          }
+        },
+        "lastRow" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ARIMA" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/TimeSeries"
+      }, {
+        "type" : "object",
+        "required" : [ "coefficients", "hasIntercept", "maxD", "maxP", "maxQ", "name" ],
+        "properties" : {
+          "maxP" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "maxD" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "maxQ" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "coefficients" : {
+            "type" : "array",
+            "items" : {
+              "type" : "number",
+              "format" : "double"
+            }
+          },
+          "hasIntercept" : {
+            "type" : "boolean"
+          },
+          "estimator" : {
+            "$ref" : "#/definitions/Estimator"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Analyzer" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "AnalyzerRule" : {
+      "type" : "object"
+    },
+    "AnalyzerWrapper" : {
+      "type" : "object",
+      "required" : [ "isSample", "name" ],
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "data" : {
+          "$ref" : "#/definitions/Analyzer"
+        },
+        "channel" : {
+          "type" : "string"
+        },
+        "isSample" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "Atan" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Scalar"
+      }, {
+        "type" : "object",
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "BOBYQAOptimizer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Optimizer"
+      }, {
+        "type" : "object",
+        "required" : [ "name", "param" ],
+        "properties" : {
+          "param" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "CSSEstimator" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Estimator"
+      }, {
+        "type" : "object",
+        "required" : [ "name" ],
+        "properties" : {
+          "optimizer" : {
+            "$ref" : "#/definitions/Optimizer"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "DBSCANAnalyzer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Analyzer"
+      }, {
+        "type" : "object",
+        "required" : [ "eps", "fields", "filter", "minpts", "name" ],
+        "properties" : {
+          "minpts" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "eps" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "fields" : {
+            "type" : "string"
+          },
+          "useModel" : {
+            "type" : "string"
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/AnalyzerRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Estimator" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "HoltWinters" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/TimeSeries"
+      }, {
+        "type" : "object",
+        "required" : [ "alpha", "beta", "gamma", "modelType", "name", "period" ],
+        "properties" : {
+          "period" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "alpha" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "beta" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "gamma" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "modelType" : {
+            "$ref" : "#/definitions/Value"
+          },
+          "optimizer" : {
+            "$ref" : "#/definitions/Optimizer"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "LogReduceAnalyzer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Analyzer"
+      }, {
+        "type" : "object",
+        "required" : [ "filter", "maxOutOfOrderness", "minMatched", "name", "timeField" ],
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          },
+          "timeField" : {
+            "type" : "string"
+          },
+          "window" : {
+            "type" : "number"
+          },
+          "slide" : {
+            "type" : "number"
+          },
+          "minMatched" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "maxOutOfOrderness" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "useModel" : {
+            "type" : "string"
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/AnalyzerRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "NoThing" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Scalar"
+      }, {
+        "type" : "object",
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Optimizer" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "PCAAnalyzer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Analyzer"
+      }, {
+        "type" : "object",
+        "required" : [ "compensationValue", "filter", "k", "minMatched", "name" ],
+        "properties" : {
+          "k" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "compensationValue" : {
+            "type" : "string"
+          },
+          "window" : {
+            "type" : "number"
+          },
+          "slide" : {
+            "type" : "number"
+          },
+          "minMatched" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "useModel" : {
+            "type" : "string"
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/AnalyzerRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "RegressionAnalyzer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Analyzer"
+      }, {
+        "type" : "object",
+        "required" : [ "convergenceThreshold", "degree", "features", "filter", "iterations", "keys", "label", "name", "stepSize" ],
+        "properties" : {
+          "degree" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "stepSize" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "iterations" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "convergenceThreshold" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "label" : {
+            "type" : "string"
+          },
+          "features" : {
+            "type" : "string"
+          },
+          "keys" : {
+            "type" : "string"
+          },
+          "useModel" : {
+            "type" : "string"
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/AnalyzerRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "SQLAnalyzer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Analyzer"
+      }, {
+        "type" : "object",
+        "required" : [ "filter", "name", "sql" ],
+        "properties" : {
+          "sql" : {
+            "type" : "string"
+          },
+          "timeField" : {
+            "type" : "string"
+          },
+          "table" : {
+            "$ref" : "#/definitions/Table"
+          },
+          "idleStateRetentionTime" : {
+            "type" : "number"
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/AnalyzerRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "useModel" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "SVMAnalyzer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Analyzer"
+      }, {
+        "type" : "object",
+        "required" : [ "features", "filter", "iterations", "label", "localIterations", "name", "regularization", "stepSize" ],
+        "properties" : {
+          "regularization" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "stepSize" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "iterations" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "localIterations" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "label" : {
+            "type" : "string"
+          },
+          "features" : {
+            "type" : "string"
+          },
+          "useModel" : {
+            "type" : "string"
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/AnalyzerRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "SameWeightVectorization" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Vectorization"
+      }, {
+        "type" : "object",
+        "required" : [ "isDate", "name" ],
+        "properties" : {
+          "isDate" : {
+            "type" : "boolean"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Scalar" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "ScalarAnalyzer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Analyzer"
+      }, {
+        "type" : "object",
+        "required" : [ "cols", "filter", "name" ],
+        "properties" : {
+          "cols" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple2StringScalar"
+            }
+          },
+          "useModel" : {
+            "type" : "string"
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/AnalyzerRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "SimHashVectorization" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Vectorization"
+      }, {
+        "type" : "object",
+        "required" : [ "length", "mask", "name" ],
+        "properties" : {
+          "length" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "mask" : {
+            "type" : "integer"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "SplitTokenizer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Tokenizer"
+      }, {
+        "type" : "object",
+        "required" : [ "name", "separator" ],
+        "properties" : {
+          "separator" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "TFIDFVectorization" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Vectorization"
+      }, {
+        "type" : "object",
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Table" : {
+      "type" : "object",
+      "required" : [ "fields", "maxOutOfOrderness", "parserId", "tableName", "timeCharacteristic" ],
+      "properties" : {
+        "parserId" : {
+          "type" : "string"
+        },
+        "tableName" : {
+          "type" : "string"
+        },
+        "fields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Tuple2StringString"
+          }
+        },
+        "timeCharacteristic" : {
+          "type" : "string"
+        },
+        "timeField" : {
+          "type" : "string"
+        },
+        "maxOutOfOrderness" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "TimeSeries" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "TimeSeriesAnalyzer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Analyzer"
+      }, {
+        "type" : "object",
+        "required" : [ "backend", "field", "filter", "forecast", "keys", "maxOutOfOrderness", "name", "timeField", "timeSeriesModel" ],
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          },
+          "timeField" : {
+            "type" : "string"
+          },
+          "window" : {
+            "type" : "number"
+          },
+          "slide" : {
+            "type" : "number"
+          },
+          "timeSeriesModel" : {
+            "$ref" : "#/definitions/TimeSeries"
+          },
+          "forecast" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "maxOutOfOrderness" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "backend" : {
+            "type" : "string"
+          },
+          "keys" : {
+            "type" : "string"
+          },
+          "useModel" : {
+            "type" : "string"
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/AnalyzerRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Tokenizer" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "Tuple2" : {
+      "type" : "object",
+      "required" : [ "_1", "_2" ],
+      "properties" : {
+        "_1" : {
+          "type" : "number"
+        },
+        "_2" : {
+          "type" : "number"
+        }
+      }
+    },
+    "Tuple2StringScalar" : {
+      "type" : "object",
+      "required" : [ "_1", "_2" ],
+      "properties" : {
+        "_1" : {
+          "type" : "string"
+        },
+        "_2" : {
+          "$ref" : "#/definitions/Scalar"
+        }
+      }
+    },
+    "Tuple2StringString" : {
+      "type" : "object",
+      "required" : [ "_1", "_2" ],
+      "properties" : {
+        "_1" : {
+          "type" : "string"
+        },
+        "_2" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Tuple3" : {
+      "type" : "object",
+      "required" : [ "_1", "_2", "_3" ],
+      "properties" : {
+        "_1" : {
+          "type" : "number"
+        },
+        "_2" : {
+          "type" : "number"
+        },
+        "_3" : {
+          "type" : "number"
+        }
+      }
+    },
+    "Tuple3StringStringString" : {
+      "type" : "object",
+      "required" : [ "_1", "_2", "_3" ],
+      "properties" : {
+        "_1" : {
+          "type" : "string"
+        },
+        "_2" : {
+          "type" : "string"
+        },
+        "_3" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Value" : {
+      "type" : "object"
+    },
+    "Vectorization" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "VectorizationAnalyzer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Analyzer"
+      }, {
+        "type" : "object",
+        "required" : [ "field", "filter", "name", "vectorization" ],
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          },
+          "vectorization" : {
+            "$ref" : "#/definitions/Vectorization"
+          },
+          "useModel" : {
+            "type" : "string"
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/AnalyzerRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "WordSegmentationAnalyzer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Analyzer"
+      }, {
+        "type" : "object",
+        "required" : [ "field", "filter", "name", "tokenizer" ],
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          },
+          "tokenizer" : {
+            "$ref" : "#/definitions/Tokenizer"
+          },
+          "useModel" : {
+            "type" : "string"
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/AnalyzerRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Result" : {
+      "type" : "object",
+      "required" : [ "message", "status" ],
+      "properties" : {
+        "status" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AWSSource" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "name", "servers", "start" ],
+        "properties" : {
+          "accessKey" : {
+            "type" : "string"
+          },
+          "secretKey" : {
+            "type" : "string"
+          },
+          "region" : {
+            "type" : "string"
+          },
+          "servers" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "start" : {
+            "type" : "number"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "AnalyzerChannel" : {
+      "type" : "object",
+      "required" : [ "cluster", "clusterType", "jobId", "model", "name", "type" ],
+      "properties" : {
+        "cluster" : {
+          "type" : "string"
+        },
+        "jobId" : {
+          "type" : "string"
+        },
+        "model" : {
+          "$ref" : "#/definitions/Value"
+        },
+        "type" : {
+          "$ref" : "#/definitions/Value"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "clusterType" : {
+          "$ref" : "#/definitions/Value"
+        }
+      }
+    },
+    "ByKnowledge" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/MapRule"
+      }, {
+        "type" : "object",
+        "required" : [ "column", "id", "isScript", "name", "value" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "column" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "string"
+          },
+          "isScript" : {
+            "type" : "boolean"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "CSVFileType" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/FileType"
+      }, {
+        "type" : "object",
+        "required" : [ "isHaveThead", "name" ],
+        "properties" : {
+          "header" : {
+            "type" : "string"
+          },
+          "isHaveThead" : {
+            "type" : "boolean"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "CefParser" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Parser"
+      }, {
+        "type" : "object",
+        "required" : [ "filter", "name" ],
+        "properties" : {
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/MapRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "ChainParser" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/ParserMapRule"
+      }, {
+        "type" : "object",
+        "required" : [ "filter", "name", "parsers" ],
+        "properties" : {
+          "parsers" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/ParserMapRule"
+            }
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/MapRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Channel" : {
+      "type" : "object"
+    },
+    "ChannelType" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "Codec" : {
+      "type" : "object",
+      "required" : [ "name" ],
+      "discriminator" : "name",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Contain" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Filter"
+      }, {
+        "type" : "object",
+        "required" : [ "value" ],
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "DataSource" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "DataSourceWrapper" : {
+      "type" : "object",
+      "required" : [ "data", "id", "isSample", "name" ],
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "data" : {
+          "$ref" : "#/definitions/DataSource"
+        },
+        "collector" : {
+          "type" : "string"
+        },
+        "isSample" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "Delimit" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/ContentType"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "delimit" : {
+            "type" : "string"
+          },
+          "fields" : {
+            "type" : "string"
+          },
+          "encoding" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "DelimitCodec" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Codec"
+      }, {
+        "type" : "object",
+        "required" : [ "delimit" ],
+        "properties" : {
+          "delimit" : {
+            "type" : "string"
+          },
+          "filter" : {
+            "$ref" : "#/definitions/Filter"
+          }
+        }
+      } ]
+    },
+    "DelimitWithKeyMap" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/ContentType"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "delimit" : {
+            "type" : "string"
+          },
+          "tab" : {
+            "type" : "string"
+          },
+          "encoding" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "ES2Source" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "cluster", "esType", "field", "hostPorts", "index", "name", "start", "step" ],
+        "properties" : {
+          "cluster" : {
+            "type" : "string"
+          },
+          "hostPorts" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple2StringObject"
+            }
+          },
+          "index" : {
+            "type" : "string"
+          },
+          "esType" : {
+            "type" : "string"
+          },
+          "field" : {
+            "type" : "string"
+          },
+          "start" : {
+            "type" : "number"
+          },
+          "step" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "ES5Source" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "cluster", "esType", "field", "hostPorts", "index", "name", "start", "step" ],
+        "properties" : {
+          "cluster" : {
+            "type" : "string"
+          },
+          "hostPorts" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple2StringObject"
+            }
+          },
+          "index" : {
+            "type" : "string"
+          },
+          "esType" : {
+            "type" : "string"
+          },
+          "field" : {
+            "type" : "string"
+          },
+          "start" : {
+            "type" : "number"
+          },
+          "step" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "queryDSL" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "EndWith" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Filter"
+      }, {
+        "type" : "object",
+        "required" : [ "value" ],
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "ExcelFileType" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/FileType"
+      }, {
+        "type" : "object",
+        "required" : [ "header", "isHaveThead", "name" ],
+        "properties" : {
+          "header" : {
+            "type" : "string"
+          },
+          "isHaveThead" : {
+            "type" : "boolean"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "FTPSource" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "host", "name", "path" ],
+        "properties" : {
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "number"
+          },
+          "path" : {
+            "$ref" : "#/definitions/FileSource"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "FileSource" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "name", "path", "skipLine" ],
+        "properties" : {
+          "path" : {
+            "type" : "string"
+          },
+          "category" : {
+            "type" : "string"
+          },
+          "contentType" : {
+            "$ref" : "#/definitions/FileType"
+          },
+          "encoding" : {
+            "type" : "string"
+          },
+          "codec" : {
+            "$ref" : "#/definitions/Codec"
+          },
+          "position" : {
+            "$ref" : "#/definitions/Value"
+          },
+          "skipLine" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "FileType" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "Filter" : {
+      "type" : "object",
+      "required" : [ "name" ],
+      "discriminator" : "name",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    },
+    "HDFSSource" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "host", "name", "path", "port" ],
+        "properties" : {
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "authentication" : {
+            "$ref" : "#/definitions/Value"
+          },
+          "path" : {
+            "$ref" : "#/definitions/FileSource"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Ignore" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/MapRule"
+      }, {
+        "type" : "object",
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "JDBCSource" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "MAX", "MIN", "SELECT", "SELECT_FOR_META", "column", "driver", "host", "name", "port", "protocol", "schema", "start", "step", "table", "tableOrSql" ],
+        "properties" : {
+          "protocol" : {
+            "type" : "string"
+          },
+          "driver" : {
+            "type" : "string"
+          },
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "schema" : {
+            "type" : "string"
+          },
+          "tableOrSql" : {
+            "type" : "string"
+          },
+          "column" : {
+            "type" : "string"
+          },
+          "start" : {
+            "type" : "number"
+          },
+          "step" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "table" : {
+            "type" : "string"
+          },
+          "SELECT" : {
+            "type" : "string"
+          },
+          "SELECT_FOR_META" : {
+            "type" : "string"
+          },
+          "MAX" : {
+            "type" : "string"
+          },
+          "MIN" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Join" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Joinable"
+      }, {
+        "type" : "object",
+        "required" : [ "first", "name", "second", "timeCharacteristic", "windows" ],
+        "properties" : {
+          "first" : {
+            "$ref" : "#/definitions/JoinConfig"
+          },
+          "second" : {
+            "$ref" : "#/definitions/JoinConfig"
+          },
+          "windows" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "timeCharacteristic" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "JoinConfig" : {
+      "type" : "object",
+      "required" : [ "joinField", "maxOutOfOrderness", "parserId" ],
+      "properties" : {
+        "parserId" : {
+          "type" : "string"
+        },
+        "joinField" : {
+          "type" : "string"
+        },
+        "timeField" : {
+          "type" : "string"
+        },
+        "maxOutOfOrderness" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "Joinable" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "JsonCodec" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Codec"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "filter" : {
+            "$ref" : "#/definitions/Filter"
+          }
+        }
+      } ]
+    },
+    "JsonParser" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Parser"
+      }, {
+        "type" : "object",
+        "required" : [ "filter", "name" ],
+        "properties" : {
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/MapRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "KafkaSource" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "groupId", "hostPorts", "name", "wildcard" ],
+        "properties" : {
+          "hostPorts" : {
+            "type" : "string"
+          },
+          "topic" : {
+            "type" : "string"
+          },
+          "codec" : {
+            "$ref" : "#/definitions/Codec"
+          },
+          "wildcard" : {
+            "type" : "string"
+          },
+          "position" : {
+            "$ref" : "#/definitions/Value"
+          },
+          "authentication" : {
+            "$ref" : "#/definitions/Value"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "groupId" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "LineCodec" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Codec"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "filter" : {
+            "$ref" : "#/definitions/Filter"
+          }
+        }
+      } ]
+    },
+    "MapRule" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "Match" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Filter"
+      }, {
+        "type" : "object",
+        "required" : [ "value" ],
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "MatchCodec" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Codec"
+      }, {
+        "type" : "object",
+        "required" : [ "pattern" ],
+        "properties" : {
+          "pattern" : {
+            "type" : "string"
+          },
+          "filter" : {
+            "$ref" : "#/definitions/Filter"
+          }
+        }
+      } ]
+    },
+    "MultiCodec" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Codec"
+      }, {
+        "type" : "object",
+        "required" : [ "pattern" ],
+        "properties" : {
+          "pattern" : {
+            "type" : "string"
+          },
+          "inStart" : {
+            "type" : "number"
+          },
+          "filter" : {
+            "$ref" : "#/definitions/Filter"
+          },
+          "maxLineNum" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "NetSource" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "isClient", "listens", "name", "port" ],
+        "properties" : {
+          "protocol" : {
+            "$ref" : "#/definitions/WithProtocol"
+          },
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "listens" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple2StringString"
+            }
+          },
+          "codec" : {
+            "$ref" : "#/definitions/Codec"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "isClient" : {
+            "type" : "boolean"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "NothingParser" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Parser"
+      }, {
+        "type" : "object",
+        "required" : [ "filter", "name" ],
+        "properties" : {
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/MapRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Parser" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "ParserChannel" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/ChannelType"
+      }, {
+        "type" : "object",
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "ParserMapRule" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "ParserRule" : {
+      "type" : "object"
+    },
+    "PrometheusSource" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "expression", "host", "name", "port", "rangeStep", "start", "step" ],
+        "properties" : {
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "expression" : {
+            "type" : "string"
+          },
+          "start" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "step" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "rangeStep" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "RCFileFileType" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/FileType"
+      }, {
+        "type" : "object",
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "RabbitMQSource" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "durable", "host", "name", "queue" ],
+        "properties" : {
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "number"
+          },
+          "virtualHost" : {
+            "type" : "string"
+          },
+          "queue" : {
+            "type" : "string"
+          },
+          "durable" : {
+            "type" : "boolean"
+          },
+          "username" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "encoding" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Regex" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Parser"
+      }, {
+        "type" : "object",
+        "required" : [ "filter", "name", "value" ],
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/MapRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "SFTPSource" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "host", "name", "path" ],
+        "properties" : {
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "number"
+          },
+          "path" : {
+            "$ref" : "#/definitions/FileSource"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "SQL" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Joinable"
+      }, {
+        "type" : "object",
+        "required" : [ "first", "name", "second", "timeCharacteristic" ],
+        "properties" : {
+          "first" : {
+            "$ref" : "#/definitions/Table"
+          },
+          "second" : {
+            "$ref" : "#/definitions/Table"
+          },
+          "timeCharacteristic" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "SelectParser" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Parser"
+      }, {
+        "type" : "object",
+        "required" : [ "filter", "name", "parsers" ],
+        "properties" : {
+          "parsers" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/ParserMapRule"
+            }
+          },
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/MapRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "SingleChannel" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "dataSource", "name" ],
+        "properties" : {
+          "dataSource" : {
+            "$ref" : "#/definitions/DataSource"
+          },
+          "parser" : {
+            "$ref" : "#/definitions/ParserRule"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "type" : {
+            "$ref" : "#/definitions/ChannelType"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "StartWith" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Filter"
+      }, {
+        "type" : "object",
+        "required" : [ "value" ],
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "TableChannel" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "channel", "name", "table" ],
+        "properties" : {
+          "channel" : {
+            "$ref" : "#/definitions/Channel"
+          },
+          "table" : {
+            "$ref" : "#/definitions/Table"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "TransferParser" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Parser"
+      }, {
+        "type" : "object",
+        "required" : [ "filter", "name" ],
+        "properties" : {
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/MapRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Tuple2StringObject" : {
+      "type" : "object",
+      "required" : [ "_1", "_2" ],
+      "properties" : {
+        "_1" : {
+          "type" : "string"
+        },
+        "_2" : {
+          "type" : "number"
+        }
+      }
+    },
+    "TupleChannel" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/DataSource"
+      }, {
+        "type" : "object",
+        "required" : [ "first", "name", "on", "second" ],
+        "properties" : {
+          "first" : {
+            "$ref" : "#/definitions/Channel"
+          },
+          "second" : {
+            "$ref" : "#/definitions/Channel"
+          },
+          "on" : {
+            "$ref" : "#/definitions/Joinable"
+          },
+          "id" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "TxtFileType" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/FileType"
+      }, {
+        "type" : "object",
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "WinEvtFileType" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/FileType"
+      }, {
+        "type" : "object",
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "WithProtocol" : {
+      "type" : "object"
+    },
+    "XmlCodec" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Codec"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "filter" : {
+            "$ref" : "#/definitions/Filter"
+          }
+        }
+      } ]
+    },
+    "XmlParser" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Parser"
+      }, {
+        "type" : "object",
+        "required" : [ "filter", "name" ],
+        "properties" : {
+          "filter" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/MapRule"
+            }
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "ConfigWrapper" : {
+      "type" : "object",
+      "required" : [ "id", "isSample", "name", "status", "writers" ],
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "datasource" : {
+          "type" : "string"
+        },
+        "parser" : {
+          "type" : "string"
+        },
+        "writers" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "type" : {
+          "$ref" : "#/definitions/ChannelType"
+        },
+        "status" : {
+          "$ref" : "#/definitions/Value"
+        },
+        "errorMsg" : {
+          "type" : "string"
+        },
+        "collector" : {
+          "type" : "string"
+        },
+        "properties" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "lasttime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "createtime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "isSample" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "Knowledge" : {
+      "type" : "object",
+      "required" : [ "id", "isSample" ],
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "datasource" : {
+          "type" : "string"
+        },
+        "collector" : {
+          "type" : "string"
+        },
+        "parser" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "isSample" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "ModelingWrapper" : {
+      "type" : "object",
+      "required" : [ "channel", "isSample", "name", "sinks", "status" ],
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "$ref" : "#/definitions/AnalyzerChannel"
+        },
+        "channel" : {
+          "type" : "string"
+        },
+        "analyzer" : {
+          "type" : "string"
+        },
+        "sinks" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "status" : {
+          "$ref" : "#/definitions/Value"
+        },
+        "errorMsg" : {
+          "type" : "string"
+        },
+        "worker" : {
+          "type" : "string"
+        },
+        "properties" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "isSample" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "Task" : {
+      "type" : "object",
+      "required" : [ "configId", "cronExpression", "enable", "retry", "retryInterval" ],
+      "properties" : {
+        "configId" : {
+          "type" : "string"
+        },
+        "enable" : {
+          "type" : "boolean"
+        },
+        "taskName" : {
+          "type" : "string"
+        },
+        "cronExpression" : {
+          "type" : "string"
+        },
+        "jobType" : {
+          "type" : "string"
+        },
+        "action" : {
+          "type" : "string"
+        },
+        "retry" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "retryInterval" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "TaskWrapper" : {
+      "type" : "object",
+      "required" : [ "config", "data", "isSample", "name" ],
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "config" : {
+          "type" : "string"
+        },
+        "data" : {
+          "$ref" : "#/definitions/Task"
+        },
+        "isSample" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "BuildResult" : {
+      "type" : "object",
+      "required" : [ "key", "param", "status" ],
+      "properties" : {
+        "status" : {
+          "type" : "string"
+        },
+        "key" : {
+          "type" : "string"
+        },
+        "param" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "Akka" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Protocol"
+      }, {
+        "type" : "object",
+        "required" : [ "protocol" ],
+        "properties" : {
+          "protocol" : {
+            "$ref" : "#/definitions/TCP"
+          }
+        }
+      } ]
+    },
+    "ContentType" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "ES2Writer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "cluster", "date_detection", "enable_size", "hostPorts", "id", "index", "indexType", "name", "number_of_replicas", "number_of_shards", "numeric_detection" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "cluster" : {
+            "type" : "string"
+          },
+          "hostPorts" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple2StringObject"
+            }
+          },
+          "index" : {
+            "type" : "string"
+          },
+          "indexType" : {
+            "type" : "string"
+          },
+          "routingField" : {
+            "type" : "string"
+          },
+          "parentField" : {
+            "type" : "string"
+          },
+          "asChild" : {
+            "type" : "string"
+          },
+          "idFields" : {
+            "type" : "string"
+          },
+          "number_of_shards" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "number_of_replicas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "numeric_detection" : {
+            "type" : "boolean"
+          },
+          "date_detection" : {
+            "type" : "boolean"
+          },
+          "enable_size" : {
+            "type" : "boolean"
+          },
+          "persisRef" : {
+            "$ref" : "#/definitions/NameType"
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      } ]
+    },
+    "ES5Writer" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "cluster", "date_detection", "enable_size", "hostPorts", "id", "index", "indexType", "name", "number_of_replicas", "number_of_shards", "numeric_detection" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "cluster" : {
+            "type" : "string"
+          },
+          "hostPorts" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple2StringObject"
+            }
+          },
+          "index" : {
+            "type" : "string"
+          },
+          "indexType" : {
+            "type" : "string"
+          },
+          "routingField" : {
+            "type" : "string"
+          },
+          "parentField" : {
+            "type" : "string"
+          },
+          "asChild" : {
+            "type" : "string"
+          },
+          "idFields" : {
+            "type" : "string"
+          },
+          "number_of_shards" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "number_of_replicas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "numeric_detection" : {
+            "type" : "boolean"
+          },
+          "date_detection" : {
+            "type" : "boolean"
+          },
+          "enable_size" : {
+            "type" : "boolean"
+          },
+          "persisRef" : {
+            "$ref" : "#/definitions/NameType"
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple3StringStringString"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      } ]
+    },
+    "FileWriter" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "id", "name", "path" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "path" : {
+            "type" : "string"
+          },
+          "contentType" : {
+            "$ref" : "#/definitions/ContentType"
+          },
+          "persisRef" : {
+            "$ref" : "#/definitions/NameType"
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "ForwardWriter" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "host", "id", "name", "port" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "system" : {
+            "type" : "string"
+          },
+          "app" : {
+            "type" : "string"
+          },
+          "identifier" : {
+            "type" : "string"
+          },
+          "persisRef" : {
+            "$ref" : "#/definitions/NameType"
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "HDFSWriter" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "host", "id", "name", "path", "port" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "path" : {
+            "$ref" : "#/definitions/FileWriter"
+          },
+          "authentication" : {
+            "$ref" : "#/definitions/Value"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      } ]
+    },
+    "JDBCField" : {
+      "type" : "object",
+      "required" : [ "name", "type" ],
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "pk" : {
+          "type" : "string"
+        },
+        "nullable" : {
+          "type" : "string"
+        },
+        "length" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "decimal" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "JDBCWriter" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "column", "driver", "host", "id", "name", "port", "protocol", "schema", "table" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "protocol" : {
+            "type" : "string"
+          },
+          "driver" : {
+            "type" : "string"
+          },
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "schema" : {
+            "type" : "string"
+          },
+          "table" : {
+            "type" : "string"
+          },
+          "column" : {
+            "type" : "string"
+          },
+          "persisRef" : {
+            "$ref" : "#/definitions/NameType"
+          },
+          "metadata" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/JDBCField"
+            }
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "JFlow" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Protocol"
+      }, {
+        "type" : "object",
+        "required" : [ "protocol" ],
+        "properties" : {
+          "protocol" : {
+            "$ref" : "#/definitions/Protocol"
+          }
+        }
+      } ]
+    },
+    "Json" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/ContentType"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "encoding" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "KafkaWriter" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "hostPorts", "id", "name" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "hostPorts" : {
+            "type" : "string"
+          },
+          "topic" : {
+            "type" : "string"
+          },
+          "contentType" : {
+            "$ref" : "#/definitions/ContentType"
+          },
+          "authentication" : {
+            "$ref" : "#/definitions/Value"
+          },
+          "persisRef" : {
+            "$ref" : "#/definitions/NameType"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "NameType" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "Net" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Protocol"
+      }, {
+        "type" : "object",
+        "required" : [ "protocol" ],
+        "properties" : {
+          "protocol" : {
+            "$ref" : "#/definitions/Protocol"
+          }
+        }
+      } ]
+    },
+    "NetFlow" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Protocol"
+      }, {
+        "type" : "object",
+        "required" : [ "protocol" ],
+        "properties" : {
+          "protocol" : {
+            "$ref" : "#/definitions/Protocol"
+          }
+        }
+      } ]
+    },
+    "NetWriter" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "client", "id", "name", "port" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "protocol" : {
+            "$ref" : "#/definitions/Protocol"
+          },
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "contentType" : {
+            "$ref" : "#/definitions/ContentType"
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "client" : {
+            "type" : "boolean"
+          }
+        }
+      } ]
+    },
+    "Protocol" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "RabbitMQWriter" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "durable", "host", "id", "name", "queue" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "number"
+          },
+          "virtualHost" : {
+            "type" : "string"
+          },
+          "queue" : {
+            "type" : "string"
+          },
+          "durable" : {
+            "type" : "boolean"
+          },
+          "username" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          },
+          "persisRef" : {
+            "$ref" : "#/definitions/NameType"
+          },
+          "contentType" : {
+            "$ref" : "#/definitions/ContentType"
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "Ref" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/NameType"
+      }, {
+        "type" : "object",
+        "required" : [ "field" ],
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "RefDate" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/NameType"
+      }, {
+        "type" : "object",
+        "required" : [ "field", "format" ],
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          },
+          "format" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "RefHashMod" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/NameType"
+      }, {
+        "type" : "object",
+        "required" : [ "field", "mod" ],
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          },
+          "mod" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      } ]
+    },
+    "RefNone" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/NameType"
+      }, {
+        "type" : "object"
+      } ]
+    },
+    "RefTruncate" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/NameType"
+      }, {
+        "type" : "object",
+        "required" : [ "end", "field", "from", "length" ],
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          },
+          "end" : {
+            "type" : "boolean"
+          },
+          "from" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "length" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      } ]
+    },
+    "RestfulWriter" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "host", "id", "name", "path", "port" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "protocol" : {
+            "type" : "string"
+          },
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "path" : {
+            "type" : "string"
+          },
+          "contentType" : {
+            "$ref" : "#/definitions/ContentType"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      } ]
+    },
+    "SnmpTrap" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Protocol"
+      }, {
+        "type" : "object",
+        "required" : [ "protocol" ],
+        "properties" : {
+          "protocol" : {
+            "$ref" : "#/definitions/Protocol"
+          }
+        }
+      } ]
+    },
+    "SnmpWalk" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Protocol"
+      }, {
+        "type" : "object",
+        "required" : [ "protocol" ],
+        "properties" : {
+          "protocol" : {
+            "$ref" : "#/definitions/Protocol"
+          }
+        }
+      } ]
+    },
+    "StdWriter" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "id", "name" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "contentType" : {
+            "$ref" : "#/definitions/ContentType"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      } ]
+    },
+    "SwitchWriter" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "default", "field", "id", "name", "type", "writers" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "field" : {
+            "type" : "string"
+          },
+          "type" : {
+            "$ref" : "#/definitions/Value"
+          },
+          "writers" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/definitions/Tuple2StringWriter"
+            }
+          },
+          "default" : {
+            "$ref" : "#/definitions/Writer"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      } ]
+    },
+    "Syslog" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Protocol"
+      }, {
+        "type" : "object",
+        "required" : [ "protocol" ],
+        "properties" : {
+          "protocol" : {
+            "$ref" : "#/definitions/Protocol"
+          }
+        }
+      } ]
+    },
+    "SyslogOutputFormat" : {
+      "type" : "object",
+      "properties" : {
+        "priorityType" : {
+          "type" : "string"
+        },
+        "priority" : {
+          "type" : "string"
+        },
+        "facility" : {
+          "type" : "string"
+        },
+        "level" : {
+          "type" : "string"
+        },
+        "timestampType" : {
+          "type" : "string"
+        },
+        "timestamp" : {
+          "type" : "string"
+        },
+        "hostname" : {
+          "type" : "string"
+        },
+        "tag" : {
+          "type" : "string"
+        }
+      }
+    },
+    "SyslogWriter" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Writer"
+      }, {
+        "type" : "object",
+        "required" : [ "cache", "client", "id", "name", "port" ],
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "protocol" : {
+            "$ref" : "#/definitions/Protocol"
+          },
+          "host" : {
+            "type" : "string"
+          },
+          "port" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "contentType" : {
+            "$ref" : "#/definitions/ContentType"
+          },
+          "cache" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "client" : {
+            "type" : "boolean"
+          }
+        }
+      } ]
+    },
+    "TCP" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Protocol"
+      }, {
+        "type" : "object"
+      } ]
+    },
+    "Tuple2StringWriter" : {
+      "type" : "object",
+      "required" : [ "_1", "_2" ],
+      "properties" : {
+        "_1" : {
+          "type" : "string"
+        },
+        "_2" : {
+          "$ref" : "#/definitions/Writer"
+        }
+      }
+    },
+    "UDP" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Protocol"
+      }, {
+        "type" : "object"
+      } ]
+    },
+    "WriteWrapper" : {
+      "type" : "object",
+      "required" : [ "data", "isSample", "name" ],
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "writeType" : {
+          "type" : "string"
+        },
+        "data" : {
+          "$ref" : "#/definitions/Writer"
+        },
+        "isSample" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "Writer" : {
+      "type" : "object",
+      "discriminator" : "name"
+    },
+    "Xml" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/ContentType"
+      }, {
+        "type" : "object",
+        "properties" : {
+          "encoding" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    }
+  }
+}

@@ -1,0 +1,289 @@
+{
+  "currentPage": 1,
+  "result": [
+    {
+      "assetTypeName": "cmb_iis",
+      "name": "iis_kafka_copy1",
+      "createtime": "2016-07-14 09:40:53",
+      "assetId": "",
+      "lasttime": "2016-07-14 09:40:58",
+      "data": {
+        "name": "kafka",
+        "hostPorts": "127.0.0.1:2181",
+        "properties": {
+          "group.id": "adbe59aa-da65-474a-bd0e-2811af8de55f",
+          "encoding": "utf-8"
+        },
+        "metadata": {
+          "host": null,
+          "port": null,
+          "timestamp": "timestamp",
+          "data": null
+        },
+        "codec": {
+          "name": "line"
+        },
+        "topic": "test"
+      },
+      "writers": [
+        {
+          "name": "iis",
+          "createtime": null,
+          "lasttime": null,
+          "data": null,
+          "id": "ced9b881-3f88-484b-81b2-76b7458dd90c",
+          "writeType": null
+        }
+      ],
+      "id": "3c48227b-bcd2-4136-a013-427385e68f1a",
+      "status": "STOPPED",
+      "resolverId": "fbddcf76-f069-469c-98c1-065adcdb48aa",
+      "assetTypeId": "1b9fa45f-01ea-438d-95eb-0143ee547228",
+      "collectorId": "worker-yzh"
+    },
+    {
+      "assetTypeName": "cmb_iis",
+      "name": "iis_kafka_copy",
+      "createtime": "2016-07-13 17:36:42",
+      "assetId": "",
+      "lasttime": "2016-07-13 17:38:11",
+      "data": {
+        "name": "kafka",
+        "hostPorts": "127.0.0.1:2181",
+        "properties": {
+          "group.id": "adbe59aa-da65-474a-bd0e-2811af8de55f",
+          "encoding": "utf-8"
+        },
+        "metadata": {
+          "host": null,
+          "port": null,
+          "timestamp": "timestamp",
+          "data": null
+        },
+        "codec": {
+          "name": "line"
+        },
+        "topic": "test"
+      },
+      "writers": [
+        {
+          "name": "iis",
+          "createtime": null,
+          "lasttime": null,
+          "data": null,
+          "id": "ced9b881-3f88-484b-81b2-76b7458dd90c",
+          "writeType": null
+        }
+      ],
+      "id": "2209c3ba-015c-45dd-9091-5cb2473cd2c7",
+      "status": "STOPPED",
+      "resolverId": "fbddcf76-f069-469c-98c1-065adcdb48aa",
+      "assetTypeId": "1b9fa45f-01ea-438d-95eb-0143ee547228",
+      "collectorId": "worker-yzh"
+    },
+    {
+      "assetTypeName": "cmb_iis",
+      "name": "iis_kafka",
+      "createtime": "2016-07-13 11:10:56",
+      "assetId": "",
+      "lasttime": "2016-07-13 11:10:56",
+      "data": {
+        "name": "kafka",
+        "hostPorts": "127.0.0.1:2181",
+        "properties": {
+          "group.id": "adbe59aa-da65-474a-bd0e-2811af8de55f",
+          "encoding": "utf-8"
+        },
+        "metadata": {
+          "host": null,
+          "port": null,
+          "timestamp": "timestamp",
+          "data": null
+        },
+        "codec": {
+          "name": "line"
+        },
+        "topic": "test"
+      },
+      "writers": [
+        {
+          "name": "iis",
+          "createtime": null,
+          "lasttime": null,
+          "data": null,
+          "id": "ced9b881-3f88-484b-81b2-76b7458dd90c",
+          "writeType": null
+        }
+      ],
+      "id": "e8be071e-ff75-4c92-bd6c-82d2b03e70ff",
+      "status": "STOPPED",
+      "resolverId": "fbddcf76-f069-469c-98c1-065adcdb48aa",
+      "assetTypeId": "1b9fa45f-01ea-438d-95eb-0143ee547228",
+      "collectorId": "worker-yzh"
+    },
+    {
+      "assetTypeName": "cmb_iis",
+      "name": "mobile-iis",
+      "createtime": "2016-07-13 10:35:44",
+      "assetId": "",
+      "lasttime": "2016-07-13 10:48:33",
+      "data": {
+        "name": "file",
+        "path": "/Users/zhhuiyan/workspace/data/cmb.phone/mobilebank.log",
+        "encoding": null,
+        "contentType": "txt",
+        "category": null,
+        "metadata": {
+          "host": null,
+          "port": null,
+          "timestamp": "timestamp",
+          "data": null
+        },
+        "position": "START",
+        "codec": {
+          "name": "line"
+        },
+        "skipLine": 0
+      },
+      "writers": [
+        {
+          "name": "iis",
+          "createtime": null,
+          "lasttime": null,
+          "data": null,
+          "id": "ced9b881-3f88-484b-81b2-76b7458dd90c",
+          "writeType": null
+        }
+      ],
+      "id": "45754273-d1cb-4132-8e25-2d9e4f2042dd",
+      "status": "STOPPED",
+      "resolverId": "fbddcf76-f069-469c-98c1-065adcdb48aa",
+      "assetTypeId": "1b9fa45f-01ea-438d-95eb-0143ee547228",
+      "collectorId": "worker-yzh"
+    },
+    {
+      "assetTypeName": "mingxi",
+      "name": "mxb_20160706",
+      "createtime": "2016-07-11 19:58:47",
+      "assetId": "",
+      "lasttime": "2016-07-11 20:00:29",
+      "data": {
+        "name": "file",
+        "path": "/Volumes/KING/sz_crd_trx_lst_20160607.DAT",
+        "encoding": null,
+        "contentType": "txt",
+        "category": null,
+        "metadata": {
+          "host": null,
+          "port": null,
+          "timestamp": "dat_dte",
+          "data": null
+        },
+        "position": "START",
+        "codec": {
+          "name": "line"
+        },
+        "skipLine": 0
+      },
+      "writers": [
+        {
+          "name": "mx",
+          "createtime": null,
+          "lasttime": null,
+          "data": null,
+          "id": "c36f4946-6114-4274-9a3f-aef2b96bc0d7",
+          "writeType": null
+        }
+      ],
+      "id": "c80ff915-41fc-4f43-ad58-f9705a551f27",
+      "status": "STOPPED",
+      "resolverId": "1ed1191a-87b6-445e-9553-0cbd20f9b4d7",
+      "assetTypeId": "d7618ada-4e31-46dd-9c0b-b2b30ba8efaa",
+      "collectorId": "worker-yzh"
+    },
+    {
+      "assetTypeName": "IIS",
+      "name": "mobile-poc",
+      "createtime": "2016-07-11 14:47:36",
+      "assetId": "",
+      "lasttime": "2016-07-12 16:11:57",
+      "data": {
+        "name": "file",
+        "path": "/Users/zhhuiyan/workspace/data/mobile-poc/sz_crd_trx_sum_20160630.DAT",
+        "encoding": null,
+        "contentType": "txt",
+        "category": null,
+        "metadata": {
+          "host": null,
+          "port": null,
+          "timestamp": "dat_dte",
+          "data": null
+        },
+        "position": "END",
+        "codec": {
+          "name": "line"
+        },
+        "skipLine": 0
+      },
+      "writers": [
+        {
+          "name": "local2.0",
+          "createtime": null,
+          "lasttime": null,
+          "data": null,
+          "id": "ced9b881-3f88-484b-81b2-76b7458dd90c",
+          "writeType": null
+        }
+      ],
+      "id": "e9680633-0604-40c6-83d8-515a384ab9c4",
+      "status": "STOPPED",
+      "resolverId": "d0f284c1-8c7a-47bf-b81d-fec3af719454",
+      "assetTypeId": "c158d4de-7d00-4246-a51d-9f34da191001",
+      "collectorId": "worker-yzh"
+    },
+    {
+      "assetTypeName": "IIS",
+      "name": "localnat",
+      "createtime": "2016-07-08 15:41:21",
+      "assetId": "",
+      "lasttime": "2016-07-08 16:36:28",
+      "data": {
+        "name": "file",
+        "path": "/Users/zhhuiyan/Downloads/dp.txt",
+        "encoding": null,
+        "contentType": "txt",
+        "category": null,
+        "metadata": {
+          "host": null,
+          "port": null,
+          "timestamp": "timestamp",
+          "data": null
+        },
+        "position": "START",
+        "codec": {
+          "name": "line"
+        },
+        "skipLine": 0
+      },
+      "writers": [
+        {
+          "name": "local2.0",
+          "createtime": null,
+          "lasttime": null,
+          "data": null,
+          "id": "ced9b881-3f88-484b-81b2-76b7458dd90c",
+          "writeType": null
+        }
+      ],
+      "id": "aa5e6364-041f-4aea-91eb-4d18b8a91582",
+      "status": "STOPPED",
+      "resolverId": "f97f47a9-eec8-4e24-a84f-8ccf7b3e3cba",
+      "assetTypeId": "c158d4de-7d00-4246-a51d-9f34da191001",
+      "collectorId": "worker-yzh"
+    }
+  ],
+  "totalCount": 7,
+  "totalPage": 1,
+  "start": 0,
+  "limit": 10
+}

@@ -1,0 +1,76 @@
+#app.store.driver.url="jdbc:derby:./db/master;create = true"
+app.store.driver.url="jdbc:h2:./db/master;AUTO_SERVER=TRUE"
+app.store.log.location="./logs/derby-master.log"
+app.knowledge.helper=com.haima.sage.bigdata.etl.server.hander.KnowledgeHelper
+akka.actor.provider = akka.cluster.ClusterActorRefProvider
+akka.extensions = [akka.cluster.client.ClusterClientReceptionist]
+akka.remote.netty.tcp.hostname = 127.0.0.1
+akka.remote.netty.tcp.port = 19091
+akka.cluster.seed-nodes = ["akka.tcp://master@127.0.0.1:19091"]
+master.web.http.host = 0.0.0.0
+master.web.http.port = 19090
+master.web.http.enable = on
+master.web.https.host = 0.0.0.0
+master.web.https.port = 19433
+master.web.https.enable = off
+# This is the Java Key Store used by the restfulapi server #
+master.web.https.key-store-path = /restfulapi.jks
+# This password is used for decrypting the key store #
+master.web.https.key-store-password = "raysdata@2014"
+master.web.auth.enable = off
+master.web.auth.host = 127.0.0.1
+master.web.auth.port = 6789
+master.web.auth.protocol = http
+master.web.auth.sign-in = /api/authc/account
+master.web.auth.sign-out = /system/logout
+master.web.auth.license.enable= off
+master.web.auth.license.path = /licensefile
+master.web.auth.authority.validate.path = /api/authz
+master.web.auth.authority.validate.enable = on
+master.web.auth.authority.all = authority/load
+master.metrics.space-time = 10
+master.timeout = 15
+# 补充资产信息 #
+master.dictionary.add.asset.data = off
+master.html.doc.path = html/doc
+
+# Expired paramete
+master.web.proxy.elasticsearch.host = 127.0.0.0
+master.web.proxy.elasticsearch.port = 9200
+
+#集群时钟 NTP同步
+master.ntp.server.enable = off
+master.ntp.server.address=ntp.sjtu.edu.cn
+master.ntp.server.retry=3
+master.ntp.server.port = 123
+master.ntp.server.timeout = 5000
+#ntp 同步周期，单位s秒
+master.ntp.server.synchronizing.cycle=3600
+
+#===============================================================
+#配置主调度程序的属性
+#===============================================================
+master.org.quartz.scheduler.instanceName = DefaultQuartzScheduler
+master.org.quartz.scheduler.rmi.export = false
+master.org.quartz.scheduler.rmi.proxy = false
+master.org.quartz.scheduler.wrapJobExecutionInUserTransaction = false
+#当检查某个Trigger应该触发时，默认每次只Acquire一个Trigger，（为什么要有Acquire的过程呢？是为了防止多线程访问的情况下，
+#同一个Trigger被不同的线程多次触发）。尤其是使用JDBC JobStore时，一次Acquire就是一个update语句，尽可能一次性的多获取
+#几个Trigger，一起触发，当定时器数量非常大的时候，这是个非常有效的优化。当定时器数量比较少时，触发不是极为频繁时，
+#这个优化的意义就不大了。
+master.org.quartz.scheduler.batchTriggerAcquisitionMaxCount=50
+
+#===============================================================
+#配置线程池的属性
+#===============================================================
+master.org.quartz.threadPool.class = org.quartz.simpl.SimpleThreadPool
+#线程池里的线程数，默认值是10，当执行任务会并发执行多个耗时任务时，要根据业务特点选择线程池的大小。
+master.org.quartz.threadPool.threadCount = 10
+master.org.quartz.threadPool.threadPriority = 5
+master.org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread = true
+
+#===============================================================
+#配置JobStore的属性
+#===============================================================
+master.org.quartz.jobStore.misfireThreshold = 60000
+master.org.quartz.jobStore.class = org.quartz.simpl.RAMJobStore

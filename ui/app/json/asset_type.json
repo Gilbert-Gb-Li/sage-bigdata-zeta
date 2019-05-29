@@ -1,0 +1,326 @@
+[
+  {
+    "id": "1a57a977645c419d82c1cfff70dab743",
+    "parentId": "others",
+    "treeCode": "root_node-others-1a57a977645c419d82c1cfff70dab743-",
+    "name": "AD",
+    "description": null,
+    "orderid": 33,
+    "icon": null
+  },
+  {
+    "id": "9c9adfc199994592882e1212ef8f4603",
+    "parentId": "others",
+    "treeCode": "root_node-others-9c9adfc199994592882e1212ef8f4603-",
+    "name": "FileServer",
+    "description": null,
+    "orderid": 34,
+    "icon": null
+  },
+  {
+    "id": "root_node",
+    "parentId": "0",
+    "treeCode": "root_node-",
+    "name": "全部",
+    "description": "根节点",
+    "orderid": 10000,
+    "icon": null
+  },
+  {
+    "id": "network",
+    "parentId": "root_node",
+    "treeCode": "root_node-network-",
+    "name": "网络设备",
+    "description": null,
+    "orderid": 10100,
+    "icon": null
+  },
+  {
+    "id": "loadbalance",
+    "parentId": "network",
+    "treeCode": "root_node-network-loadbalance-",
+    "name": "负载均衡",
+    "description": null,
+    "orderid": 10101,
+    "icon": null
+  },
+  {
+    "id": "switchboard",
+    "parentId": "network",
+    "treeCode": "root_node-network-switchboard-",
+    "name": "交换机",
+    "description": null,
+    "orderid": 10102,
+    "icon": null
+  },
+  {
+    "id": "vpn",
+    "parentId": "network",
+    "treeCode": "root_node-network-vpn-",
+    "name": "VPN",
+    "description": "VPN资产",
+    "orderid": 10103,
+    "icon": null
+  },
+  {
+    "id": "yingjianzichan",
+    "parentId": "root_node",
+    "treeCode": "root_node-yingjianzichan-",
+    "name": "安全设备",
+    "description": "硬件资产",
+    "orderid": 10200,
+    "icon": null
+  },
+  {
+    "id": "fanghuoqiang",
+    "parentId": "yingjianzichan",
+    "treeCode": "root_node-yingjianzichan-fanghuoqiang-",
+    "name": "防火墙",
+    "description": "防火墙资产",
+    "orderid": 10201,
+    "icon": null
+  },
+  {
+    "id": "ids",
+    "parentId": "yingjianzichan",
+    "treeCode": "root_node-yingjianzichan-ids-",
+    "name": "IDS",
+    "description": "IDS/IPS资产",
+    "orderid": 10202,
+    "icon": null
+  },
+  {
+    "id": "ips",
+    "parentId": "yingjianzichan",
+    "treeCode": "root_node-yingjianzichan-ips",
+    "name": "IPS",
+    "description": null,
+    "orderid": 10203,
+    "icon": null
+  },
+  {
+    "id": "utm",
+    "parentId": "yingjianzichan",
+    "treeCode": "root_node-yingjianzichan-utm-",
+    "name": "UTM",
+    "description": null,
+    "orderid": 10204,
+    "icon": null
+  },
+  {
+    "id": "virus",
+    "parentId": "yingjianzichan",
+    "treeCode": "root_node-yingjianzichan-virus-",
+    "name": "防病毒",
+    "description": "杀毒软件资产",
+    "orderid": 10205,
+    "icon": null
+  },
+  {
+    "id": "baoleizhuji",
+    "parentId": "yingjianzichan",
+    "treeCode": "root_node-yingjianzichan-baoleizhuji-",
+    "name": "堡垒主机",
+    "description": "堡垒主机资产",
+    "orderid": 10206,
+    "icon": null
+  },
+  {
+    "id": "webpage",
+    "parentId": "yingjianzichan",
+    "treeCode": "root_node-yingjianzichan-webpage-",
+    "name": "网页防篡改",
+    "description": null,
+    "orderid": 10207,
+    "icon": null
+  },
+  {
+    "id": "internet",
+    "parentId": "yingjianzichan",
+    "treeCode": "root_node-yingjianzichan-internet-",
+    "name": "上网行为",
+    "description": "上网行为资产",
+    "orderid": 10208,
+    "icon": null
+  },
+  {
+    "id": "master",
+    "parentId": "root_node",
+    "treeCode": "root_node-master-",
+    "name": "主机",
+    "description": null,
+    "orderid": 10300,
+    "icon": null
+  },
+  {
+    "id": "linux",
+    "parentId": "master",
+    "treeCode": "root_node-master-linux-",
+    "name": "linux",
+    "description": "linux服务器资产",
+    "orderid": 10301,
+    "icon": null
+  },
+  {
+    "id": "solrais",
+    "parentId": "master",
+    "treeCode": "root_node-master-solrais-",
+    "name": "solrais",
+    "description": null,
+    "orderid": 10302,
+    "icon": null
+  },
+  {
+    "id": "windows",
+    "parentId": "master",
+    "treeCode": "root_node-master-windows-",
+    "name": "windows",
+    "description": null,
+    "orderid": 10303,
+    "icon": null
+  },
+  {
+    "id": "database",
+    "parentId": "root_node",
+    "treeCode": "root_node-database-",
+    "name": "数据库",
+    "description": null,
+    "orderid": 10400,
+    "icon": null
+  },
+  {
+    "id": "mysql",
+    "parentId": "database",
+    "treeCode": "root_node-database-mysql",
+    "name": "mysql数据库",
+    "description": null,
+    "orderid": 10401,
+    "icon": null
+  },
+  {
+    "id": "oracle",
+    "parentId": "database",
+    "treeCode": "root_node-database-oracle-",
+    "name": "oracle数据库",
+    "description": "数据库资产",
+    "orderid": 10402,
+    "icon": null
+  },
+  {
+    "id": "sqlserver",
+    "parentId": "database",
+    "treeCode": "root_node-database-sqlserver-",
+    "name": "sqlserver数据库",
+    "description": null,
+    "orderid": 10403,
+    "icon": null
+  },
+  {
+    "id": "web",
+    "parentId": "root_node",
+    "treeCode": "root_node-web-",
+    "name": "WEB服务",
+    "description": null,
+    "orderid": 10500,
+    "icon": null
+  },
+  {
+    "id": "apache",
+    "parentId": "web",
+    "treeCode": "root_node-web-apache-",
+    "name": "Apache",
+    "description": null,
+    "orderid": 10501,
+    "icon": null
+  },
+  {
+    "id": "iis",
+    "parentId": "web",
+    "treeCode": "root_node-web-iis-",
+    "name": "IIS",
+    "description": null,
+    "orderid": 10502,
+    "icon": null
+  },
+  {
+    "id": "tomcat",
+    "parentId": "web",
+    "treeCode": "root_node-web-tomcat-",
+    "name": "TOMCAT",
+    "description": null,
+    "orderid": 10503,
+    "icon": null
+  },
+  {
+    "id": "weblogic",
+    "parentId": "web",
+    "treeCode": "root_node-web-weblogic-",
+    "name": "WebLogic",
+    "description": null,
+    "orderid": 10504,
+    "icon": null
+  },
+  {
+    "id": "websphere",
+    "parentId": "web",
+    "treeCode": "root_node-web-websphere-",
+    "name": "WebSphere",
+    "description": null,
+    "orderid": 10505,
+    "icon": null
+  },
+  {
+    "id": "others",
+    "parentId": "root_node",
+    "treeCode": "root_node-others-",
+    "name": "其他",
+    "description": "软件资产",
+    "orderid": 10600,
+    "icon": null
+  },
+  {
+    "id": "email",
+    "parentId": "others",
+    "treeCode": "root_node-others-email-",
+    "name": "邮件系统",
+    "description": "邮件系统资产",
+    "orderid": 10601,
+    "icon": null
+  },
+  {
+    "id": "intranet_alarm",
+    "parentId": "others",
+    "treeCode": "root_node-others-intranet-",
+    "name": "内网安全告警",
+    "description": "内网安全",
+    "orderid": 10602,
+    "icon": null
+  },
+  {
+    "id": "intranet_login",
+    "parentId": "others",
+    "treeCode": "root_node-others-intranet_login-",
+    "name": "内网安全登录",
+    "description": "内网安全登录",
+    "orderid": 10603,
+    "icon": null
+  },
+  {
+    "id": "oa",
+    "parentId": "others",
+    "treeCode": "root_node-others-oa-",
+    "name": "OA系统",
+    "description": "OA系统资产",
+    "orderid": 10604,
+    "icon": null
+  },
+  {
+    "id": "virtualization",
+    "parentId": "others",
+    "treeCode": "root_node-others-virtualization-",
+    "name": "虚拟化安全",
+    "description": "虚拟化安全",
+    "orderid": 10605,
+    "icon": null
+  }
+]

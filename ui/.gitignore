@@ -1,0 +1,11 @@
+.idea
+etc
+node
+node_modules
+bower_components
+.tmp
+/dist
+.sass-cache
+*.iml
+.DS_Store
+.vscode

@@ -1,0 +1,4 @@
+app.monitor.jdbc=com.haima.sage.bigdata.etl.monitor.JDBCMonitor
+app.writer.jdbc=com.haima.sage.bigdata.etl.writer.JDBCLogWriter
+app.protocol.db2="db2"
+app.checker.jdbc=com.haima.sage.bigdata.etl.driver.usable.JDBCUsabilityChecker

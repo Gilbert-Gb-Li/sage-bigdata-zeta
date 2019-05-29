@@ -1,0 +1,136 @@
+{
+  "pageNumber": 1,
+  "pageCount": 2,
+  "pageSize": 10,
+  "allCount": 20,
+  "result": [
+    {
+      "logCollectorId": "e0f7c0524bea474aacb3ae66fd353e3b",
+      "sourceType": "file",
+      "port": "",
+      "orderid": 30,
+      "assetId": "email11",
+      "filePath": "/opt/logs-new/email",
+      "name": "emai邮件系统",
+      "logTypeName": "邮件系统",
+      "id": "7e025def00674e3b9a74aaba4329f255",
+      "encoding": "utf-8",
+      "logTypeId": "email",
+      "status": "不存在"
+    },
+    {
+      "logCollectorId": "127.0.0.1:19093",
+      "sourceType": "net",
+      "orderid": 26,
+      "assetId": "",
+      "name": "netflowv10-test",
+      "logTypeName": "VPN",
+      "id": "36b40603673b4f2ab20a44dba76aaf88",
+      "logTypeId": "vpn",
+      "status": "不存在"
+    },
+    {
+      "logCollectorId": "127.0.0.1:19093",
+      "sourceType": "file",
+      "orderid": 25,
+      "assetId": "",
+      "name": "sql-log2",
+      "logTypeName": "sqlserver数据库",
+      "id": "d6386ccaae964b6da9f237f8acf542ea",
+      "logTypeId": "sqlserver",
+      "status": "不存在"
+    },
+    {
+      "logCollectorId": "127.0.0.1:19093",
+      "sourceType": "file",
+      "orderid": 24,
+      "assetId": "",
+      "name": "sql-log1",
+      "logTypeName": "sqlserver数据库",
+      "id": "8cd42431fda345b3b12241673184a318",
+      "logTypeId": "sqlserver",
+      "status": "不存在"
+    },
+    {
+      "logCollectorId": "172.16.219.20:19093",
+      "sourceType": "net",
+      "port": "",
+      "orderid": 22,
+      "assetId": "vpn11",
+      "filePath": "/opt/logs-new/vpn-bj",
+      "name": "VPN",
+      "logTypeName": "VPN",
+      "id": "88aa5933f7c34a91809e86b169637a1b",
+      "encoding": "utf-8",
+      "logTypeId": "vpn",
+      "status": "正常运行"
+    },
+    {
+      "logCollectorId": "e0f7c0524bea474aacb3ae66fd353e3b",
+      "sourceType": "file",
+      "port": "",
+      "orderid": 20,
+      "assetId": "baoleizhuji21",
+      "filePath": "/opt/logs-new/bastion",
+      "name": "堡垒主机",
+      "logTypeName": "堡垒主机",
+      "id": "97995064f8f747c48c304d7b8d4b5c66",
+      "encoding": "utf-8",
+      "logTypeId": "baoleizhuji",
+      "status": "不存在"
+    },
+    {
+      "logCollectorId": "127.0.0.1:19093",
+      "sourceType": "file",
+      "orderid": 19,
+      "assetId": "",
+      "name": "IIS",
+      "logTypeName": "IIS",
+      "id": "2fa7621cb38443d7a4f142ecd987c25e",
+      "logTypeId": "iis",
+      "status": "不存在"
+    },
+    {
+      "logCollectorId": "e0f7c0524bea474aacb3ae66fd353e3b",
+      "sourceType": "file",
+      "port": "",
+      "orderid": 18,
+      "assetId": "oa11",
+      "filePath": "/opt/logs-new/oa",
+      "name": "OA系统",
+      "logTypeName": "OA系统",
+      "id": "8e1f0b59efb14ec380957c7e3b943747",
+      "encoding": "utf-8",
+      "logTypeId": "oa",
+      "status": "不存在"
+    },
+    {
+      "logCollectorId": "127.0.0.1:19093",
+      "sourceType": "jdbc",
+      "orderid": 17,
+      "assetId": "",
+      "name": "SQLServer",
+      "logTypeName": "IDS",
+      "id": "4ead4ef05d7d44459b5ecaa69b437802",
+      "logTypeId": "ids",
+      "status": "不存在"
+    },
+    {
+      "data": {
+        "name": "es"
+      },
+      "logCollectorId": "e0f7c0524bea474aacb3ae66fd353e3b",
+      "sourceType": "file",
+      "port": "",
+      "orderid": 16,
+      "assetId": "ids1",
+      "filePath": "/opt/logs-new/ips_ids/",
+      "name": "天融信IDS",
+      "logTypeName": "IDS",
+      "id": "eb09c15a6855453897de523884a16585",
+      "encoding": "utf-8",
+      "logTypeId": "ids",
+      "status": "不存在"
+    }
+  ]
+}

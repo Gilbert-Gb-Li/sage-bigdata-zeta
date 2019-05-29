@@ -1,0 +1,76 @@
+<doc>
+  <head>
+    <title>Mibble Installation Instructions</title>
+  </head>
+
+  <body>
+
+    <h1>Requirements</h1>
+
+    <p>The following requirements must be met in order to use
+    Mibble:</p>
+
+    <list>
+      <item>
+        <text>Java runtime compatible with Java 7.</text>
+      </item>
+    </list>
+
+
+    <h1>Installation</h1>
+
+    <p>All required JAR files are provided in the <code>lib</code>
+    subdirectory:</p>
+
+    <list>
+      <item>
+        <title>mibble-parser-<param name="version"/>.jar</title>
+        <text>The parser library and app code</text>
+      </item>
+
+      <item>
+        <title>mibble-mibs-<param name="version"/>.jar</title>
+        <text>The bundled IANA and IETF MIBs</text>
+      </item>
+
+      <item>
+        <title>snmp6_1.jar</title>
+        <text>The Westhawk SNMP stack (only used by MibbleBrowser)</text>
+      </item>
+    </list>
+
+
+    <h1>Running</h1>
+
+    <p>Mibble is a library, but provides a number of small apps:</p>
+
+    <list>
+      <item>
+        <title>MibbleBrowser.jar</title>
+        <text>Contains the MIB browser app and dependencies rolled into a
+        single JAR file. Double-click to launch.</text>
+      </item>
+
+      <item>
+        <title>bin/MibbleBrowser.bat (or .sh)</title>
+        <text>An alternative start script for the MIB browser app, using
+        the JAR files from the <code>lib</code> subdirectory.</text>
+      </item>
+
+      <item>
+        <title>bin/MibblePrinter.bat (or .sh)</title>
+        <text>Formats (or pretty-prints) one or more MIB files.</text>
+      </item>
+
+      <item>
+        <title>bin/MibbleValidator.bat (or .sh)</title>
+        <text>Validates the syntax of one or more MIB files.</text>
+      </item>
+    </list>
+
+    <p>The shell scripts finds the required JAR files automatically via
+    the <code>lib</code> subdirectory and adds them to the
+    <code>CLASSPATH</code>.</p>
+
+  </body>
+</doc>

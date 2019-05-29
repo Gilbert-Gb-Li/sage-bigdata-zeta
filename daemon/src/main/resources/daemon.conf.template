@@ -1,0 +1,87 @@
+akka.loglevel = INFO
+akka.loggers = [akka.event.slf4j.Slf4jLogger]
+akka.logging-filter = akka.event.slf4j.Slf4jLoggingFilter
+akka.jvm-exit-on-fatal-error = on
+akka.log-dead-letters-during-shutdown = off
+akka.actor.provider = akka.remote.RemoteActorRefProvider
+akka.actor.default-mailbox.mailbox-type = akka.dispatch.SingleConsumerOnlyUnboundedMailbox
+akka.remote.netty.tcp.hostname = 127.0.0.1
+akka.remote.netty.tcp.port = 19095
+
+akka.remote.retry-gate-closed-for = 1000
+
+# default 4s, which has 5s gated issue, change to 1000s #
+akka.remote.transport-failure-detector.heartbeat-interval = 1000s
+
+# default 10s, which has 5s gated issue, change to 6000s #
+akka.remote.transport-failure-detector.acceptable-heartbeat-pause = 6000s
+
+# Options: "zlib" (lzf to come), leave out for no compression #
+akka.remote.compression-scheme = zlib
+
+# Options: 0-9 (1 being fastest and 9 being the most compressed), default is 6 #
+akka.remote.zlib-compression-level = 6 
+
+# Sets the send buffer size of the Sockets, #
+# set to 0b for platform default #
+akka.remote.netty.tcp.send-buffer-size = 256000b
+
+# Sets the receive buffer size of the Sockets, #
+# set to 0b for platform default #
+akka.remote.netty.tcp.receive-buffer-size = 256000b
+
+# Maximum message size the transport will accept, but at least #
+# 32000 bytes. #
+# Please note that UDP does not support arbitrary large datagrams, #
+# so this setting has to be chosen carefully when using UDP. #
+# Both send-buffer-size and receive-buffer-size settings has to #
+# be adjusted to be able to buffer messages of maximum size. #
+akka.remote.netty.tcp.maximum-frame-size = 1048576b
+
+# Enable SSL/TLS encryption. #
+# This must be enabled on both the client and server to work. #
+akka.remote.netty.ssl.enable-ssl = true
+
+# This is the Java Key Store used by the server connection #
+akka.remote.netty.ssl.security.key-store=kapp.keystore
+
+# This password is used for decrypting the key store #
+akka.remote.netty.ssl.security.key-store-password = "sage@2014"
+
+# This password is used for decrypting the key #
+akka.remote.netty.ssl.security.key-password = "sage@2014"
+
+# This is the Java Key Store used by the client connection #
+akka.remote.netty.ssl.security.trust-store=tapp.keystore
+
+# This password is used for decrypting the trust store #
+akka.remote.netty.ssl.security.trust-store-password = "sage@2014"
+
+# Protocol to use for SSL encryption, choose from: #
+# Java 6 & 7: #
+#   'SSLv3', 'TLSv1' #
+# Java 7: #
+#   'TLSv1.1', 'TLSv1.2' #
+akka.remote.netty.ssl.security.protocol = TLSv1
+
+# Example: ["TLS_RSA_WITH_AES_128_CBC_SHA", "TLS_RSA_WITH_AES_256_CBC_SHA"] #
+# You need to install the JCE Unlimited Strength Jurisdiction Policy #
+# Files to use AES 256. #
+# More info here: #
+# http://docs.oracle.com/javase/7/docs/technotes/guides/security/SunProviders.html#SunJCEProvider #
+akka.remote.netty.ssl.security.enabled-algorithms = [TLS_RSA_WITH_AES_128_CBC_SHA]
+
+# There are three options, in increasing order of security: #
+# "" or SecureRandom => (default) #
+# "SHA1PRNG" => Can be slow because of blocking issues on Linux #
+# "AES128CounterSecureRNG" => fastest startup and based on AES encryption #
+# algorithm #
+# "AES256CounterSecureRNG" #
+# The following use one of 3 possible seed sources, depending on #
+# availability: /dev/random, random.org and SecureRandom (provided by Java) #
+# "AES128CounterInetRNG" #
+# "AES256CounterInetRNG" (Install JCE Unlimited Strength Jurisdiction #
+# Policy Files first) #
+# Setting a value here may require you to supply the appropriate cipher #
+# suite (see enabled-algorithms section above) #
+akka.remote.netty.ssl.security.random-number-generator = ""

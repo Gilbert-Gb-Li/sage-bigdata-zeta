@@ -1,0 +1,428 @@
+<style>
+
+</style>
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="hla-main">数据通道</div>
+        <div class="hla-widget">
+            <div class="hla-widget-head">
+                <div class="btn-group-xs pull-right">
+                    <button title="增加" class="btn btn-success" type="button" id="op_add_channel_button"
+                            ng-click="show('add')"><i class="fa fa-plus"></i></button>
+                    <button title="上传" class="btn btn-success" type="button" id="op_upload_channel_button"
+                            ng-click="show('upload')"><i class="fa fa-upload"></i></button>
+                    <button title="查询" class="btn btn-primary btn-group-lg" id="op_show_channel_search"
+                            ng-click="show('search')"><i class="fa fa-search"></i></button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="hla-widget-content">
+                <div ng-show="message"
+                     ng-class="{'alert-danger':message.status!='200','alert-success':message.status=='200'}"
+                     class="col-sm-12 col-md-12 alert"
+                     role="alert" style="margin-top: 10px">
+                    {{message.message}}
+                </div>
+                <div class="hla-widget-upload-table form-horizontal" style="margin-bottom: 10px">
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-4">
+
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <input file-input type="file" file-model="myFile" id="fileInput" name="fileInput"
+                                   class="file" accept="application/json">
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-4">
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <p><b>说明：</b>对于有依赖关系的数据，要先上传依赖的数据然后再上传当前的数据； 依赖关系为：数据通道-> {[解析规则|分析规则],数据源,数据存储,采集器}"
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-4">
+
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <button class="btn btn-success" ng-click="uploadFile()">上传</button>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="hla-widget-search-table">
+                    <form name="search_ds_form" class="form-horizontal" ng-submit="reload()" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label">数据通道名称</label>
+                            <div class="col-sm-3 col-md-3">
+                                <input type="text" value="" placeholder="数据通道名称" name="name" class="form-control"
+                                       ng-model="page.search.name">
+                            </div>
+
+                            <div class="col-sm-2 col-md-2">
+                                <button class="btn btn-primary" type="submit">查询
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="hla-widget-add-table">
+                    <div ng-show="(ds_form.$invalid || channel.writers.join('').length==0)&&ds_form.$submitted"
+                         class="col-sm-12 col-md-12 alert alert-danger" role="alert">
+                        表单填写有误，请检查表单！
+
+                        <div ng-hide="true">
+                            {{ds_form.valid=ds_form.$valid&&channel.writers.join('').length!=0}}
+                        </div>
+                    </div>
+                    <form name="ds_form" class="form-horizontal" ng-submit="save(ds_form.valid)" novalidate>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>数据通道名称</label>
+
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.name.$invalid&&(ds_form.name.$dirty||ds_form.$submitted)}">
+                                <input name="name" type="text" placeholder="数据通道名称" class="form-control"
+                                       ng-model="channel.name" required>
+                            </div>
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>采集器</label>
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.collectorName.$invalid&&(ds_form.collectorName.$dirty||ds_form.$submitted)}">
+                                <select name="collectorName" class="form-control op_log_collector_list"
+                                        ng-options="x.id as (x.host+':'+x.port)  for x in collectors"
+                                        ng-model="channel.collector" required>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group panel ">
+
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>通道类型</label>
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form['type.name'].$invalid&&(ds_form['type.name'].$dirty||ds_form.$submitted)}">
+                                <select name="type.name" class="form-control" ng-change="changeDataSourceName()"
+                                        ng-model="channel.type.name" required>
+                                    <option value="parser">数据解析</option>
+                                    <option value="analyzer">数据分析(告警)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="channel.type.name=='parser'">
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>数据源</label>
+
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.datasourceName.$invalid&&(ds_form.datasourceName.$dirty||ds_form.$submitted)}">
+                                <select name="datasourceName" class="form-control op_log_rule_list"
+                                        ng-options="x.id as x.name  for x in datasources"
+                                        ng-model="channel.datasource"
+                                        ng-change="changeDataSourceType(channel.datasource)" required>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>解析规则</label>
+
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.parserName.$invalid&&(ds_form.parserName.$dirty||ds_form.$submitted)}">
+                                <select name="parserName" class="form-control op_log_rule_list"
+                                        ng-options="x.id as x.name  for x in resolverList"
+                                        ng-model="channel.parser" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="channel.type.name=='analyzer'">
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>数据通道</label>
+
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.channelName.$invalid&&(ds_form.channelName.$dirty||ds_form.$submitted)}">
+                                <select name="channelName" class="form-control op_log_rule_list"
+                                        ng-options="x.id as x.name group by x.label|SourceTypeName for x in channels"
+                                        ng-model="channel.datasource" required>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>分析规则</label>
+
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.parserName.$invalid&&(ds_form.parserName.$dirty||ds_form.$submitted)}">
+                                <select name="parserName" class="form-control op_log_rule_list"
+                                        ng-options="x.id as x.name  for x in analyzers"
+                                        ng-model="channel.parser" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="channel.type.name=='analyzer'">
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>FlinkWeb地址</label>
+
+                            <div class="col-sm-7 col-md-7"
+                                 ng-class="{'has-error':ds_form[type.cluster].$invalid&&(ds_form[type.cluster].$dirty||ds_form.$submitted)}"
+                                title="IP:PORT eg:[http://127.0.0.1:8081]">
+                                <input type="text" class="form-control" ng-model="channel.type.cluster"
+                                       name="type.cluster" placeholder="IP:PORT eg:[http://127.0.0.1:8081]"
+                                       required></div>
+                            <div class="col-sm-1 col-md-1">
+                                <button id="connect_test" class="btn btn-success" type="button"
+                                        ng-click="connectTest(true)" title="测试">测试连接</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group panel ">
+
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>数据存储</label>
+                            <div class="col-sm-8 col-md-8">
+                                <label ng-repeat="writer in writers">
+                                    <div class="checkbox-inline "><input type="checkbox"
+                                                                         ng-model="channel.writers[$index]"
+                                                                         ng-true-value="{id:'{{writer.id}}',name:'{{writer.name}}'}"
+                                                                         ng-false-value="null"/>
+                                        <span>{{writer.name}}</span>&nbsp&nbsp&nbsp&nbsp
+                                    </div>
+
+                                </label>
+                                <label class="checkbox-inline text-danger"
+                                       ng-show="!channel.writers || (channel.writers.join('').length==0 && ds_form.$submitted)">至少选择一个存储！</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>超时时间（ms）</label>
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form['properties[timeout_ms]'].$invalid&&(ds_form['properties[timeout_ms]'].$dirty||ds_form.$submitted)}">
+                                <input name="properties[timeout_ms]" class="form-control"
+                                       ng-model="channel.properties.timeout_ms" required>
+                            </div>
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>轮询时间（ms）</label>
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form['properties[polling_ms]'].$invalid&&(ds_form['properties[polling_ms]'].$dirty||ds_form.$submitted)}">
+                                <input name="properties[polling_ms]" class="form-control"
+                                       ng-model="channel.properties.polling_ms" required>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="channel.type.name =='analyzer'">
+                            <label class="col-sm-2 col-md-2 control-label">添加集群信息</label>
+                            <div class="col-sm-3 col-md-3">
+                                <switch class="green" ng-model="channel.properties.cluster_info"
+                                        name="properties[cluster_info]" on="是" off="否"></switch>
+                            </div>
+                            <label class="col-sm-2 col-md-2 control-label">添加分析时间</label>
+                            <div class="col-sm-3 col-md-3">
+                                <switch class="green" ng-model="channel.properties.analyze_time"
+                                        name="properties[analyze_time]" on="是" off="否"></switch>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="channel.type.name =='parser'">
+                            <label class="col-sm-2 col-md-2 control-label">添加采集器信息</label>
+                            <div class="col-sm-3 col-md-3">
+                                <switch class="green" ng-model="channel.properties.collector_info"
+                                        name="properties[collector_info]" on="是" off="否"></switch>
+                            </div>
+                            <label class="col-sm-2 col-md-2 control-label">添加采集时间</label>
+                            <div class="col-sm-3 col-md-3">
+                                <switch class="green" ng-model="channel.properties.receive_time"
+                                        name="properties[receive_time]" on="是" off="否"></switch>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="channel.type.name =='parser'">
+                            <label class="col-sm-2 col-md-2 control-label" ng-if="(datasource.name!='es-2'||datasource.name!='es-5'||ddatasource.name!='jdbc'||datasource.name!='file')&&(datasource.contentType.name!='excel'||datasource.contentType.name!='win_evt')">添加原始数据</label>
+                            <!--<label class="col-sm-2 col-md-2 control-label">添加原始数据</label>-->
+                            <div class="col-sm-3 col-md-3" ng-if="(datasource.name!='es-2'||datasource.name!='es-5'||ddatasource.name!='jdbc'||datasource.name!='file')&&(datasource.contentType.name!='excel'||datasource.contentType.name!='win_evt')">
+                                <switch class="green" ng-model="channel.properties.raw_data" name="properties[raw_data]"
+                                        on="是" off="否"></switch>
+                            </div>
+                            <label class="col-sm-2 col-md-2 control-label">添加数据源信息</label>
+                            <div class="col-sm-3 col-md-3">
+                                <switch class="green" ng-model="channel.properties.source_info"
+                                        name="properties[source_info]" on="是" off="否"></switch>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="channel.type.name =='parser'">
+                            <label class="col-sm-2 col-md-2 control-label">添加数据源地址数据</label>
+                            <div class="col-sm-3 col-md-3">
+                                <switch class="green" ng-model="channel.properties.source_path"
+                                        name="properties[source_path]" on="是" off="否"></switch>
+                            </div>
+                            <label class="col-sm-2 col-md-2 control-label">CPU 降频</label>
+                            <div class="col-sm-3 col-md-3">
+                                <switch class="green" ng-model="channel.properties.cpu_lower"
+                                        name="properties[source_path]" on="是" off="否"></switch>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-if="!channel.status || channel.status!='RUNNING'">
+                            <!-- <button class="btn btn-primary" type="button" ng-click="usableCheck()">检查</button>-->
+                            <button class="btn btn-primary " type="submit">保存</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="hla-widget-metric-table">
+                    <div>
+                        <form name="search_metric_form" class="form-horizontal" ng-submit="udMetrics()" novalidate>
+                            <div class="form-group">
+                                <label class="col-sm-1 col-md-1 control-label">开始时间</label>
+                                <div class="input-group col-sm-2 col-md-2 date" style="float:left">
+                                    <input type="text" class="form-control" ng-model="metric.startTime"
+                                           datetime-picker="{format:'YYYY-MM-DD HH:mm:ss',showTodayButton:true,sideBySide:true,tooltips:{today:'今天',selectTime:'选择时间'}}"
+                                           required>
+                                    <span class="input-group-btn">
+                                        <button type="button" style="height: 32px" class="btn"
+                                                ng-click="metric.open1()"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+
+                                <label class="col-sm-1 col-md-1 control-label">结束时间</label>
+                                <div class="input-group col-sm-2 col-md-2" style="float:left">
+                                    <input type="text" class="form-control" ng-model="metric.endTime"
+                                           datetime-picker="{format:'YYYY-MM-DD HH:mm:ss',showTodayButton:true,sideBySide:true,tooltips:{today:'今天',selectTime:'选择时间'}}"
+                                           required>
+                                    <span class="input-group-btn">
+                                        <button type="button" style="height: 32px" class="btn"
+                                                ng-click="metric.open2()"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+
+                                <!--<label class="col-sm-1 col-md-1 control-label">采集频率</label>
+                                <div class="col-sm-2 col-md-2">
+                                    <input type="text" value="" placeholder="采集频率" name="endTime" class="form-control" ng-model="metric.interval">
+                                </div>-->
+
+                                <div class="col-sm-1 col-md-1">
+                                    <!--<input type="text" class="form-control" ng-model="metric.testTime">-->
+                                    <button class="btn btn-primary" type="submit">确定</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <nvd3 options="options" data="data" forceY="[0]"></nvd3>
+                    <p class="col-sm-12 text-left">采集成功：{{countMessage.read.success}} 条 </p>
+                    <p class="col-sm-12 text-left" ng-show="countMessage.operation">解析输入/成功/失败/忽略：{{countMessage.operation.in}} 条/ {{countMessage.operation.success}}
+                        条/{{countMessage.operation.fail}} 条/{{countMessage.operation.ignore}} 条 </p>
+                    <p class="col-sm-12 text-left" ng-show="channel.type.name == 'analyzer'" ng-repeat="(flinkin_key, flinkin_value) in countMessage.flinkin">分析输入(从【{{flinkin_key}}】)：{{flinkin_value.success}} 条</p>
+                    <p class="col-sm-12 text-left" ng-show="channel.type.name == 'analyzer'" ng-repeat="(flinkout_key, flinkout_value) in countMessage.flinkout">分析输出(到【{{flinkout_key}}】)：{{flinkout_value.success}} 条</p>
+                    <p class="col-sm-12 text-left" ng-repeat="(write_key, write_value) in countMessage.writes">{{write_key}}输出成功/失败：{{write_value.success}} 条/{{write_value.fail}} 条</p>
+                </div>
+                <div class="hla-widget-data-table">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>名称</th>
+                            <th>类型</th>
+                            <th>状态</th>
+                            <th>采集进度</th>
+                            <th>编辑</th>
+                            <th>启动/停止</th>
+                            <th>重置/删除</th>
+                        </tr>
+                        </thead>
+                        <tbody id="op_channel_table" class="">
+                        <tr ng-repeat="item in list.result">
+                            <th scope="row">{{$index+1}}</th>
+                            <td>{{item.name}}</td>
+                            <td>
+                                {{item.type.name |channelTypeName }}
+                            </td>
+                            <td>
+                                {{item.status | StatusName}} &nbsp;&nbsp;
+                                <span class="btn-group-xs ">
+                                    <a ng-if="item.type.name=='analyzer' && item.type.jobId && item.errorMsg==null" href="{{item.type.cluster}}/#/jobs/{{item.type.jobId}}"
+                                       tooltip-placement="right" uib-tooltip="点击查看flink任务" target="_blank">
+                                        <i class="fa fa-search" style="color:green;font-size:18px"></i>
+                                    </a>
+                                    <a data-mtpis-style='default' data-mtpis="{{item.errorMsg}}"
+                                       href="{{item.type.cluster}}/#/jobs/{{item.type.jobId}}/exceptions" target="_blank"
+                                       ng-if="item.errorMsg!=null">
+                                        <i class="fa fa-bug" style="color:red;font-size:18px"></i>
+                                    </a>
+                                </span>
+                            </td>
+                            <td>
+                                <div class="btn-group-xs ">
+                                    <button title="解析进度" class="btn btn-warning  btn-group-lg"
+                                            ng-if="item.type.name=='parser'"
+                                            ng-click="show('metric-parser',item.id)">
+                                        <i class="fa fa-line-chart"></i></button>
+                                    <button title="分析进度" class="btn btn-warning  btn-group-lg"
+                                            ng-if="item.type.name=='analyzer'"
+                                            ng-click="show('metric-analyzer',item.id)">
+                                        <i class="fa fa-line-chart"></i></button>
+                                </div>
+                            </td>
+                            <td>
+
+                                <div class="btn-group-xs " ng-switch="item.status">
+
+
+                                    <button ng-switch-when="RUNNING" class="btn btn-primary op_edit" title="查看"
+                                            ng-click="show('edit',item.id)">
+                                        <i class="fa fa-file-text"></i></button>
+                                    <button ng-switch-default class="btn btn-primary op_edit"
+                                            ng-click="show('edit',item.id)" title="修改"><i
+                                            class="fa fa-file-text-o"></i></button>
+                                    <button ng-switch-when="STOPPED" class="btn btn-primary op_edit"
+                                            ng-click="show('edit',item.id)" title="修改"><i
+                                            class="fa fa-file-text-o"></i></button>
+
+                                    <button class="btn btn-info op_edit" title="复制"
+                                            ng-click="show('copy',item.id)">
+                                        <i class="fa fa-copy"></i></button>
+
+
+                                    <!--<a class="btn bg-info " title="下载" target="_blank" href="../channel/{{item.id}}?pretty" download="channel-{{item.id}}.json">-->
+                                    <a class="btn btn-primary " title="下载"
+                                       data-ng-click="downloadFile(item.id)"><i class="fa fa-download"></i></a>
+
+                                </div>
+
+                            </td>
+                            <td>
+                                <div class="btn-group-xs " ng-switch="item.status">
+                                    <button ng-switch-when="STOPPED|MONITOR_ERROR"  ng-switch-when-separator="|" class="btn btn-success op_start"
+                                            ng-click="operate('start',item.id)" title="启动"><i
+                                            class="fa fa-play-circle"></i></button>
+                                    <button ng-switch-when="RUNNING|READING_ERROR|WRITER_ERROR|LEXER_ERROR|PENDING|" ng-switch-when-separator="|" class="btn btn-inverse op_stop"
+                                            ng-click="operate('stop',item.id)" title="停止"><i
+                                            class="fa fa-stop"></i></button>
+                                    <div ng-switch-when="WORKER_STOPPED">不可用</div>
+
+                                </div>
+                            </td>
+                            <td>
+
+                                <div class="btn-group-xs " ng-switch="item.status">
+                                    <button ng-if="item.type.name!='analyzer'" ng-switch-when="STOPPED|MONITOR_ERROR"
+                                            ng-switch-when-separator="|" class="btn btn-info op_edit" title="重置"
+                                            ng-click="operate('reset', item.id)">
+                                        <i class="fa fa-rotate-left"></i></button>
+                                    <button ng-if="item.isSample==0" ng-switch-when="STOPPED|UNAVAILABLE|WORKER_STOPPED|MONITOR_ERROR" ng-switch-when-separator="|" title="删除" class="btn btn-danger op_delete"
+                                            ng-click="delete(item.id)"><i class="fa fa-minus"></i>
+                                    </button>
+
+                                </div>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div page method="reload"></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+#Copyright (c) raysdata
+#Mon May 08 10:53:59 CST 2017
+porter.realms=zeta
+##分组#
+porter.zeta.name=zeta
+porter.zeta.groups=\ admin,custom
+porter.zeta.group.admin.rules=resource\:*\:/**, base\:manage
+porter.zeta.group.custom.rules=resource\:*\:/analyzer/**,resource\:*\:/parser/**,resource\:get\:/datasource/**,resource\:get\:/knowledge/**,resource\:get\:/collector/**,resource\:*\:/previewer/**
+#账号#
+porter.zeta.accounts=admin,custom
+#admin#
+porter.zeta.account.admin.groups=admin
+porter.zeta.account.admin.secret=bcrypt$$2a$12$NknS3ShY/Zj0zbwypVnFHuCTTzyX8K3IEk4PChLrPbVKGTqFOMyD.
+porter.zeta.account.admin.props=email -> admin@haima.me, enabled->true
+#custom#
+porter.zeta.account.custom.groups=custom
+porter.zeta.account.custom.secret=bcrypt$$2a$12$NknS3ShY/Zj0zbwypVnFHuCTTzyX8K3IEk4PChLrPbVKGTqFOMyD.
+porter.zeta.account.custom.props=email -> custom@haima.me, enabled->true
+

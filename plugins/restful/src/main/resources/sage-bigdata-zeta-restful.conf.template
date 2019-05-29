@@ -1,0 +1,1 @@
+app.writer.restful=com.haima.sage.bigdata.etl.writer.RestfulLogWriter

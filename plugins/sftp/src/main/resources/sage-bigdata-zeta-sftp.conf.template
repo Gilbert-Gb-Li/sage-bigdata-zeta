@@ -1,0 +1,2 @@
+app.monitor.sftp=com.haima.sage.bigdata.etl.monitor.file.SFTPMonitor
+app.checker.sftp=com.haima.sage.bigdata.etl.driver.usable.SFTPUsabilityChecker

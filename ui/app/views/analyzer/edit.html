@@ -1,0 +1,692 @@
+<div class="hla-widget-add-table">
+    <div
+            ng-show="(add_form.$invalid) && add_form.$submitted"
+            class="col-sm-12 col-md-12 alert alert-danger"
+            role="alert">
+        表单填写有误，请检查表单
+        <div ng-hide="true">
+            {{$parent.add_form=add_form}}
+        </div>
+    </div>
+    <form class="form-horizontal"
+          name="add_form"
+          ng-submit="saveRule(add_form)"
+          novalidate>
+        <div class="form-group" ng-show="showPreview">
+            <label class="col-sm-2 col-md-2 control-label">数据集合</label>
+            <div class="col-sm-8 col-md-8 pre-scrollable  table-responsive raw " style="overflow-x:auto">
+                <table class=" text-nowrap table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>#{{message.message}}</th>
+                        <th ng-repeat=" key in previewData.cNames">
+                            {{key}}
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="x in previewData.data">
+                        <td scope="row">{{$index+1}}</td>
+                        <td ng-repeat="y in previewData.cNames">{{x[y]}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="name"
+                   class="col-sm-2 col-md-2 control-label">
+                <em class="hla-required-input">*</em>名称</label>
+            <div class="col-sm-3 col-md-3"
+                 ng-class="{'has-error':add_form.name.$invalid&&(add_form.name.$dirty||add_form.$submitted)}">
+                <input id="name"
+                       ng-model="rule.name"
+                       class="form-control"
+                       name="name"
+                       placeholder="分析规则名称"
+                       required>
+            </div>
+            <label class="col-sm-2 col-md-2 control-label"><em
+                    class="hla-required-input">*</em>类型</label>
+            <div class="col-sm-3 col-md-3"
+                 ng-class="{'has-error':add_form['data[name]'].$invalid&&(add_form['data[name]'].$dirty||add_form.$submitted)}">
+                <select name="data[name]" class="form-control" ng-model="rule.data.name" ng-change="changeAnaType()"
+                        required>
+                    <option value="none">传输</option>
+                    <option value="sql">SQL</option>
+                    <!--<option value="word-segmentation">预处理:分词</option>-->
+                    <!--<option value="vectorization">预处理:文本向量化</option>-->
+                    <!--<option value="scalar">预处理:标准化</option>-->
+                    <!--<option value="pca">预处理:主成分分析(降维)</option>-->
+                    <!--<option value="lda">预处理:线性判别分析(降维)</option>-->
+                    <!--<option value="logaggs">聚和:日志归并</option>-->
+                    <!--<option value="dbscan">聚类:DBSCAN</option>-->
+                    <!--<option value="svm">分类:支持向量机</option>-->
+                    <!--<option value="regression">预测:回归预测</option>-->
+                    <!--<option value="timeseries">预测:时间序列</option>-->
+                </select>
+                <input type="hidden" value="streaming" ng-model="rule.data.model">
+            </div>
+        </div>
+        <div ng-switch="rule.data.name">
+            <div ng-switch-when="sql">
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>数据表</label>
+                    <div class="col-sm-8 col-md-8"
+                         ng-class="{'has-error':add_form['channel'].$invalid&&(add_form['channel'].$dirty||add_form.$submitted)}">
+                        <select name="channel" class="form-control"
+                                ng-model="rule.channel"
+                                ng-change="channelChange()"
+                                ng-options="x.id as x.name group by x.label|SourceTypeName for x in channels">
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div ng-switch-default>
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label">参考数据通道</label>
+                    <div class="col-sm-8 col-md-8"
+                         ng-class="{'has-error':add_form['channel'].$invalid&&(add_form['channel'].$dirty||add_form.$submitted)}">
+                        <select name="channel" class="form-control"
+                                ng-model="rule.channel"
+                                ng-change="channelChange()" required
+                                ng-options="x.id as x.name group by x.label|SourceTypeName for x in channels">
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div ng-switch="rule.data.name">
+            <div ng-switch-when="none"></div>
+            <div ng-switch-when="sql">
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label">
+                        <em class="hla-required-input">*</em>SQL语句
+                    </label>
+                    <div class="col-sm-8 col-md-8"
+                         style="font-size:14px"
+                         ng-class="{'has-error':add_form['data[sql]'].$invalid&&(add_form['data[sql]'].$dirty||add_form.$submitted)}">
+                        <div ui-ace="{require: ['ace/ext/language_tools','ace/ext/themelist'],
+                                          advanced: {
+                                              enableSnippets: true,
+                                              enableBasicAutocompletion: true,
+                                              enableLiveAutocompletion: true
+                                          },
+                                          useWrapMode : true,
+                                          showGutter: true,
+                                          theme:'chrome',
+                                          fontSize:'24',
+                                          mode: 'sql',
+                                          printMargin:120,
+                                          firstLineNumbsqler: 5,
+                                          onLoad: aceLoaded,
+                                          onChange: aceChanged
+                                    }"
+                             name="data[sql]" ng-model="rule.data.sql" ng-blur="validateSql()" required>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="timeseries">
+                <!--
+                    field: String = "raw",
+                              timeField: String = "@timestamp",
+                              window: Option[Long],
+                              slide: Option[Long],
+                              model: TimeSeriesModel,
+                              forecast: Int = 10,
+
+                    -->
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>保留的字段列表</label>
+                    <div class="col-sm-8 col-md-8"
+                         ng-class="{'has-error':add_form['data[backend]'].$invalid&&(add_form['data[backend]'].$dirty||add_form.$submitted)}">
+                        <input name="data[backend]" class="form-control"
+                               ng-model="rule.data.backend" required
+                               placeholder='用`,`分割开'/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>分组的字段列表</label>
+                    <div class="col-sm-8 col-md-8"
+                         ng-class="{'has-error':add_form['data[keys]'].$invalid&&(add_form['data[keys]'].$dirty||add_form.$submitted)}">
+                        <input name="data[keys]" class="form-control"
+                               ng-model="rule.data.keys" required
+                               placeholder='用`,`分割开'/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>计算(预测)的字段列表</label>
+                    <div class="col-sm-8 col-md-8"
+                         ng-class="{'has-error':add_form['data[field]'].$invalid&&(add_form['data[field]'].$dirty||add_form.$submitted)}">
+                        <input name="data[field]" class="form-control"
+                               ng-model="rule.data.field" required
+                               placeholder='字段值必须是数值类型'/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>时间字段</label>
+                    <div class="col-sm-8 col-md-8"
+                         ng-class="{'has-error':add_form['data[timeField]'].$invalid&&(add_form['data[timeField]'].$dirty||add_form.$submitted)}">
+                        <input placeholder="标示时间序列,自增,时间类型"
+                               name="data[timeField]"
+                               ng-model="rule.data.timeField"
+                               class="form-control ui-autocomplete"
+                               required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>计算窗口</label>
+                    <div class="col-sm-3 col-md-3 "
+                         ng-class="{'has-error':add_form['data[window]'].$invalid&&(add_form['data[window]'].$dirty||add_form.$submitted)}">
+                        <div class="input-group">
+                            <input type="hidden" ng-model="rule.data.window.timeCharacteristic.name" value="event">
+                            <input type="hidden" ng-model="rule.data.window.timeCharacteristic.maxOutOfOrderness"
+                                   value=10000>
+                            <input type="hidden" ng-model="rule.data.window.name" value="sliding">
+                            <input name="data[window]" class="form-control"
+                                   ng-model="rule.data.window.window" required type="number" ng-pattern="/^\d*$/"
+                                   placeholder='计算数据的时间跨度,单位:秒'/> <label class="input-group-addon">秒</label>
+                        </div>
+
+                    </div>
+                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>滑动窗口</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[slide]'].$invalid&&(add_form['data[slide]'].$dirty||add_form.$submitted)}">
+                        <div class="input-group">
+                            <input name="data[slide]" class="form-control"
+                                   ng-model="rule.data.window.sliding" required type="number" ng-pattern="/^\d*$/"
+                                   placeholder='两次计算数据的移动量,单位:秒'/> <label class="input-group-addon">秒</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>计算数据的模型</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['rule.data.timeSeriesModel.name'].$invalid&&(add_form['rule.data.timeSeriesModel.name'].$dirty||add_form.$submitted)}">
+                        <select ng-model="rule.data.timeSeriesModel.name" name="rule.data.timeSeriesModel.name"
+                                class="form-control"
+                                required>
+                            <option value="holtwinters">有固定周期的数据</option>
+                            <option value="arima">无固定周期的数据</option>
+                        </select>
+                    </div>
+                    <div ng-switch="rule.data.timeSeriesModel.name">
+                        <div ng-switch-when="holtwinters">
+
+                            <label class="col-sm-2 col-md-2 control-label">
+                                <em class="hla-required-input">*</em>周期长度</label>
+                            <div class="col-sm-3 col-md-3 "
+                                 ng-class="{'has-error':add_form['data.timeSeriesModel.period'].$invalid&&(add_form['data.timeSeriesModel.period'].$dirty||add_form.$submitted)}">
+                                <div class="input-group">
+                                    <input type="hidden" ng-model="rule.data.timeSeriesModel.modelType"
+                                           ng-init="rule.data.model.modelType='ADDITIVE'" value="{{'ADDITIVE'}}">
+                                    <input name="data.timeSeriesModel.period" class="form-control"
+                                           ng-model="rule.data.timeSeriesModel.period" required type="number"
+                                           ng-pattern="/^\d*$/"
+                                           placeholder='指用数据指标的回归时间长度,单位:秒'/> <label class="input-group-addon">秒</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--<div ng-switch-when="arima" class="form-group">
+
+                        </div>-->
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>预测时间长度</label>
+                    <div class="col-sm-8 col-md-8"
+                         ng-class="{'has-error':add_form['data.forecast'].$invalid&&(add_form['data.forecast'].$dirty||add_form.$submitted)}">
+                        <div class="input-group">
+                            <input name="data.forecast" class="form-control"
+                                   ng-model="rule.data.forecast" required type="number" ng-pattern="/^\d*$/"
+                                   placeholder='指用数据指标的回归时间长度,单位:秒'/> <label class="input-group-addon">秒</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="logaggs">
+                <!--
+                     field: Option[String] = Some("raw"),
+                     timeField: String = "@timestamp",
+                     window: Option[Int],
+                     slide: Option[Int],
+                     minMatched: Double = 0.7
+                -->
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>日志归并字段</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[field]'].$invalid&&(add_form['data[field]'].$dirty||add_form.$submitted)}">
+                        <input name="data[field]" class="form-control"
+                               ng-model="rule.data.field" required/>
+                    </div>
+                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>最小匹配度</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[minMatched]'].$invalid&&(add_form['data[minMatched]'].$dirty||add_form.$submitted)}">
+                        <input name="data[minMatched]" class="form-control"
+                               ng-model="rule.data.minMatched" required type="text"
+                               ng-pattern="/^[01]?$|^0.[0-9]|1.0$/"
+                               placeholder='日志归并匹配度系数，系数范围0-1'/>
+
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="pca">
+                <!--
+                     field: Option[String] = Some("raw"),
+                     timeField: String = "@timestamp",
+                     window: Option[Int],
+                     slide: Option[Int],
+                     minMatched: Double = 0.7
+                -->
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>保留维度</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[k]'].$invalid&&(add_form['data[k]'].$dirty||add_form.$submitted)}">
+                        <input pattern="[0-9]*" placeholder='大于0的整数' name="data[k]" class="form-control"
+                               ng-model="rule.data.k" required/>
+                        <!--<span class="col-sm-2 col-md-2 control-label" ng-show="data[k].$error.number">只能输入大于0的整数数字</span>-->
+                    </div>
+                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>最小匹配度</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[minMatched]'].$invalid&&(add_form['data[minMatched]'].$dirty||add_form.$submitted)}">
+                        <div class="input-group">
+                            <input name="data[minMatched]" class="form-control"
+                                   ng-model="rule.data.minMatched" required type="text"
+                                   ng-pattern="/^[01]?$|^0.[0-9]|1.0$/"
+                                   placeholder='系数范围0-1'/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="lda">
+                <!--
+                     field: Option[String] = Some("raw"),
+                     timeField: String = "@timestamp",
+                     window: Option[Int],
+                     slide: Option[Int],
+                     minMatched: Double = 0.7
+                -->
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>保留维度</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[dimensions]'].$invalid&&(add_form['data[Dimensions]'].$dirty||add_form.$submitted)}">
+                        <input pattern="[0-9]*" placeholder='大于0的整数' name="data[dimensions]" class="form-control"
+                               ng-model="rule.data.dimensions" required/>
+                        <!--<span class="col-sm-2 col-md-2 control-label" ng-show="data[k].$error.number">只能输入大于0的整数数字</span>-->
+                    </div>
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>数据标签</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[label]'].$invalid&&(add_form['data[label]'].$dirty||add_form.$submitted)}">
+                        <input placeholder='数据的标示列,只针对建模' name="data[label]" class="form-control"
+                               ng-model="rule.data.label" required/>
+                        <!--<span class="col-sm-2 col-md-2 control-label" ng-show="data[k].$error.number">只能输入大于0的整数数字</span>-->
+                    </div>
+
+                </div>
+            </div>
+            <div ng-switch-when="dbscan">
+                <!--
+                       minpts: Int, //密度阈值
+                       eps: Int, //领域半径
+                       fields:String,//字段名称
+                    -->
+                <div class="form-group">
+
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>密度阈值</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[minpts]'].$invalid&&(add_form['data[minpts]'].$dirty||add_form.$submitted)}">
+                        <input name="data[minpts]" class="form-control"
+                               ng-model="rule.data.minpts" placeholder="聚类算法的密度阈值"/>
+                    </div>
+
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>邻域半径</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[eps]'].$invalid&&(add_form['data[eps]'].$dirty||add_form.$submitted)}">
+                        <input name="data[eps]" class="form-control"
+                               ng-model="rule.data.eps" placeholder="聚类算法的邻域半径"/>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="word-segmentation">
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>分词字段</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[field]'].$invalid&&(add_form['data[field]'].$dirty||add_form.$submitted)}">
+                        <input name="data[field]" class="form-control"
+                               ng-model="rule.data.field" required/>
+                    </div>
+                </div>
+                <!--tokenizer-->
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>分词器</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[tokenizer.name]'].$invalid&&(add_form['data[tokenizer.name]'].$dirty||add_form.$submitted)}">
+                        <select name="data[tokenizer.name]" class="form-control" ng-model="rule.data.tokenizer.name"
+                                ng-change="changeAnaType()"
+                                required>
+                            <option value="split">分隔符</option>
+                            <option value="ansj">ANSJ</option>
+                        </select>
+                    </div>
+                    <div ng-if="rule.data.tokenizer.name=='split'">
+                        <label class="col-sm-2 col-md-2 control-label"><em
+                                class="hla-required-input">*</em>分隔符</label>
+                        <div class="col-sm-3 col-md-3"
+                             ng-class="{'has-error':add_form['data[tokenizer.separator]'].$invalid&&(add_form['data[tokenizer.separator]'].$dirty||add_form.$submitted)}">
+                            <input name="data[tokenizer.separator]" class="form-control"
+                                   ng-model="rule.data.tokenizer.separator" required/>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div ng-switch-when="vectorization">
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>向量化字段名称</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[field]'].$invalid&&(add_form['data[field]'].$dirty||add_form.$submitted)}">
+                        <input name="data[field]" class="form-control"
+                               ng-model="rule.data.field" required/>
+                    </div>
+                </div>
+                <!--tokenizer-->
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>向量化方式</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[vectorization.name]'].$invalid&&(add_form['data[vectorization.name]'].$dirty||add_form.$submitted)}">
+                        <select name="data[vectorization.name]" class="form-control"
+                                ng-model="rule.data.vectorization.name"
+                                required>
+                            <option value="tfidf">TF/IDF</option>
+                            <option value="sameweight">等权重</option>
+                            <option value="simhash">SIM-HASH</option>
+                        </select>
+                    </div>
+                    <div ng-if="rule.data.vectorization.name=='simhash'">
+                        <label class="col-sm-2 col-md-2 control-label"><em
+                                class="hla-required-input">*</em>向量化长度</label>
+                        <div class="col-sm-3 col-md-3"
+                             ng-class="{'has-error':add_form['data[vectorization.length]'].$invalid&&(add_form['data[vectorization.length]'].$dirty||add_form.$submitted)}">
+                            <select name="data[vectorization.length]" class="form-control"
+                                    ng-model="rule.data.vectorization.length" required>
+                                <option type="number" value="64">64</option>
+                                <option type="number" value="128">128</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div ng-switch-when="scalar">
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>标准化字段列表</label>
+                    <div class="col-sm-8 col-md-8">
+                        <div id="propertie">
+                            <div style="padding-left: 15px;" class="form-group"
+                                 ng-repeat="field in rule.data.cols track by $index">
+                                <div class="input-group"
+                                     ng-class="{'has-error':add_form['filter[{{$parent.$index}}].fields[{{$index}}]'].$invalid&&(add_form['filter[{{$parent.$index}}].fields[{{$index}}]'].$dirty||add_form.$submitted)}">
+
+                                    <!--<select class="form-control" ng-options="x.key as x.key for x in resolver.properties"
+                                            select-search ng-model="fromField[0]" ng-change="changeFieldName($index)">
+                                    </select>-->
+                                    <span class="input-group-addon">名称</span>
+                                    <input placeholder="字段名称" ng-model="field[0]"
+                                           class="form-control ui-autocomplete"
+                                           name="filter[{{$parent.$index}}].fields[{{$index}}]"
+                                           required>
+                                    <span class="input-group-addon">标准化方式</span>
+                                    <select class="form-control" ng-model="field[1].name" required>
+                                        <option value="nothing">原值</option>
+                                        <option value="atan">反正切</option>
+                                        <!--<option value="minmax">最小最大化</option>-->
+                                        <!--<option value="standard">标准差</option>-->
+                                        <!--<option value="zscore">Z-score</option>-->
+                                    </select>
+                                    <span class="input-group-addon mouse-on" title="删除"
+                                          ng-click="deleteHashField($index)"><i
+                                            class="fa fa-minus fa-fw op_minus op_delete_event_relate"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="btn btn-success" ng-click="addHashField();" title="添加字段属性">
+                            <i class="fa fa-plus"></i>添加字段属性
+                        </span>
+                        <span class="checkbox-inline text-danger"
+                              ng-show="rule.data.fromFields.length==0">至少配置一个字段</span>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="svm">
+                <!--
+                         knowledgeId: String = "",
+                         blocks: Int = -1,
+                         regularization: Double = 0.002,
+                         stepsize: Double = 0.1,
+                         iterations : Int = 100,
+                         localiterations: Int = 100,
+                    -->
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>特征值字段</label>
+                    <div class="col-sm-8 col-md-8"
+                         ng-class="{'has-error':add_form['data[features]'].$invalid&&(add_form['data[features]'].$dirty||add_form.$submitted)}">
+                        <input name="data[features]" class="form-control"
+                               ng-model="rule.data.features" required placeholder="特征列对应的字段名称"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>训练标签字段</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[trainLabel]'].$invalid&&(add_form['data[trainLabel]'].$dirty||add_form.$submitted)}">
+                        <input name="data[trainLabel]" class="form-control"
+                               ng-model="rule.data.trainLabel" required placeholder="标签列对应的字段名称"/>
+                    </div>
+
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>分类标签字段</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[classifyLabel]'].$invalid&&(add_form['data[classifyLabel]'].$dirty||add_form.$submitted)}">
+                        <input name="data[classifyLabel]" class="form-control"
+                               ng-model="rule.data.trainLabel" required placeholder="标签列对应的字段名称"/>
+                    </div>
+
+                </div>
+                <div ng-if="rule.data.useModel==null">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-2 control-label">正则常数</label>
+                        <div class="col-sm-3 col-md-3">
+                            <input name="data[regularization]" class="form-control"
+                                   ng-model="rule.data.regularization" placeholder="支持向量机算法的正则化常数"/>
+                        </div>
+                        <label class="col-sm-2 col-md-2 control-label">初始步长</label>
+                        <div class="col-sm-3 col-md-3">
+                            <input name="data[stepSize]" class="form-control"
+                                   ng-model="rule.data.stepSize" placeholder="权重向量更新的初始步长"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-2 control-label">外层迭代次数</label>
+                        <div class="col-sm-3 col-md-3">
+                            <input name="data[iterations]" class="form-control"
+                                   ng-model="rule.data.iterations" placeholder="定义了SDCA方法应用于块数据的频繁程度"/>
+                        </div>
+                        <label class="col-sm-2 col-md-2 control-label">本地迭代次数</label>
+                        <div class="col-sm-3 col-md-3">
+                            <input name="data[localIterations]" class="form-control"
+                                   ng-model="rule.data.localIterations" placeholder="定义了每次SDCA迭代有多少数据点会从本地数据块中被取出"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="regression">
+                <!--
+                         knowledgeId: String = "",
+                         blocks: Int = -1,
+                         regularization: Double = 0.002,
+                         stepsize: Double = 0.1,
+                         iterations : Int = 100,
+                         localiterations: Int = 100,
+                    -->
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>特征值字段</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[features]'].$invalid&&(add_form['data[features]'].$dirty||add_form.$submitted)}">
+                        <input name="data[features]" class="form-control"
+                               ng-model="rule.data.features" required placeholder="特征列对应的字段名称"/>
+                    </div>
+
+                    <label class="col-sm-2 col-md-2 control-label"><em
+                            class="hla-required-input">*</em>标签(预测)字段</label>
+                    <div class="col-sm-3 col-md-3"
+                         ng-class="{'has-error':add_form['data[label]'].$invalid&&(add_form['data[label]'].$dirty||add_form.$submitted)}">
+                        <input name="data[label]" class="form-control"
+                               ng-model="rule.data.label" required placeholder="标签列(预测列)对应的字段名称"/>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label">阶数</label>
+                    <div class="col-sm-3 col-md-3">
+                        <input name="data[degree]" class="form-control" type="number" ng-pattern="/^[123]$/"
+                               required
+                               ng-model="rule.data.degree" placeholder="线性或者非线性回归,最高3阶"/>
+                    </div>
+                    <label class="col-sm-2 col-md-2 control-label">初始步长</label>
+                    <div class="col-sm-3 col-md-3">
+                        <input name="data[stepSize]" class="form-control"
+                               ng-model="rule.data.stepSize" placeholder="权重向量更新的初始步长"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 col-md-2 control-label">迭代次数</label>
+                    <div class="col-sm-3 col-md-3">
+                        <input name="data[iterations]" class="form-control"
+                               ng-model="rule.data.iterations" placeholder="定义了SDCA方法应用于块数据的频繁程度"/>
+                    </div>
+                    <label class="col-sm-2 col-md-2 control-label">收敛阈值</label>
+                    <div class="col-sm-3 col-md-3">
+                        <input name="data[convergenceThreshold]" class="form-control"
+                               ng-model="rule.data.convergenceThreshold"
+                               placeholder="指两次分类结果相比保持不变的像元所占最大百分之此值的设立可以避免"/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group" ng-if="rule.data.name!='sql' && rule.data.name!='none'">
+            <label class="col-sm-2 col-md-2 control-label">模型数据</label>
+            <div class="col-sm-3 col-md-3">
+                <select name="data[useModel]" class="form-control op_log_rule_list"
+                        ng-options="x.id as x.name for x in modelings"
+                        ng-model="rule.data.useModel">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 col-md-2 control-label">数据过滤</label>
+            <div class="col-sm-8 col-md-8 ">
+                <div class="clearfix firstForm shadow" ng-repeat=" filter in rule.data.filter"
+                     ng-init="filterIndex=$index" 0>
+                    <div class="col-sm-3 col-md-3 input-group " style="margin-bottom:10px;">
+                        <label class="input-group-addon">规则 ${{$index}}</label>
+                        <select ng-model="filter.name" class="form-control " ng-change="ruleChange($index)">
+                            <option value="analyzerRedirect">根据字段值</option>
+                            <option value="analyzerStartWith">根据字段头</option>
+                            <option value="analyzerEndWith">根据字段尾</option>
+                            <option value="analyzerMatch">根据正则匹配字段</option>
+                            <option value="analyzerContain">根据字段包含值</option>
+                            <option value="analyzerScriptFilter">根据脚本结果</option>
+                            <option value="reAnalyzer">进一步分析</option>
+                            <option value="analyzerParser">使用解析规则</option>
+                        </select>
+                        <label class="input-group-addon btn  info" title="删除规则" ng-click="removeFilter($index)"><i
+                                class="fa fa-trash "></i></label>
+                    </div>
+                    <div ng-switch="filter.name">
+                        <div style="padding-top:2px;padding-left: 20px;padding-top: 5px;" class="col-sm-12 col-md-12"
+                             ng-switch-when="analyzerScriptFilter">
+                            <div class="" ng-include="'views/analyzer/switch-script.html'"></div>
+                        </div>
+                        <div style="padding-top:2px;padding-left: 20px;padding-top: 5px;" class="col-sm-12 col-md-12"
+                             ng-switch-when="analyzerRedirect">
+                            <div class="" ng-include="'views/analyzer/case.html'"></div>
+                        </div>
+                        <div style="padding-top:2px;padding-left: 20px;;padding-top: 5px;" class="col-sm-12 col-md-12"
+                             ng-switch-when="analyzerStartWith">
+                            <div class="media" ng-include="'views/analyzer/case.html'"></div>
+                        </div>
+                        <div style="padding-top:2px;padding-left: 20px;;padding-top: 5px;" class="col-sm-12 col-md-12"
+                             ng-switch-when="analyzerEndWith">
+                            <div class="media" ng-include="'views/analyzer/case.html'"></div>
+                        </div>
+                        <div style="padding-top:2px;padding-left: 20px;;padding-top: 5px;" class="col-sm-12 col-md-12"
+                             ng-switch-when="analyzerMatch">
+                            <div class="media" ng-include="'views/analyzer/case.html'"></div>
+                        </div>
+                        <div style="padding-top:2px;padding-left:20px;;padding-top: 5px;" class="col-sm-12 col-md-12"
+                             ng-switch-when="analyzerContain">
+                            <div class="media" ng-include="'views/analyzer/case.html'"></div>
+                        </div>
+                        <div style="padding-top:2px;padding-left: 20px;" class="col-sm-12 col-md-12"
+                             ng-switch-when="reAnalyzer">
+                            <div class="media" ng-include="'views/analyzer/re-analyzer.html'"></div>
+                        </div>
+                        <div style="padding-top:2px;padding-left: 20px;" class="col-sm-12 col-md-12"
+                             ng-switch-when="analyzerParser">
+                            <div class="media" ng-include="'views/analyzer/with-parser.html'"></div>
+                        </div>
+
+                    </div>
+                </div>
+                <span id="parser_filter_add_label" class="col-sm-10 col-md-10" style="padding-left:0;">
+                                <label class="control-label"
+                                       style="padding-left: 0px;padding-bottom: 10px;">
+                            <span class="btn btn-primary" id="filter_add" title="添加数据过滤规则"
+                                  ng-click="addFilter();"><i class="fa fa-plus "></i>数据过滤规则</span>
+                                </label>
+                            </span>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <button ng-click="preview(add_form);" type="button" class="btn btn-success btn-sm" title="预览">
+                <i class="fa fa-chevron-down">测试预览</i>
+            </button>
+            <button type="submit" class="btn btn-primary" id="op_save_log_rule_button">
+                保存
+            </button>
+        </div>
+    </form>
+</div>

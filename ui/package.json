@@ -1,0 +1,65 @@
+{
+  "name": "sage-bigdata-etl-ui",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "description": "sage-bigdata-etl前端ui，采用bootstrap+angular构建",
+  "author": {
+    "name": "zhhuiyan",
+    "email": "yanzh@raysdata.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab.raysdata-lab.com/DK/sage-bigdata-etl.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "bower": "^1.8.0",
+    "browser-sync": "^2.2.1",
+    "del": "^2.2.2",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.1",
+    "gulp-babel": "^6.1.1",
+    "gulp-cache": "^0.4.2",
+    "gulp-cssnano": "^2.0.0",
+    "gulp-eslint": "^3.0.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-less": "^3.1.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-requirejs-optimize": "^1.2.0",
+    "gulp-rev": "^7.0.0",
+    "gulp-rev-replace": "^0.4.3",
+    "gulp-sass": "^3.1.0",
+    "gulp-size": "^2.1.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-tap": "^1.0.1",
+    "gulp-uglify": "^2.1.2",
+    "gulp-useref": "^3.0.0",
+    "http-proxy": "^1.14.0",
+    "main-bower-files": "^2.5.0",
+    "wiredep": "^4.0.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "node": true,
+      "browser": true
+    },
+    "rules": {
+      "no-console": "off",
+      "quotes": [
+        2,
+        "single"
+      ]
+    }
+  }
+}

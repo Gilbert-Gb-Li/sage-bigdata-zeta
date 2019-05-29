@@ -1,0 +1,3 @@
+app.monitor.ftp=com.haima.sage.bigdata.etl.monitor.file.FTPMonitor
+app.writer.ftp=com.haima.sage.bigdata.etl.writer.FileDataWriter
+app.checker.ftp=com.haima.sage.bigdata.etl.driver.usable.FTPUsabilityChecker

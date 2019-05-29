@@ -1,0 +1,2 @@
+app.streaming.analyzer.regression=com.haima.sage.bigdata.analyzer.regression.streaming.StreamRegressionAnalyzer
+app.modeling.analyzer.regression=com.haima.sage.bigdata.analyzer.regression.modeling.ModelingRegressionAnalyzer

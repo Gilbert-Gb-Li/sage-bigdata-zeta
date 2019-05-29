@@ -1,0 +1,4 @@
+# for reade cookie_id from cookie
+COOKIE_ID [iI][dD]=([0-9.]*-[0-9]*|\w*)
+COOKIE \S*?(%{COOKIE_ID:cookie_id}\S*)?
+IIS_LOG %{TIMESTAMP_ISO8601:@timestamp} %{WORD:s_site_name} %{HOST:s_computer_name} %{IP:s_ip} %{WORD:cs_method} %{URIPATH:cs_uri_stem} %{NOTSPACE:cs_uri_query} %{NUMBER:s_port} %{NOTSPACE:cs_username} %{IP:c_ip} %{NOTSPACE:cs_version} %{NOTSPACE:cs_useragent} %{COOKIE:cs_cookie} %{NOTSPACE:cs_referer} %{NOTSPACE:cs_host} %{NUMBER:sc_status} %{NUMBER:sc_substatus} %{NUMBER:sc_winstatus} %{NUMBER:sc_bytes} %{NUMBER:cs_bytes} %{NUMBER:time_taken}

@@ -1,0 +1,15 @@
+.header {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+.porter-loginform {
+    padding: 35px;
+    background: #eee;
+    border: 1px solid #eee;
+    border-bottom: 2px solid #555;
+}
+
+.porter-openid-image {
+    width: 18px;
+    height: 18px;
+}

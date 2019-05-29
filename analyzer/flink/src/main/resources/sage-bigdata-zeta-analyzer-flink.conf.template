@@ -1,0 +1,4 @@
+app.checker.flink=com.haima.sage.bigdata.etl.plugin.flink.driver.usable.FlinkUsabilityChecker
+app.previewer.flink=com.haima.sage.bigdata.etl.plugin.flink.previewer.ModelingPreviewer
+app.flink.watcher=com.haima.sage.bigdata.etl.plugin.flink.FlinkWatcher
+flink.parallelism=1

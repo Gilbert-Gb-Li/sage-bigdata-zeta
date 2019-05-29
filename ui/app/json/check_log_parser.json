@@ -1,0 +1,8 @@
+{
+  "fields": {
+    "a": "av",
+    "b": "bv",
+    "c": "cv"
+  },
+  "name": "delimit"
+}

@@ -1,0 +1,4 @@
+app.lexer.flink=com.haima.sage.bigdata.etl.streaming.flink.lexer.FlinkLexer
+app.flink.sql.sink.exec=com.haima.sage.bigdata.analyzer.sql.side.SideSqlExec
+app.streaming.analyzer.none=com.haima.sage.bigdata.analyzer.streaming.NoneDataStreamAnalyzer
+app.modeling.analyzer.none=com.haima.sage.bigdata.analyzer.modeling.ModelingNoneAnalyzer

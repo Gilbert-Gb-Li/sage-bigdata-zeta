@@ -1,0 +1,243 @@
+<hierarchy rotation="3">
+    <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+        <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+            <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/action_bar_root" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                    <node index="0" text="" resource-id="android:id/content" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                        <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/sub_container" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="" />
+                        <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/main_container" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                            <node index="0" text="" resource-id="" class="android.support.v4.widget.SlidingPaneLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                <node index="0" text="" resource-id="" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                <node index="1" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                    <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/content_layout" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                        <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/sv_scroll_car_detail" class="android.widget.ScrollView" package="com.ganji.android.haoche_c" content-desc="">
+                                            <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/view_module_car_photo" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                    <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                        <node index="0" text="" resource-id="" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                            <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/vp_car_photo" class="android.support.v4.view.ViewPager" package="com.ganji.android.haoche_c" content-desc="">
+                                                                <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/layout_photo" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/simpleDrawee" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                </node>
+                                                            </node>
+                                                            <node index="2" text="" resource-id="com.ganji.android.haoche_c:id/iv_car_status" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                            <node index="3" text="" resource-id="" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                <node index="0" text="车源号 HC-80116339" resource-id="com.ganji.android.haoche_c:id/tv_clue_id" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                <node index="1" text="1/34" resource-id="com.ganji.android.haoche_c:id/tv_count" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                            </node>
+                                                        </node>
+                                                    </node>
+                                                </node>
+                                                <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/layout_banner" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                    <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                        <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                            <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/iv_detail_banner" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                        </node>
+                                                    </node>
+                                                </node>
+                                                <node index="2" text="" resource-id="com.ganji.android.haoche_c:id/view_module_car_price_info" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                    <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                        <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                            <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/view_module_car_price_info" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                <node index="0" text=" 长安CS35 2015款 1.6L 自动豪华型 国IV" resource-id="com.ganji.android.haoche_c:id/tv_title_text" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/label_content" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="0过户" resource-id="" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                    <node index="1" text="超值" resource-id="" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                </node>
+                                                                <node index="2" text="" resource-id="" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/ll_price" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                        <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/ll_new_price_desc" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                            <node index="0" text="原价4.82万" resource-id="com.ganji.android.haoche_c:id/tv_new_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        </node>
+                                                                        <node index="1" text="" resource-id="" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="2" text="全部车源信息" resource-id="com.ganji.android.haoche_c:id/tv_show_more_msg" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                    </node>
+                                                                </node>
+                                                            </node>
+                                                        </node>
+                                                    </node>
+                                                </node>
+                                                <node index="5" text="" resource-id="com.ganji.android.haoche_c:id/view_module_like_recommend" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                    <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                        <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                            <node index="0" text="" resource-id="" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                                            <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/ll_like_container" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="猜你喜欢" resource-id="" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                </node>
+                                                                <node index="1" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="" resource-id="" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                        <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/detail_recommend_image" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="1" text="长安CS35 2015款 1.6L 自动豪华型 国IV" resource-id="com.ganji.android.haoche_c:id/detail_recommend_title" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="2" text="2015年/7.4万公里" resource-id="com.ganji.android.haoche_c:id/detail_recommend_msg" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="3" text="5.00万" resource-id="com.ganji.android.haoche_c:id/detail_recommend_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="4" text="新车价10.10万" resource-id="com.ganji.android.haoche_c:id/detail_new_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                    </node>
+                                                                    <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/detail_recommend_division" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                </node>
+                                                                <node index="2" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="" resource-id="" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                        <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/detail_recommend_image" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="1" text="长安CS35 2015款 1.6L 自动豪华型 国IV" resource-id="com.ganji.android.haoche_c:id/detail_recommend_title" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="2" text="2015年/7.4万公里" resource-id="com.ganji.android.haoche_c:id/detail_recommend_msg" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="3" text="5.00万" resource-id="com.ganji.android.haoche_c:id/detail_recommend_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="4" text="新车价10.10万" resource-id="com.ganji.android.haoche_c:id/detail_new_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                    </node>
+                                                                    <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/detail_recommend_division" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                </node>
+                                                                <node index="3" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="" resource-id="" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                        <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/detail_recommend_image" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="1" text="江淮 瑞风S3 2014款 1.5L CVT豪华型" resource-id="com.ganji.android.haoche_c:id/detail_recommend_title" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="2" text="2015年/8.3万公里" resource-id="com.ganji.android.haoche_c:id/detail_recommend_msg" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="3" text="4.60万" resource-id="com.ganji.android.haoche_c:id/detail_recommend_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="4" text="新车价8.70万" resource-id="com.ganji.android.haoche_c:id/detail_new_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                    </node>
+                                                                    <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/detail_recommend_division" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                </node>
+                                                                <node index="4" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="" />
+                                                            </node>
+                                                        </node>
+                                                    </node>
+                                                </node>
+                                            </node>
+                                        </node>
+                                        <node index="2" text="" resource-id="com.ganji.android.haoche_c:id/view_module_detail_title_bar" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                            <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/ll_title" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/iv_back" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                <node index="1" text="" resource-id="" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                            </node>
+                                            <node index="1" text="" resource-id="" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                        </node>
+                                    </node>
+                                </node>
+                            </node>
+                        </node>
+                    </node>
+                </node>
+            </node>
+        </node>
+        <node index="1" text="" resource-id="android:id/statusBarBackground" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+    </node>
+    <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+        <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+            <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/action_bar_root" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                    <node index="0" text="" resource-id="android:id/content" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                        <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/sub_container" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="" />
+                        <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/main_container" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                            <node index="0" text="" resource-id="" class="android.support.v4.widget.SlidingPaneLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                <node index="0" text="" resource-id="" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                <node index="1" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                    <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/content_layout" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                        <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/sv_scroll_car_detail" class="android.widget.ScrollView" package="com.ganji.android.haoche_c" content-desc="">
+                                            <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/view_module_car_photo" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                    <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                        <node index="0" text="" resource-id="" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                            <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/vp_car_photo" class="android.support.v4.view.ViewPager" package="com.ganji.android.haoche_c" content-desc="">
+                                                                <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/layout_photo" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/simpleDrawee" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                </node>
+                                                            </node>
+                                                            <node index="2" text="" resource-id="com.ganji.android.haoche_c:id/iv_car_status" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                            <node index="3" text="" resource-id="" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                <node index="0" text="车源号 HC-80116339" resource-id="com.ganji.android.haoche_c:id/tv_clue_id" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                <node index="1" text="1/34" resource-id="com.ganji.android.haoche_c:id/tv_count" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                            </node>
+                                                        </node>
+                                                    </node>
+                                                </node>
+                                                <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/layout_banner" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                    <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                        <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                            <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/iv_detail_banner" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                        </node>
+                                                    </node>
+                                                </node>
+                                                <node index="2" text="" resource-id="com.ganji.android.haoche_c:id/view_module_car_price_info" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                    <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                        <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                            <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/view_module_car_price_info" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                <node index="0" text=" 长安CS35 2015款 1.6L 自动豪华型 国IV" resource-id="com.ganji.android.haoche_c:id/tv_title_text" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/label_content" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="0过户" resource-id="" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                    <node index="1" text="超值" resource-id="" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                </node>
+                                                                <node index="2" text="" resource-id="" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/ll_price" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                        <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/ll_new_price_desc" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                            <node index="0" text="原价4.82万" resource-id="com.ganji.android.haoche_c:id/tv_new_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        </node>
+                                                                        <node index="1" text="" resource-id="" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="2" text="全部车源信息" resource-id="com.ganji.android.haoche_c:id/tv_show_more_msg" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                    </node>
+                                                                </node>
+                                                            </node>
+                                                        </node>
+                                                    </node>
+                                                </node>
+                                                <node index="5" text="" resource-id="com.ganji.android.haoche_c:id/view_module_like_recommend" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                    <node index="0" text="" resource-id="" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                        <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                            <node index="0" text="" resource-id="" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                                            <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/ll_like_container" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                <node index="0" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="猜你喜欢" resource-id="" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                </node>
+                                                                <node index="1" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="" resource-id="" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                        <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/detail_recommend_image" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="1" text="长安CS35 2015款 1.6L 自动豪华型 国IV" resource-id="com.ganji.android.haoche_c:id/detail_recommend_title" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="2" text="2015年/7.4万公里" resource-id="com.ganji.android.haoche_c:id/detail_recommend_msg" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="3" text="5.00万" resource-id="com.ganji.android.haoche_c:id/detail_recommend_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="4" text="新车价10.10万" resource-id="com.ganji.android.haoche_c:id/detail_new_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                    </node>
+                                                                    <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/detail_recommend_division" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                </node>
+                                                                <node index="2" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="" resource-id="" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                        <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/detail_recommend_image" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="1" text="长安CS35 2015款 1.6L 自动豪华型 国IV" resource-id="com.ganji.android.haoche_c:id/detail_recommend_title" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="2" text="2015年/7.4万公里" resource-id="com.ganji.android.haoche_c:id/detail_recommend_msg" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="3" text="5.00万" resource-id="com.ganji.android.haoche_c:id/detail_recommend_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="4" text="新车价10.10万" resource-id="com.ganji.android.haoche_c:id/detail_new_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                    </node>
+                                                                    <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/detail_recommend_division" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                </node>
+                                                                <node index="3" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                    <node index="0" text="" resource-id="" class="android.widget.RelativeLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                                        <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/detail_recommend_image" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="1" text="江淮 瑞风S3 2014款 1.5L CVT豪华型" resource-id="com.ganji.android.haoche_c:id/detail_recommend_title" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="2" text="2015年/8.3万公里" resource-id="com.ganji.android.haoche_c:id/detail_recommend_msg" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="3" text="4.60万" resource-id="com.ganji.android.haoche_c:id/detail_recommend_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                        <node index="4" text="新车价8.70万" resource-id="com.ganji.android.haoche_c:id/detail_new_price" class="android.widget.TextView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                    </node>
+                                                                    <node index="1" text="" resource-id="com.ganji.android.haoche_c:id/detail_recommend_division" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                                                </node>
+                                                                <node index="4" text="" resource-id="" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="" />
+                                                            </node>
+                                                        </node>
+                                                    </node>
+                                                </node>
+                                            </node>
+                                        </node>
+                                        <node index="2" text="" resource-id="com.ganji.android.haoche_c:id/view_module_detail_title_bar" class="android.widget.FrameLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                            <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/ll_title" class="android.widget.LinearLayout" package="com.ganji.android.haoche_c" content-desc="">
+                                                <node index="0" text="" resource-id="com.ganji.android.haoche_c:id/iv_back" class="android.widget.ImageView" package="com.ganji.android.haoche_c" content-desc="" />
+                                                <node index="1" text="" resource-id="" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                            </node>
+                                            <node index="1" text="" resource-id="" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+                                        </node>
+                                    </node>
+                                </node>
+                            </node>
+                        </node>
+                    </node>
+                </node>
+            </node>
+        </node>
+        <node index="1" text="" resource-id="android:id/statusBarBackground" class="android.view.View" package="com.ganji.android.haoche_c" content-desc="" />
+    </node>
+    <extra app-id="com.ganji.android.haoche_c 5.0.9.0" car_service_status="2" />
+</hierarchy>

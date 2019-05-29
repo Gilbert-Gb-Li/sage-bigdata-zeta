@@ -1,0 +1,2 @@
+app.writer.orc=com.haima.sage.bigdata.etl.writer.OrcDataWriter
+app.reader.orc=com.haima.sage.bigdata.etl.reader.OrcFileLogReader

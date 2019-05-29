@@ -1,0 +1,13 @@
+<div style="padding-top:2px;" class="col-sm-12 col-md-12">
+    <div class="input-group col-sm-8 col-md-8 " style="float:left"
+         ng-class="{'has-error':add_form['filter[{{$index}}].ref'].$invalid&&(add_form['filter[{{$index}}].ref'].$dirty||add_form.$submitted)}">
+        <span class="input-group-addon">分析规则</span>
+    <select class="form-control" ng-model="filter.ref"
+            name="filter[{{$index}}].ref" required>
+        <option value="{{x.id}}" ng-repeat="x in analyzers" ng-hide="x.id==rule.id">
+        {{x.name}}
+      </option>
+    </select>
+  </div>
+</div>
+

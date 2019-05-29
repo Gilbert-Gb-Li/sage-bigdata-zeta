@@ -1,0 +1,45 @@
+stages:
+  - install_deps
+  - test
+  - build
+  - deploy
+cache:
+  key: ${CI_BUILD_REF_NAME}
+  paths:
+    - node_modules/
+    - bower_components/
+# 安装依赖
+install_deps:
+  stage: install_deps
+  only:
+    - develop
+    - master
+  script:
+    - npm install gulp -g
+    - npm install bower -g
+    - npm install
+    - bower install
+# test
+test:
+  stage: test
+  only:
+    - develop
+    - master
+  script:
+    - gulp serve:test
+# 编译
+build:
+  stage: build
+  only:
+    - develop
+    - master
+  script:
+    - gulp build
+# 部署
+deploy:
+  stage: deploy
+  only:
+    - develop
+    - master
+  script:
+    - gulp deploy

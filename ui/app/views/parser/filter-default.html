@@ -1,0 +1,510 @@
+<div style="display: inline;padding-left: 0px" class="col-sm-12 col-md-12 control-box">
+    <div style="padding-top:5px">
+        <div class="input-group col-sm-10 col-md-10" style="padding-top:5px;padding-left: 20px">
+            <input ng-model="case.name" value="case" type="hidden">
+            <span class="input-group-addon">DEFAULT:</span>
+            <select class="form-control" ng-model="filter.default.name" ng-change="caseDefaultChange(filterIndex)">
+                <option value="">无</option>
+                <option value="addFields">添加字段</option>
+                <option value="removeFields">删除字段</option>
+                <option value="gzip">字段数据压缩</option>
+                <option value="gunzip">字段数据解压缩</option>
+
+                <option value="mapping">字段重命名</option>
+                <option value="merger">合并字段</option>
+                <option value="fieldCut">字段裁剪</option>
+                <option value="replace">字段值替换</option>
+                <option value="fieldMulti">字段乘法</option>
+                <option value="fieldAdditive">字段加法</option>
+                <option value="extends">数组扩展到多条</option>
+                <option value="list2map">数组转MAP</option>
+                <option value="byKnowledge">知识库补充</option>
+                <option value="script">脚本解析</option>
+                <option value="reParser">字段再解析</option>
+
+                <option value="drop">删除</option>
+            </select>
+        </div>
+        <div ng-switch="filter.default.name">
+            <div ng-switch-when="byKnowledge">
+                <label class="col-sm-2 col-md-2 control-label">知识库:</label>
+                <div class="col-sm-4 col-md-4">
+                    <select class="form-control" ng-model="filter.default.id"
+                            name="filter[{{filterIndex}}].default.id" required>
+                        <option value="{{x.id}}" ng-repeat="x in knowledges" ng-hide="x.id==filter.default.id">
+                            {{x.name}}
+                        </option>
+                    </select>
+                </div>
+                <label class="col-sm-2 col-md-2 control-label">
+                    使用脚本:
+
+                </label>
+                <div class="col-sm-4 col-md-4">
+                    <switch class="green" ng-model="filter.default.isScript" ng-change="knowledgeChange(filter.default)"
+                            name="filter[{{filterIndex}}].default.isScript" on="是"
+                            off="否">
+
+                    </switch>
+                </div>
+
+                <media ng-switch="filter.default.isScript">
+                    <media ng-switch-when="true">
+                        <label class="col-sm-2 col-md-2 control-label">
+                            脚本内容:
+                            <select ng-model="filter.default.column" class="form-control ">
+                                <option value="js">javascript</option>
+                                <option value="scala">scala</option>
+                            </select>
+                        </label>
+                        <div class="col-sm-10 col-md-10" ng-switch="filter.default.column">
+                            <div ng-switch-when="js" ui-ace="{ require: ['ace/ext/language_tools','ace/ext/themelist'],
+                                                      advanced: {
+                                                          enableSnippets: true,
+                                                          enableBasicAutocompletion: true,
+                                                          enableLiveAutocompletion: true
+                                                      },
+                                                      useWrapMode : true,
+                                                      showGutter: false,
+                                                      theme:'chrome',
+                                                      mode: 'javascript',
+                                                      firstLineNumber: 5,
+                                                      onLoad: aceLoaded,
+                                                      onChange: aceChanged
+                                                      }" name="filter[{{filterIndex}}].default.value"
+                                 ng-model="filter.default.value"></div>
+                            <div ng-switch-when="scala" ui-ace="{ require: ['ace/ext/language_tools','ace/ext/themelist'],
+                                                      advanced: {
+                                                          enableSnippets: true,
+                                                          enableBasicAutocompletion: true,
+                                                          enableLiveAutocompletion: true
+                                                      },
+                                                      useWrapMode : true,
+                                                      showGutter: false,
+                                                      theme:'chrome',
+                                                      mode: 'scala',
+                                                      firstLineNumber: 5,
+                                                      onLoad: aceLoaded,
+                                                      onChange: aceChanged
+                                                      }" name="filter[{{filterIndex}}].default.value"
+                                 ng-model="filter.default.value"></div>
+                            <span><em>说明:</em>可以访问内置数据对象event:Map；可以put(key,value),remove(key),get(key);处理完成的数据都放到event即可,对于知识库有内置对象`cache`:List[Map]</span>
+                        </div>
+                    </media>
+                    <media ng-switch-default="">
+                        <label class="col-sm-2 col-md-2 control-label">
+                            数据字段:
+                        </label>
+                        <div class="col-sm-4 col-md-4">
+                            <input class="form-control"
+                                   ng-model="filter.default.value"
+                                   name="filter[{{filterIndex}}].default.value"
+                                   placeholder=""
+                                   required/>
+                        </div>
+                        <label class="col-sm-2 col-md-2 control-label">
+                            知识库字段:
+                        </label>
+                        <div class="col-sm-4 col-md-4">
+                            <input class="form-control" ng-model="filter.default.column"
+                                   name="filter[{{filterIndex}}].default.column" placeholder="" required>
+                        </div>
+                    </media>
+                </media>
+
+            </div>
+
+
+            <div ng-switch-when="addFields">
+                <div class="input-group col-sm-5 col-md-5" style="float:left;padding-top: 5px; padding-left:20px"
+                     ng-repeat="field in filter.default.fields">
+                    <input placeholder="字段名称" ng-model="field[0]" class="form-control"
+                           ng-class="{'has-error':add_form['filter[{{filterIndex}}].default.fields[{{$index}}].r[0]'].$invalid&&(add_form['filter[{{filterIndex}}].default.fields[{{$index}}].r[0]'].$dirty||add_form.$submitted)}"
+                           name="filter[{{filterIndex}}].default.fields[{{$index}}].r[0]"
+                           required>
+                    <span class="input-group-addon"><i class="fa fa-link"></i></span>
+                    <input placeholder="内容(%{field}可以引用其他字段的值)" ng-model="field[1]" class="form-control"
+                           ng-class="{'has-error':add_form['filter[{{filterIndex}}].default.fields[{{$index}}].r[1]'].$invalid&&(add_form['filter[{{filterIndex}}].default.fields[{{$index}}].r[1]'].$dirty||add_form.$submitted)}"
+                           name="filter[{{filterIndex}}].default.fields[{{$index}}].r[1]"
+                           required>
+                    <span class="input-group-addon btn btn-sm mouse-on" ng-disabled="filter.default.fields.length==1"
+                          ng-click="filter.default.fields.length==1||removeFilterDefaultTuple(filterIndex,$index)"><i
+                            class="fa fa-remove"></i></span>
+                </div>
+                <label class="col-sm-1 col-md-1" style="padding-left: 10px;padding-top:5px"><span
+                        class="btn btn-primary btn-sm bg-success" ng-click="addFilterDefaultTuple(filterIndex)"
+                        title="添加内容">&nbsp;&nbsp;
+                                <i class="fa fa-plus"></i>&nbsp;&nbsp;</span></label>
+            </div>
+            <div style="padding-top:2px" class="col-sm-10 col-md-10 control-box" ng-switch-when="removeFields">
+                <div class="input-group col-sm-5 col-md-5" style="float:left;padding-top: 5px; padding-left:2px"
+                     ng-repeat="field in filter.default.fields track by $index">
+                    <input placeholder="字段名称" ng-model="filter.default.fields[$index]" class="form-control"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           ng-class="{'has-error':add_form['filter[{{filterIndex}}].default.fields[{{$index}}]'].$invalid&&(add_form['filter[{{filterIndex}}].default.fields[{{$index}}]'].$dirty||add_form.$submitted)}"
+                           name="filter[{{filterIndex}}].default.fields[{{$index}}]"
+                           required>
+                    <span class="input-group-addon btn btn-inverse btn-small"
+                          ng-disabled="filter.default.fields.length==1"
+                          ng-click="filter.default.fields.length==1||removeFilterDefaultOne($parent.$index,$index)"><i
+                            class="fa fa-remove "></i></span>
+                </div>
+                <label class="col-sm-1 col-md-1" style="padding-left: -2px;padding-top: 2px"><span
+                        class="btn btn-primary btn-sm bg-success" ng-click="addFilterDefaultOne($index)" title="添加字段">&nbsp;&nbsp;
+                                <i class="fa fa-plus"></i>&nbsp;&nbsp;</span></label>
+
+            </div>
+            <div style="padding-top:2px" class="col-sm-10 col-md-10 control-box" ng-switch-when="gzip">
+                <div class="input-group col-sm-5 col-md-5" style="float:left;padding-top: 5px; padding-left:2px"
+                     ng-repeat="field in filter.default.fields track by $index">
+                    <input placeholder="字段名称" ng-model="filter.default.fields[$index]" class="form-control"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           ng-class="{'has-error':add_form['filter[{{filterIndex}}].default.fields[{{$index}}]'].$invalid&&(add_form['filter[{{filterIndex}}].default.fields[{{$index}}]'].$dirty||add_form.$submitted)}"
+                           name="filter[{{filterIndex}}].default.fields[{{$index}}]"
+                           required>
+                    <span class="input-group-addon btn btn-inverse btn-small"
+                          ng-disabled="filter.default.fields.length==1"
+                          ng-click="filter.default.fields.length==1||removeFilterDefaultOne($parent.$index,$index)"><i
+                            class="fa fa-remove "></i></span>
+                </div>
+                <label class="col-sm-1 col-md-1" style="padding-left: -2px;padding-top: 2px"><span
+                        class="btn btn-primary btn-sm bg-success" ng-click="addFilterDefaultOne($index)" title="添加字段">&nbsp;&nbsp;
+                                <i class="fa fa-plus"></i>&nbsp;&nbsp;</span></label>
+
+            </div>
+            <div style="padding-top:2px" class="col-sm-10 col-md-10 control-box" ng-switch-when="gunzip">
+                <div class="input-group col-sm-5 col-md-5" style="float:left;padding-top: 5px; padding-left:2px"
+                     ng-repeat="field in filter.default.fields track by $index">
+                    <input placeholder="字段名称" ng-model="filter.default.fields[$index]" class="form-control"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           ng-class="{'has-error':add_form['filter[{{filterIndex}}].default.fields[{{$index}}]'].$invalid&&(add_form['filter[{{filterIndex}}].default.fields[{{$index}}]'].$dirty||add_form.$submitted)}"
+                           name="filter[{{filterIndex}}].default.fields[{{$index}}]"
+                           required>
+                    <span class="input-group-addon btn btn-inverse btn-small"
+                          ng-disabled="filter.default.fields.length==1"
+                          ng-click="filter.default.fields.length==1||removeFilterDefaultOne($parent.$index,$index)"><i
+                            class="fa fa-remove "></i></span>
+                </div>
+                <label class="col-sm-1 col-md-1" style="padding-left: -2px;padding-top: 2px"><span
+                        class="btn btn-primary btn-sm bg-success" ng-click="addFilterDefaultOne($index)" title="添加字段">&nbsp;&nbsp;
+                                <i class="fa fa-plus"></i>&nbsp;&nbsp;</span></label>
+
+            </div>
+            <div style="padding-top:2px" class="col-sm-12 col-md-12" ng-switch-when="mapping">
+                <div class="input-group col-sm-5 col-md-5" style="float:left;padding-top: 5px; padding-left:2px"
+                     ng-repeat="field in filter.default.fields">
+                    <input placeholder="原始字段" ng-model="field[0]" class="form-control"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           ng-class="{'has-error':add_form['filter[{{filterIndex}}].default.fields[{{$index}}].r[0]'].$invalid&&(add_form['filter[{{filterIndex}}].default.fields[{{$index}}].r[0]'].$dirty||add_form.$submitted)}"
+                           name="filter[{{filterIndex}}].default.fields[{{$index}}].r[0]"
+                           required>
+                    <span class="input-group-addon"><i class="fa fa-link"></i></span>
+                    <input placeholder="重命名后字段名称" ng-model="field[1]" class="form-control"
+                           ng-class="{'has-error':add_form['filter[{{filterIndex}}].default.fields[{{$index}}].r[1]'].$invalid&&(add_form['filter[{{filterIndex}}].default.fields[{{$index}}].r[1]'].$dirty||add_form.$submitted)}"
+                           name="filter[{{filterIndex}}].default.fields[{{$index}}].r[1]"
+                           required>
+                    <span class="input-group-addon mouse-on btn btn-inverse btn-small"
+                          ng-disabled="filter.default.fields.length==1"
+                          ng-click="filter.default.fields.length==1||removeFilterDefaultTuple(filterIndex,$index)"><i
+                            class="fa fa-remove "></i></span>
+                </div>
+                <label class="col-sm-1 col-md-1" style="padding-left: 10px;padding-top: 2px"><span
+                        class="btn btn-primary btn-sm bg-success" ng-click="addFilterDefaultTuple($index)" title="添加内容">&nbsp;&nbsp;
+                                <i class="fa fa-plus"></i>&nbsp;&nbsp;</span></label>
+            </div>
+            <div style="padding-top:2px" class="col-sm-12 col-md-12" ng-switch-when="merger">
+                <div style="padding-left: 40px;">
+                    <div class="input-group col-sm-4 col-md-4"
+                         style="float:left;padding-top: 5px; padding-right:2px;padding-left: 0px;"
+                         ng-repeat="field in filter.default.fields track by $index">
+                        <div class=" input-group col-sm-3 col-md-3"
+                             style="float:left;padding-top: 5px; padding-right:2px;padding-left: 0px;">
+      <span ng-if="$index>0" style="float:left;padding-top: 5px; padding-right:2px;padding-left: 0px;">
+        <i style="padding-left: 20px" class=" fa fa-plus"></i>
+      </span>
+                            <span ng-if="$index==0"
+                                  style="float:left;padding-top: 5px; padding-right:2px;padding-left: 0px;">
+       <i>字段:</i>
+
+      </span>
+                        </div>
+
+                        <div class="input-group col-sm-9 col-md-9">
+                            <input placeholder="要合并的字段" ng-model="filter.default.fields[$index]"
+                                   class="form-control ui-autocomplete"
+                                   name="filter[{{$parent.$index}}].default.fields[{{$index}}]"
+                                   ng-class="{'has-error':add_form['filter[{{$parent.$index}}].default.fields[{{$index}}]'].$invalid&&(add_form['filter[{{$parent.$index}}].default.fields[{{$index}}]'].$dirty||add_form.$submitted)}"
+                                   uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8">
+                            <span class="input-group-addon btn btn-danger btn-sm"
+                                  ng-disabled="filter.default.fields.length<=2"
+                                  ng-click="filter.default.fields.length<=2|| removeFilterDefaultOne($parent.$index,$index)">
+        <i class="fa fa-remove "></i>
+      </span>
+                        </div>
+
+                    </div>
+                    <label class="col-sm-3 col-md-3" style="padding-left: 0;padding-top: 7px;"><span
+                            class=" btn btn-primary btn-sm bg-success" style="margin-left: 50%;"
+                            ng-click="addFilterDefaultOne($index)"
+                            title="添加内容">&nbsp;&nbsp; <i class="fa fa-plus"></i>&nbsp;&nbsp;</span></label>
+                </div>
+                <div style="display: inline;padding-left: 0px;padding-right:2px;padding-top:5px;float: right"
+                     class="col-sm-8 col-md-8 control-box">
+
+                    <div class="input-group" style="float:left">
+                        <span class="input-group-addon">  WITH </span>
+                        <input type="text" class="required form-control"
+                               ng-model="filter.default.sep"
+                               name="filter[{{$index}}].default.sep"
+                               ng-class="{'has-error':add_form['filter[{{$index}}].default.sep'].$invalid&&(add_form['filter[{{$index}}].default.sep'].$dirty||add_form.$submitted)}"
+                               placeholder="特殊值说明:\s->空格,\n->换行,\t ->tab" required>
+                        <span
+                                class="input-group-addon">合并为
+    </span>
+                        <input class="form-control"
+                               name="filter[{{$index}}].default.field"
+                               ng-class="{'has-error':add_form['filter[{{$index}}].default.field'].$invalid&&(add_form['filter[{{$index}}].default.field'].$dirty||add_form.$submitted)}"
+                               ng-model="filter.default.field"
+                               placeholder="合并后的字段名称" required>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: inline ;margin-left: 5%;padding-top:5px" class="col-sm-10 col-md-10 control-box"
+                 ng-switch-when="fieldCut">
+                <div class="input-group col-sm-3 col-md-3 " style="float:left"><span
+                        class="input-group-addon">字段</span>
+                    <input class="form-control ui-autocomplete"
+                           name="filter[{{$index}}].default.field"
+                           ng-class="{'has-error':add_form['filter[{{$index}}].default.field'].$invalid&&(add_form['filter[{{$index}}].default.field'].$dirty||add_form.$submitted)}"
+
+                           ng-model="filter.default.field"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           placeholder="字段名称" required>
+                </div>
+                <div class="input-group col-sm-4 col-md-4 " style="float:left">
+                    <span class="input-group-addon">截取起始位置</span>
+                    <input class="form-control"
+                           name="filter[{{$index}}].default.from"
+                           ng-class="{'has-error':add_form['filter[{{$index}}].default.from'].$invalid&&(add_form['filter[{{$index}}].default.from'].$dirty||add_form.$submitted)}"
+
+                           ng-model="filter.default.from" ng-init="filter.default.from?filter.default.from:0"
+                           placeholder="开始位置" required type="number">
+                </div>
+                <div class="input-group col-sm-4 col-md-4 " style="float:left">
+                    <span class="input-group-addon">截取长度</span>
+                    <input class="form-control" type="number"
+                           name="filter[{{$index}}].default.limit"
+                           ng-class="{'has-error':add_form['filter[{{$index}}].default.limit'].$invalid&&(add_form['filter[{{$index}}].default.limit'].$dirty||add_form.$submitted)}"
+
+                           ng-model="filter.default.limit" ng-init="filter.default.limit?filter.default.limit:0"
+                           placeholder="长度" required>
+                </div>
+
+
+            </div>
+            <div style="display: inline ;margin-left: 5%;padding-top:5px" class="col-sm-10 col-md-10 control-box"
+                 ng-switch-when="extends">
+                <div class="input-group col-sm-3 col-md-3 " style="float:left"><span
+                        class="input-group-addon">字段</span>
+                    <input class="form-control ui-autocomplete"
+                           name="filter[{{$index}}].default.field"
+                           ng-class="{'has-error':add_form['filter[{{$index}}].default.field'].$invalid&&(add_form['filter[{{$index}}].default.field'].$dirty||add_form.$submitted)}"
+
+                           ng-model="filter.default.field"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           placeholder="字段名称" required>
+                </div>
+            </div>
+            <div style="display: inline ;margin-left: 5%;padding-top:5px" class="col-sm-10 col-md-10 control-box"
+                  ng-switch-when="list2map">
+                <div class="input-group col-sm-8 col-md-8 " style="float:left"
+                     ng-class="{'has-error':add_form['filter[{{$index}}].default.field'].$invalid&&(add_form['filter[{{$index}}].default.field'].$dirty||add_form.$submitted)}">
+                    <span class="input-group-addon">原始字段</span>
+                    <input class="form-control ui-autocomplete"
+                           name="filter[{{$index}}].default.field"
+                           ng-model="filter.default.field"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           placeholder="字段名称" required>
+                    <label class="input-group-addon"><em
+                            class="hla-required-input">*</em>字段列表:</label>
+                </div>
+
+                <div style="float:left" class='col-sm-8 col-md-8'
+                     ng-class="{'has-error':add_form['filter[{{$index}}].default.fields'].$invalid&&(add_form['filter[{{$index}}].default.fields'].$dirty||add_form.$submitted)}">
+                            <textarea placeholder="字段列表" class="form-control" name="filter[{{$index}}].default.fields"
+                                      ng-model="filter.default.fields" required></textarea>
+
+                </div>
+            </div>
+            <div style="display: inline ;margin-left: 5%;padding-top:5px" class="col-sm-10 col-md-10 control-box"
+                 ng-switch-when="fieldMulti">
+                <div class="input-group col-sm-3 col-md-3 " style="float:left"><span
+                        class="input-group-addon">字段</span>
+                    <input class="form-control ui-autocomplete"
+                           name="filter[{{$index}}].default.field"
+                           ng-class="{'has-error':add_form['filter[{{$index}}].default.field'].$invalid&&(add_form['filter[{{$index}}].default.field'].$dirty||add_form.$submitted)}"
+
+                           ng-model="filter.default.field"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           placeholder="字段名称" required>
+                </div>
+                <div class="input-group col-sm-4 col-md-4 " style="float:left">
+                    <span class="input-group-addon">数据值</span>
+                    <input class="form-control"
+                           name="filter[{{$index}}].default.value"
+                           ng-class="{'has-error':add_form['filter[{{$index}}].default.value'].$invalid&&(add_form['filter[{{$index}}].default.value'].$dirty||add_form.$submitted)}"
+
+                           ng-model="filter.default.value" ng-init="filter.default.value?filter.default.value:1"
+                           ng-pattern="\d*\.?\d*"
+                           placeholder="数值"
+                           required type="number">
+                </div>
+
+
+            </div>
+            <div style="display: inline ;margin-left: 5%;padding-top:5px" class="col-sm-10 col-md-10 control-box"
+                 ng-switch-when="fieldAdditive">
+                <div class="input-group col-sm-3 col-md-3 " style="float:left"><span
+                        class="input-group-addon">字段</span>
+                    <input class="form-control ui-autocomplete"
+                           name="filter[{{$index}}].default.field"
+                           ng-class="{'has-error':add_form['filter[{{$index}}].default.field'].$invalid&&(add_form['filter[{{$index}}].default.field'].$dirty||add_form.$submitted)}"
+
+                           ng-model="filter.default.field"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           placeholder="字段名称" required>
+                </div>
+                <div class="input-group col-sm-4 col-md-4 " style="float:left">
+                    <span class="input-group-addon">数据值</span>
+                    <input class="form-control"
+                           name="filter[{{$index}}].default.value"
+                           ng-class="{'has-error':add_form['filter[{{$index}}].default.value'].$invalid&&(add_form['filter[{{$index}}].default.value'].$dirty||add_form.$submitted)}"
+
+                           ng-model="filter.default.value" ng-init="filter.default.value?filter.default.value:1"
+                           ng-pattern="\d*\.?\d*"
+                           placeholder="数值"
+                           required type="number">
+                </div>
+
+
+            </div>
+            <div style="display: inline ;margin-left: 5%;padding-top:5px" class="col-sm-10 col-md-10 control-box"
+                 ng-switch-when="replace">
+                <div class="input-group col-sm-3 col-md-3 " style="float:left"><span
+                        class="input-group-addon">字段</span>
+                    <input class="form-control ui-autocomplete"
+                           name="filter[{{$index}}].default.field"
+                           ng-class="{'has-error':add_form['filter[{{$index}}].default.field'].$invalid&&(add_form['filter[{{$index}}].default.field'].$dirty||add_form.$submitted)}"
+
+                           ng-model="filter.default.field"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           placeholder="字段名称" required>
+                </div>
+                <div class="input-group col-sm-4 col-md-4 " style="float:left">
+                    <span class="input-group-addon">要替换的值</span>
+                    <input class="form-control"
+                           name="filter[{{$index}}].default.from"
+                           ng-class="{'has-error':add_form['filter[{{$index}}].default.from'].$invalid&&(add_form['filter[{{$index}}].default.from'].$dirty||add_form.$submitted)}"
+
+                           ng-model="filter.default.from" ng-init="filter.default.from?filter.default.from:0"
+                           placeholder="要替换的值" required type="text">
+                </div>
+                <div class="input-group col-sm-4 col-md-4 " style="float:left">
+                    <span class="input-group-addon">替换后的值</span>
+                    <input class="form-control" type="text"
+                           name="filter[{{$index}}].default.to"
+                           ng-class="{'has-error':add_form['filter[{{$index}}].default.to'].$invalid&&(add_form['filter[{{$index}}].default.to'].$dirty||add_form.$submitted)}"
+
+                           ng-model="filter.default.to"
+                           placeholder="替换后的值">
+                </div>
+
+
+            </div>
+
+            <div style="padding-top:2px" class="col-sm-10 col-md-10 control-box" ng-switch-when="reParser">
+                <div style="padding-top:2px;" class="col-sm-12 col-md-12">
+                    <div class="input-group col-sm-6 col-md-6 " style="float:left"><span
+                            class="input-group-addon">字段</span>
+                        <input class="form-control ui-autocomplete" ng-model="filter.default.field" placeholder="字段名称"
+                               uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                               ng-class="{'has-error':add_form['filter[{{$index}}].default.field'].$invalid&&(add_form['filter[{{$index}}].default.field'].$dirty||add_form.$submitted)}"
+                               name="filter[{{$index}}].default.field" required>
+                    </div>
+                    <div class="input-group col-sm-6 col-md-6 " style="float:left">
+                        <span class="input-group-addon">解析规则</span>
+                        <select class="form-control" ng-model="filter.default.ref"
+                                ng-class="{'has-error':add_form['filter[{{$index}}].default.ref'].$invalid&&(add_form['filter[{{$index}}].default.ref'].$dirty||add_form.$submitted)}"
+                                name="filter[{{$index}}].default.ref" required>
+                            <option value="{{x.id}}" ng-repeat="x in all" ng-hide="x.id==rule.id">
+                                {{x.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+            <div style="padding-top:2px" class="col-sm-10 col-md-10 control-box" ng-switch-when="script">
+                <div style="padding-top:2px;" class="col-sm-12 col-md-12">
+                    <label  class="col-sm-2 col-md-2 control-label">解析脚本
+                        <select ng-model="filter.default.type" class="form-control ">
+                            <option value="js">javascript</option>
+                            <option value="scala">scala</option>
+                        </select>
+                    </label>
+                    <div class="col-sm-10 col-md-10" ng-switch="filter.default.type" >
+                        <div ng-switch-when="js" ui-ace="{
+                                                      require: ['ace/ext/language_tools','ace/ext/themelist'],
+                                                      advanced: {
+                                                          enableSnippets: true,
+                                                          enableBasicAutocompletion: true,
+                                                          enableLiveAutocompletion: true
+                                                      },
+                                                      useWrapMode : true,
+                                                      showGutter: false,
+                                                      theme:'chrome',
+                                                      mode: 'javascript',
+                                                      firstLineNumber: 5,
+                                                      onLoad: aceLoaded,
+                                                      onChange: aceChanged
+                                                    }" name="sqlQueryStr" ng-model="filter.default.script">
+
+                        </div>
+
+                        <div ng-switch-when="scala" ui-ace="{
+                                                      require: ['ace/ext/language_tools','ace/ext/themelist'],
+                                                      advanced: {
+                                                          enableSnippets: true,
+                                                          enableBasicAutocompletion: true,
+                                                          enableLiveAutocompletion: true
+                                                      },
+                                                      useWrapMode : true,
+                                                      showGutter: false,
+                                                      theme:'chrome',
+                                                      mode: 'scala',
+                                                      firstLineNumber: 5,
+                                                      onLoad: aceLoaded,
+                                                      onChange: aceChanged
+                                                    }" name="sqlQueryStr" ng-model="filter.default.script">
+
+                        </div>
+
+
+                        <!--<textarea id="script_id" class="form-control"
+                                  ng-model="filter.script"
+                                  name="filter[{{$parent.$index}}].script"
+                                  placeholder="说明：" required>
+                        </textarea>-->
+                        <span><em>说明:</em>内置数据对象event Map类型；可以put(key,value),remove(key),get(key);处理完成的数据都放到event即可！</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+

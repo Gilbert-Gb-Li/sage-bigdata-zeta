@@ -1,0 +1,87 @@
+{
+  "name": "regex",
+  "value": "%{SYSLOGTIMESTAMP:@timestamp} %{NOTSPACE:host_name} %{NOTSPACE:action}(: |>)%{ALL:msg}",
+  "filter": [
+    {
+      "field": "action",
+      "cases": [
+        {
+          "value": "SESSION",
+          "rule": {
+            "field": "msg",
+            "parser": {
+              "delimit": " ",
+              "tab": "=",
+              "name": "delimitWithKeyMap"
+            },
+            "name": "analyzer"
+          },
+          "name": "case"
+        },
+        {
+          "value": "PNB19",
+          "rule": {
+            "field": "msg",
+            "parser": {
+              "delimit": " ",
+              "fields": [
+                "type",
+                "msg"
+              ],
+              "name": "delimit",
+              "filter": [
+                {
+                  "field": "type",
+                  "cases": [
+                    {
+                      "value": "dnsquery",
+                      "rule": {
+                        "field": "msg",
+                        "parser": {
+                          "delimit": " ",
+                          "fields": [
+                            "time",
+                            "url",
+                            "dst_ip",
+                            "dns"
+                          ],
+                          "name": "delimit"
+                        },
+                        "name": "analyzer"
+                      },
+                      "name": "case"
+                    },
+                    {
+                      "value": "www",
+                      "rule": {
+                        "field": "msg",
+                        "parser": {
+                          "delimit": " ",
+                          "fields": [
+                            "time",
+                            "src_ip",
+                            "method",
+                            "dst_host",
+                            "dst_url"
+                          ],
+                          "name": "delimit"
+                        },
+                        "name": "analyzer"
+                      },
+                      "name": "case"
+                    }
+                  ],
+                  "name": "match"
+                }
+              ]
+            },
+            "name": "analyzer"
+          },
+          "name": "case"
+        }
+      ],
+      "name": "match"
+    }
+  ]
+
+}

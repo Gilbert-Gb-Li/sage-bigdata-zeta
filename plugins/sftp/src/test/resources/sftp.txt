@@ -1,0 +1,8 @@
+登录10.10.106.87
+sftp bigdata@10.10.100.58
+bigdata
+cd /home/bigdata/sftp/backup
+
+sftp> put /data/sftp/monitor.txt /home/bigdata/sftp/backup
+sftp> rm /home/bigdata/sftp/backup/monitor.txt
+sftp> get test.txt

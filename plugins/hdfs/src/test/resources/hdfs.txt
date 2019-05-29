@@ -1,0 +1,11 @@
+访问地址: http://10.10.106.69:50070
+有数据文件目录: /hbase/text.txt
+
+HDFSUsabilityChecker(mate: HDFSMate extends HDFSMate)
+    host="10.10.106.69"
+    port=9000
+    authentication="Some(KERBEROS)"
+    path=FileSource(/hbase/text.txt,Some(other),Some(FileType(txt)),None,Some(Codec(line)),Some(END),0)
+    uri="hdfs://10.10.106.69:9000//hbase/text.txt"
+    name="hdfs"
+    timeout=100

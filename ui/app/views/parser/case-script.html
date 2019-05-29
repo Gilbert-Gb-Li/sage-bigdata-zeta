@@ -1,0 +1,40 @@
+<label class="col-sm-2 col-md-2 control-label">解析脚本
+    <select ng-model="case.rule.type" ng-init="case.rule.type?case.rule.type:'js'" class="form-control ">
+        <option value="js">javascript</option>
+        <option value="scala">scala</option>
+    </select>
+</label>
+<div class="col-sm-10 col-md-10" ng-switch="case.rule.type">
+
+    <div ng-switch-when="js"  ui-ace="{
+                           require: ['ace/ext/language_tools','ace/ext/themelist'],
+                          advanced: {
+                              enableSnippets: true,
+                              enableBasicAutocompletion: true,
+                              enableLiveAutocompletion: true
+                          },
+                          useWrapMode : true,
+                          showGutter: false,
+                          theme:'chrome',
+                          mode: 'javascript',
+                          firstLineNumber: 5,
+                          onLoad: aceLoaded,
+                          onChange: aceChanged
+                }" name="sqlQueryStr" ng-model="case.rule.script"></div>
+    <div ng-switch-when="scala"  ui-ace="{
+                           require: ['ace/ext/language_tools','ace/ext/themelist'],
+                          advanced: {
+                              enableSnippets: true,
+                              enableBasicAutocompletion: true,
+                              enableLiveAutocompletion: true
+                          },
+                          useWrapMode : true,
+                          showGutter: false,
+                          theme:'chrome',
+                          mode: 'scala',
+                          firstLineNumber: 5,
+                          onLoad: aceLoaded,
+                          onChange: aceChanged
+                }" name="sqlQueryStr" ng-model="case.rule.script"></div>
+    <span><em>说明:</em>内置数据对象event Map类型；可以put(key,value),remove(key),get(key);处理完成的数据都放到event即可！</span>
+</div>

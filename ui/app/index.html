@@ -1,0 +1,183 @@
+<!doctype html>
+<!--[if lt IE 9]>
+<html class="no-js lt-ie9" lang="en" ng-app="raysdata.sage-bigdata-etl"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" ng-app="raysdata.sage-bigdata-etl"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>sage bigdata etl</title>
+
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Set a shorter title for iOS6 devices when saved to home screen -->
+    <meta name="apple-mobile-web-app-title" content="sage-bigdata-etl">
+
+    <!-- Author of this application -->
+    <link rel="author" href="http://haima.com">
+    <link rel="icon" href="images/favicon.png" type="image/jpeg">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/jpeg">
+
+    <!-- build:css styles/components.min.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../bower_components/bootstrap-fileinput/css/fileinput.min.css"/>
+    <link rel="stylesheet" href="../bower_components/PACE/themes/blue/pace-theme-minimal.css"/>
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet"
+          href="../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+    <!--<link rel="stylesheet" href="../bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css"/>-->
+    <link rel="stylesheet" href="../bower_components/angular-bootstrap/ui-bootstrap-csp.css"/>
+    <link rel="stylesheet" href="../bower_components/angular-ui-switch/angular-ui-switch.css"/>
+    <link rel="stylesheet" href="../bower_components/nvd3/build/nv.d3.min.css"/>
+    <link rel="stylesheet" href="../bower_components/zTree/css/metroStyle/metroStyle.css">
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.min.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+</head>
+
+<body ontouchstart>
+
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="masthead clearfix" ng-controller="HeaderController">
+                <div ng-include="'views/partials/header.html'"></div>
+            </div>
+            <div class="aside clearfix">
+                <div ng-include="'views/partials/aside.html'"></div>
+            </div>
+            <div class="inner cover clearfix">
+                <div ng-view></div>
+            </div>
+        </div>
+        <div class="mastfoot">
+            <div ng-include="'views/partials/footer.html'"></div>
+        </div>
+    </div>
+</div>
+<!-- confirm modal start-->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body text-danger text-center">
+                <p>确定要删除吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary op_yes" ng-click="confirm_yes()">确定</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- confirm modal end-->
+
+<!-- build:js scripts/components.min.js -->
+<!-- bower:js -->
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/angular/angular.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="../bower_components/angular-route/angular-route.min.js"></script>
+<script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+<!--<script src="../bower_components/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+<script src="../bower_components/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"></script>-->
+<script src="../bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="../bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="../bower_components/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script src="../bower_components/bootstrap-fileinput/js/locales/zh.js"></script>
+<script src="../bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox.js"></script>
+<script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+<script src="../bower_components/angular-ui-ace/ui-ace.min.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/ext-language_tools.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/ext-static_highlight.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/ext-themelist.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/mode-javascript.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/mode-scala.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/mode-groovy.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/mode-protobuf.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/mode-json.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/mode-sql.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/theme-chrome.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/snippets/sql.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/snippets/scala.js"></script>
+<script src="../bower_components/ace-builds/src-min-noconflict/snippets/javascript.js"></script>
+
+
+<script src="../bower_components/d3/d3.min.js"></script>
+<script src="../bower_components/nvd3/build/nv.d3.min.js"></script>
+<script src="../bower_components/angular-nvd3/dist/angular-nvd3.min.js"></script>
+<script src="../bower_components/zTree/js/jquery.ztree.all.min.js"></script>
+<script src="../bower_components/PACE/pace.min.js"></script>
+<script src="../bower_components/moment/min/moment.min.js"></script>
+<script src="../bower_components/moment/locale/zh-cn.js"></script>
+<script src="../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../bower_components/angular-i18n/angular-locale_zh-cn.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js scripts/app.min.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/services/application.js"></script>
+<script src="scripts/directives/directives.js"></script>
+<script src="scripts/directives/tree-directice.js"></script>
+<script src="scripts/directives/datetimepicker.js"></script>
+
+<script src="scripts/filters/filters.js"></script>
+
+<script src="scripts/factories/chart/line.js"></script>
+<script src="scripts/factories/chart/bar.js"></script>
+<script src="scripts/factories/chart/pie.js"></script>
+<script src="scripts/factories/chart/spark_line.js"></script>
+
+<script src="scripts/services/datasource.js"></script>
+<script src="scripts/services/channel.js"></script>
+<script src="scripts/services/knowledge.js"></script>
+<script src="scripts/services/knowledgeinfo.js"></script>
+<script src="scripts/services/analyzer.js"></script>
+<script src="scripts/services/dictionary.js"></script>
+<script src="scripts/services/collector.js"></script>
+<script src="scripts/services/parser.js"></script>
+<script src="scripts/services/writer.js"></script>
+<script src="scripts/services/taskmanager.js"></script>
+<script src="scripts/services/metrics.js"></script>
+<script src="scripts/services/modeling.js"></script>
+
+<script src="scripts/controllers/channel.js"></script>
+<script src="scripts/controllers/knowledge.js"></script>
+<script src="scripts/controllers/knowledgeinfo.js"></script>
+<script src="scripts/controllers/datasource.js"></script>
+<script src="scripts/controllers/collector.js"></script>
+<script src="scripts/controllers/dictionary.js"></script>
+<script src="scripts/controllers/parser.js"></script>
+<script src="scripts/controllers/analyzer.js"></script>
+<script src="scripts/controllers/writer.js"></script>
+<script src="scripts/controllers/taskmanager.js"></script>
+<script src="scripts/controllers/metrics.js"></script>
+<script src="scripts/controllers/modeling.js"></script>
+
+<script src="scripts/directives/mTips.js"></script>
+<script src="scripts/directives/smart-table.js"></script>
+<!-- endbuild -->
+</body>
+
+</html>

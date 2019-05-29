@@ -1,0 +1,4944 @@
+[
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "254750",
+      "mean rate": "2725.45 per second",
+      "1-minute rate": "3001.74 per second",
+      "15-minute rate": "2619.83 per second",
+      "5-minute rate": "2665.68 per second"
+    },
+    "lasttime": "2017-05-24 19:38:55",
+    "createtime": "2017-05-24 19:38:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "250000",
+      "mean rate": "2825.75 per second",
+      "1-minute rate": "3180.05 per second",
+      "15-minute rate": "2629.14 per second",
+      "5-minute rate": "2694.52 per second"
+    },
+    "lasttime": "2017-05-24 19:38:50",
+    "createtime": "2017-05-24 19:38:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "245000",
+      "mean rate": "2935.16 per second",
+      "1-minute rate": "3369.50 per second",
+      "15-minute rate": "2638.21 per second",
+      "5-minute rate": "2722.99 per second"
+    },
+    "lasttime": "2017-05-24 19:38:45",
+    "createtime": "2017-05-24 19:38:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "240000",
+      "mean rate": "3058.41 per second",
+      "1-minute rate": "2741.14 per second",
+      "15-minute rate": "2593.86 per second",
+      "5-minute rate": "2590.61 per second"
+    },
+    "lasttime": "2017-05-24 19:38:40",
+    "createtime": "2017-05-24 19:38:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "170750",
+      "mean rate": "2324.07 per second",
+      "1-minute rate": "2266.75 per second",
+      "15-minute rate": "2562.63 per second",
+      "5-minute rate": "2496.34 per second"
+    },
+    "lasttime": "2017-05-24 19:38:35",
+    "createtime": "2017-05-24 19:38:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "142000",
+      "mean rate": "2073.90 per second",
+      "1-minute rate": "2220.41 per second",
+      "15-minute rate": "2561.30 per second",
+      "5-minute rate": "2491.23 per second"
+    },
+    "lasttime": "2017-05-24 19:38:30",
+    "createtime": "2017-05-24 19:38:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "129000",
+      "mean rate": "2032.44 per second",
+      "1-minute rate": "2239.56 per second",
+      "15-minute rate": "2564.43 per second",
+      "5-minute rate": "2499.49 per second"
+    },
+    "lasttime": "2017-05-24 19:38:25",
+    "createtime": "2017-05-24 19:38:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "120000",
+      "mean rate": "2052.27 per second",
+      "1-minute rate": "2260.38 per second",
+      "15-minute rate": "2567.58 per second",
+      "5-minute rate": "2507.88 per second"
+    },
+    "lasttime": "2017-05-24 19:38:20",
+    "createtime": "2017-05-24 19:38:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "109000",
+      "mean rate": "2038.44 per second",
+      "1-minute rate": "2283.01 per second",
+      "15-minute rate": "2570.74 per second",
+      "5-minute rate": "2516.42 per second"
+    },
+    "lasttime": "2017-05-24 19:38:15",
+    "createtime": "2017-05-24 19:38:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "100000",
+      "mean rate": "2063.04 per second",
+      "1-minute rate": "2307.60 per second",
+      "15-minute rate": "2573.92 per second",
+      "5-minute rate": "2525.10 per second"
+    },
+    "lasttime": "2017-05-24 19:38:10",
+    "createtime": "2017-05-24 19:38:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "90000",
+      "mean rate": "2070.35 per second",
+      "1-minute rate": "2351.71 per second",
+      "15-minute rate": "2578.23 per second",
+      "5-minute rate": "2537.29 per second"
+    },
+    "lasttime": "2017-05-24 19:38:05",
+    "createtime": "2017-05-24 19:38:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "80000",
+      "mean rate": "2079.58 per second",
+      "1-minute rate": "2382.28 per second",
+      "15-minute rate": "2581.45 per second",
+      "5-minute rate": "2546.32 per second"
+    },
+    "lasttime": "2017-05-24 19:38:00",
+    "createtime": "2017-05-24 19:38:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "70000",
+      "mean rate": "2091.36 per second",
+      "1-minute rate": "2380.74 per second",
+      "15-minute rate": "2582.46 per second",
+      "5-minute rate": "2548.77 per second"
+    },
+    "lasttime": "2017-05-24 19:37:55",
+    "createtime": "2017-05-24 19:37:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "57000",
+      "mean rate": "2002.09 per second",
+      "1-minute rate": "2413.83 per second",
+      "15-minute rate": "2585.71 per second",
+      "5-minute rate": "2558.00 per second"
+    },
+    "lasttime": "2017-05-24 19:37:50",
+    "createtime": "2017-05-24 19:37:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "51000",
+      "mean rate": "2173.02 per second",
+      "1-minute rate": "2484.55 per second",
+      "15-minute rate": "2591.20 per second",
+      "5-minute rate": "2574.10 per second"
+    },
+    "lasttime": "2017-05-24 19:37:45",
+    "createtime": "2017-05-24 19:37:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "40000",
+      "mean rate": "2165.59 per second",
+      "1-minute rate": "2491.90 per second",
+      "15-minute rate": "2592.26 per second",
+      "5-minute rate": "2577.02 per second"
+    },
+    "lasttime": "2017-05-24 19:37:40",
+    "createtime": "2017-05-24 19:37:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "30000",
+      "mean rate": "2226.81 per second",
+      "1-minute rate": "2552.03 per second",
+      "15-minute rate": "2596.68 per second",
+      "5-minute rate": "2590.08 per second"
+    },
+    "lasttime": "2017-05-24 19:37:35",
+    "createtime": "2017-05-24 19:37:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "20000",
+      "mean rate": "2360.88 per second",
+      "1-minute rate": "2600.00 per second",
+      "15-minute rate": "2600.00 per second",
+      "5-minute rate": "2600.00 per second"
+    },
+    "lasttime": "2017-05-24 19:37:30",
+    "createtime": "2017-05-24 19:37:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "7000",
+      "mean rate": "2012.24 per second",
+      "1-minute rate": "0.00 per second",
+      "15-minute rate": "0.00 per second",
+      "5-minute rate": "0.00 per second"
+    },
+    "lasttime": "2017-05-24 19:37:26",
+    "createtime": "2017-05-24 19:37:26"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1219799",
+      "mean rate": "1292.82 per second",
+      "1-minute rate": "1443.62 per second",
+      "15-minute rate": "2027.82 per second",
+      "5-minute rate": "1385.43 per second"
+    },
+    "lasttime": "2017-05-24 16:47:30",
+    "createtime": "2017-05-24 16:47:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1214799",
+      "mean rate": "1294.38 per second",
+      "1-minute rate": "1482.17 per second",
+      "15-minute rate": "2033.55 per second",
+      "5-minute rate": "1391.91 per second"
+    },
+    "lasttime": "2017-05-24 16:47:25",
+    "createtime": "2017-05-24 16:47:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1209799",
+      "mean rate": "1295.95 per second",
+      "1-minute rate": "1524.07 per second",
+      "15-minute rate": "2039.31 per second",
+      "5-minute rate": "1398.50 per second"
+    },
+    "lasttime": "2017-05-24 16:47:20",
+    "createtime": "2017-05-24 16:47:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1204799",
+      "mean rate": "1297.55 per second",
+      "1-minute rate": "1587.00 per second",
+      "15-minute rate": "2046.21 per second",
+      "5-minute rate": "1408.55 per second"
+    },
+    "lasttime": "2017-05-24 16:47:15",
+    "createtime": "2017-05-24 16:47:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1199799",
+      "mean rate": "1299.16 per second",
+      "1-minute rate": "1638.01 per second",
+      "15-minute rate": "2052.04 per second",
+      "5-minute rate": "1415.42 per second"
+    },
+    "lasttime": "2017-05-24 16:47:10",
+    "createtime": "2017-05-24 16:47:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1194799",
+      "mean rate": "1300.79 per second",
+      "1-minute rate": "1693.46 per second",
+      "15-minute rate": "2057.90 per second",
+      "5-minute rate": "1422.40 per second"
+    },
+    "lasttime": "2017-05-24 16:47:05",
+    "createtime": "2017-05-24 16:47:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1189799",
+      "mean rate": "1302.44 per second",
+      "1-minute rate": "1753.72 per second",
+      "15-minute rate": "2063.79 per second",
+      "5-minute rate": "1429.50 per second"
+    },
+    "lasttime": "2017-05-24 16:47:00",
+    "createtime": "2017-05-24 16:47:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1183799",
+      "mean rate": "1302.99 per second",
+      "1-minute rate": "1645.41 per second",
+      "15-minute rate": "2058.58 per second",
+      "5-minute rate": "1403.11 per second"
+    },
+    "lasttime": "2017-05-24 16:46:55",
+    "createtime": "2017-05-24 16:46:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1169799",
+      "mean rate": "1294.71 per second",
+      "1-minute rate": "1631.98 per second",
+      "15-minute rate": "2060.02 per second",
+      "5-minute rate": "1396.44 per second"
+    },
+    "lasttime": "2017-05-24 16:46:50",
+    "createtime": "2017-05-24 16:46:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1159799",
+      "mean rate": "1290.79 per second",
+      "1-minute rate": "1617.38 per second",
+      "15-minute rate": "2061.47 per second",
+      "5-minute rate": "1389.65 per second"
+    },
+    "lasttime": "2017-05-24 16:46:45",
+    "createtime": "2017-05-24 16:46:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1149799",
+      "mean rate": "1286.82 per second",
+      "1-minute rate": "1584.13 per second",
+      "15-minute rate": "2061.81 per second",
+      "5-minute rate": "1379.40 per second"
+    },
+    "lasttime": "2017-05-24 16:46:40",
+    "createtime": "2017-05-24 16:46:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1140799",
+      "mean rate": "1283.94 per second",
+      "1-minute rate": "1547.99 per second",
+      "15-minute rate": "2062.15 per second",
+      "5-minute rate": "1368.97 per second"
+    },
+    "lasttime": "2017-05-24 16:46:35",
+    "createtime": "2017-05-24 16:46:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1131799",
+      "mean rate": "1281.01 per second",
+      "1-minute rate": "1508.70 per second",
+      "15-minute rate": "2062.50 per second",
+      "5-minute rate": "1358.36 per second"
+    },
+    "lasttime": "2017-05-24 16:46:30",
+    "createtime": "2017-05-24 16:46:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1121799",
+      "mean rate": "1276.92 per second",
+      "1-minute rate": "1483.39 per second",
+      "15-minute rate": "2063.96 per second",
+      "5-minute rate": "1350.94 per second"
+    },
+    "lasttime": "2017-05-24 16:46:25",
+    "createtime": "2017-05-24 16:46:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1111799",
+      "mean rate": "1272.78 per second",
+      "1-minute rate": "1455.87 per second",
+      "15-minute rate": "2065.43 per second",
+      "5-minute rate": "1343.39 per second"
+    },
+    "lasttime": "2017-05-24 16:46:20",
+    "createtime": "2017-05-24 16:46:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1101799",
+      "mean rate": "1268.59 per second",
+      "1-minute rate": "1408.59 per second",
+      "15-minute rate": "2065.80 per second",
+      "5-minute rate": "1332.36 per second"
+    },
+    "lasttime": "2017-05-24 16:46:15",
+    "createtime": "2017-05-24 16:46:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1087049",
+      "mean rate": "1258.86 per second",
+      "1-minute rate": "996.54 per second",
+      "15-minute rate": "2043.04 per second",
+      "5-minute rate": "1251.39 per second"
+    },
+    "lasttime": "2017-05-24 16:46:10",
+    "createtime": "2017-05-24 16:46:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1064049",
+      "mean rate": "1239.40 per second",
+      "1-minute rate": "1013.62 per second",
+      "15-minute rate": "2049.97 per second",
+      "5-minute rate": "1258.98 per second"
+    },
+    "lasttime": "2017-05-24 16:46:05",
+    "createtime": "2017-05-24 16:46:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1059049",
+      "mean rate": "1240.80 per second",
+      "1-minute rate": "1014.80 per second",
+      "15-minute rate": "2055.82 per second",
+      "5-minute rate": "1263.33 per second"
+    },
+    "lasttime": "2017-05-24 16:46:00",
+    "createtime": "2017-05-24 16:46:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1054049",
+      "mean rate": "1242.22 per second",
+      "1-minute rate": "1016.09 per second",
+      "15-minute rate": "2061.70 per second",
+      "5-minute rate": "1267.75 per second"
+    },
+    "lasttime": "2017-05-24 16:45:55",
+    "createtime": "2017-05-24 16:45:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1050049",
+      "mean rate": "1244.84 per second",
+      "1-minute rate": "1017.49 per second",
+      "15-minute rate": "2067.62 per second",
+      "5-minute rate": "1272.25 per second"
+    },
+    "lasttime": "2017-05-24 16:45:50",
+    "createtime": "2017-05-24 16:45:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1045049",
+      "mean rate": "1246.30 per second",
+      "1-minute rate": "1019.01 per second",
+      "15-minute rate": "2073.56 per second",
+      "5-minute rate": "1276.83 per second"
+    },
+    "lasttime": "2017-05-24 16:45:45",
+    "createtime": "2017-05-24 16:45:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1040049",
+      "mean rate": "1247.78 per second",
+      "1-minute rate": "1020.66 per second",
+      "15-minute rate": "2079.54 per second",
+      "5-minute rate": "1281.48 per second"
+    },
+    "lasttime": "2017-05-24 16:45:40",
+    "createtime": "2017-05-24 16:45:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1035049",
+      "mean rate": "1249.27 per second",
+      "1-minute rate": "1039.84 per second",
+      "15-minute rate": "2086.67 per second",
+      "5-minute rate": "1289.57 per second"
+    },
+    "lasttime": "2017-05-24 16:45:35",
+    "createtime": "2017-05-24 16:45:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1030049",
+      "mean rate": "1250.79 per second",
+      "1-minute rate": "1043.30 per second",
+      "15-minute rate": "2092.73 per second",
+      "5-minute rate": "1294.44 per second"
+    },
+    "lasttime": "2017-05-24 16:45:30",
+    "createtime": "2017-05-24 16:45:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1025049",
+      "mean rate": "1252.31 per second",
+      "1-minute rate": "1047.06 per second",
+      "15-minute rate": "2098.81 per second",
+      "5-minute rate": "1299.39 per second"
+    },
+    "lasttime": "2017-05-24 16:45:25",
+    "createtime": "2017-05-24 16:45:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1020049",
+      "mean rate": "1253.86 per second",
+      "1-minute rate": "1051.15 per second",
+      "15-minute rate": "2104.94 per second",
+      "5-minute rate": "1304.42 per second"
+    },
+    "lasttime": "2017-05-24 16:45:20",
+    "createtime": "2017-05-24 16:45:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1016049",
+      "mean rate": "1256.67 per second",
+      "1-minute rate": "1055.59 per second",
+      "15-minute rate": "2111.09 per second",
+      "5-minute rate": "1309.54 per second"
+    },
+    "lasttime": "2017-05-24 16:45:15",
+    "createtime": "2017-05-24 16:45:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1011049",
+      "mean rate": "1258.27 per second",
+      "1-minute rate": "1060.43 per second",
+      "15-minute rate": "2117.28 per second",
+      "5-minute rate": "1314.74 per second"
+    },
+    "lasttime": "2017-05-24 16:45:10",
+    "createtime": "2017-05-24 16:45:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1006049",
+      "mean rate": "1259.88 per second",
+      "1-minute rate": "1083.06 per second",
+      "15-minute rate": "2124.62 per second",
+      "5-minute rate": "1323.39 per second"
+    },
+    "lasttime": "2017-05-24 16:45:05",
+    "createtime": "2017-05-24 16:45:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "1001049",
+      "mean rate": "1261.53 per second",
+      "1-minute rate": "1090.28 per second",
+      "15-minute rate": "2130.88 per second",
+      "5-minute rate": "1328.83 per second"
+    },
+    "lasttime": "2017-05-24 16:45:00",
+    "createtime": "2017-05-24 16:45:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "996049",
+      "mean rate": "1263.19 per second",
+      "1-minute rate": "1098.12 per second",
+      "15-minute rate": "2137.18 per second",
+      "5-minute rate": "1334.35 per second"
+    },
+    "lasttime": "2017-05-24 16:44:55",
+    "createtime": "2017-05-24 16:44:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "992049",
+      "mean rate": "1266.13 per second",
+      "1-minute rate": "1106.65 per second",
+      "15-minute rate": "2143.52 per second",
+      "5-minute rate": "1339.97 per second"
+    },
+    "lasttime": "2017-05-24 16:44:50",
+    "createtime": "2017-05-24 16:44:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "987049",
+      "mean rate": "1267.86 per second",
+      "1-minute rate": "1115.92 per second",
+      "15-minute rate": "2149.89 per second",
+      "5-minute rate": "1345.68 per second"
+    },
+    "lasttime": "2017-05-24 16:44:45",
+    "createtime": "2017-05-24 16:44:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "982049",
+      "mean rate": "1269.57 per second",
+      "1-minute rate": "1143.37 per second",
+      "15-minute rate": "2157.41 per second",
+      "5-minute rate": "1354.86 per second"
+    },
+    "lasttime": "2017-05-24 16:44:40",
+    "createtime": "2017-05-24 16:44:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "977049",
+      "mean rate": "1271.34 per second",
+      "1-minute rate": "1155.83 per second",
+      "15-minute rate": "2163.86 per second",
+      "5-minute rate": "1360.82 per second"
+    },
+    "lasttime": "2017-05-24 16:44:35",
+    "createtime": "2017-05-24 16:44:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "972049",
+      "mean rate": "1273.10 per second",
+      "1-minute rate": "1169.37 per second",
+      "15-minute rate": "2170.34 per second",
+      "5-minute rate": "1366.88 per second"
+    },
+    "lasttime": "2017-05-24 16:44:30",
+    "createtime": "2017-05-24 16:44:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "967049",
+      "mean rate": "1274.92 per second",
+      "1-minute rate": "1184.09 per second",
+      "15-minute rate": "2176.86 per second",
+      "5-minute rate": "1373.05 per second"
+    },
+    "lasttime": "2017-05-24 16:44:25",
+    "createtime": "2017-05-24 16:44:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "963049",
+      "mean rate": "1278.06 per second",
+      "1-minute rate": "1200.09 per second",
+      "15-minute rate": "2183.42 per second",
+      "5-minute rate": "1379.32 per second"
+    },
+    "lasttime": "2017-05-24 16:44:20",
+    "createtime": "2017-05-24 16:44:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "958049",
+      "mean rate": "1279.92 per second",
+      "1-minute rate": "1217.48 per second",
+      "15-minute rate": "2190.01 per second",
+      "5-minute rate": "1385.69 per second"
+    },
+    "lasttime": "2017-05-24 16:44:15",
+    "createtime": "2017-05-24 16:44:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "953049",
+      "mean rate": "1281.80 per second",
+      "1-minute rate": "1236.38 per second",
+      "15-minute rate": "2196.64 per second",
+      "5-minute rate": "1392.18 per second"
+    },
+    "lasttime": "2017-05-24 16:44:10",
+    "createtime": "2017-05-24 16:44:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "948049",
+      "mean rate": "1283.71 per second",
+      "1-minute rate": "1239.54 per second",
+      "15-minute rate": "2202.19 per second",
+      "5-minute rate": "1395.41 per second"
+    },
+    "lasttime": "2017-05-24 16:44:05",
+    "createtime": "2017-05-24 16:44:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "939049",
+      "mean rate": "1280.19 per second",
+      "1-minute rate": "1173.45 per second",
+      "15-minute rate": "2203.32 per second",
+      "5-minute rate": "1385.24 per second"
+    },
+    "lasttime": "2017-05-24 16:44:00",
+    "createtime": "2017-05-24 16:44:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "929049",
+      "mean rate": "1275.25 per second",
+      "1-minute rate": "1101.62 per second",
+      "15-minute rate": "2204.45 per second",
+      "5-minute rate": "1374.91 per second"
+    },
+    "lasttime": "2017-05-24 16:43:55",
+    "createtime": "2017-05-24 16:43:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "921049",
+      "mean rate": "1273.00 per second",
+      "1-minute rate": "1040.93 per second",
+      "15-minute rate": "2206.71 per second",
+      "5-minute rate": "1367.77 per second"
+    },
+    "lasttime": "2017-05-24 16:43:50",
+    "createtime": "2017-05-24 16:43:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "913049",
+      "mean rate": "1270.73 per second",
+      "1-minute rate": "1044.49 per second",
+      "15-minute rate": "2213.43 per second",
+      "5-minute rate": "1373.95 per second"
+    },
+    "lasttime": "2017-05-24 16:43:45",
+    "createtime": "2017-05-24 16:43:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "908049",
+      "mean rate": "1272.62 per second",
+      "1-minute rate": "1065.74 per second",
+      "15-minute rate": "2221.30 per second",
+      "5-minute rate": "1383.60 per second"
+    },
+    "lasttime": "2017-05-24 16:43:40",
+    "createtime": "2017-05-24 16:43:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "903049",
+      "mean rate": "1274.55 per second",
+      "1-minute rate": "1071.45 per second",
+      "15-minute rate": "2228.11 per second",
+      "5-minute rate": "1390.04 per second"
+    },
+    "lasttime": "2017-05-24 16:43:35",
+    "createtime": "2017-05-24 16:43:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "898049",
+      "mean rate": "1276.50 per second",
+      "1-minute rate": "1077.66 per second",
+      "15-minute rate": "2234.95 per second",
+      "5-minute rate": "1396.60 per second"
+    },
+    "lasttime": "2017-05-24 16:43:30",
+    "createtime": "2017-05-24 16:43:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "893049",
+      "mean rate": "1278.48 per second",
+      "1-minute rate": "1084.41 per second",
+      "15-minute rate": "2241.83 per second",
+      "5-minute rate": "1403.26 per second"
+    },
+    "lasttime": "2017-05-24 16:43:25",
+    "createtime": "2017-05-24 16:43:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "889049",
+      "mean rate": "1281.94 per second",
+      "1-minute rate": "1091.74 per second",
+      "15-minute rate": "2248.75 per second",
+      "5-minute rate": "1410.04 per second"
+    },
+    "lasttime": "2017-05-24 16:43:20",
+    "createtime": "2017-05-24 16:43:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "884049",
+      "mean rate": "1283.99 per second",
+      "1-minute rate": "1099.71 per second",
+      "15-minute rate": "2255.70 per second",
+      "5-minute rate": "1416.93 per second"
+    },
+    "lasttime": "2017-05-24 16:43:15",
+    "createtime": "2017-05-24 16:43:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "879049",
+      "mean rate": "1286.05 per second",
+      "1-minute rate": "1091.00 per second",
+      "15-minute rate": "2261.58 per second",
+      "5-minute rate": "1420.58 per second"
+    },
+    "lasttime": "2017-05-24 16:43:10",
+    "createtime": "2017-05-24 16:43:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "870049",
+      "mean rate": "1282.26 per second",
+      "1-minute rate": "1012.00 per second",
+      "15-minute rate": "2263.04 per second",
+      "5-minute rate": "1410.84 per second"
+    },
+    "lasttime": "2017-05-24 16:43:05",
+    "createtime": "2017-05-24 16:43:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "861049",
+      "mean rate": "1278.42 per second",
+      "1-minute rate": "995.67 per second",
+      "15-minute rate": "2268.96 per second",
+      "5-minute rate": "1414.38 per second"
+    },
+    "lasttime": "2017-05-24 16:43:00",
+    "createtime": "2017-05-24 16:43:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "857049",
+      "mean rate": "1282.00 per second",
+      "1-minute rate": "995.29 per second",
+      "15-minute rate": "2276.03 per second",
+      "5-minute rate": "1421.35 per second"
+    },
+    "lasttime": "2017-05-24 16:42:55",
+    "createtime": "2017-05-24 16:42:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "852049",
+      "mean rate": "1284.13 per second",
+      "1-minute rate": "994.88 per second",
+      "15-minute rate": "2283.14 per second",
+      "5-minute rate": "1428.43 per second"
+    },
+    "lasttime": "2017-05-24 16:42:50",
+    "createtime": "2017-05-24 16:42:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "847049",
+      "mean rate": "1286.29 per second",
+      "1-minute rate": "1007.47 per second",
+      "15-minute rate": "2291.13 per second",
+      "5-minute rate": "1438.15 per second"
+    },
+    "lasttime": "2017-05-24 16:42:45",
+    "createtime": "2017-05-24 16:42:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "842299",
+      "mean rate": "1288.85 per second",
+      "1-minute rate": "1016.81 per second",
+      "15-minute rate": "2298.88 per second",
+      "5-minute rate": "1447.19 per second"
+    },
+    "lasttime": "2017-05-24 16:42:40",
+    "createtime": "2017-05-24 16:42:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "837299",
+      "mean rate": "1291.08 per second",
+      "1-minute rate": "1018.27 per second",
+      "15-minute rate": "2306.11 per second",
+      "5-minute rate": "1454.71 per second"
+    },
+    "lasttime": "2017-05-24 16:42:35",
+    "createtime": "2017-05-24 16:42:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "832299",
+      "mean rate": "1293.34 per second",
+      "1-minute rate": "1019.86 per second",
+      "15-minute rate": "2313.39 per second",
+      "5-minute rate": "1462.35 per second"
+    },
+    "lasttime": "2017-05-24 16:42:30",
+    "createtime": "2017-05-24 16:42:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "827299",
+      "mean rate": "1295.64 per second",
+      "1-minute rate": "1021.58 per second",
+      "15-minute rate": "2320.71 per second",
+      "5-minute rate": "1470.12 per second"
+    },
+    "lasttime": "2017-05-24 16:42:25",
+    "createtime": "2017-05-24 16:42:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "823299",
+      "mean rate": "1299.55 per second",
+      "1-minute rate": "1023.46 per second",
+      "15-minute rate": "2328.06 per second",
+      "5-minute rate": "1478.02 per second"
+    },
+    "lasttime": "2017-05-24 16:42:20",
+    "createtime": "2017-05-24 16:42:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "818299",
+      "mean rate": "1301.93 per second",
+      "1-minute rate": "1025.50 per second",
+      "15-minute rate": "2335.46 per second",
+      "5-minute rate": "1486.06 per second"
+    },
+    "lasttime": "2017-05-24 16:42:15",
+    "createtime": "2017-05-24 16:42:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "813299",
+      "mean rate": "1304.36 per second",
+      "1-minute rate": "1045.09 per second",
+      "15-minute rate": "2344.02 per second",
+      "5-minute rate": "1497.59 per second"
+    },
+    "lasttime": "2017-05-24 16:42:10",
+    "createtime": "2017-05-24 16:42:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "808299",
+      "mean rate": "1306.82 per second",
+      "1-minute rate": "1049.01 per second",
+      "15-minute rate": "2351.50 per second",
+      "5-minute rate": "1505.95 per second"
+    },
+    "lasttime": "2017-05-24 16:42:05",
+    "createtime": "2017-05-24 16:42:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "803299",
+      "mean rate": "1309.31 per second",
+      "1-minute rate": "1053.27 per second",
+      "15-minute rate": "2359.03 per second",
+      "5-minute rate": "1514.45 per second"
+    },
+    "lasttime": "2017-05-24 16:42:00",
+    "createtime": "2017-05-24 16:42:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "799299",
+      "mean rate": "1313.51 per second",
+      "1-minute rate": "1057.90 per second",
+      "15-minute rate": "2366.60 per second",
+      "5-minute rate": "1523.10 per second"
+    },
+    "lasttime": "2017-05-24 16:41:55",
+    "createtime": "2017-05-24 16:41:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "794299",
+      "mean rate": "1316.10 per second",
+      "1-minute rate": "1080.31 per second",
+      "15-minute rate": "2375.33 per second",
+      "5-minute rate": "1535.25 per second"
+    },
+    "lasttime": "2017-05-24 16:41:50",
+    "createtime": "2017-05-24 16:41:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "789299",
+      "mean rate": "1318.75 per second",
+      "1-minute rate": "1087.29 per second",
+      "15-minute rate": "2382.99 per second",
+      "5-minute rate": "1544.25 per second"
+    },
+    "lasttime": "2017-05-24 16:41:45",
+    "createtime": "2017-05-24 16:41:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "784299",
+      "mean rate": "1321.42 per second",
+      "1-minute rate": "1094.88 per second",
+      "15-minute rate": "2390.70 per second",
+      "5-minute rate": "1553.39 per second"
+    },
+    "lasttime": "2017-05-24 16:41:40",
+    "createtime": "2017-05-24 16:41:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "779299",
+      "mean rate": "1324.17 per second",
+      "1-minute rate": "1103.13 per second",
+      "15-minute rate": "2398.45 per second",
+      "5-minute rate": "1562.69 per second"
+    },
+    "lasttime": "2017-05-24 16:41:35",
+    "createtime": "2017-05-24 16:41:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "774799",
+      "mean rate": "1327.81 per second",
+      "1-minute rate": "1112.09 per second",
+      "15-minute rate": "2406.24 per second",
+      "5-minute rate": "1572.15 per second"
+    },
+    "lasttime": "2017-05-24 16:41:30",
+    "createtime": "2017-05-24 16:41:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "770299",
+      "mean rate": "1331.49 per second",
+      "1-minute rate": "1121.83 per second",
+      "15-minute rate": "2414.07 per second",
+      "5-minute rate": "1581.77 per second"
+    },
+    "lasttime": "2017-05-24 16:41:25",
+    "createtime": "2017-05-24 16:41:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "765299",
+      "mean rate": "1334.38 per second",
+      "1-minute rate": "1132.42 per second",
+      "15-minute rate": "2421.95 per second",
+      "5-minute rate": "1591.54 per second"
+    },
+    "lasttime": "2017-05-24 16:41:20",
+    "createtime": "2017-05-24 16:41:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "760299",
+      "mean rate": "1337.32 per second",
+      "1-minute rate": "1161.31 per second",
+      "15-minute rate": "2430.98 per second",
+      "5-minute rate": "1604.85 per second"
+    },
+    "lasttime": "2017-05-24 16:41:15",
+    "createtime": "2017-05-24 16:41:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "753299",
+      "mean rate": "1336.76 per second",
+      "1-minute rate": "1088.42 per second",
+      "15-minute rate": "2433.39 per second",
+      "5-minute rate": "1598.21 per second"
+    },
+    "lasttime": "2017-05-24 16:41:10",
+    "createtime": "2017-05-24 16:41:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "743299",
+      "mean rate": "1330.84 per second",
+      "1-minute rate": "1043.96 per second",
+      "15-minute rate": "2438.03 per second",
+      "5-minute rate": "1598.18 per second"
+    },
+    "lasttime": "2017-05-24 16:41:05",
+    "createtime": "2017-05-24 16:41:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "738299",
+      "mean rate": "1333.82 per second",
+      "1-minute rate": "1047.78 per second",
+      "15-minute rate": "2446.04 per second",
+      "5-minute rate": "1608.23 per second"
+    },
+    "lasttime": "2017-05-24 16:41:00",
+    "createtime": "2017-05-24 16:41:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "733299",
+      "mean rate": "1336.86 per second",
+      "1-minute rate": "1051.93 per second",
+      "15-minute rate": "2454.10 per second",
+      "5-minute rate": "1618.45 per second"
+    },
+    "lasttime": "2017-05-24 16:40:55",
+    "createtime": "2017-05-24 16:40:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "728299",
+      "mean rate": "1339.97 per second",
+      "1-minute rate": "1073.83 per second",
+      "15-minute rate": "2463.31 per second",
+      "5-minute rate": "1632.21 per second"
+    },
+    "lasttime": "2017-05-24 16:40:50",
+    "createtime": "2017-05-24 16:40:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "723299",
+      "mean rate": "1343.13 per second",
+      "1-minute rate": "1080.24 per second",
+      "15-minute rate": "2471.46 per second",
+      "5-minute rate": "1642.83 per second"
+    },
+    "lasttime": "2017-05-24 16:40:45",
+    "createtime": "2017-05-24 16:40:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "718299",
+      "mean rate": "1346.33 per second",
+      "1-minute rate": "1087.22 per second",
+      "15-minute rate": "2479.66 per second",
+      "5-minute rate": "1653.63 per second"
+    },
+    "lasttime": "2017-05-24 16:40:40",
+    "createtime": "2017-05-24 16:40:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "714299",
+      "mean rate": "1351.49 per second",
+      "1-minute rate": "1094.80 per second",
+      "15-minute rate": "2487.90 per second",
+      "5-minute rate": "1664.62 per second"
+    },
+    "lasttime": "2017-05-24 16:40:35",
+    "createtime": "2017-05-24 16:40:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "709299",
+      "mean rate": "1354.85 per second",
+      "1-minute rate": "1103.03 per second",
+      "15-minute rate": "2496.19 per second",
+      "5-minute rate": "1675.79 per second"
+    },
+    "lasttime": "2017-05-24 16:40:30",
+    "createtime": "2017-05-24 16:40:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "704299",
+      "mean rate": "1358.29 per second",
+      "1-minute rate": "1129.37 per second",
+      "15-minute rate": "2505.64 per second",
+      "5-minute rate": "1690.51 per second"
+    },
+    "lasttime": "2017-05-24 16:40:25",
+    "createtime": "2017-05-24 16:40:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "699299",
+      "mean rate": "1361.77 per second",
+      "1-minute rate": "1140.61 per second",
+      "15-minute rate": "2514.03 per second",
+      "5-minute rate": "1702.11 per second"
+    },
+    "lasttime": "2017-05-24 16:40:20",
+    "createtime": "2017-05-24 16:40:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "694299",
+      "mean rate": "1365.32 per second",
+      "1-minute rate": "1152.83 per second",
+      "15-minute rate": "2522.46 per second",
+      "5-minute rate": "1713.91 per second"
+    },
+    "lasttime": "2017-05-24 16:40:15",
+    "createtime": "2017-05-24 16:40:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "689299",
+      "mean rate": "1368.95 per second",
+      "1-minute rate": "1166.11 per second",
+      "15-minute rate": "2530.95 per second",
+      "5-minute rate": "1725.91 per second"
+    },
+    "lasttime": "2017-05-24 16:40:10",
+    "createtime": "2017-05-24 16:40:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "685299",
+      "mean rate": "1374.65 per second",
+      "1-minute rate": "1180.55 per second",
+      "15-minute rate": "2539.48 per second",
+      "5-minute rate": "1738.11 per second"
+    },
+    "lasttime": "2017-05-24 16:40:05",
+    "createtime": "2017-05-24 16:40:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "680299",
+      "mean rate": "1378.47 per second",
+      "1-minute rate": "1196.24 per second",
+      "15-minute rate": "2548.05 per second",
+      "5-minute rate": "1750.52 per second"
+    },
+    "lasttime": "2017-05-24 16:40:00",
+    "createtime": "2017-05-24 16:40:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "675299",
+      "mean rate": "1382.32 per second",
+      "1-minute rate": "1213.29 per second",
+      "15-minute rate": "2556.68 per second",
+      "5-minute rate": "1763.13 per second"
+    },
+    "lasttime": "2017-05-24 16:39:55",
+    "createtime": "2017-05-24 16:39:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "670299",
+      "mean rate": "1386.28 per second",
+      "1-minute rate": "1249.21 per second",
+      "15-minute rate": "2566.46 per second",
+      "5-minute rate": "1779.32 per second"
+    },
+    "lasttime": "2017-05-24 16:39:50",
+    "createtime": "2017-05-24 16:39:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "665299",
+      "mean rate": "1390.31 per second",
+      "1-minute rate": "1270.87 per second",
+      "15-minute rate": "2575.19 per second",
+      "5-minute rate": "1792.41 per second"
+    },
+    "lasttime": "2017-05-24 16:39:45",
+    "createtime": "2017-05-24 16:39:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "660299",
+      "mean rate": "1394.46 per second",
+      "1-minute rate": "1294.41 per second",
+      "15-minute rate": "2583.96 per second",
+      "5-minute rate": "1805.73 per second"
+    },
+    "lasttime": "2017-05-24 16:39:40",
+    "createtime": "2017-05-24 16:39:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "655299",
+      "mean rate": "1398.64 per second",
+      "1-minute rate": "1319.99 per second",
+      "15-minute rate": "2592.79 per second",
+      "5-minute rate": "1819.27 per second"
+    },
+    "lasttime": "2017-05-24 16:39:35",
+    "createtime": "2017-05-24 16:39:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "651299",
+      "mean rate": "1405.12 per second",
+      "1-minute rate": "1347.80 per second",
+      "15-minute rate": "2601.66 per second",
+      "5-minute rate": "1833.04 per second"
+    },
+    "lasttime": "2017-05-24 16:39:30",
+    "createtime": "2017-05-24 16:39:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "646299",
+      "mean rate": "1409.54 per second",
+      "1-minute rate": "1378.03 per second",
+      "15-minute rate": "2610.59 per second",
+      "5-minute rate": "1847.04 per second"
+    },
+    "lasttime": "2017-05-24 16:39:25",
+    "createtime": "2017-05-24 16:39:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "641299",
+      "mean rate": "1414.04 per second",
+      "1-minute rate": "1428.26 per second",
+      "15-minute rate": "2620.67 per second",
+      "5-minute rate": "1864.64 per second"
+    },
+    "lasttime": "2017-05-24 16:39:20",
+    "createtime": "2017-05-24 16:39:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "636299",
+      "mean rate": "1418.66 per second",
+      "1-minute rate": "1465.48 per second",
+      "15-minute rate": "2629.70 per second",
+      "5-minute rate": "1879.17 per second"
+    },
+    "lasttime": "2017-05-24 16:39:15",
+    "createtime": "2017-05-24 16:39:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "631299",
+      "mean rate": "1423.38 per second",
+      "1-minute rate": "1505.93 per second",
+      "15-minute rate": "2638.78 per second",
+      "5-minute rate": "1893.95 per second"
+    },
+    "lasttime": "2017-05-24 16:39:10",
+    "createtime": "2017-05-24 16:39:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "627299",
+      "mean rate": "1430.49 per second",
+      "1-minute rate": "1549.90 per second",
+      "15-minute rate": "2647.91 per second",
+      "5-minute rate": "1908.97 per second"
+    },
+    "lasttime": "2017-05-24 16:39:05",
+    "createtime": "2017-05-24 16:39:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "622299",
+      "mean rate": "1435.46 per second",
+      "1-minute rate": "1597.69 per second",
+      "15-minute rate": "2657.09 per second",
+      "5-minute rate": "1924.25 per second"
+    },
+    "lasttime": "2017-05-24 16:39:00",
+    "createtime": "2017-05-24 16:39:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "617299",
+      "mean rate": "1440.54 per second",
+      "1-minute rate": "1667.01 per second",
+      "15-minute rate": "2667.44 per second",
+      "5-minute rate": "1943.14 per second"
+    },
+    "lasttime": "2017-05-24 16:38:55",
+    "createtime": "2017-05-24 16:38:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "612299",
+      "mean rate": "1445.74 per second",
+      "1-minute rate": "1724.97 per second",
+      "15-minute rate": "2676.73 per second",
+      "5-minute rate": "1958.99 per second"
+    },
+    "lasttime": "2017-05-24 16:38:50",
+    "createtime": "2017-05-24 16:38:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "607299",
+      "mean rate": "1451.06 per second",
+      "1-minute rate": "1787.98 per second",
+      "15-minute rate": "2686.07 per second",
+      "5-minute rate": "1975.11 per second"
+    },
+    "lasttime": "2017-05-24 16:38:45",
+    "createtime": "2017-05-24 16:38:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "602299",
+      "mean rate": "1456.51 per second",
+      "1-minute rate": "1856.46 per second",
+      "15-minute rate": "2695.46 per second",
+      "5-minute rate": "1991.50 per second"
+    },
+    "lasttime": "2017-05-24 16:38:40",
+    "createtime": "2017-05-24 16:38:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "598299",
+      "mean rate": "1464.56 per second",
+      "1-minute rate": "1961.30 per second",
+      "15-minute rate": "2706.86 per second",
+      "5-minute rate": "2014.04 per second"
+    },
+    "lasttime": "2017-05-24 16:38:35",
+    "createtime": "2017-05-24 16:38:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "595299",
+      "mean rate": "1475.26 per second",
+      "1-minute rate": "1306.16 per second",
+      "15-minute rate": "2669.01 per second",
+      "5-minute rate": "1888.23 per second"
+    },
+    "lasttime": "2017-05-24 16:38:30",
+    "createtime": "2017-05-24 16:38:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "546549",
+      "mean rate": "1371.44 per second",
+      "1-minute rate": "1332.77 per second",
+      "15-minute rate": "2678.31 per second",
+      "5-minute rate": "1903.16 per second"
+    },
+    "lasttime": "2017-05-24 16:38:25",
+    "createtime": "2017-05-24 16:38:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "541549",
+      "mean rate": "1376.17 per second",
+      "1-minute rate": "1361.68 per second",
+      "15-minute rate": "2687.66 per second",
+      "5-minute rate": "1918.34 per second"
+    },
+    "lasttime": "2017-05-24 16:38:20",
+    "createtime": "2017-05-24 16:38:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "536549",
+      "mean rate": "1381.01 per second",
+      "1-minute rate": "1393.12 per second",
+      "15-minute rate": "2697.06 per second",
+      "5-minute rate": "1933.77 per second"
+    },
+    "lasttime": "2017-05-24 16:38:15",
+    "createtime": "2017-05-24 16:38:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "531549",
+      "mean rate": "1385.98 per second",
+      "1-minute rate": "1357.76 per second",
+      "15-minute rate": "2702.06 per second",
+      "5-minute rate": "1936.02 per second"
+    },
+    "lasttime": "2017-05-24 16:38:10",
+    "createtime": "2017-05-24 16:38:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "521549",
+      "mean rate": "1377.87 per second",
+      "1-minute rate": "1301.94 per second",
+      "15-minute rate": "2705.97 per second",
+      "5-minute rate": "1934.95 per second"
+    },
+    "lasttime": "2017-05-24 16:38:05",
+    "createtime": "2017-05-24 16:38:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "512549",
+      "mean rate": "1372.23 per second",
+      "1-minute rate": "1241.28 per second",
+      "15-minute rate": "2709.90 per second",
+      "5-minute rate": "1933.85 per second"
+    },
+    "lasttime": "2017-05-24 16:38:00",
+    "createtime": "2017-05-24 16:38:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "502549",
+      "mean rate": "1363.70 per second",
+      "1-minute rate": "1227.48 per second",
+      "15-minute rate": "2717.20 per second",
+      "5-minute rate": "1942.82 per second"
+    },
+    "lasttime": "2017-05-24 16:37:55",
+    "createtime": "2017-05-24 16:37:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "495549",
+      "mean rate": "1363.20 per second",
+      "1-minute rate": "1247.25 per second",
+      "15-minute rate": "2726.77 per second",
+      "5-minute rate": "1958.67 per second"
+    },
+    "lasttime": "2017-05-24 16:37:50",
+    "createtime": "2017-05-24 16:37:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "490549",
+      "mean rate": "1368.27 per second",
+      "1-minute rate": "1268.74 per second",
+      "15-minute rate": "2736.39 per second",
+      "5-minute rate": "1974.78 per second"
+    },
+    "lasttime": "2017-05-24 16:37:45",
+    "createtime": "2017-05-24 16:37:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "486549",
+      "mean rate": "1376.31 per second",
+      "1-minute rate": "1292.10 per second",
+      "15-minute rate": "2746.06 per second",
+      "5-minute rate": "1991.16 per second"
+    },
+    "lasttime": "2017-05-24 16:37:40",
+    "createtime": "2017-05-24 16:37:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "481549",
+      "mean rate": "1381.70 per second",
+      "1-minute rate": "1334.86 per second",
+      "15-minute rate": "2756.90 per second",
+      "5-minute rate": "2011.18 per second"
+    },
+    "lasttime": "2017-05-24 16:37:35",
+    "createtime": "2017-05-24 16:37:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "476549",
+      "mean rate": "1387.25 per second",
+      "1-minute rate": "1363.96 per second",
+      "15-minute rate": "2766.69 per second",
+      "5-minute rate": "2028.18 per second"
+    },
+    "lasttime": "2017-05-24 16:37:30",
+    "createtime": "2017-05-24 16:37:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "471549",
+      "mean rate": "1392.98 per second",
+      "1-minute rate": "1395.59 per second",
+      "15-minute rate": "2776.53 per second",
+      "5-minute rate": "2045.46 per second"
+    },
+    "lasttime": "2017-05-24 16:37:25",
+    "createtime": "2017-05-24 16:37:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "466549",
+      "mean rate": "1398.86 per second",
+      "1-minute rate": "1429.97 per second",
+      "15-minute rate": "2786.43 per second",
+      "5-minute rate": "2063.03 per second"
+    },
+    "lasttime": "2017-05-24 16:37:20",
+    "createtime": "2017-05-24 16:37:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "462549",
+      "mean rate": "1407.98 per second",
+      "1-minute rate": "1467.34 per second",
+      "15-minute rate": "2796.38 per second",
+      "5-minute rate": "2080.89 per second"
+    },
+    "lasttime": "2017-05-24 16:37:15",
+    "createtime": "2017-05-24 16:37:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "457549",
+      "mean rate": "1414.29 per second",
+      "1-minute rate": "1507.95 per second",
+      "15-minute rate": "2806.39 per second",
+      "5-minute rate": "2099.06 per second"
+    },
+    "lasttime": "2017-05-24 16:37:10",
+    "createtime": "2017-05-24 16:37:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "452549",
+      "mean rate": "1420.79 per second",
+      "1-minute rate": "1552.09 per second",
+      "15-minute rate": "2816.45 per second",
+      "5-minute rate": "2117.53 per second"
+    },
+    "lasttime": "2017-05-24 16:37:05",
+    "createtime": "2017-05-24 16:37:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "447549",
+      "mean rate": "1427.50 per second",
+      "1-minute rate": "1582.69 per second",
+      "15-minute rate": "2825.46 per second",
+      "5-minute rate": "2132.95 per second"
+    },
+    "lasttime": "2017-05-24 16:37:00",
+    "createtime": "2017-05-24 16:37:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "438549",
+      "mean rate": "1421.48 per second",
+      "1-minute rate": "1546.42 per second",
+      "15-minute rate": "2830.06 per second",
+      "5-minute rate": "2135.18 per second"
+    },
+    "lasttime": "2017-05-24 16:36:55",
+    "createtime": "2017-05-24 16:36:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "430549",
+      "mean rate": "1418.53 per second",
+      "1-minute rate": "1524.39 per second",
+      "15-minute rate": "2835.79 per second",
+      "5-minute rate": "2140.82 per second"
+    },
+    "lasttime": "2017-05-24 16:36:50",
+    "createtime": "2017-05-24 16:36:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "421549",
+      "mean rate": "1412.13 per second",
+      "1-minute rate": "1483.06 per second",
+      "15-minute rate": "2840.45 per second",
+      "5-minute rate": "2143.18 per second"
+    },
+    "lasttime": "2017-05-24 16:36:45",
+    "createtime": "2017-05-24 16:36:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "411549",
+      "mean rate": "1402.12 per second",
+      "1-minute rate": "1455.51 per second",
+      "15-minute rate": "2846.25 per second",
+      "5-minute rate": "2148.95 per second"
+    },
+    "lasttime": "2017-05-24 16:36:40",
+    "createtime": "2017-05-24 16:36:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "401549",
+      "mean rate": "1391.76 per second",
+      "1-minute rate": "1416.88 per second",
+      "15-minute rate": "2851.52 per second",
+      "5-minute rate": "2153.14 per second"
+    },
+    "lasttime": "2017-05-24 16:36:35",
+    "createtime": "2017-05-24 16:36:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "390549",
+      "mean rate": "1377.50 per second",
+      "1-minute rate": "1305.38 per second",
+      "15-minute rate": "2852.36 per second",
+      "5-minute rate": "2143.95 per second"
+    },
+    "lasttime": "2017-05-24 16:36:30",
+    "createtime": "2017-05-24 16:36:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "377549",
+      "mean rate": "1355.55 per second",
+      "1-minute rate": "1158.11 per second",
+      "15-minute rate": "2851.54 per second",
+      "5-minute rate": "2129.56 per second"
+    },
+    "lasttime": "2017-05-24 16:36:25",
+    "createtime": "2017-05-24 16:36:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "363549",
+      "mean rate": "1329.15 per second",
+      "1-minute rate": "1015.42 per second",
+      "15-minute rate": "2851.83 per second",
+      "5-minute rate": "2118.29 per second"
+    },
+    "lasttime": "2017-05-24 16:36:20",
+    "createtime": "2017-05-24 16:36:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "348549",
+      "mean rate": "1298.03 per second",
+      "1-minute rate": "947.24 per second",
+      "15-minute rate": "2857.69 per second",
+      "5-minute rate": "2123.64 per second"
+    },
+    "lasttime": "2017-05-24 16:36:15",
+    "createtime": "2017-05-24 16:36:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "343549",
+      "mean rate": "1303.71 per second",
+      "1-minute rate": "1029.55 per second",
+      "15-minute rate": "2873.61 per second",
+      "5-minute rate": "2159.33 per second"
+    },
+    "lasttime": "2017-05-24 16:36:10",
+    "createtime": "2017-05-24 16:36:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "343549",
+      "mean rate": "1328.91 per second",
+      "1-minute rate": "1119.03 per second",
+      "15-minute rate": "2889.62 per second",
+      "5-minute rate": "2195.62 per second"
+    },
+    "lasttime": "2017-05-24 16:36:05",
+    "createtime": "2017-05-24 16:36:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "342992",
+      "mean rate": "1352.94 per second",
+      "1-minute rate": "1137.07 per second",
+      "15-minute rate": "2900.64 per second",
+      "5-minute rate": "2217.20 per second"
+    },
+    "lasttime": "2017-05-24 16:36:00",
+    "createtime": "2017-05-24 16:36:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "337992",
+      "mean rate": "1360.03 per second",
+      "1-minute rate": "1148.98 per second",
+      "15-minute rate": "2911.22 per second",
+      "5-minute rate": "2237.66 per second"
+    },
+    "lasttime": "2017-05-24 16:35:55",
+    "createtime": "2017-05-24 16:35:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "332992",
+      "mean rate": "1367.42 per second",
+      "1-minute rate": "1179.31 per second",
+      "15-minute rate": "2922.99 per second",
+      "5-minute rate": "2261.82 per second"
+    },
+    "lasttime": "2017-05-24 16:35:50",
+    "createtime": "2017-05-24 16:35:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "327992",
+      "mean rate": "1375.12 per second",
+      "1-minute rate": "1194.89 per second",
+      "15-minute rate": "2933.70 per second",
+      "5-minute rate": "2283.03 per second"
+    },
+    "lasttime": "2017-05-24 16:35:45",
+    "createtime": "2017-05-24 16:35:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "322992",
+      "mean rate": "1383.15 per second",
+      "1-minute rate": "1211.83 per second",
+      "15-minute rate": "2944.47 per second",
+      "5-minute rate": "2304.59 per second"
+    },
+    "lasttime": "2017-05-24 16:35:40",
+    "createtime": "2017-05-24 16:35:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "318992",
+      "mean rate": "1395.92 per second",
+      "1-minute rate": "1230.24 per second",
+      "15-minute rate": "2955.30 per second",
+      "5-minute rate": "2326.52 per second"
+    },
+    "lasttime": "2017-05-24 16:35:35",
+    "createtime": "2017-05-24 16:35:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "313992",
+      "mean rate": "1404.76 per second",
+      "1-minute rate": "1250.25 per second",
+      "15-minute rate": "2966.20 per second",
+      "5-minute rate": "2348.81 per second"
+    },
+    "lasttime": "2017-05-24 16:35:30",
+    "createtime": "2017-05-24 16:35:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "308992",
+      "mean rate": "1414.03 per second",
+      "1-minute rate": "1289.38 per second",
+      "15-minute rate": "2978.27 per second",
+      "5-minute rate": "2374.84 per second"
+    },
+    "lasttime": "2017-05-24 16:35:25",
+    "createtime": "2017-05-24 16:35:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "303992",
+      "mean rate": "1423.73 per second",
+      "1-minute rate": "1314.52 per second",
+      "15-minute rate": "2989.29 per second",
+      "5-minute rate": "2397.95 per second"
+    },
+    "lasttime": "2017-05-24 16:35:20",
+    "createtime": "2017-05-24 16:35:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "298992",
+      "mean rate": "1433.87 per second",
+      "1-minute rate": "1341.86 per second",
+      "15-minute rate": "3000.37 per second",
+      "5-minute rate": "2421.44 per second"
+    },
+    "lasttime": "2017-05-24 16:35:15",
+    "createtime": "2017-05-24 16:35:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "293992",
+      "mean rate": "1444.55 per second",
+      "1-minute rate": "1371.57 per second",
+      "15-minute rate": "3011.51 per second",
+      "5-minute rate": "2445.33 per second"
+    },
+    "lasttime": "2017-05-24 16:35:10",
+    "createtime": "2017-05-24 16:35:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "289992",
+      "mean rate": "1460.76 per second",
+      "1-minute rate": "1403.86 per second",
+      "15-minute rate": "3022.72 per second",
+      "5-minute rate": "2469.62 per second"
+    },
+    "lasttime": "2017-05-24 16:35:05",
+    "createtime": "2017-05-24 16:35:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "284992",
+      "mean rate": "1472.67 per second",
+      "1-minute rate": "1438.95 per second",
+      "15-minute rate": "3033.99 per second",
+      "5-minute rate": "2494.32 per second"
+    },
+    "lasttime": "2017-05-24 16:35:00",
+    "createtime": "2017-05-24 16:35:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "279992",
+      "mean rate": "1485.21 per second",
+      "1-minute rate": "1477.10 per second",
+      "15-minute rate": "3045.32 per second",
+      "5-minute rate": "2519.43 per second"
+    },
+    "lasttime": "2017-05-24 16:34:55",
+    "createtime": "2017-05-24 16:34:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "274992",
+      "mean rate": "1498.42 per second",
+      "1-minute rate": "1535.94 per second",
+      "15-minute rate": "3057.83 per second",
+      "5-minute rate": "2548.33 per second"
+    },
+    "lasttime": "2017-05-24 16:34:50",
+    "createtime": "2017-05-24 16:34:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "269992",
+      "mean rate": "1512.39 per second",
+      "1-minute rate": "1582.52 per second",
+      "15-minute rate": "3069.29 per second",
+      "5-minute rate": "2574.35 per second"
+    },
+    "lasttime": "2017-05-24 16:34:45",
+    "createtime": "2017-05-24 16:34:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "264992",
+      "mean rate": "1527.14 per second",
+      "1-minute rate": "1633.14 per second",
+      "15-minute rate": "3080.82 per second",
+      "5-minute rate": "2600.81 per second"
+    },
+    "lasttime": "2017-05-24 16:34:40",
+    "createtime": "2017-05-24 16:34:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "260992",
+      "mean rate": "1548.74 per second",
+      "1-minute rate": "1688.17 per second",
+      "15-minute rate": "3092.41 per second",
+      "5-minute rate": "2627.72 per second"
+    },
+    "lasttime": "2017-05-24 16:34:35",
+    "createtime": "2017-05-24 16:34:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "255992",
+      "mean rate": "1565.49 per second",
+      "1-minute rate": "1765.35 per second",
+      "15-minute rate": "3105.18 per second",
+      "5-minute rate": "2658.43 per second"
+    },
+    "lasttime": "2017-05-24 16:34:30",
+    "createtime": "2017-05-24 16:34:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "250992",
+      "mean rate": "1583.34 per second",
+      "1-minute rate": "1831.86 per second",
+      "15-minute rate": "3116.91 per second",
+      "5-minute rate": "2686.31 per second"
+    },
+    "lasttime": "2017-05-24 16:34:25",
+    "createtime": "2017-05-24 16:34:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "245992",
+      "mean rate": "1602.33 per second",
+      "1-minute rate": "1904.16 per second",
+      "15-minute rate": "3128.70 per second",
+      "5-minute rate": "2714.65 per second"
+    },
+    "lasttime": "2017-05-24 16:34:20",
+    "createtime": "2017-05-24 16:34:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "240992",
+      "mean rate": "1622.61 per second",
+      "1-minute rate": "1982.73 per second",
+      "15-minute rate": "3140.56 per second",
+      "5-minute rate": "2743.46 per second"
+    },
+    "lasttime": "2017-05-24 16:34:15",
+    "createtime": "2017-05-24 16:34:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "236992",
+      "mean rate": "1651.32 per second",
+      "1-minute rate": "2068.13 per second",
+      "15-minute rate": "3152.49 per second",
+      "5-minute rate": "2772.76 per second"
+    },
+    "lasttime": "2017-05-24 16:34:10",
+    "createtime": "2017-05-24 16:34:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "231992",
+      "mean rate": "1674.77 per second",
+      "1-minute rate": "2130.54 per second",
+      "15-minute rate": "3162.53 per second",
+      "5-minute rate": "2796.68 per second"
+    },
+    "lasttime": "2017-05-24 16:34:05",
+    "createtime": "2017-05-24 16:34:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "225242",
+      "mean rate": "1686.94 per second",
+      "1-minute rate": "2107.12 per second",
+      "15-minute rate": "3166.78 per second",
+      "5-minute rate": "2803.34 per second"
+    },
+    "lasttime": "2017-05-24 16:34:00",
+    "createtime": "2017-05-24 16:34:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "205242",
+      "mean rate": "1596.97 per second",
+      "1-minute rate": "2094.85 per second",
+      "15-minute rate": "3171.89 per second",
+      "5-minute rate": "2812.67 per second"
+    },
+    "lasttime": "2017-05-24 16:33:55",
+    "createtime": "2017-05-24 16:33:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "201000",
+      "mean rate": "1627.26 per second",
+      "1-minute rate": "2189.99 per second",
+      "15-minute rate": "3183.99 per second",
+      "5-minute rate": "2843.13 per second"
+    },
+    "lasttime": "2017-05-24 16:33:50",
+    "createtime": "2017-05-24 16:33:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "196000",
+      "mean rate": "1653.72 per second",
+      "1-minute rate": "2293.41 per second",
+      "15-minute rate": "3196.16 per second",
+      "5-minute rate": "2874.11 per second"
+    },
+    "lasttime": "2017-05-24 16:33:45",
+    "createtime": "2017-05-24 16:33:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "191000",
+      "mean rate": "1682.51 per second",
+      "1-minute rate": "1988.67 per second",
+      "15-minute rate": "3181.66 per second",
+      "5-minute rate": "2824.94 per second"
+    },
+    "lasttime": "2017-05-24 16:33:40",
+    "createtime": "2017-05-24 16:33:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "157000",
+      "mean rate": "1446.77 per second",
+      "1-minute rate": "1587.93 per second",
+      "15-minute rate": "3162.61 per second",
+      "5-minute rate": "2761.49 per second"
+    },
+    "lasttime": "2017-05-24 16:33:35",
+    "createtime": "2017-05-24 16:33:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "130000",
+      "mean rate": "1255.82 per second",
+      "1-minute rate": "1621.64 per second",
+      "15-minute rate": "3173.55 per second",
+      "5-minute rate": "2787.73 per second"
+    },
+    "lasttime": "2017-05-24 16:33:30",
+    "createtime": "2017-05-24 16:33:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "124000",
+      "mean rate": "1258.67 per second",
+      "1-minute rate": "1675.66 per second",
+      "15-minute rate": "3185.65 per second",
+      "5-minute rate": "2817.78 per second"
+    },
+    "lasttime": "2017-05-24 16:33:25",
+    "createtime": "2017-05-24 16:33:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "119000",
+      "mean rate": "1272.44 per second",
+      "1-minute rate": "1751.76 per second",
+      "15-minute rate": "3198.94 per second",
+      "5-minute rate": "2851.69 per second"
+    },
+    "lasttime": "2017-05-24 16:33:20",
+    "createtime": "2017-05-24 16:33:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "114000",
+      "mean rate": "1287.84 per second",
+      "1-minute rate": "1817.10 per second",
+      "15-minute rate": "3211.20 per second",
+      "5-minute rate": "2882.81 per second"
+    },
+    "lasttime": "2017-05-24 16:33:15",
+    "createtime": "2017-05-24 16:33:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "109000",
+      "mean rate": "1305.05 per second",
+      "1-minute rate": "1888.10 per second",
+      "15-minute rate": "3223.51 per second",
+      "5-minute rate": "2914.45 per second"
+    },
+    "lasttime": "2017-05-24 16:33:10",
+    "createtime": "2017-05-24 16:33:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "104000",
+      "mean rate": "1324.49 per second",
+      "1-minute rate": "1947.90 per second",
+      "15-minute rate": "3234.79 per second",
+      "5-minute rate": "2943.27 per second"
+    },
+    "lasttime": "2017-05-24 16:33:05",
+    "createtime": "2017-05-24 16:33:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "97000",
+      "mean rate": "1319.36 per second",
+      "1-minute rate": "1943.38 per second",
+      "15-minute rate": "3241.67 per second",
+      "5-minute rate": "2959.12 per second"
+    },
+    "lasttime": "2017-05-24 16:33:00",
+    "createtime": "2017-05-24 16:33:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "88000",
+      "mean rate": "1284.32 per second",
+      "1-minute rate": "1938.45 per second",
+      "15-minute rate": "3248.58 per second",
+      "5-minute rate": "2975.24 per second"
+    },
+    "lasttime": "2017-05-24 16:32:55",
+    "createtime": "2017-05-24 16:32:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "78000",
+      "mean rate": "1227.96 per second",
+      "1-minute rate": "1933.11 per second",
+      "15-minute rate": "3255.54 per second",
+      "5-minute rate": "2991.63 per second"
+    },
+    "lasttime": "2017-05-24 16:32:50",
+    "createtime": "2017-05-24 16:32:50"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "69000",
+      "mean rate": "1179.05 per second",
+      "1-minute rate": "2031.58 per second",
+      "15-minute rate": "3269.22 per second",
+      "5-minute rate": "3028.46 per second"
+    },
+    "lasttime": "2017-05-24 16:32:45",
+    "createtime": "2017-05-24 16:32:45"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "64000",
+      "mean rate": "1195.78 per second",
+      "1-minute rate": "2121.23 per second",
+      "15-minute rate": "3281.86 per second",
+      "5-minute rate": "3062.55 per second"
+    },
+    "lasttime": "2017-05-24 16:32:40",
+    "createtime": "2017-05-24 16:32:40"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "59000",
+      "mean rate": "1215.95 per second",
+      "1-minute rate": "2218.66 per second",
+      "15-minute rate": "3294.57 per second",
+      "5-minute rate": "3097.22 per second"
+    },
+    "lasttime": "2017-05-24 16:32:35",
+    "createtime": "2017-05-24 16:32:35"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "55000",
+      "mean rate": "1263.74 per second",
+      "1-minute rate": "2324.57 per second",
+      "15-minute rate": "3307.36 per second",
+      "5-minute rate": "3132.47 per second"
+    },
+    "lasttime": "2017-05-24 16:32:30",
+    "createtime": "2017-05-24 16:32:30"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "50000",
+      "mean rate": "1298.07 per second",
+      "1-minute rate": "2439.68 per second",
+      "15-minute rate": "3320.21 per second",
+      "5-minute rate": "3168.30 per second"
+    },
+    "lasttime": "2017-05-24 16:32:25",
+    "createtime": "2017-05-24 16:32:25"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "45000",
+      "mean rate": "1342.44 per second",
+      "1-minute rate": "2582.18 per second",
+      "15-minute rate": "3334.25 per second",
+      "5-minute rate": "3208.11 per second"
+    },
+    "lasttime": "2017-05-24 16:32:20",
+    "createtime": "2017-05-24 16:32:20"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "40000",
+      "mean rate": "1402.54 per second",
+      "1-minute rate": "2719.68 per second",
+      "15-minute rate": "3347.25 per second",
+      "5-minute rate": "3245.22 per second"
+    },
+    "lasttime": "2017-05-24 16:32:15",
+    "createtime": "2017-05-24 16:32:15"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "35000",
+      "mean rate": "1488.01 per second",
+      "1-minute rate": "2869.12 per second",
+      "15-minute rate": "3360.33 per second",
+      "5-minute rate": "3282.95 per second"
+    },
+    "lasttime": "2017-05-24 16:32:10",
+    "createtime": "2017-05-24 16:32:10"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "31000",
+      "mean rate": "1673.82 per second",
+      "1-minute rate": "3031.56 per second",
+      "15-minute rate": "3373.48 per second",
+      "5-minute rate": "3321.32 per second"
+    },
+    "lasttime": "2017-05-24 16:32:05",
+    "createtime": "2017-05-24 16:32:05"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "26000",
+      "mean rate": "1923.09 per second",
+      "1-minute rate": "3208.11 per second",
+      "15-minute rate": "3386.70 per second",
+      "5-minute rate": "3360.33 per second"
+    },
+    "lasttime": "2017-05-24 16:32:00",
+    "createtime": "2017-05-24 16:32:00"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "21000",
+      "mean rate": "2464.44 per second",
+      "1-minute rate": "3400.00 per second",
+      "15-minute rate": "3400.00 per second",
+      "5-minute rate": "3400.00 per second"
+    },
+    "lasttime": "2017-05-24 16:31:55",
+    "createtime": "2017-05-24 16:31:55"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "5000",
+      "mean rate": "1419.46 per second",
+      "1-minute rate": "0.00 per second",
+      "15-minute rate": "0.00 per second",
+      "5-minute rate": "0.00 per second"
+    },
+    "lasttime": "2017-05-24 16:31:51",
+    "createtime": "2017-05-24 16:31:51"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "331750",
+      "mean rate": "1125.66 per second",
+      "1-minute rate": "1116.94 per second",
+      "15-minute rate": "2626.70 per second",
+      "5-minute rate": "1899.16 per second"
+    },
+    "lasttime": "2017-05-24 16:27:12",
+    "createtime": "2017-05-24 16:27:12"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "327250",
+      "mean rate": "1129.55 per second",
+      "1-minute rate": "1074.96 per second",
+      "15-minute rate": "2632.42 per second",
+      "5-minute rate": "1904.19 per second"
+    },
+    "lasttime": "2017-05-24 16:27:07",
+    "createtime": "2017-05-24 16:27:07"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "319750",
+      "mean rate": "1123.05 per second",
+      "1-minute rate": "994.57 per second",
+      "15-minute rate": "2635.94 per second",
+      "5-minute rate": "1902.58 per second"
+    },
+    "lasttime": "2017-05-24 16:27:02",
+    "createtime": "2017-05-24 16:27:02"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "309750",
+      "mean rate": "1107.37 per second",
+      "1-minute rate": "1011.48 per second",
+      "15-minute rate": "2646.17 per second",
+      "5-minute rate": "1921.11 per second"
+    },
+    "lasttime": "2017-05-24 16:26:57",
+    "createtime": "2017-05-24 16:26:57"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "304750",
+      "mean rate": "1109.33 per second",
+      "1-minute rate": "1012.48 per second",
+      "15-minute rate": "2655.34 per second",
+      "5-minute rate": "1936.59 per second"
+    },
+    "lasttime": "2017-05-24 16:26:52",
+    "createtime": "2017-05-24 16:26:52"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "300750",
+      "mean rate": "1115.07 per second",
+      "1-minute rate": "1013.57 per second",
+      "15-minute rate": "2664.56 per second",
+      "5-minute rate": "1952.33 per second"
+    },
+    "lasttime": "2017-05-24 16:26:47",
+    "createtime": "2017-05-24 16:26:47"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "295750",
+      "mean rate": "1117.24 per second",
+      "1-minute rate": "1014.75 per second",
+      "15-minute rate": "2673.83 per second",
+      "5-minute rate": "1968.34 per second"
+    },
+    "lasttime": "2017-05-24 16:26:42",
+    "createtime": "2017-05-24 16:26:42"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "290750",
+      "mean rate": "1119.49 per second",
+      "1-minute rate": "1016.03 per second",
+      "15-minute rate": "2683.16 per second",
+      "5-minute rate": "1984.61 per second"
+    },
+    "lasttime": "2017-05-24 16:26:37",
+    "createtime": "2017-05-24 16:26:37"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "285750",
+      "mean rate": "1121.84 per second",
+      "1-minute rate": "1017.42 per second",
+      "15-minute rate": "2692.54 per second",
+      "5-minute rate": "2001.16 per second"
+    },
+    "lasttime": "2017-05-24 16:26:32",
+    "createtime": "2017-05-24 16:26:32"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "280750",
+      "mean rate": "1124.28 per second",
+      "1-minute rate": "1036.31 per second",
+      "15-minute rate": "2703.08 per second",
+      "5-minute rate": "2021.35 per second"
+    },
+    "lasttime": "2017-05-24 16:26:27",
+    "createtime": "2017-05-24 16:26:27"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "275750",
+      "mean rate": "1126.82 per second",
+      "1-minute rate": "1039.47 per second",
+      "15-minute rate": "2712.57 per second",
+      "5-minute rate": "2038.51 per second"
+    },
+    "lasttime": "2017-05-24 16:26:22",
+    "createtime": "2017-05-24 16:26:22"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "271750",
+      "mean rate": "1133.63 per second",
+      "1-minute rate": "1042.90 per second",
+      "15-minute rate": "2722.11 per second",
+      "5-minute rate": "2055.97 per second"
+    },
+    "lasttime": "2017-05-24 16:26:17",
+    "createtime": "2017-05-24 16:26:17"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "266750",
+      "mean rate": "1136.48 per second",
+      "1-minute rate": "1046.63 per second",
+      "15-minute rate": "2731.70 per second",
+      "5-minute rate": "2073.71 per second"
+    },
+    "lasttime": "2017-05-24 16:26:12",
+    "createtime": "2017-05-24 16:26:12"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "261750",
+      "mean rate": "1139.45 per second",
+      "1-minute rate": "1050.68 per second",
+      "15-minute rate": "2741.35 per second",
+      "5-minute rate": "2091.76 per second"
+    },
+    "lasttime": "2017-05-24 16:26:07",
+    "createtime": "2017-05-24 16:26:07"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "256750",
+      "mean rate": "1142.56 per second",
+      "1-minute rate": "1072.47 per second",
+      "15-minute rate": "2752.16 per second",
+      "5-minute rate": "2113.47 per second"
+    },
+    "lasttime": "2017-05-24 16:26:02",
+    "createtime": "2017-05-24 16:26:02"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "251750",
+      "mean rate": "1145.81 per second",
+      "1-minute rate": "1083.11 per second",
+      "15-minute rate": "2762.20 per second",
+      "5-minute rate": "2133.02 per second"
+    },
+    "lasttime": "2017-05-24 16:25:57",
+    "createtime": "2017-05-24 16:25:57"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "247000",
+      "mean rate": "1150.36 per second",
+      "1-minute rate": "1090.33 per second",
+      "15-minute rate": "2772.02 per second",
+      "5-minute rate": "2152.06 per second"
+    },
+    "lasttime": "2017-05-24 16:25:52",
+    "createtime": "2017-05-24 16:25:52"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "242000",
+      "mean rate": "1153.94 per second",
+      "1-minute rate": "1098.18 per second",
+      "15-minute rate": "2781.89 per second",
+      "5-minute rate": "2171.43 per second"
+    },
+    "lasttime": "2017-05-24 16:25:47",
+    "createtime": "2017-05-24 16:25:47"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "238000",
+      "mean rate": "1162.60 per second",
+      "1-minute rate": "1106.71 per second",
+      "15-minute rate": "2791.82 per second",
+      "5-minute rate": "2191.11 per second"
+    },
+    "lasttime": "2017-05-24 16:25:42",
+    "createtime": "2017-05-24 16:25:42"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "233000",
+      "mean rate": "1166.66 per second",
+      "1-minute rate": "1115.99 per second",
+      "15-minute rate": "2801.80 per second",
+      "5-minute rate": "2211.13 per second"
+    },
+    "lasttime": "2017-05-24 16:25:37",
+    "createtime": "2017-05-24 16:25:37"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "228000",
+      "mean rate": "1170.95 per second",
+      "1-minute rate": "1126.07 per second",
+      "15-minute rate": "2811.84 per second",
+      "5-minute rate": "2231.49 per second"
+    },
+    "lasttime": "2017-05-24 16:25:32",
+    "createtime": "2017-05-24 16:25:32"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "223000",
+      "mean rate": "1175.44 per second",
+      "1-minute rate": "1154.40 per second",
+      "15-minute rate": "2823.05 per second",
+      "5-minute rate": "2255.54 per second"
+    },
+    "lasttime": "2017-05-24 16:25:27",
+    "createtime": "2017-05-24 16:25:27"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "218000",
+      "mean rate": "1180.18 per second",
+      "1-minute rate": "1167.82 per second",
+      "15-minute rate": "2833.20 per second",
+      "5-minute rate": "2276.65 per second"
+    },
+    "lasttime": "2017-05-24 16:25:22",
+    "createtime": "2017-05-24 16:25:22"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "213000",
+      "mean rate": "1185.19 per second",
+      "1-minute rate": "1182.41 per second",
+      "15-minute rate": "2843.42 per second",
+      "5-minute rate": "2298.10 per second"
+    },
+    "lasttime": "2017-05-24 16:25:17",
+    "createtime": "2017-05-24 16:25:17"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "209000",
+      "mean rate": "1196.23 per second",
+      "1-minute rate": "1198.26 per second",
+      "15-minute rate": "2853.69 per second",
+      "5-minute rate": "2319.92 per second"
+    },
+    "lasttime": "2017-05-24 16:25:12",
+    "createtime": "2017-05-24 16:25:12"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "204000",
+      "mean rate": "1202.01 per second",
+      "1-minute rate": "1215.49 per second",
+      "15-minute rate": "2864.01 per second",
+      "5-minute rate": "2342.10 per second"
+    },
+    "lasttime": "2017-05-24 16:25:07",
+    "createtime": "2017-05-24 16:25:07"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "199000",
+      "mean rate": "1208.14 per second",
+      "1-minute rate": "1234.21 per second",
+      "15-minute rate": "2874.40 per second",
+      "5-minute rate": "2364.66 per second"
+    },
+    "lasttime": "2017-05-24 16:25:02",
+    "createtime": "2017-05-24 16:25:02"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "194000",
+      "mean rate": "1214.66 per second",
+      "1-minute rate": "1271.95 per second",
+      "15-minute rate": "2885.96 per second",
+      "5-minute rate": "2390.95 per second"
+    },
+    "lasttime": "2017-05-24 16:24:57",
+    "createtime": "2017-05-24 16:24:57"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "189000",
+      "mean rate": "1221.59 per second",
+      "1-minute rate": "1295.58 per second",
+      "15-minute rate": "2896.46 per second",
+      "5-minute rate": "2414.33 per second"
+    },
+    "lasttime": "2017-05-24 16:24:52",
+    "createtime": "2017-05-24 16:24:52"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "185000",
+      "mean rate": "1235.67 per second",
+      "1-minute rate": "1321.27 per second",
+      "15-minute rate": "2907.03 per second",
+      "5-minute rate": "2438.10 per second"
+    },
+    "lasttime": "2017-05-24 16:24:47",
+    "createtime": "2017-05-24 16:24:47"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "180000",
+      "mean rate": "1243.81 per second",
+      "1-minute rate": "1349.19 per second",
+      "15-minute rate": "2917.65 per second",
+      "5-minute rate": "2462.27 per second"
+    },
+    "lasttime": "2017-05-24 16:24:42",
+    "createtime": "2017-05-24 16:24:42"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "175000",
+      "mean rate": "1252.53 per second",
+      "1-minute rate": "1344.77 per second",
+      "15-minute rate": "2926.11 per second",
+      "5-minute rate": "2480.12 per second"
+    },
+    "lasttime": "2017-05-24 16:24:37",
+    "createtime": "2017-05-24 16:24:37"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "168000",
+      "mean rate": "1247.07 per second",
+      "1-minute rate": "1374.73 per second",
+      "15-minute rate": "2936.84 per second",
+      "5-minute rate": "2505.00 per second"
+    },
+    "lasttime": "2017-05-24 16:24:32",
+    "createtime": "2017-05-24 16:24:32"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "163000",
+      "mean rate": "1256.61 per second",
+      "1-minute rate": "1424.68 per second",
+      "15-minute rate": "2948.74 per second",
+      "5-minute rate": "2533.65 per second"
+    },
+    "lasttime": "2017-05-24 16:24:27",
+    "createtime": "2017-05-24 16:24:27"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "158000",
+      "mean rate": "1266.87 per second",
+      "1-minute rate": "1461.59 per second",
+      "15-minute rate": "2959.60 per second",
+      "5-minute rate": "2559.43 per second"
+    },
+    "lasttime": "2017-05-24 16:24:22",
+    "createtime": "2017-05-24 16:24:22"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "153750",
+      "mean rate": "1284.29 per second",
+      "1-minute rate": "1501.70 per second",
+      "15-minute rate": "2970.51 per second",
+      "5-minute rate": "2585.63 per second"
+    },
+    "lasttime": "2017-05-24 16:24:17",
+    "createtime": "2017-05-24 16:24:17"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "149000",
+      "mean rate": "1298.87 per second",
+      "1-minute rate": "1545.30 per second",
+      "15-minute rate": "2981.49 per second",
+      "5-minute rate": "2612.28 per second"
+    },
+    "lasttime": "2017-05-24 16:24:12",
+    "createtime": "2017-05-24 16:24:12"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "144000",
+      "mean rate": "1312.45 per second",
+      "1-minute rate": "1592.69 per second",
+      "15-minute rate": "2992.53 per second",
+      "5-minute rate": "2639.38 per second"
+    },
+    "lasttime": "2017-05-24 16:24:07",
+    "createtime": "2017-05-24 16:24:07"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "139000",
+      "mean rate": "1327.40 per second",
+      "1-minute rate": "1609.44 per second",
+      "15-minute rate": "3001.40 per second",
+      "5-minute rate": "2660.21 per second"
+    },
+    "lasttime": "2017-05-24 16:24:02",
+    "createtime": "2017-05-24 16:24:02"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "128000",
+      "mean rate": "1283.67 per second",
+      "1-minute rate": "1540.73 per second",
+      "15-minute rate": "3004.75 per second",
+      "5-minute rate": "2664.58 per second"
+    },
+    "lasttime": "2017-05-24 16:23:57",
+    "createtime": "2017-05-24 16:23:57"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "119500",
+      "mean rate": "1261.67 per second",
+      "1-minute rate": "1587.72 per second",
+      "15-minute rate": "3015.92 per second",
+      "5-minute rate": "2692.56 per second"
+    },
+    "lasttime": "2017-05-24 16:23:52",
+    "createtime": "2017-05-24 16:23:52"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "115000",
+      "mean rate": "1281.81 per second",
+      "1-minute rate": "1638.80 per second",
+      "15-minute rate": "3027.15 per second",
+      "5-minute rate": "2721.00 per second"
+    },
+    "lasttime": "2017-05-24 16:23:47",
+    "createtime": "2017-05-24 16:23:47"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "110000",
+      "mean rate": "1298.45 per second",
+      "1-minute rate": "1694.31 per second",
+      "15-minute rate": "3038.45 per second",
+      "5-minute rate": "2749.93 per second"
+    },
+    "lasttime": "2017-05-24 16:23:42",
+    "createtime": "2017-05-24 16:23:42"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "105000",
+      "mean rate": "1317.16 per second",
+      "1-minute rate": "1772.03 per second",
+      "15-minute rate": "3050.92 per second",
+      "5-minute rate": "2782.70 per second"
+    },
+    "lasttime": "2017-05-24 16:23:37",
+    "createtime": "2017-05-24 16:23:37"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "100000",
+      "mean rate": "1338.43 per second",
+      "1-minute rate": "1839.13 per second",
+      "15-minute rate": "3062.34 per second",
+      "5-minute rate": "2812.66 per second"
+    },
+    "lasttime": "2017-05-24 16:23:32",
+    "createtime": "2017-05-24 16:23:32"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "95000",
+      "mean rate": "1362.66 per second",
+      "1-minute rate": "1912.05 per second",
+      "15-minute rate": "3073.83 per second",
+      "5-minute rate": "2843.12 per second"
+    },
+    "lasttime": "2017-05-24 16:23:27",
+    "createtime": "2017-05-24 16:23:27"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "91000",
+      "mean rate": "1406.16 per second",
+      "1-minute rate": "1991.31 per second",
+      "15-minute rate": "3085.38 per second",
+      "5-minute rate": "2874.10 per second"
+    },
+    "lasttime": "2017-05-24 16:23:22",
+    "createtime": "2017-05-24 16:23:22"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "86000",
+      "mean rate": "1440.13 per second",
+      "1-minute rate": "2077.46 per second",
+      "15-minute rate": "3097.00 per second",
+      "5-minute rate": "2905.60 per second"
+    },
+    "lasttime": "2017-05-24 16:23:17",
+    "createtime": "2017-05-24 16:23:17"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "81000",
+      "mean rate": "1480.36 per second",
+      "1-minute rate": "2171.10 per second",
+      "15-minute rate": "3108.68 per second",
+      "5-minute rate": "2937.62 per second"
+    },
+    "lasttime": "2017-05-24 16:23:12",
+    "createtime": "2017-05-24 16:23:12"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "76000",
+      "mean rate": "1528.69 per second",
+      "1-minute rate": "2290.25 per second",
+      "15-minute rate": "3121.55 per second",
+      "5-minute rate": "2973.55 per second"
+    },
+    "lasttime": "2017-05-24 16:23:07",
+    "createtime": "2017-05-24 16:23:07"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "71000",
+      "mean rate": "1587.83 per second",
+      "1-minute rate": "2402.38 per second",
+      "15-minute rate": "3133.37 per second",
+      "5-minute rate": "3006.71 per second"
+    },
+    "lasttime": "2017-05-24 16:23:02",
+    "createtime": "2017-05-24 16:23:02"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "67000",
+      "mean rate": "1687.00 per second",
+      "1-minute rate": "2524.25 per second",
+      "15-minute rate": "3145.25 per second",
+      "5-minute rate": "3040.44 per second"
+    },
+    "lasttime": "2017-05-24 16:22:57",
+    "createtime": "2017-05-24 16:22:57"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "62000",
+      "mean rate": "1785.88 per second",
+      "1-minute rate": "2656.71 per second",
+      "15-minute rate": "3157.20 per second",
+      "5-minute rate": "3074.73 per second"
+    },
+    "lasttime": "2017-05-24 16:22:52",
+    "createtime": "2017-05-24 16:22:52"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "57000",
+      "mean rate": "1918.19 per second",
+      "1-minute rate": "2800.69 per second",
+      "15-minute rate": "3169.22 per second",
+      "5-minute rate": "3109.60 per second"
+    },
+    "lasttime": "2017-05-24 16:22:47",
+    "createtime": "2017-05-24 16:22:47"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "52000",
+      "mean rate": "2103.95 per second",
+      "1-minute rate": "2905.03 per second",
+      "15-minute rate": "3177.96 per second",
+      "5-minute rate": "3134.97 per second"
+    },
+    "lasttime": "2017-05-24 16:22:42",
+    "createtime": "2017-05-24 16:22:42"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "43000",
+      "mean rate": "2180.97 per second",
+      "1-minute rate": "3001.07 per second",
+      "15-minute rate": "3185.64 per second",
+      "5-minute rate": "3157.41 per second"
+    },
+    "lasttime": "2017-05-24 16:22:37",
+    "createtime": "2017-05-24 16:22:37"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "33750",
+      "mean rate": "2293.49 per second",
+      "1-minute rate": "3088.06 per second",
+      "15-minute rate": "3192.24 per second",
+      "5-minute rate": "3176.86 per second"
+    },
+    "lasttime": "2017-05-24 16:22:32",
+    "createtime": "2017-05-24 16:22:32"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "24000",
+      "mean rate": "2470.19 per second",
+      "1-minute rate": "3200.00 per second",
+      "15-minute rate": "3200.00 per second",
+      "5-minute rate": "3200.00 per second"
+    },
+    "lasttime": "2017-05-24 16:22:27",
+    "createtime": "2017-05-24 16:22:27"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "7000",
+      "mean rate": "1483.22 per second",
+      "1-minute rate": "0.00 per second",
+      "15-minute rate": "0.00 per second",
+      "5-minute rate": "0.00 per second"
+    },
+    "lasttime": "2017-05-24 16:22:23",
+    "createtime": "2017-05-24 16:22:23"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "828635",
+      "mean rate": "2131.52 per second",
+      "1-minute rate": "2099.81 per second",
+      "15-minute rate": "1643.30 per second",
+      "5-minute rate": "1864.53 per second"
+    },
+    "lasttime": "2017-05-24 09:45:32",
+    "createtime": "2017-05-24 09:45:32"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "819635",
+      "mean rate": "2135.83 per second",
+      "1-minute rate": "2054.31 per second",
+      "15-minute rate": "1637.84 per second",
+      "5-minute rate": "1851.78 per second"
+    },
+    "lasttime": "2017-05-24 09:45:27",
+    "createtime": "2017-05-24 09:45:27"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "809018",
+      "mean rate": "2136.00 per second",
+      "1-minute rate": "2154.62 per second",
+      "15-minute rate": "1641.95 per second",
+      "5-minute rate": "1867.77 per second"
+    },
+    "lasttime": "2017-05-24 09:45:22",
+    "createtime": "2017-05-24 09:45:22"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "804018",
+      "mean rate": "2151.19 per second",
+      "1-minute rate": "2254.96 per second",
+      "15-minute rate": "1645.53 per second",
+      "5-minute rate": "1882.36 per second"
+    },
+    "lasttime": "2017-05-24 09:45:17",
+    "createtime": "2017-05-24 09:45:17"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "799018",
+      "mean rate": "2166.81 per second",
+      "1-minute rate": "2364.02 per second",
+      "15-minute rate": "1649.12 per second",
+      "5-minute rate": "1897.19 per second"
+    },
+    "lasttime": "2017-05-24 09:45:12",
+    "createtime": "2017-05-24 09:45:12"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "794018",
+      "mean rate": "2182.85 per second",
+      "1-minute rate": "2326.14 per second",
+      "15-minute rate": "1642.71 per second",
+      "5-minute rate": "1882.01 per second"
+    },
+    "lasttime": "2017-05-24 09:45:07",
+    "createtime": "2017-05-24 09:45:07"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "774836",
+      "mean rate": "2159.79 per second",
+      "1-minute rate": "2307.86 per second",
+      "15-minute rate": "1637.73 per second",
+      "5-minute rate": "1871.02 per second"
+    },
+    "lasttime": "2017-05-24 09:45:02",
+    "createtime": "2017-05-24 09:45:02"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "766336",
+      "mean rate": "2166.31 per second",
+      "1-minute rate": "2334.62 per second",
+      "15-minute rate": "1635.71 per second",
+      "5-minute rate": "1868.85 per second"
+    },
+    "lasttime": "2017-05-24 09:44:57",
+    "createtime": "2017-05-24 09:44:57"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "740336",
+      "mean rate": "2122.80 per second",
+      "1-minute rate": "2102.99 per second",
+      "15-minute rate": "1616.97 per second",
+      "5-minute rate": "1816.23 per second"
+    },
+    "lasttime": "2017-05-24 09:44:52",
+    "createtime": "2017-05-24 09:44:52"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "731336",
+      "mean rate": "2127.52 per second",
+      "1-minute rate": "2111.94 per second",
+      "15-minute rate": "1614.84 per second",
+      "5-minute rate": "1813.14 per second"
+    },
+    "lasttime": "2017-05-24 09:44:47",
+    "createtime": "2017-05-24 09:44:47"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "704336",
+      "mean rate": "2079.19 per second",
+      "1-minute rate": "1843.57 per second",
+      "15-minute rate": "1594.86 per second",
+      "5-minute rate": "1756.22 per second"
+    },
+    "lasttime": "2017-05-24 09:44:42",
+    "createtime": "2017-05-24 09:44:42"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "695336",
+      "mean rate": "2083.39 per second",
+      "1-minute rate": "1829.98 per second",
+      "15-minute rate": "1592.61 per second",
+      "5-minute rate": "1752.12 per second"
+    },
+    "lasttime": "2017-05-24 09:44:37",
+    "createtime": "2017-05-24 09:44:37"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "675336",
+      "mean rate": "2054.25 per second",
+      "1-minute rate": "1519.73 per second",
+      "15-minute rate": "1571.40 per second",
+      "5-minute rate": "1690.81 per second"
+    },
+    "lasttime": "2017-05-24 09:44:32",
+    "createtime": "2017-05-24 09:44:32"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "654336",
+      "mean rate": "2021.10 per second",
+      "1-minute rate": "1338.94 per second",
+      "15-minute rate": "1560.10 per second",
+      "5-minute rate": "1658.73 per second"
+    },
+    "lasttime": "2017-05-24 09:44:27",
+    "createtime": "2017-05-24 09:44:27"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "638336",
+      "mean rate": "2002.60 per second",
+      "1-minute rate": "1211.97 per second",
+      "15-minute rate": "1553.19 per second",
+      "5-minute rate": "1639.54 per second"
+    },
+    "lasttime": "2017-05-24 09:44:22",
+    "createtime": "2017-05-24 09:44:22"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "626336",
+      "mean rate": "1996.27 per second",
+      "1-minute rate": "1158.90 per second",
+      "15-minute rate": "1551.69 per second",
+      "5-minute rate": "1636.47 per second"
+    },
+    "lasttime": "2017-05-24 09:44:17",
+    "createtime": "2017-05-24 09:44:17"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "617473",
+      "mean rate": "1999.89 per second",
+      "1-minute rate": "1177.06 per second",
+      "15-minute rate": "1555.04 per second",
+      "5-minute rate": "1648.01 per second"
+    },
+    "lasttime": "2017-05-24 09:44:12",
+    "createtime": "2017-05-24 09:44:12"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "612473",
+      "mean rate": "2016.34 per second",
+      "1-minute rate": "1196.79 per second",
+      "15-minute rate": "1558.41 per second",
+      "5-minute rate": "1659.74 per second"
+    },
+    "lasttime": "2017-05-24 09:44:07",
+    "createtime": "2017-05-24 09:44:07"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "607723",
+      "mean rate": "2034.19 per second",
+      "1-minute rate": "1213.89 per second",
+      "15-minute rate": "1561.52 per second",
+      "5-minute rate": "1670.82 per second"
+    },
+    "lasttime": "2017-05-24 09:44:02",
+    "createtime": "2017-05-24 09:44:02"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "603723",
+      "mean rate": "2055.20 per second",
+      "1-minute rate": "1232.48 per second",
+      "15-minute rate": "1564.65 per second",
+      "5-minute rate": "1682.10 per second"
+    },
+    "lasttime": "2017-05-24 09:43:57",
+    "createtime": "2017-05-24 09:43:57"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "598723",
+      "mean rate": "2073.47 per second",
+      "1-minute rate": "1252.69 per second",
+      "15-minute rate": "1567.79 per second",
+      "5-minute rate": "1693.56 per second"
+    },
+    "lasttime": "2017-05-24 09:43:52",
+    "createtime": "2017-05-24 09:43:52"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "593723",
+      "mean rate": "2092.39 per second",
+      "1-minute rate": "1274.65 per second",
+      "15-minute rate": "1570.96 per second",
+      "5-minute rate": "1705.22 per second"
+    },
+    "lasttime": "2017-05-24 09:43:47",
+    "createtime": "2017-05-24 09:43:47"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "588723",
+      "mean rate": "2111.97 per second",
+      "1-minute rate": "1302.86 per second",
+      "15-minute rate": "1574.42 per second",
+      "5-minute rate": "1717.91 per second"
+    },
+    "lasttime": "2017-05-24 09:43:42",
+    "createtime": "2017-05-24 09:43:42"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "584723",
+      "mean rate": "2135.95 per second",
+      "1-minute rate": "1342.21 per second",
+      "15-minute rate": "1578.45 per second",
+      "5-minute rate": "1732.50 per second"
+    },
+    "lasttime": "2017-05-24 09:43:37",
+    "createtime": "2017-05-24 09:43:37"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "579723",
+      "mean rate": "2157.08 per second",
+      "1-minute rate": "1371.95 per second",
+      "15-minute rate": "1581.68 per second",
+      "5-minute rate": "1744.81 per second"
+    },
+    "lasttime": "2017-05-24 09:43:32",
+    "createtime": "2017-05-24 09:43:32"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "574723",
+      "mean rate": "2179.03 per second",
+      "1-minute rate": "1404.28 per second",
+      "15-minute rate": "1584.92 per second",
+      "5-minute rate": "1757.32 per second"
+    },
+    "lasttime": "2017-05-24 09:43:27",
+    "createtime": "2017-05-24 09:43:27"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "569723",
+      "mean rate": "2201.81 per second",
+      "1-minute rate": "1439.41 per second",
+      "15-minute rate": "1588.17 per second",
+      "5-minute rate": "1770.05 per second"
+    },
+    "lasttime": "2017-05-24 09:43:22",
+    "createtime": "2017-05-24 09:43:22"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "564723",
+      "mean rate": "2225.48 per second",
+      "1-minute rate": "1494.98 per second",
+      "15-minute rate": "1592.57 per second",
+      "5-minute rate": "1786.36 per second"
+    },
+    "lasttime": "2017-05-24 09:43:17",
+    "createtime": "2017-05-24 09:43:17"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "559723",
+      "mean rate": "2250.10 per second",
+      "1-minute rate": "1537.99 per second",
+      "15-minute rate": "1595.87 per second",
+      "5-minute rate": "1799.57 per second"
+    },
+    "lasttime": "2017-05-24 09:43:12",
+    "createtime": "2017-05-24 09:43:12"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "554723",
+      "mean rate": "2275.75 per second",
+      "1-minute rate": "1549.99 per second",
+      "15-minute rate": "1596.96 per second",
+      "5-minute rate": "1806.29 per second"
+    },
+    "lasttime": "2017-05-24 09:43:07",
+    "createtime": "2017-05-24 09:43:07"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "548723",
+      "mean rate": "2298.27 per second",
+      "1-minute rate": "1597.78 per second",
+      "15-minute rate": "1600.28 per second",
+      "5-minute rate": "1819.84 per second"
+    },
+    "lasttime": "2017-05-24 09:43:02",
+    "createtime": "2017-05-24 09:43:02"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "543723",
+      "mean rate": "2326.07 per second",
+      "1-minute rate": "1649.73 per second",
+      "15-minute rate": "1603.63 per second",
+      "5-minute rate": "1833.62 per second"
+    },
+    "lasttime": "2017-05-24 09:42:57",
+    "createtime": "2017-05-24 09:42:57"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "538723",
+      "mean rate": "2355.07 per second",
+      "1-minute rate": "1706.20 per second",
+      "15-minute rate": "1606.99 per second",
+      "5-minute rate": "1847.63 per second"
+    },
+    "lasttime": "2017-05-24 09:42:52",
+    "createtime": "2017-05-24 09:42:52"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "533723",
+      "mean rate": "2385.33 per second",
+      "1-minute rate": "1784.95 per second",
+      "15-minute rate": "1611.49 per second",
+      "5-minute rate": "1865.23 per second"
+    },
+    "lasttime": "2017-05-24 09:42:47",
+    "createtime": "2017-05-24 09:42:47"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "528723",
+      "mean rate": "2416.98 per second",
+      "1-minute rate": "1853.16 per second",
+      "15-minute rate": "1614.89 per second",
+      "5-minute rate": "1879.77 per second"
+    },
+    "lasttime": "2017-05-24 09:42:42",
+    "createtime": "2017-05-24 09:42:42"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "523723",
+      "mean rate": "2450.14 per second",
+      "1-minute rate": "1927.31 per second",
+      "15-minute rate": "1618.32 per second",
+      "5-minute rate": "1894.56 per second"
+    },
+    "lasttime": "2017-05-24 09:42:37",
+    "createtime": "2017-05-24 09:42:37"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "519723",
+      "mean rate": "2489.65 per second",
+      "1-minute rate": "2007.89 per second",
+      "15-minute rate": "1621.76 per second",
+      "5-minute rate": "1909.59 per second"
+    },
+    "lasttime": "2017-05-24 09:42:32",
+    "createtime": "2017-05-24 09:42:32"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "514723",
+      "mean rate": "2526.20 per second",
+      "1-minute rate": "2095.48 per second",
+      "15-minute rate": "1625.23 per second",
+      "5-minute rate": "1924.88 per second"
+    },
+    "lasttime": "2017-05-24 09:42:27",
+    "createtime": "2017-05-24 09:42:27"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "509723",
+      "mean rate": "2564.58 per second",
+      "1-minute rate": "2190.68 per second",
+      "15-minute rate": "1628.71 per second",
+      "5-minute rate": "1940.43 per second"
+    },
+    "lasttime": "2017-05-24 09:42:22",
+    "createtime": "2017-05-24 09:42:22"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "504723",
+      "mean rate": "2605.00 per second",
+      "1-minute rate": "2294.16 per second",
+      "15-minute rate": "1632.21 per second",
+      "5-minute rate": "1956.23 per second"
+    },
+    "lasttime": "2017-05-24 09:42:17",
+    "createtime": "2017-05-24 09:42:17"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "499723",
+      "mean rate": "2647.52 per second",
+      "1-minute rate": "2337.10 per second",
+      "15-minute rate": "1631.28 per second",
+      "5-minute rate": "1958.86 per second"
+    },
+    "lasttime": "2017-05-24 09:42:12",
+    "createtime": "2017-05-24 09:42:12"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "488723",
+      "mean rate": "2659.65 per second",
+      "1-minute rate": "2349.02 per second",
+      "15-minute rate": "1628.11 per second",
+      "5-minute rate": "1954.80 per second"
+    },
+    "lasttime": "2017-05-24 09:42:07",
+    "createtime": "2017-05-24 09:42:07"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "477723",
+      "mean rate": "2672.51 per second",
+      "1-minute rate": "2361.97 per second",
+      "15-minute rate": "1624.92 per second",
+      "5-minute rate": "1950.68 per second"
+    },
+    "lasttime": "2017-05-24 09:42:02",
+    "createtime": "2017-05-24 09:42:02"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "467723",
+      "mean rate": "2691.88 per second",
+      "1-minute rate": "2376.05 per second",
+      "15-minute rate": "1621.72 per second",
+      "5-minute rate": "1946.49 per second"
+    },
+    "lasttime": "2017-05-24 09:41:57",
+    "createtime": "2017-05-24 09:41:57"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "456723",
+      "mean rate": "2706.46 per second",
+      "1-minute rate": "2408.73 per second",
+      "15-minute rate": "1619.61 per second",
+      "5-minute rate": "1945.59 per second"
+    },
+    "lasttime": "2017-05-24 09:41:52",
+    "createtime": "2017-05-24 09:41:52"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "446723",
+      "mean rate": "2728.01 per second",
+      "1-minute rate": "2461.63 per second",
+      "15-minute rate": "1618.61 per second",
+      "5-minute rate": "1948.04 per second"
+    },
+    "lasttime": "2017-05-24 09:41:47",
+    "createtime": "2017-05-24 09:41:47"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "437723",
+      "mean rate": "2757.23 per second",
+      "1-minute rate": "2501.74 per second",
+      "15-minute rate": "1616.48 per second",
+      "5-minute rate": "1947.17 per second"
+    },
+    "lasttime": "2017-05-24 09:41:42",
+    "createtime": "2017-05-24 09:41:42"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "427723",
+      "mean rate": "2781.87 per second",
+      "1-minute rate": "2562.73 per second",
+      "15-minute rate": "1615.46 per second",
+      "5-minute rate": "1949.64 per second"
+    },
+    "lasttime": "2017-05-24 09:41:37",
+    "createtime": "2017-05-24 09:41:37"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "417723",
+      "mean rate": "2808.14 per second",
+      "1-minute rate": "2611.63 per second",
+      "15-minute rate": "1613.32 per second",
+      "5-minute rate": "1948.79 per second"
+    },
+    "lasttime": "2017-05-24 09:41:32",
+    "createtime": "2017-05-24 09:41:32"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "408723",
+      "mean rate": "2843.23 per second",
+      "1-minute rate": "2682.16 per second",
+      "15-minute rate": "1612.28 per second",
+      "5-minute rate": "1951.29 per second"
+    },
+    "lasttime": "2017-05-24 09:41:27",
+    "createtime": "2017-05-24 09:41:27"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "398723",
+      "mean rate": "2873.59 per second",
+      "1-minute rate": "2741.45 per second",
+      "15-minute rate": "1610.12 per second",
+      "5-minute rate": "1950.48 per second"
+    },
+    "lasttime": "2017-05-24 09:41:22",
+    "createtime": "2017-05-24 09:41:22"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "389723",
+      "mean rate": "2913.75 per second",
+      "1-minute rate": "2805.88 per second",
+      "15-minute rate": "1607.95 per second",
+      "5-minute rate": "1949.64 per second"
+    },
+    "lasttime": "2017-05-24 09:41:17",
+    "createtime": "2017-05-24 09:41:17"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "379723",
+      "mean rate": "2949.21 per second",
+      "1-minute rate": "2841.15 per second",
+      "15-minute rate": "1603.53 per second",
+      "5-minute rate": "1942.07 per second"
+    },
+    "lasttime": "2017-05-24 09:41:12",
+    "createtime": "2017-05-24 09:41:12"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "365723",
+      "mean rate": "2955.32 per second",
+      "1-minute rate": "2931.64 per second",
+      "15-minute rate": "1602.44 per second",
+      "5-minute rate": "1944.46 per second"
+    },
+    "lasttime": "2017-05-24 09:41:07",
+    "createtime": "2017-05-24 09:41:07"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "360723",
+      "mean rate": "3037.58 per second",
+      "1-minute rate": "3166.85 per second",
+      "15-minute rate": "1610.11 per second",
+      "5-minute rate": "1973.36 per second"
+    },
+    "lasttime": "2017-05-24 09:41:02",
+    "createtime": "2017-05-24 09:41:02"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "355598",
+      "mean rate": "3126.08 per second",
+      "1-minute rate": "3268.26 per second",
+      "15-minute rate": "1607.94 per second",
+      "5-minute rate": "1972.91 per second"
+    },
+    "lasttime": "2017-05-24 09:40:57",
+    "createtime": "2017-05-24 09:40:57"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "347598",
+      "mean rate": "3196.19 per second",
+      "1-minute rate": "3139.49 per second",
+      "15-minute rate": "1590.44 per second",
+      "5-minute rate": "1926.24 per second"
+    },
+    "lasttime": "2017-05-24 09:40:52",
+    "createtime": "2017-05-24 09:40:52"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "316598",
+      "mean rate": "3051.41 per second",
+      "1-minute rate": "2869.17 per second",
+      "15-minute rate": "1564.48 per second",
+      "5-minute rate": "1853.57 per second"
+    },
+    "lasttime": "2017-05-24 09:40:47",
+    "createtime": "2017-05-24 09:40:47"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "291484",
+      "mean rate": "2951.65 per second",
+      "1-minute rate": "2455.59 per second",
+      "15-minute rate": "1530.70 per second",
+      "5-minute rate": "1756.52 per second"
+    },
+    "lasttime": "2017-05-24 09:40:42",
+    "createtime": "2017-05-24 09:40:42"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "253457",
+      "mean rate": "2703.46 per second",
+      "1-minute rate": "2408.28 per second",
+      "15-minute rate": "1522.51 per second",
+      "5-minute rate": "1735.62 per second"
+    },
+    "lasttime": "2017-05-24 09:40:37",
+    "createtime": "2017-05-24 09:40:37"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "239377",
+      "mean rate": "2697.21 per second",
+      "1-minute rate": "2338.09 per second",
+      "15-minute rate": "1513.08 per second",
+      "5-minute rate": "1710.74 per second"
+    },
+    "lasttime": "2017-05-24 09:40:32",
+    "createtime": "2017-05-24 09:40:32"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "223377",
+      "mean rate": "2667.08 per second",
+      "1-minute rate": "2417.27 per second",
+      "15-minute rate": "1513.56 per second",
+      "5-minute rate": "1715.51 per second"
+    },
+    "lasttime": "2017-05-24 09:40:27",
+    "createtime": "2017-05-24 09:40:27"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "214242",
+      "mean rate": "2720.37 per second",
+      "1-minute rate": "2453.53 per second",
+      "15-minute rate": "1510.85 per second",
+      "5-minute rate": "1710.73 per second"
+    },
+    "lasttime": "2017-05-24 09:40:22",
+    "createtime": "2017-05-24 09:40:22"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "206242",
+      "mean rate": "2796.38 per second",
+      "1-minute rate": "2557.54 per second",
+      "15-minute rate": "1512.26 per second",
+      "5-minute rate": "1718.36 per second"
+    },
+    "lasttime": "2017-05-24 09:40:17",
+    "createtime": "2017-05-24 09:40:17"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "200959",
+      "mean rate": "2922.90 per second",
+      "1-minute rate": "2710.28 per second",
+      "15-minute rate": "1516.23 per second",
+      "5-minute rate": "1733.80 per second"
+    },
+    "lasttime": "2017-05-24 09:40:12",
+    "createtime": "2017-05-24 09:40:12"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "195959",
+      "mean rate": "3073.75 per second",
+      "1-minute rate": "2858.91 per second",
+      "15-minute rate": "1519.11 per second",
+      "5-minute rate": "1746.13 per second"
+    },
+    "lasttime": "2017-05-24 09:40:07",
+    "createtime": "2017-05-24 09:40:07"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "190959",
+      "mean rate": "3250.25 per second",
+      "1-minute rate": "2846.65 per second",
+      "15-minute rate": "1510.86 per second",
+      "5-minute rate": "1725.06 per second"
+    },
+    "lasttime": "2017-05-24 09:40:02",
+    "createtime": "2017-05-24 09:40:02"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "154750",
+      "mean rate": "2878.84 per second",
+      "1-minute rate": "1780.48 per second",
+      "15-minute rate": "1435.07 per second",
+      "5-minute rate": "1500.02 per second"
+    },
+    "lasttime": "2017-05-24 09:39:57",
+    "createtime": "2017-05-24 09:39:57"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "85152",
+      "mean rate": "1746.64 per second",
+      "1-minute rate": "1583.57 per second",
+      "15-minute rate": "1420.52 per second",
+      "5-minute rate": "1457.23 per second"
+    },
+    "lasttime": "2017-05-24 09:39:52",
+    "createtime": "2017-05-24 09:39:52"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "80152",
+      "mean rate": "1831.88 per second",
+      "1-minute rate": "1634.28 per second",
+      "15-minute rate": "1422.86 per second",
+      "5-minute rate": "1464.91 per second"
+    },
+    "lasttime": "2017-05-24 09:39:47",
+    "createtime": "2017-05-24 09:39:47"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "76152",
+      "mean rate": "1965.06 per second",
+      "1-minute rate": "1689.40 per second",
+      "15-minute rate": "1425.22 per second",
+      "5-minute rate": "1472.73 per second"
+    },
+    "lasttime": "2017-05-24 09:39:42",
+    "createtime": "2017-05-24 09:39:42"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "70152",
+      "mean rate": "2078.33 per second",
+      "1-minute rate": "1662.41 per second",
+      "15-minute rate": "1422.02 per second",
+      "5-minute rate": "1463.86 per second"
+    },
+    "lasttime": "2017-05-24 09:39:37",
+    "createtime": "2017-05-24 09:39:37"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "60152",
+      "mean rate": "2091.89 per second",
+      "1-minute rate": "1633.07 per second",
+      "15-minute rate": "1418.80 per second",
+      "5-minute rate": "1454.85 per second"
+    },
+    "lasttime": "2017-05-24 09:39:32",
+    "createtime": "2017-05-24 09:39:32"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "50902",
+      "mean rate": "2142.92 per second",
+      "1-minute rate": "1618.56 per second",
+      "15-minute rate": "1416.67 per second",
+      "5-minute rate": "1449.05 per second"
+    },
+    "lasttime": "2017-05-24 09:39:27",
+    "createtime": "2017-05-24 09:39:27"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "41152",
+      "mean rate": "2194.40 per second",
+      "1-minute rate": "1598.45 per second",
+      "15-minute rate": "1414.26 per second",
+      "5-minute rate": "1442.31 per second"
+    },
+    "lasttime": "2017-05-24 09:39:22",
+    "createtime": "2017-05-24 09:39:22"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "30152",
+      "mean rate": "2192.36 per second",
+      "1-minute rate": "1498.38 per second",
+      "15-minute rate": "1406.82 per second",
+      "5-minute rate": "1420.34 per second"
+    },
+    "lasttime": "2017-05-24 09:39:17",
+    "createtime": "2017-05-24 09:39:17"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "15000",
+      "mean rate": "1713.32 per second",
+      "1-minute rate": "1400.00 per second",
+      "15-minute rate": "1400.00 per second",
+      "5-minute rate": "1400.00 per second"
+    },
+    "lasttime": "2017-05-24 09:39:12",
+    "createtime": "2017-05-24 09:39:12"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "3000",
+      "mean rate": "798.65 per second",
+      "1-minute rate": "0.00 per second",
+      "15-minute rate": "0.00 per second",
+      "5-minute rate": "0.00 per second"
+    },
+    "lasttime": "2017-05-24 09:39:08",
+    "createtime": "2017-05-24 09:39:08"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "122000",
+      "mean rate": "3332.25 per second",
+      "1-minute rate": "3992.87 per second",
+      "15-minute rate": "4550.73 per second",
+      "5-minute rate": "4456.40 per second"
+    },
+    "lasttime": "2017-05-24 09:24:23",
+    "createtime": "2017-05-24 09:24:23"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "107000",
+      "mean rate": "3384.86 per second",
+      "1-minute rate": "4079.15 per second",
+      "15-minute rate": "4559.36 per second",
+      "5-minute rate": "4480.88 per second"
+    },
+    "lasttime": "2017-05-24 09:24:18",
+    "createtime": "2017-05-24 09:24:18"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "92000",
+      "mean rate": "3456.87 per second",
+      "1-minute rate": "4203.35 per second",
+      "15-minute rate": "4570.00 per second",
+      "5-minute rate": "4511.65 per second"
+    },
+    "lasttime": "2017-05-24 09:24:13",
+    "createtime": "2017-05-24 09:24:13"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "77000",
+      "mean rate": "3562.55 per second",
+      "1-minute rate": "4329.65 per second",
+      "15-minute rate": "4580.14 per second",
+      "5-minute rate": "4541.26 per second"
+    },
+    "lasttime": "2017-05-24 09:24:08",
+    "createtime": "2017-05-24 09:24:08"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "63000",
+      "mean rate": "3792.03 per second",
+      "1-minute rate": "4445.20 per second",
+      "15-minute rate": "4588.94 per second",
+      "5-minute rate": "4567.16 per second"
+    },
+    "lasttime": "2017-05-24 09:24:03",
+    "createtime": "2017-05-24 09:24:03"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "49000",
+      "mean rate": "4219.76 per second",
+      "1-minute rate": "4536.04 per second",
+      "15-minute rate": "4595.57 per second",
+      "5-minute rate": "4586.78 per second"
+    },
+    "lasttime": "2017-05-24 09:23:58",
+    "createtime": "2017-05-24 09:23:58"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "28000",
+      "mean rate": "4233.20 per second",
+      "1-minute rate": "4600.00 per second",
+      "15-minute rate": "4600.00 per second",
+      "5-minute rate": "4600.00 per second"
+    },
+    "lasttime": "2017-05-24 09:23:53",
+    "createtime": "2017-05-24 09:23:53"
+  },
+  {
+    "collectorId": "f138d505-c953-4863-8898-637bb28604fa",
+    "id": "c3c9b989-2fda-40a8-9053-55a910793d0a",
+    "metricType": "METERS",
+    "metric": {
+      "count": "2000",
+      "mean rate": "1238.85 per second",
+      "1-minute rate": "0.00 per second",
+      "15-minute rate": "0.00 per second",
+      "5-minute rate": "0.00 per second"
+    },
+    "lasttime": "2017-05-24 09:23:48",
+    "createtime": "2017-05-24 09:23:48"
+  }
+]

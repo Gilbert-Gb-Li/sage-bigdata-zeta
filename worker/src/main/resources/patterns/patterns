@@ -1,0 +1,127 @@
+USERNAME [a-zA-Z0-9._-]+
+USER %{USERNAME}
+EMAILLOCALPART [a-zA-Z][a-zA-Z0-9_.+-=:]+
+EMAILADDRESS %{EMAILLOCALPART}@%{HOSTNAME}
+HTTPDUSER %{EMAILADDRESS}|%{USER}
+INT (?:[+-]?(?:[0-9]+))
+BASE10NUM (?<![0-9.+-])(?>[+-]?(?:(?:[0-9]+(?:\.[0-9]+)?)|(?:\.[0-9]+)))
+NUMBER (?:%{BASE10NUM})
+BASE16NUM (?<![0-9A-Fa-f])(?:[+-]?(?:0x)?(?:[0-9A-Fa-f]+))
+BASE16FLOAT \b(?<![0-9A-Fa-f.])(?:[+-]?(?:0x)?(?:(?:[0-9A-Fa-f]+(?:\.[0-9A-Fa-f]*)?)|(?:\.[0-9A-Fa-f]+)))\b
+
+POSINT \b(?:[1-9][0-9]*)\b
+NONNEGINT \b(?:[0-9]+)\b
+WORD \b\w+\b
+NOTSPACE \S+
+SPACE \s*
+DATA .*?
+GREEDYDATA .*
+ALL [\s|\S]*
+#QUOTEDSTRING (?:(?<!\\)(?:"(?:\\.|[^\\"])*"|(?:'(?:\\.|[^\\'])*')|(?:`(?:\\.|[^\\`])*`)))
+QUOTEDSTRING (?>(?<!\\)(?>"(?>\\.|[^\\"]+)+"|""|(?>'(?>\\.|[^\\']+)+')|''|(?>`(?>\\.|[^\\`]+)+`)|``))
+UUID [A-Fa-f0-9]{8}-(?:[A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}
+
+# Networking
+MAC (?:%{CISCOMAC}|%{WINDOWSMAC}|%{COMMONMAC})
+CISCOMAC (?:(?:[A-Fa-f0-9]{4}\.){2}[A-Fa-f0-9]{4})
+WINDOWSMAC (?:(?:[A-Fa-f0-9]{2}-){5}[A-Fa-f0-9]{2})
+COMMONMAC (?:(?:[A-Fa-f0-9]{2}:){5}[A-Fa-f0-9]{2})
+IPV6 ((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?
+IPV4 (?<![0-9])(?:(?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5]))(?![0-9])
+IP (?:%{IPV6}|%{IPV4})
+HOSTNAME \b(?:[0-9A-Za-z][0-9A-Za-z-]{0,62})(?:\.(?:[0-9A-Za-z][0-9A-Za-z-]{0,62}))*(\.?|\b)
+HOST %{HOSTNAME}
+IPORHOST (?:%{HOSTNAME}|%{IP})
+HOSTPORT (?:%{IPORHOST}:%{POSINT:PORT})
+
+# paths
+PATH (?:%{UNIXPATH}|%{WINPATH})
+UNIXPATH (/([\w_%!$@:.,~-]+|\\.)*)+
+TTY (?:/dev/(pts|tty([pq])?)(\w+)?/?(?:[0-9]+))
+WINPATH (?>[A-Za-z]+:|\\)(?:\\[^\\?*]*)+
+URIPROTO [A-Za-z]+(\+[A-Za-z+]+)?
+URIHOST %{IPORHOST}(?::%{POSINT:port})?
+# uripath comes loosely from RFC1738, but mostly from what Firefox
+# doesn't turn into %XX
+URIPATH (?:/[A-Za-z0-9$.+!*'(){},~:;=@#%_\-]*)+
+#URIPARAM \?(?:[A-Za-z0-9]+(?:=(?:[^&]*))?(?:&(?:[A-Za-z0-9]+(?:=(?:[^&]*))?)?)*)?
+URIPARAM \?[A-Za-z0-9$.+!*'|(){},~@#%&/=:;_?\-\[\]<>]*
+URIPATHPARAM %{URIPATH}(?:%{URIPARAM})?
+URI %{URIPROTO}://(?:%{USER}(?::[^@]*)?@)?(?:%{URIHOST})?(?:%{URIPATHPARAM})?
+
+# Months: January, Feb, 3, 03, 12, December
+MONTH \b(?:Jan(?:uary|uar)?|Feb(?:ruary|ruar)?|M(?:a|ä)?r(?:ch|z)?|Apr(?:il)?|Ma(?:y|i)?|Jun(?:e|i)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|O(?:c|k)?t(?:ober)?|Nov(?:ember)?|De(?:c|z)(?:ember)?)\b
+_MONTH %{MONTH:_month}
+MONTH_NUM (?:0?[1-9]|1[0-2])
+_MONTH_NUM %{MONTH_NUM:_month_num}
+MONTH_NUM2 (?:0[1-9]|1[0-2])
+_MONTH_NUM2 %{MONTH_NUM2:_month_num2}
+MONTH_DAY (?:(?:0[1-9])|(?:[12][0-9])|(?:3[01])|[1-9])
+_MONTH_DAY %{MONTH_DAY:_month_day}
+# Days: Monday, Tue, Thu, etc...
+DAY (?:Mon(?:day)?|Tue(?:sday)?|Wed(?:nesday)?|Thu(?:rsday)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?)
+_DAY %{DAY:_day}
+DAY_ZH_CN \u661f\u671f(\u4e00|\u4e8c|\u4e09|\u56db|\u4e94|\u516d|\u4e03)
+_DAY_ZH_CN %{DAY_ZH_CN:_day_zh_cn}
+# Years?
+YEAR (?>\d\d){1,2}
+_YEAR %{YEAR:_year}
+# Time: HH:MM:SS
+#TIME \d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?
+# I'm still on the fence about using grok to perform the time match,
+# since it's probably slower.
+# TIME %{POSINT<24}:%{POSINT<60}(?::%{POSINT<60}(?:\.%{POSINT})?)?
+HOUR (?:2[0123]|[01]?[0-9])
+_HOUR %{HOUR:_hour}
+MINUTE (?:[0-5][0-9])
+_MINUTE %{MINUTE:_minute}
+# '60' is a leap second in most time standards and thus is valid.
+SECOND (?:(?:[0-5]?[0-9]|60)(?:[:.,]%{_MCRO_SECOND})?)
+#
+MCRO_SECOND [0-9]+
+_MCRO_SECOND %{MCRO_SECOND:_mcro_second}
+
+_SECOND %{SECOND:_second}
+TIME (?!<[0-9])%{_HOUR}:%{_MINUTE}(?::%{_SECOND})(?![0-9])?
+# datestamp is YYYY/MM/DD-HH:MM:SS.UUUU (or something like it)
+DATE_US %{_MONTH_NUM}[./-]?%{_MONTH_DAY}[./-]?%{_YEAR}
+DATE_EU %{_MONTH_NUM}[./-]?%{_MONTH_NUM}[./-]?%{_YEAR}
+DATE_ISO8601 %{_YEAR}[./-]?%{_MONTH_NUM}[./-]?%{_MONTH_DAY}
+DATE_ZH_CN %{_YEAR}\u5e74%{_MONTH_NUM}\u6708%{_MONTH_DAY}\u65e5
+TIME_ZH_CN %{_HOUR}\u65f6%{_MINUTE}(?:\u5206%{_SECOND})\u79d2
+TIMESTAMP %{DATE_ZH_CN}[ ]%{DAY_ZH_CN}[ ]%{TIME_ZH_CN}
+ISO8601_TIMEZONE (?:Z|[+-]%{_HOUR}(?::?%{_MINUTE}))
+ISO8601_SECOND (?:%{_SECOND}|60)
+TIMESTAMP_ISO8601 %{DATE_ISO8601}[T ]?%{_HOUR}:?%{_MINUTE}(?::?%{_SECOND})?%{ISO8601_TIMEZONE}?
+DATE_CM %{_MONTH}[ ./-]?%{_MONTH_DAY}[ ./-]?%{_YEAR}
+DATE %{DATE_US}|%{DATE_EU}|%{DATE_ISO8601}|%{DATE_CM}
+
+TZ (?:[PMCE][SD]T|UTC|CST)
+
+DATESTAMP_ISO8601 %{DATE_ISO8601}[-T ]?%{TIME}%{ISO8601_TIMEZONE}?[-T ]?%{TZ}?
+DATESTAMP_RFC822 %{DAY} %{MONTH} %{MONTH_DAY} %{YEAR} %{TIME} %{TZ}
+DATESTAMP_RFC2822 %{DAY}, %{MONTH_DAY} %{MONTH} %{YEAR} %{TIME} %{ISO8601_TIMEZONE}
+DATESTAMP_OTHER %{DAY} %{_MONTH} %{_MONTH_DAY} %{TIME} %{TZ} %{_YEAR}
+DATESTAMP_EVENTLOG %{_YEAR}%{_MONTH_NUM2}%{_MONTH_DAY}%{_HOUR}%{_MINUTE}%{_SECOND}
+DATESTAMP (%{DATE}[-T ]?%{TIME}%{ISO8601_TIMEZONE}?)|(%{DATESTAMP_ISO8601})|(%{TIMESTAMP})|(%{TIMESTAMP_ISO8601})|(%{SYSLOGTIMESTAMP})|(%{DATESTAMP_OTHER})
+
+# Syslog Dates: Month Day HH:MM:SS(:micro)?( year)?
+SYSLOGTIMESTAMP %{_MONTH} +%{_MONTH_DAY} %{TIME}( %{_YEAR})?
+PROG (?:[\w._/%-]+)
+SYSLOGPROG %{PROG:program}(?:\[%{POSINT:pid}\])?
+SYSLOGHOST %{IPORHOST}
+SYSLOGFACILITY <%{NONNEGINT:facility}.%{NONNEGINT:priority}>
+HTTPDATE %{_MONTH_DAY}/%{_MONTH}/%{_YEAR}:%{TIME} %{INT}
+
+# Shortcuts
+QS %{QUOTEDSTRING}
+
+# Log formats
+SYSLOGBASE %{SYSLOGTIMESTAMP:timestamp} (?:%{SYSLOGFACILITY} )?%{SYSLOGHOST:logsource} %{SYSLOGPROG}:
+
+MESSAGESLOG %{SYSLOGBASE} %{DATA}
+COMMONAPACHELOG %{IPORHOST:clientip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:@timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response} (?:%{NUMBER:bytes}|-)
+COMBINEDAPACHELOG %{COMMONAPACHELOG} %{QS:referrer} %{QS:agent}
+
+# Log Levels
+LOGLEVEL ([A|a]lert|ALERT|[T|t]race|TRACE|[D|d]ebug|DEBUG|[N|n]otice|NOTICE|[I|i]nfo|INFO|[W|w]arn?(?:ing)?|WARN?(?:ING)?|[E|e]rr?(?:or)?|ERR?(?:OR)?|[C|c]rit?(?:ical)?|CRIT?(?:ICAL)?|[F|f]atal|FATAL|[S|s]evere|SEVERE|EMERG(?:ENCY)?|[Ee]merg(?:ency)?)

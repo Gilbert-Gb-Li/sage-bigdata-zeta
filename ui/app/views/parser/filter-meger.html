@@ -1,0 +1,61 @@
+<div style="padding-left: 40px;">
+  <div class="input-group col-sm-4 col-md-4" style="float:left;padding-top: 5px; padding-right:2px;padding-left: 0px;"
+       ng-repeat="field in filter.fields track by $index">
+    <div class=" input-group col-sm-3 col-md-3"
+         style="float:left;padding-top: 5px; padding-right:2px;padding-left: 0px;">
+      <span ng-if="$index>0" style="float:left;padding-top: 5px; padding-right:2px;padding-left: 0px;">
+        <i style="padding-left: 20px" class=" fa fa-plus"></i>
+      </span>
+      <span ng-if="$index==0" style="float:left;padding-top: 5px; padding-right:2px;padding-left: 0px;">
+       <i>字段:</i>
+
+      </span>
+    </div>
+
+    <div class="input-group col-sm-9 col-md-9"
+         ng-class="{'has-error has-feedback':(add_form['filter[{{$parent.$index}}].fields[{{$index}}]'].$invalid&&(add_form['filter[{{$parent.$index}}].fields[{{$index}}]'].$dirty||add_form.$submitted))}">
+      <input placeholder="要合并的字段" ng-model="filter.fields[$index]"
+             class="form-control ui-autocomplete"
+             name="filter[{{$parent.$index}}].fields[{{$index}}]"
+             required
+             uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8">
+      <span class="input-group-addon btn btn-danger"
+            ng-disabled="filter.fields.length<=2"
+            ng-click="filter.fields.length<=2|| removeFilterOne($parent.$index,$index)">
+        <i class="fa fa-minus"></i>
+      </span>
+    </div>
+
+  </div>
+  <label class="col-sm-3 col-md-3" style="padding-left: 0;padding-top: 7px;"><span
+    class=" btn btn-primary btn-sm bg-success" style="margin-left: 50%;" ng-click="addFilterOne($index)"
+    title="添加内容">&nbsp;&nbsp; <i class="fa fa-plus"></i>&nbsp;&nbsp;</span></label>
+</div>
+<div style="display: inline;padding-left: 0px;padding-right:2px;padding-top:5px;float: right"
+     class="col-sm-8 col-md-8 control-box">
+
+  <div style="float:left" class="input-group"
+       ng-class="{'has-error':(add_form['filter[{{$index}}].sep'].$invalid
+       &&(add_form['filter[{{$index}}].sep'].$dirty
+        ||add_form.$submitted))
+     ||(add_form['filter[{{$index}}].field'].$invalid&&
+      (add_form['filter[{{$index}}].field'].$dirty
+        ||add_form.$submitted))}">
+    <span
+      class="input-group-addon">
+    WITH
+      </span>
+    <input type="text" class="required form-control"
+           ng-model="filter.sep"
+           name="filter[{{$index}}].sep"
+           placeholder="特殊值说明:\s->空格,\n->换行,\t ->tab" required>
+    <span
+      class="input-group-addon">合并为
+    </span>
+    <input class="form-control"
+           name="filter[{{$index}}].field"
+           ng-model="filter.field"
+           placeholder="合并后的字段名称" required>
+  </div>
+</div>
+

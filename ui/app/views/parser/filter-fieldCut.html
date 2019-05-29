@@ -1,0 +1,31 @@
+<div class="input-group col-sm-3 col-md-3 " style="float:left"
+     ng-class="{'has-error':add_form['filter[{{$index}}].field'].$invalid&&(add_form['filter[{{$index}}].field'].$dirty||add_form.$submitted)}">
+  <span
+    class="input-group-addon">字段</span>
+  <input class="form-control ui-autocomplete"
+         name="filter[{{$index}}].field"
+
+
+         ng-model="filter.field"
+         uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+         placeholder="字段名称" required>
+</div>
+<div class="input-group col-sm-4 col-md-4 " style="float:left"
+     ng-class="{'has-error':add_form['filter[{{$index}}].from'].$invalid&&(add_form['filter[{{$index}}].from'].$dirty||add_form.$submitted)}">
+  <span class="input-group-addon">截取起始位置</span>
+  <input class="form-control" type="number"
+         name="filter[{{$index}}].from"
+
+
+         ng-model="filter.from" ng-init="filter.from?filter.from:0"
+         placeholder="开始位置" required>
+</div>
+<div class="input-group col-sm-4 col-md-4 " style="float:left"
+     ng-class="{'has-error':add_form['filter[{{$index}}].limit'].$invalid&&(add_form['filter[{{$index}}].limit'].$dirty||add_form.$submitted)}">
+  <span class="input-group-addon">截取长度</span>
+  <input class="form-control" type="number"
+         name="filter[{{$index}}].limit"
+
+         ng-model="filter.limit" ng-init="filter.limit?filter.limit:0"
+         placeholder="长度" required>
+</div>

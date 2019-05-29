@@ -1,0 +1,3 @@
+app.monitor.kafka=com.haima.sage.bigdata.etl.monitor.KafkaMonitor
+app.writer.kafka=com.haima.sage.bigdata.etl.writer.KafkaLogWriter
+app.checker.kafka=com.haima.sage.bigdata.etl.driver.usable.KafkaUsabilityChecker

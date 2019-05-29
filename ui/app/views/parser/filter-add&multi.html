@@ -1,0 +1,20 @@
+<div class="input-group col-sm-3 col-md-3 " style="float:left"
+     ng-class="{'has-error':add_form['filter[{{$index}}].field'].$invalid&&(add_form['filter[{{$index}}].field'].$dirty||add_form.$submitted)}">
+  <span  class="input-group-addon">字段</span>
+  <input class="form-control ui-autocomplete"
+         name="filter[{{$index}}].field"
+
+
+         ng-model="filter.field"
+         uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+         placeholder="字段名称" required>
+</div>
+<div class="input-group col-sm-4 col-md-4 " style="float:left"
+     ng-class="{'has-error':add_form['filter[{{$index}}].value'].$invalid&&(add_form['filter[{{$index}}].value'].$dirty||add_form.$submitted)}">
+  <span class="input-group-addon">数值</span>
+  <input class="form-control" type="number"
+         name="filter[{{$index}}].value"
+         ng-model="filter.value" ng-init="filter.value?filter.value:1"
+         ng-pattern="\d*\.?\d*"
+         placeholder="数值" required>
+</div>

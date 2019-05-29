@@ -1,0 +1,47 @@
+<div id="parsers" style="display: none;">
+  <div id="nothing">
+  </div>
+  <div id="cef">
+  </div>
+  <div id="delimit">
+    <div class="form-group">
+      <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>分隔符</label>
+      <div class="col-sm-8 col-md-8">
+        <input type="text" class="required form-control" name="parser[delimit]"
+               placeholder="特殊值说明:\s->空格,\n->换行,\t ->tab">
+      </div>
+    </div>
+    <div class="form-group" id="parser">
+      <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>字段列表</label>
+    </div>
+  </div>
+  <div id="delimitWithKeyMap">
+    <div class="form-group">
+      <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>字段分隔符</label>
+
+      <div class="col-sm-3 col-md-3">
+        <input type="text" class="required form-control" name="parser[delimit]"
+               placeholder="特殊值说明:\s->空格,\n->换行,\t ->tab">
+      </div>
+      <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>键值分隔符</label>
+      <div class="col-sm-3 col-md-3">
+        <input type="text" class="required form-control" name="parser[tab]" placeholder="特殊值说明:\s->空格,\n->换行,\t ->tab">
+      </div>
+      <div class="col-sm-2 col-md-2"></div>
+    </div>
+  </div>
+  <div id="xml">
+  </div>
+  <div id="json">
+  </div>
+  <div id="regex">
+    <div class="form-group">
+      <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>GROK表达式</label>
+      <div class="col-sm-8 col-md-8">
+        <input type="text" class="required form-control" name="parser[value]">
+      </div>
+    </div>
+  </div>
+  <div id="transfer">
+  </div>
+</div>

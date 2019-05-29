@@ -1,0 +1,1984 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="hla-main">数据源</div>
+        <div class="hla-widget">
+            <div class="hla-widget-head">
+                <div class="btn-group-xs pull-right">
+                    <button title="增加" class="btn btn-success" type="button" id="op_add_datasource_button"
+                            ng-click="show('add')"><i class="fa fa-plus"></i></button>
+                    <button title="上传" class="btn btn-success" type="button" id="op_upload_datasource_button"
+                            ng-click="show('upload')"><i class="fa fa-upload"></i></button>
+                    <button title="查询" class="btn btn-primary btn-group-lg" id="op_show_datasource_search"
+                            ng-click="show('search')"><i class="fa fa-search"></i></button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="hla-widget-content">
+                <div ng-show="message"
+                     ng-class="{'alert-danger':message.status!='200','alert-success':message.status=='200'}"
+                     class="col-sm-12 col-md-12 alert" role="alert" style="margin-top: 10px">
+                    {{message.message}}
+                </div>
+                <div class="hla-widget-upload-table form-horizontal" style="margin-bottom: 10px">
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-4">
+
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <input file-input type="file" file-model="myFile" id="fileInput" name="fileInput"
+                                   class="file" accept="application/json">
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-4">
+
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <p class="text-info"><b>说明：</b>对于有依赖关系的数据，要先上传依赖的数据然后再上传当前的数据； 依赖关系为:数据源->资产类型"</p>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-4">
+
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <button class="btn btn-success" ng-click="uploadFile()">上传</button>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="hla-widget-search-table">
+                    <form name="search_ds_form" class="form-horizontal" ng-submit="reload()" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label">数据源名称</label>
+
+                            <div class="col-sm-3 col-md-3">
+                                <input type="text" value="" placeholder="数据源名称" name="name" class="form-control"
+                                       ng-model="page.search.name">
+                            </div>
+
+                            <div class="col-sm-2 col-md-2">
+                                <button class="btn btn-primary" type="submit">查询</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="hla-widget-add-table">
+                    <div ng-show="(ds_form.$invalid  || ((datasource.data.name=='es2' || datasource.data.name=='es5')&&datasource.data.hostPorts.length==0))&&ds_form.$submitted"
+                         class="col-sm-12 col-md-12 alert alert-danger" role="alert">
+                        表单填写有误，请检查表单！
+                        <div ng-hide="true">
+                            {{ds_form.valid=ds_form.$valid&&((datasource.data.name=='es2'||datasource.data.name=='es5')?(datasource.data.hostPorts.length>0):true)}}
+                        </div>
+                    </div>
+                    <form name="ds_form" class="form-horizontal" ng-submit="saveDataSource(ds_form.valid)" novalidate>
+                        <div ng-if="showPreview">
+                            <div class="form-group container" ng-if="previewData">
+                                <label class="col-sm-2 col-md-2 control-label">数据集合</label>
+
+                                <div class="col-sm-8 col-md-8 pre-scrollable  table-responsive raw "
+                                     style="overflow-x:auto">
+                                    <table class=" text-nowrap table table-striped table-hover table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th ng-repeat=" (key,value) in previewData[0]">
+                                                {{key}}
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="x in previewData">
+                                            <td scope="row">{{$index+1}}</td>
+                                            <td ng-repeat="(key,value) in x">{{value}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>数据源名称</label>
+
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.name.$invalid&&(ds_form.name.$dirty||ds_form.$submitted)}">
+                                <input name="name" type="text" placeholder="数据源名称" class="form-control"
+                                       ng-model="datasource.name" required>
+                            </div>
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>源类型</label>
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form['data[name]'].$invalid&&(ds_form['data[name]'].$dirty||ds_form.$submitted)}">
+                                <select name="data[name]" class="form-control" ng-change="changeDataSourceName()"
+                                        ng-model="datasource.data.name" required>
+                                    <option value="file">本地文件或目录</option>
+                                    <option value="net">网络</option>
+                                    <option value="jdbc">数据库</option>
+                                    <option value="ftp">FTP</option>
+                                    <option value="sftp">SFTP</option>
+                                    <option value="hdfs">HDFS</option>
+                                    <option value="kafka">KAFKA</option>
+                                    <option value="rabbitmq">RabbitMQ</option>
+                                    <option value="es6">ELASTICSEARCH-6.X</option>
+                                    <!--<option value="es5">ELASTICSEARCH-5.X</option>-->
+                                    <!--<option value="es2">ELASTICSEARCH-2.x</option>-->
+                                    <option value="prometheus">PROMETHEUS</option>
+                                    <option value="tuple">通道组合</option>
+                                    <option value="single-table">通道转数据表</option>
+                                    <option value="tuple-table">数据表组合</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-2 col-md-2"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>用作预览的采集器</label>
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.collectorName.$invalid&&(ds_form.collectorName.$dirty||ds_form.$submitted)}">
+                                <select name="collectorName" class="form-control op_log_collector_list"
+                                        ng-options="x.id as (x.host+':'+x.port)  for x in collectors"
+                                        ng-model="datasource.collector" required>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div ng-switch="datasource.data.name">
+                            <div class="dataSourceContent" ng-switch-when="single-table">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>数据通道</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form.firstName.$invalid&&(ds_form.firstName.$dirty||ds_form.$submitted)}">
+                                        <input hidden ng-model="datasource.data.channel.name"
+                                               ng-init="datasource.data.channel.name='single'">
+                                        <select name="firstName" class="form-control op_log_collector_list"
+                                                ng-options="x.id as x.name group by x.label|SourceTypeName for x in channels"
+                                                ng-model="datasource.data.channel.id"
+                                                ng-change="changeChannel('channel')"
+                                                required>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>数据表名</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[table.tableName]'].$invalid&&(ds_form['data[table.tableName]'].$dirty||ds_form.$submitted)}">
+                                        <input name="data[table.tableName]" class="form-control"
+                                               ng-model="datasource.data.table.tableName" required
+                                               placeholder='作为数据表的表名'/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em class="hla-required-input">*</em>指定字段</label>
+                                    <div class="col-sm-8 col-md-8">
+                                        <div>
+                                            <div style="padding-left: 15px;" class="form-group"
+                                                 ng-repeat="fromField in datasource.data.table.fields track by $index">
+                                                <div class="input-group"
+                                                     ng-class="{'has-error':ds_form['table.filter[{{$parent.$index}}].fields[{{$index}}]'].$invalid&&(ds_form['table.filter[{{$parent.$index}}].fields[{{$index}}]'].$dirty||ds_form.$submitted)}">
+
+                                                    <!--<select class="form-control" ng-options="x.key as x.key for x in resolver.properties"
+                                                            select-search ng-model="fromField[0]" ng-change="changeFieldName($index)">
+                                                    </select>-->
+                                                    <span class="input-group-addon">名称</span>
+                                                    <input placeholder="字段名称" ng-model="fromField[0]"
+                                                           class="form-control ui-autocomplete"
+                                                           name="table.filter[{{$parent.$index}}].fields[{{$index}}]"
+                                                           uib-typeahead="x.key as x.key for x in resolver.channel.properties | filter:$viewValue | limitTo:8"
+                                                           required ng-blur="changeFieldName('channel', $index)">
+                                                    <span class="input-group-addon">类型</span>
+                                                    <select class="form-control" ng-model="fromField[1]" required
+                                                            ng-change="changeType('channel', $index)">
+                                                        <option value="string">文本</option>
+                                                        <option value="integer">整数</option>
+                                                        <option value="long">长整形</option>
+                                                        <option value="float">单精度浮点数</option>
+                                                        <option value="double">双精度浮点数</option>
+                                                        <option value="datetime">时间</option>
+                                                    </select>
+                                                    <span class="input-group-addon mouse-on" title="删除"
+                                                          ng-click="deleteProperty('channel', $index)"><i
+                                                            class="fa fa-minus fa-fw op_minus op_delete_event_relate"></i> </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="btn btn-success"
+                                              ng-show="datasource.data.table.fields.length==0"
+                                              ng-click="inputAllTableFields()" title="导入全部字段属性"><i
+                                                class="fa fa-plus"></i>导入全部字段属性</span>
+                                        <span class="btn btn-success" ng-click="addProperty('channel');" title="添加字段属性"><i
+                                                class="fa fa-plus"></i>添加字段属性</span>
+                                        <span class="checkbox-inline text-danger"
+                                              ng-show="datasource.data.table.fields.length==0">至少配置一个字段</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>时间类型</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select class="form-control" ng-model="datasource.data.table.timeCharacteristic.name"
+                                                required>
+                                            <option value="processing">数据被处理时间</option>
+                                            <option value="ingestion">数据到达时间</option>
+                                            <option value="event">数据内指定时间</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div ng-if="datasource.data.table.timeCharacteristic.name=='event'" class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>时间字段
+                                    </label>
+                                    <div  ng-class="{'has-error':ds_form['datasource[data.table.timeField]'].$invalid&&(ds_form['datasource[data.table.timeField]'].$dirty||ds_form.$submitted)}"
+                                          class="col-sm-3 col-md-3">
+                                        <input placeholder="时间字段名称"
+                                               name="datasource[data.table.timeField]"
+                                               ng-model="datasource.data.table.timeCharacteristic.field"
+                                               class="form-control ui-autocomplete"
+                                               uib-typeahead="x.key as x.key for x in timefields.first | filter:$viewValue | limitTo:8"
+                                               required
+                                               ng-blur="changeTimeField('channel')">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>最大延迟时间(单位：毫秒)</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['datasource[data.table.maxOutOfOrderness]'].$invalid&&(ds_form['datasource[data.table.maxOutOfOrderness]'].$dirty||ds_form.$submitted)}">
+                                        <div class="input-group">
+                                        <input name="data[on.window.window]" class="form-control"
+                                               ng-model="datasource.data.table.timeCharacteristic.maxOutOfOrderness" required
+                                               type="number" ng-pattern="/^\d*$/"
+                                               placeholder='最大允许的数据乱序时间，建议设置为10000'/> <label class="input-group-addon">毫秒</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">是否是维表</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <switch class="green" ng-model="datasource.data.table.isSideTable"
+                                                name="data[table.isSideTable]" on="是" off="否"></switch>
+                                    </div>
+                                    <label ng-if="datasource.data.table.isSideTable"  class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>时间类型</label>
+                                    <div ng-if="datasource.data.table.isSideTable"  class="col-sm-3 col-md-3">
+                                        <select class="form-control" ng-model="datasource.data.table.sideTable.name"
+                                                required>
+                                            <option value="all">全量维表</option>
+                                            <option value="async">异步维表</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-if="datasource.data.table.sideTable.name == 'all' && datasource.data.table.isSideTable" class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>维表更新时间(秒)
+                                    </label>
+                                    <div ng-class="{'has-error':ds_form['datasource[data.table.sideTable.updateTime]'].$invalid&&(ds_form['datasource[data.table.sideTable.updateTime]'].$dirty||ds_form.$submitted)}"
+                                         class="col-sm-3 col-md-3">
+                                        <input placeholder="时间字段名称"
+                                               name="datasource[data.table.sideTable.updateTime]"
+                                               ng-model="datasource.data.table.sideTable.updateTime"
+                                               class="form-control ui-autocomplete"
+                                               required>
+                                    </div>
+                                </div>
+                                <div ng-if="datasource.data.table.sideTable.name == 'async' && datasource.data.table.isSideTable" class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>维表存储条数
+                                    </label>
+                                    <div ng-class="{'has-error':ds_form['datasource[data.table.sideTable.cacheSize]'].$invalid&&(ds_form['datasource[data.table.sideTable.cacheSize]'].$dirty||ds_form.$submitted)}"
+                                         class="col-sm-3 col-md-3">
+                                        <input placeholder="时间字段名称"
+                                               name="datasource[data.table.sideTable.cacheSize]"
+                                               ng-model="datasource.data.table.sideTable.cacheSize"
+                                               class="form-control ui-autocomplete"
+                                               required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>数据过期时间(秒)
+                                    </label>
+                                    <div ng-class="{'has-error':ds_form['datasource[data.table.sideTable.expireTime]'].$invalid&&(ds_form['datasource[data.table.sideTable.expireTime]'].$dirty||ds_form.$submitted)}"
+                                         class="col-sm-3 col-md-3">
+                                        <input placeholder="时间字段名称"
+                                               name="datasource[data.table.sideTable.expireTime]"
+                                               ng-model="datasource.data.table.sideTable.expireTime"
+                                               class="form-control ui-autocomplete"
+                                               required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dataSourceContent" ng-switch-when="tuple-table">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>数据表通道(一)</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['datasource[data.first.id]'].$invalid&&(ds_form['datasource[data.first.id]'].$dirty||ds_form.$submitted)}">
+                                        <!--<input hidden ng-model="datasource.data.first.name"
+                                               ng-init="datasource.data.first.name='single-table'">-->
+                                        <select name="datasource[data.first.id]"
+                                                class="form-control op_log_collector_list"
+                                                ng-options="x.id as x.name group by x.label|SourceTypeName for x in channels"
+                                                ng-model="datasource.data.first.id"
+                                                ng-change="changeChannel('first')"
+                                                required>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>数据表通道(二)</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['datasource[data.second.id]'].$invalid&&(ds_form['datasource[data.second.id]'].$dirty||ds_form.$submitted)}">
+                                        <!--<input hidden ng-model="datasource.data.second.name"
+                                               ng-init="datasource.data.second.name='single-table'">-->
+                                        <select name="datasource[data.second.id]"
+                                                class="form-control op_log_collector_list"
+                                                ng-options="x.id as x.name group by x.label|SourceTypeName for x in channels"
+                                                ng-model="datasource.data.second.id"
+                                                ng-change="changeChannel('second')"
+                                                required>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="dataSourceContent" ng-switch-when="tuple">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>合并窗口类型</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[on.name]'].$invalid&&(ds_form['data[on.name]'].$dirty||ds_form.$submitted)}">
+                                        <select name="data[on.name]" class="form-control"
+                                                ng-model="datasource.data.on.window.name" required>
+                                            <option value="tumbling">翻转窗口</option>
+                                            <option value="sliding">滑动窗口</option>
+                                            <option value="session">会话窗口</option>
+                                        </select>
+                                    </div>
+                                    <div ng-if="datasource.data.on.window.name=='tumbling'">
+                                        <label class="col-sm-2 col-md-2 control-label"><em
+                                                class="hla-required-input">*</em>窗口长度</label>
+                                        <div class="col-sm-3 col-md-3 "
+                                             ng-class="{'has-error':add_form['data[on.window.window]'].$invalid&&(add_form['data[on.window.window]'].$dirty||add_form.$submitted)}">
+                                            <div class="input-group">
+                                                <input name="data[on.window.window]" class="form-control"
+                                                       ng-model="datasource.data.on.window.window" required
+                                                       type="number" ng-pattern="/^\d*$/"
+                                                       placeholder='合并数据的窗口大小,单位:秒'/> <label class="input-group-addon">毫秒</label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div ng-if="datasource.data.on.window.name=='session'">
+                                        <label class="col-sm-2 col-md-2 control-label"><em
+                                                class="hla-required-input">*</em>会话超时时间</label>
+                                        <div class="col-sm-3 col-md-3 "
+                                             ng-class="{'has-error':add_form['data[on.window.gap]'].$invalid&&(add_form['data[on.window.gap]'].$dirty||add_form.$submitted)}">
+                                            <div class="input-group">
+                                                <input name="data[on.window.gap]" class="form-control"
+                                                       ng-model="datasource.data.on.window.gap" required
+                                                       type="number" ng-pattern="/^\d*$/"
+                                                       placeholder='会话超时,单位:毫秒'/> <label
+                                                    class="input-group-addon">毫秒</label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="datasource.data.on.window.name=='sliding'">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>窗口长度</label>
+                                    <div class="col-sm-3 col-md-3 "
+                                         ng-class="{'has-error':add_form['data[on.window.window]'].$invalid&&(add_form['data[on.window.window]'].$dirty||add_form.$submitted)}">
+                                        <div class="input-group">
+                                            <input name="data[on.window.window]" class="form-control"
+                                                   ng-model="datasource.data.on.window.window" required
+                                                   type="number" ng-pattern="/^\d*$/"
+                                                   placeholder='合并数据的窗口大小,单位:秒'/> <label
+                                                class="input-group-addon">毫秒</label>
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>滑动长度</label>
+                                    <div class="col-sm-3 col-md-3 "
+                                         ng-class="{'has-error':add_form['data[on.window.sliding]'].$invalid&&(add_form['data[on.window.sliding]'].$dirty||add_form.$submitted)}">
+                                        <div class="input-group">
+                                            <input name="data[on.window.window]" class="form-control"
+                                                   ng-model="datasource.data.on.window.sliding" required
+                                                   type="number" ng-pattern="/^\d*$/"
+                                                   placeholder='滑动长度,单位:秒'/> <label class="input-group-addon">毫秒</label>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!--<div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>通道时间类型</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select class="form-control"
+                                                ng-model="datasource.data.on.window.timeCharacteristic.name"
+                                                required>
+                                            <option value="event">数据时间</option>
+                                            <option value="processing">数据处理时间</option>
+                                        </select>
+                                    </div>
+                                </div>-->
+                                <div style="border-top: 2px solid rgba(0,0,0,0.18); margin-top: 20px; margin-bottom: 20px"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>通道(一)</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['datasource[data.first.id]'].$invalid&&(ds_form['datasource[data.first.id]'].$dirty||ds_form.$submitted)}">
+                                        <input hidden ng-model="datasource.data.first.name"
+                                               ng-init="datasource.data.first.name='single'">
+                                        <select name="datasource[data.first.id]"
+                                                class="form-control op_log_collector_list"
+                                                ng-options="x.id as x.name group by x.label|SourceTypeName for x in channels"
+                                                ng-model="datasource.data.first.id"
+                                                ng-change="changeChannel('first')"
+                                                required>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>通道(一)对比字段</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['datasource[data.on.first.joinField]'].$invalid&&(ds_form['datasource[data.on.first.joinField]'].$dirty||ds_form.$submitted)}">
+
+                                        <input name="datasource[data.on.first.joinField]"
+                                               class="form-control op_log_collector_list"
+                                               ng-model="datasource.data.on.first.joinField" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>通道时间类型</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select class="form-control"
+                                                ng-model="datasource.data.on.first.timeCharacteristic.name" ng-change="changeTimeCharacteristic()"
+                                                required>
+                                            <option value="event">数据时间</option>
+                                            <option value="processing">数据处理时间</option>
+                                            <option value="ingestion">数据到达时间</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-if="datasource.data.on.first.timeCharacteristic.name=='event'"
+                                     class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>时间字段
+                                    </label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['datasource[data.on.first.timeField]'].$invalid&&(ds_form['datasource[data.on.first.timeField]'].$dirty||ds_form.$submitted)}">
+                                        <input placeholder="时间字段名称"
+                                               name="datasource[data.on.first.timeField]"
+                                               ng-model="datasource.data.on.first.timeCharacteristic.field"
+                                               class="form-control ui-autocomplete"
+                                               uib-typeahead="x.key as x.key for x in timefields.first | filter:$viewValue | limitTo:8"
+                                               required
+                                               ng-blur="changeTimeField('first')">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>最大延迟时间(ms)</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['datasource[data.on.first.maxOutOfOrderness]'].$invalid&&(ds_form['datasource[data.on.first.maxOutOfOrderness]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number"
+                                               ng-model="datasource.data.on.first.timeCharacteristic.maxOutOfOrderness"
+                                               required
+                                               class="form-control"
+                                               name="datasource[data.on.first.maxOutOfOrderness]"
+                                               placeholder="最大允许的数据乱序时间，建议设置为10000">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>通道(二)</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['datasource[data.second.id]'].$invalid&&(ds_form['datasource[data.second.id]'].$dirty||ds_form.$submitted)}">
+                                        <input hidden ng-model="datasource.data.second.name"
+                                               ng-init="datasource.data.second.name='single'">
+                                        <select name="datasource[data.second.id]"
+                                                class="form-control op_log_collector_list"
+                                                ng-options="x.id as x.name group by x.label|SourceTypeName for x in channels"
+                                                ng-model="datasource.data.second.id"
+                                                ng-change="changeChannel('second')"
+                                                required>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>通道(二)对比字段</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['datasource[data.on.second.joinField]'].$invalid&&(ds_form['datasource[data.on.second.joinField]'].$dirty||ds_form.$submitted)}">
+                                        <input name="datasource[data.on.second.joinField]"
+                                               class="form-control op_log_collector_list"
+                                               ng-model="datasource.data.on.second.joinField" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>通道时间类型</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select class="form-control"
+                                                ng-model="datasource.data.on.second.timeCharacteristic.name" ng-change="changeTimeCharacteristic()"
+                                                required>
+                                            <option value="event">数据时间</option>
+                                            <option value="processing">数据处理时间</option>
+                                            <option value="ingestion">数据到达时间</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div ng-if="datasource.data.on.second.timeCharacteristic.name=='event'"
+                                     class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>时间字段
+                                    </label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['datasource[data.on.second.timeField]'].$invalid&&(ds_form['datasource[data.on.second.timeField]'].$dirty||ds_form.$submitted)}">
+                                        <input placeholder="时间字段名称"
+                                               name="datasource[data.on.second.timeField]"
+                                               ng-model="datasource.data.on.second.timeCharacteristic.field"
+                                               class="form-control ui-autocomplete"
+                                               uib-typeahead="x.key as x.key for x in timefields.second | filter:$viewValue | limitTo:8"
+                                               required
+                                               ng-blur="changeTimeField('second')">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>最大延迟时间(ms)</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['datasource[data.on.second.maxOutOfOrderness]'].$invalid&&(ds_form['datasource[data.on.second.maxOutOfOrderness]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number"
+                                               ng-model="datasource.data.on.second.timeCharacteristic.maxOutOfOrderness"
+                                               required
+                                               class="form-control"
+                                               name="datasource[data.on.second.maxOutOfOrderness]"
+                                               placeholder="最大允许的数据乱序时间，建议设置为10000">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="dataSourceContent" ng-switch-when="file">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>文件路径</label>
+
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[path]'].$invalid&&(ds_form['data[path]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[path]" placeholder="文件路径"
+                                               ng-model="datasource.data.path" required>
+                                        <span class="text-info"
+                                              style="display:block;padding-top:5px;font-size:12px;">说明: 文件路径中可以使用正则表达式过滤匹配文件，路径中文件目录分割符必须用"/"</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>文件类型</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[contentType]'].$invalid&&(ds_form['data[contentType]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[contentType][name]" required
+                                                ng-model="datasource.data.contentType.name">
+                                            <option value="txt">文本</option>
+                                            <option value="winevt">windows日志文件</option>
+                                            <option value="excel">excel文件</option>
+                                            <option value="csv">csv文件</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">编码</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input placeholder="编码" ng-model="datasource.data.encoding"
+                                               class="form-control"
+                                               name="data[encoding]"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group"
+                                     ng-if="(datasource.data.contentType.name =='excel'
+                                     || datasource.data.contentType.name =='csv')">
+                                    <label class="col-sm-2 col-md-2 control-label">文件有表头</label>
+                                    <div class="col-sm-8 col-md-8">
+                                        <switch class="green" ng-model="datasource.data.contentType.isHaveThead"
+                                                name="data[isHaveThead]" on="是" ng-change="deleteHeader()"
+                                                off="否"></switch>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="form-group"
+                                     ng-if="(datasource.data.contentType.name =='excel'
+                                     || datasource.data.contentType.name =='csv') &&
+                                      !datasource.data.contentType.isHaveThead">
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>表头信息</label>
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form.dataContentTypeHeader.$invalid&&(ds_form['dataContentTypeHeader'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="dataContentTypeHeader"
+                                               placeholder="表头信息: 字段使用','分隔开,例如:field1,field2"
+                                               ng-model="datasource.data.contentType.header"
+                                               required>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>读取方式</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[position]'].$invalid&&(ds_form['data[position]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[position]" required
+                                                ng-model="datasource.data.position">
+                                            <option value="END">续读</option>
+                                            <option value="START">变化重读</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>跳过开始行数</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[skipLine]'].$invalid&&(ds_form['data[skipLine]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[skipLine]"
+                                               ng-pattern="/^\d*$/"
+                                               ng-model="datasource.data.skipLine" placeholder="跳过开始行数" required
+                                               min="0"
+                                               step="1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dataSourceContent" ng-switch-when="net">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>内容类型</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[protocol]'].$invalid&&(ds_form['data[protocol]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[protocol]" required
+                                                ng-model="datasource.data.protocol.name">
+                                            <option value="net">网络</option>
+                                            <!--<option value="syslog">SYSLOG</option>-->
+                                            <option value="netflow">NETFLOW</option>
+                                            <option value="jflow">JFLOW</option>
+                                            <option value="snmpwalk">snmp walk</option>
+                                            <option value="snmptrap">snmp trap</option>
+                                            <option value="akka">数据订阅</option>
+                                        </select>
+                                    </div>
+                                    <madia ng-if="datasource.data.protocol.name != 'netflow' && datasource.data.protocol.name != 'jflow' && datasource.data.protocol.name != 'akka'">
+                                        <label class="col-sm-2 col-md-2 control-label"><em
+                                                class="hla-required-input">*</em>通讯协议</label>
+
+                                        <div class="col-sm-3 col-md-3"
+                                             ng-class="{'has-error':ds_form['data[protocol.protocol]'].$invalid&&(ds_form['data[protocol.protocol]'].$dirty||ds_form.$submitted)}">
+                                            <select class="form-control" name="data[protocol.protocol]" required
+                                                    ng-model="datasource.data.protocol.protocol.name">
+                                                <option value="udp">udp</option>
+                                                <option value="tcp">tcp</option>
+                                            </select>
+                                        </div>
+                                    </madia>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>绑定的地址</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[host]'].$invalid&&(ds_form['data[host]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[host]"
+                                               ng-model="datasource.data.host" placeholder="绑定的采集器的IP地址" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>绑定的端口</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[port]'].$invalid&&(ds_form['data[port]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[port]" placeholder="端口"
+                                               ng-pattern="/^((65[1-4]\d{2})|(6[1-4]\d{3})|([1-5]\d{4})|([1-9]\d{0,3}))$/"
+                                               ng-model="datasource.data.port" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 col-md-2 control-label">默认数据编码</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input class="form-control" name="data[properties][encoding]"
+                                               ng-model="datasource.data.properties.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">来源主机及其数据编码</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <button id="add_host_encoding_button" type="button"
+                                                class="btn btn-success btn-sm" title="增加"
+                                                ng-click="addHostEncoding()">
+                                            <i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-repeat="hostEncoding in datasource.data.listens">
+                                    <div class="col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+                                        <div class="input-group"
+                                             ng-class="{'has-error':(ds_form['data[listens][{{$index}}][host]'].$invalid&&(ds_form['data[listens][{{$index}}][host]'].$dirty||ds_form.$submitted))||(ds_form['data[listens][{{$index}}][encoding]'].$invalid&&(ds_form['data[listens][{{$index}}][encoding]'].$dirty||ds_form.$submitted))}">
+                                            <span class="input-group-addon">来源主机</span>
+                                            <input ng-pattern="/((?:(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d))))/"
+                                                   type="text" class="form-control" placeholder="来源主机"
+                                                   ng-model="hostEncoding[0]" name="data[listens][{{$index}}][host]"
+                                                   required>
+                                            <span class="input-group-addon">编码</span>
+                                            <input type="text" class="form-control" placeholder="编码"
+                                                   ng-model="hostEncoding[1]"
+                                                   name="data[listens][{{$index}}][encoding]"
+                                                   uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8"
+                                                   required>
+                                            <span class="input-group-addon mouse-on" title="删除"
+                                                  ng-click="removeHostEncoding($index)"><i
+                                                    class="fa fa-minus fa-fw op_minus op_delete_event_relate"></i> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dataSourceContent" ng-switch-when="rabbitmq">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>主机地址</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data_host'].$invalid&&(ds_form['data_host'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data_host"
+                                               ng-model="datasource.data.host" placeholder="主机名或IP地址" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>端口</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[port]'].$invalid&&(ds_form['data[port]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[port]" placeholder="端口"
+                                               ng-pattern="/^((65[1-4]\d{2})|(6[1-4]\d{3})|([1-5]\d{4})|([1-9]\d{0,3}))$/"
+                                               ng-model="datasource.data.port" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">虚拟主机</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[virtualHost]'].$invalid&&(ds_form['data[virtualHost]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[host]"
+                                               ng-model="datasource.data.virtualHost" placeholder="虚拟主机">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>队列名称</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[queue]'].$invalid&&(ds_form['data[queue]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[queue]"
+                                               ng-model="datasource.data.queue" required placeholder="数据端点(queue)">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">持久化队列</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[durable]'].$invalid&&(ds_form['data[durable]'].$dirty||ds_form.$submitted)}">
+
+                                        <switch id="enabled" name="data[durable]" ng-model="datasource.data.durable"
+                                                on="是" off="否" class="green"></switch>
+                                        <!--<br>{{ datasource.data.durable }}-->
+                                        <!--<input bs-switch type="checkbox" name="data[durable]"
+                                                                   switch-on-text="是"
+                                                                   switch-off-text="否"
+                                                                   switch-on-color="primary"
+                                                                   switch-off-color="primary"
+                                                                    checked />-->
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">编码</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[encoding]'].$invalid&&(ds_form.$submitted)}">
+                                        <input class="form-control" name="data[encoding]"
+                                               ng-model="datasource.data.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 col-md-2 control-label">用户名</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="text" class="form-control" name="data[username]"
+                                               ng-model="datasource.data.username" placeholder="用户名">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">密码</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <input type="password" class="form-control"
+                                               ng-model="datasource.data.password"
+                                               name="data[password]" placeholder="密码">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="dataSourceContent" ng-switch-when="jdbc">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>数据库类型</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[protocol]'].$invalid&&(ds_form['data[protocol]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[protocol]" required
+                                                ng-model="datasource.data.protocol" ng-change="changeDBType()">
+                                            <option value="mysql">mysql</option>
+                                            <option value="oracle">oracle</option>
+                                            <option value="sqlserver">sqlserver</option>
+                                            <option value="DB2">DB2</option>
+                                            <option value="postgresql">postgresql</option>
+                                            <option value="sybase">sybase</option>
+                                            <option value="sqlite">sqlite</option>
+                                            <option value="derby">derby</option>
+                                            <!-- <option value="sqlserver-old">sqlserver-old</option>-->
+                                            <option value="phoenix">hbase</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>驱动类型</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[driver]'].$invalid&&(ds_form['data[driver]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[driver]" required
+                                                ng-model="datasource.data.driver">
+                                            <!--<option ng-repeat="x in drivers" value="{{x}}">{{x}}</option>-->
+                                            <option ng-if="datasource.data.protocol == 'mysql'"
+                                                    value="com.mysql.jdbc.Driver">com.mysql.jdbc.Driver
+                                            </option>
+                                            <option ng-if="datasource.data.protocol == 'oracle'"
+                                                    value="oracle.jdbc.driver.OracleDriver">
+                                                oracle.jdbc.driver.OracleDriver
+                                            </option>
+                                            <option ng-if="datasource.data.protocol == 'sqlserver'"
+                                                    value="com.microsoft.jdbc.sqlserver.SQLServerDriver">
+                                                com.microsoft.jdbc.sqlserver.SQLServerDriver
+                                            </option>
+                                            <option ng-if="datasource.data.protocol == 'sqlserver'"
+                                                    value="net.sourceforge.jtds.jdbc.Driver">
+                                                net.sourceforge.jtds.jdbc.Driver
+                                            </option>
+                                            <option ng-if="datasource.data.protocol == 'DB2'"
+                                                    value="com.ibm.db2.jcc.DB2Driver">com.ibm.db2.jcc.DB2Driver
+                                            </option>
+                                            <option ng-if="datasource.data.protocol == 'sybase'"
+                                                    value="com.sybase.jdbc3.jdbc.SybDriver">
+                                                com.sybase.jdbc3.jdbc.SybDriver
+                                            </option>
+                                            <option ng-if="datasource.data.protocol == 'sybase'"
+                                                    value="net.sourceforge.jtds.jdbc.Driver">
+                                                net.sourceforge.jtds.jdbc.Driver
+                                            </option>
+                                            <option ng-if="datasource.data.protocol == 'postgresql'"
+                                                    value="org.postgresql.Driver">org.postgresql.Driver
+                                            </option>
+                                            <option ng-if="datasource.data.protocol == 'sqlite'"
+                                                    value="org.sqlite.JDBC">org.sqlite.JDBC
+                                            </option>
+                                            <option ng-if="datasource.data.protocol == 'derby'"
+                                                    value="org.apache.derby.jdbc.EmbeddedDriver">
+                                                org.apache.derby.jdbc.EmbeddedDriver
+                                            </option>
+                                            <option ng-if="datasource.data.protocol == 'phoenix'"
+                                                    value="org.apache.phoenix.jdbc.PhoenixDriver">
+                                                org.apache.phoenix.jdbc.PhoenixDriver
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 col-md-2 control-label"
+                                           ng-if="datasource.data.protocol != 'phoenix'"><em
+                                            class="hla-required-input">*</em>库或实例名</label>
+
+                                    <div class="col-sm-3 col-md-3" ng-if="datasource.data.protocol != 'phoenix'"
+                                         ng-class="{'has-error':ds_form['data[schema]'].$invalid&&(ds_form['data[schema]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[schema]"
+                                               ng-model="datasource.data.schema" placeholder="库或实例名称" required>
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>数据库地址</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[host]'].$invalid&&(ds_form['data[host]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[host]"
+                                               ng-model="datasource.data.host" placeholder="主机名或IP地址" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>端口</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[port]'].$invalid&&(ds_form['data[port]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[port]" placeholder="端口"
+                                               ng-pattern="/^((65[1-4]\d{2})|(6[1-4]\d{3})|([1-5]\d{4})|([1-9]\d{0,3}))$/"
+                                               ng-model="datasource.data.port" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>用户名</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[properties][user]'].$invalid&&(ds_form['data[properties][user]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[properties][user]"
+                                               ng-model="datasource.data.properties.user" placeholder="数据库用户名"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+
+                                    <label class="col-sm-2 col-md-2 control-label">密码</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[properties][password]'].$invalid&&(ds_form['data[properties][password]'].$dirty||ds_form.$submitted)}">
+                                        <input type="password" class="form-control"
+                                               ng-model="datasource.data.properties.password"
+                                               name="data[properties][password]" placeholder="密码">
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>表或SQL</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[tableOrSql]'].$invalid&&(ds_form['data[tableOrSql]'].$dirty||ds_form.$submitted)}">
+                                        <textarea type="text" class="form-control" name="data[tableOrSql]"
+                                                  ng-model="datasource.data.tableOrSql" placeholder="表名或SQL"
+                                                  required></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+
+                                    <label class="col-sm-2 col-md-2 control-label">编码</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[properties][encoding]'].$invalid&&(ds_form.$submitted)}">
+                                        <input class="form-control" name="data[properties][encoding]"
+                                               ng-model="datasource.data.properties.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>索引列</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[column]'].$invalid&&(ds_form['data[column]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[column]"
+                                               ng-model="datasource.data.column" placeholder="时间或者数值" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>索引起始位置(不包含)</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[start]'].$invalid&&(ds_form['data[start]'].$dirty||ds_form.$submitted)}"
+                                         title="从索引列读取数据的起始位置,只在第一次有效">
+                                        <input type="text" class="form-control" name="data[start]"
+                                               ng-model="datasource.data.start" placeholder="从索引列读取数据的起始位置,只在第一次有效"
+                                               required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>索引步长</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[step]'].$invalid&&(ds_form['data[step]'].$dirty||ds_form.$submitted)}"
+                                         title="索引列是时间则以秒为单位，否则使用数值">
+                                        <input type="number" class="form-control" name="data[step]"
+                                               ng-model="datasource.data.step" placeholder="索引列是时间则以秒为单位，否则使用数值"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 col-md-2 control-label">重启重新加载数据</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <switch id="enabled" name="data[properties][fromstart]"
+                                                ng-model="datasource.data.properties.fromstart" on="是" off="否"
+                                                class="green"></switch>
+
+                                    </div>
+
+                                    <label ng-if="datasource.data.driver=='com.sybase.jdbc3.jdbc.SybDriver'"
+                                           class="col-sm-2 col-md-2 control-label">是否使用镜像</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-if="datasource.data.driver=='com.sybase.jdbc3.jdbc.SybDriver'">
+                                        <switch id="enabled" name="data[properties][useMatedata]"
+                                                ng-model="datasource.data.properties.useMatedata" on="是" off="否"
+                                                class="green"></switch>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="dataSourceContent" ng-switch-when="ftp|sftp"
+                                 ng-switch-when-separator="|">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>HOST</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[host]'].$invalid&&(ds_form['data[host]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[host]"
+                                               ng-model="datasource.data.host"
+                                               placeholder="主机名或IP地址" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>PORT</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[port]'].$invalid&&(ds_form['data[port]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[port]" placeholder="端口"
+                                               ng-pattern="/^((65[1-4]\d{2})|(6[1-4]\d{3})|([1-5]\d{4})|([1-9]\d{0,3}))$/"
+                                               ng-model="datasource.data.port" required>
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-if="datasource.data.name=='ftp' || datasource.data.name=='sftp'">
+                                    <label class="col-sm-2 col-md-2 control-label">用户名</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[properties][user]'].$invalid&&(ds_form['data[properties][user]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[properties][user]"
+                                               placeholder="用户名" ng-model="datasource.data.properties.user">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">密码</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[properties][password]'].$invalid&&(ds_form['data[properties][password]'].$dirty||ds_form.$submitted)}">
+                                        <input type="password" class="form-control"
+                                               name="data[properties][password]"
+                                               placeholder="密码" ng-model="datasource.data.properties.password">
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-if="datasource.data.name=='hdfs'">
+                                    <label class="col-sm-2 col-md-2 control-label">权限校验</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <select class="form-control" name="data[authentication]"
+                                                ng-model="datasource.data.authentication">
+                                            <option value="NONE">无</option>
+                                            <option value="KERBEROS">KERBEROS</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>文件路径</label>
+
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[path][path]'].$invalid&&(ds_form['data[path][path]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[path][path]"
+                                               placeholder="文件路径" ng-model="datasource.data.path.path" required>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">文件类型</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][contentType][name]'].$invalid&&(ds_form['data[path][contentType][name]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[path][contentType][name]"
+                                                ng-model="datasource.data.path.contentType.name" required>
+                                            <option value="txt">文本</option>
+                                            <option value="orc">ORCFile文件</option>
+                                            <option value="excel">excel文件</option>
+                                            <option value="csv">csv文件</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">编码</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][encoding]'].$invalid&&(ds_form.$submitted)}">
+                                        <input class="form-control" name="data[path][encoding]"
+                                               ng-model="datasource.data.path.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-if="(datasource.data.path.contentType.name =='excel'
+                                     || datasource.data.path.contentType.name =='csv')">
+                                    <label class="col-sm-2 col-md-2 control-label">文件有表头</label>
+                                    <div class="col-sm-8 col-md-8">
+                                        <switch class="green"
+                                                ng-model="datasource.data.path.contentType.isHaveThead"
+                                                name="data[isHaveThead]" on="是" ng-change="deleteHeader()"
+                                                off="否"></switch>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="form-group"
+                                     ng-if="(datasource.data.path.contentType.name =='excel'
+                                     || datasource.data.path.contentType.name =='csv') &&
+                                      !datasource.data.path.contentType.isHaveThead">
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>表头信息</label>
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form.dataPathContentTypeHeader.$invalid&&(ds_form['dataPathContentTypeHeader'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="dataPathContentTypeHeader"
+                                               placeholder="表头信息: 字段使用','分隔开,例如:field1,field2"
+                                               ng-model="datasource.data.path.contentType.header"
+                                               required>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">读取方式</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][position]'].$invalid&&(ds_form['data[path][position]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[path][position]" required
+                                                ng-model="datasource.data.path.position">
+                                            <option value="END">续读</option>
+                                            <option value="START">变化重读</option>
+                                        </select>
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label">跳过开始行数</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][skipLine]'].$invalid&&(ds_form['data[path][skipLine]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[path][skipLine]"
+                                               ng-model="datasource.data.path.skipLine" placeholder="跳过开始行数"
+                                               required
+                                               ng-pattern="/^\d+$/"
+                                               min="0" step="1">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dataSourceContent" ng-switch-when="hdfs"
+                                 ng-switch-when-separator="|">
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>NameService</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[nameService]'].$invalid&&(ds_form['data[nameService]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[nameService]"
+                                               ng-model="datasource.data.nameService"
+                                               placeholder="例：HaimaDev" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>NameNodes</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[nameNodes]'].$invalid&&(ds_form['data[host]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[nameNodes]"
+                                               ng-model="datasource.data.nameNodes"
+                                               placeholder="例：nn1,nn2" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>HDFS地址</label>
+
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[host]'].$invalid&&(ds_form['data[host]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[host]"
+                                               ng-model="datasource.data.host"
+                                               placeholder="主机名或IP地址:端口,主机名或IP地址:端口... 例如：bigdata-dev01:8020,bigdata-dev02:8020" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" ng-if="datasource.data.name=='hdfs'">
+                                    <label class="col-sm-2 col-md-2 control-label">权限校验</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <select class="form-control" name="data[authentication]"
+                                                ng-model="datasource.data.authentication">
+                                            <option value="NONE">无</option>
+                                            <option value="KERBEROS">KERBEROS</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>文件路径</label>
+
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[path][path]'].$invalid&&(ds_form['data[path][path]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[path][path]"
+                                               placeholder="文件路径" ng-model="datasource.data.path.path" required>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">文件类型</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][contentType][name]'].$invalid&&(ds_form['data[path][contentType][name]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[path][contentType][name]"
+                                                ng-model="datasource.data.path.contentType.name" required>
+                                            <option value="txt">文本</option>
+                                            <option value="orc">ORCFile文件</option>
+                                            <option value="excel">excel文件</option>
+                                            <option value="csv">csv文件</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">编码</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][encoding]'].$invalid&&(ds_form.$submitted)}">
+                                        <input class="form-control" name="data[path][encoding]"
+                                               ng-model="datasource.data.path.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+
+                                    </div>
+                                </div>
+                                <div class="form-group"
+                                     ng-if="(datasource.data.path.contentType.name =='excel'
+                                     || datasource.data.path.contentType.name =='csv')">
+                                    <label class="col-sm-2 col-md-2 control-label">文件有表头</label>
+                                    <div class="col-sm-8 col-md-8">
+                                        <switch class="green"
+                                                ng-model="datasource.data.path.contentType.isHaveThead"
+                                                name="data[isHaveThead]" on="是" ng-change="deleteHeader()"
+                                                off="否"></switch>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="form-group"
+                                     ng-if="(datasource.data.path.contentType.name =='excel'
+                                     || datasource.data.path.contentType.name =='csv') &&
+                                      !datasource.data.path.contentType.isHaveThead">
+                                    <label class="col-sm-2 col-md-2 control-label">
+                                        <em class="hla-required-input">*</em>表头信息</label>
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form.dataPathContentTypeHeader.$invalid&&(ds_form['dataPathContentTypeHeader'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="dataPathContentTypeHeader"
+                                               placeholder="表头信息: 字段使用','分隔开,例如:field1,field2"
+                                               ng-model="datasource.data.path.contentType.header"
+                                               required>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">读取方式</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][position]'].$invalid&&(ds_form['data[path][position]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[path][position]" required
+                                                ng-model="datasource.data.path.position">
+                                            <option value="END">续读</option>
+                                            <option value="START">变化重读</option>
+                                        </select>
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label">跳过开始行数</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][skipLine]'].$invalid&&(ds_form['data[path][skipLine]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[path][skipLine]"
+                                               ng-model="datasource.data.path.skipLine" placeholder="跳过开始行数"
+                                               required
+                                               ng-pattern="/^\d+$/"
+                                               min="0" step="1">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dataSourceContent" ng-switch-when="kafka">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>KAFKA地址</label>
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[hostPorts]'].$invalid&&(ds_form['data[hostPorts]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" required
+                                               placeholder="IP地址或者：端口, IP地址或者：端口, IP地址或者：端口   例如：192.168.0.2:9092,192.168.0.3:9092"
+                                               name="data[hostPorts]" class="form-control"
+                                               ng-model="datasource.data.hostPorts">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>TOPIC</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[topic]'].$invalid&&(ds_form['data[topic]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" required placeholder="topic" name="data[topic]"
+                                               class="form-control" ng-model="datasource.data.topic">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label">集群连接超时时间</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <input name="data[properties][connectTimeout]" class="form-control"
+                                               ng-model="datasource.data.properties.connectTimeout"
+                                               placeholder="CLUSTER_CONNECT_TIMEOUT">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">消费组</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <input name="data[properties][group_id]" placeholder="GroupID"
+                                               class="form-control" ng-model="datasource.data.properties.group_id">
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label">客户端ID</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <input name="data[properties][client_id]" placeholder="ClientID"
+                                               class="form-control" ng-model="datasource.data.properties.client_id">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>启用通配符</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[wildcard]'].$invalid&&(ds_form['data[wildcard]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[wildcard]" required
+                                                ng-model="datasource.data.wildcard">
+                                            <option value="false">否</option>
+                                            <option value="true">是</option>
+                                        </select>
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label">编码</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <input name="data[properties][encoding]" class="form-control"
+                                               ng-model="datasource.data.properties.encoding"
+                                               uib-typeahead="state for state in encodings | filter:$viewValue | limitTo:8">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>断点续读</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[position]'].$invalid&&(ds_form['data[position]'].$dirty||ds_form.$submitted)}">
+                                        <select class="form-control" name="data[position]" required
+                                                ng-model="datasource.data.position">
+                                            <option value="START">否</option>
+                                            <option value="END">是</option>
+                                        </select>
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label">权限校验</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <select class="form-control" name="data[authentication]"
+                                                ng-model="datasource.data.authentication">
+                                            <option value="NONE">无</option>
+                                            <option value="PLAIN">PLAIN</option>
+                                            <option value="KERBEROS">KERBEROS</option>
+                                            <option value="SSL">SSL</option>
+                                            <option value="PLAIN_SSL">PLAIN+SSL</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <media ng-switch="datasource.data.authentication">
+                                    <div ng-switch-when="PLAIN">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>JAAS配置文件</label>
+                                            <div class="col-sm-8 col-md-8"
+                                                 ng-class="{'has-error':ds_form['data[properties][auth_config]'].$invalid&&(ds_form['data[properties][auth_config]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="JAAS配置文件"
+                                                       name="data[properties][auth_config]" class="form-control"
+                                                       ng-model="datasource.data.properties.auth_config">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="KERBEROS">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>JAAS配置文件</label>
+                                            <div class="col-sm-8 col-md-8"
+                                                 ng-class="{'has-error':ds_form['data[properties][auth_config]'].$invalid&&(ds_form['data[properties][auth_config]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="JAAS配置文件"
+                                                       name="data[properties][auth_config]" class="form-control"
+                                                       ng-model="datasource.data.properties.auth_config">
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KRB5配置文件</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][kerberos_path]'].$invalid&&(ds_form['data[properties][kerberos_path]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="krb5配置文件"
+                                                       name="data[properties][kerberos_path]" class="form-control"
+                                                       ng-model="datasource.data.properties.kerberos_path">
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KERBEROS服务名称</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][principal]'].$invalid&&(ds_form['data[properties][principal]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="KERBEROS服务名称"
+                                                       name="data[properties][principal]" class="form-control"
+                                                       ng-model="datasource.data.properties.principal">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="SSL">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>TRUST文件</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][trust_file]'].$invalid&&(ds_form['data[properties][trust_file]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="TRUST文件"
+                                                       name="data[properties][trust_file]" class="form-control"
+                                                       ng-model="datasource.data.properties.trust_file">
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>TRUST密码</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][trust_password]'].$invalid&&(ds_form['data[properties][trust_password]'].$dirty||ds_form.$submitted)}">
+                                                <input type="password" required="" placeholder="TRUST密码"
+                                                       name="data[properties][trust_password]" class="form-control"
+                                                       ng-model="datasource.data.properties.trust_password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KEYSTORE文件</label>
+                                            <div class="col-sm-8 col-md-8"
+                                                 ng-class="{'has-error':ds_form['data[properties][keystore_file]'].$invalid&&(ds_form['data[properties][keystore_file]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="KEYSTORE文件"
+                                                       name="data[properties][keystore_file]" class="form-control"
+                                                       ng-model="datasource.data.properties.keystore_file">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KEYSTORE密码</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][keystore_password]'].$invalid&&(ds_form['data[properties][keystore_password]'].$dirty||ds_form.$submitted)}">
+                                                <input type="password" required="" placeholder="KEYSTORE密码"
+                                                       name="data[properties][keystore_password]"
+                                                       class="form-control"
+                                                       ng-model="datasource.data.properties.keystore_password">
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KEY密码</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][key_password]'].$invalid&&(ds_form['data[properties][key_password]'].$dirty||ds_form.$submitted)}">
+                                                <input type="password" required="" placeholder="KEY密码"
+                                                       name="data[properties][key_password]" class="form-control"
+                                                       ng-model="datasource.data.properties.key_password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="PLAIN_SSL">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>JAAS配置文件</label>
+                                            <div class="col-sm-8 col-md-8"
+                                                 ng-class="{'has-error':ds_form['data[properties][auth_config]'].$invalid&&(ds_form['data[properties][auth_config]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="JAAS配置文件"
+                                                       name="data[properties][auth_config]" class="form-control"
+                                                       ng-model="datasource.data.properties.auth_config">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>TRUST文件</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][trust_file]'].$invalid&&(ds_form['data[properties][trust_file]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="TRUST文件"
+                                                       name="data[properties][trust_file]" class="form-control"
+                                                       ng-model="datasource.data.properties.trust_file">
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>TRUST密码</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][trust_password]'].$invalid&&(ds_form['data[properties][trust_password]'].$dirty||ds_form.$submitted)}">
+                                                <input type="password" required="" placeholder="TRUST密码"
+                                                       name="data[properties][trust_password]" class="form-control"
+                                                       ng-model="datasource.data.properties.trust_password">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KEYSTORE文件</label>
+                                            <div class="col-sm-8 col-md-8"
+                                                 ng-class="{'has-error':ds_form['data[properties][keystore_file]'].$invalid&&(ds_form['data[properties][keystore_file]'].$dirty||ds_form.$submitted)}">
+                                                <input type="text" required placeholder="KEYSTORE文件"
+                                                       name="data[properties][keystore_file]" class="form-control"
+                                                       ng-model="datasource.data.properties.keystore_file">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KEYSTORE密码</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][keystore_password]'].$invalid&&(ds_form['data[properties][keystore_password]'].$dirty||ds_form.$submitted)}">
+                                                <input type="password" required="" placeholder="KEYSTORE密码"
+                                                       name="data[properties][keystore_password]"
+                                                       class="form-control"
+                                                       ng-model="datasource.data.properties.keystore_password">
+                                            </div>
+                                            <label class="col-sm-2 col-md-2 control-label"><em
+                                                    class="hla-required-input">*</em>KEY密码</label>
+                                            <div class="col-sm-3 col-md-3"
+                                                 ng-class="{'has-error':ds_form['data[properties][key_password]'].$invalid&&(ds_form['data[properties][key_password]'].$dirty||ds_form.$submitted)}">
+                                                <input type="password" required="" placeholder="KEY密码"
+                                                       name="data[properties][key_password]" class="form-control"
+                                                       ng-model="datasource.data.properties.key_password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </media>
+                            </div>
+                            <div class="dataSourceContent" ng-switch-when="es2|es5|es6" ng-switch-when-separator="|">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>集群名称</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[cluster]'].$invalid&&(ds_form['data[cluster]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" required placeholder="集群名称" name="data[cluster]"
+                                               class="form-control" ng-model="datasource.data.cluster">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>主机及端口</label>
+
+                                    <div class="col-sm-3 col-md-3">
+                                        <button id="add_es_host_port_button" type="button"
+                                                class="btn btn-success btn-sm" title="增加" ng-click="addHostPort()">
+                                            <i
+                                                    class="fa fa-plus"></i></button>
+                                        <label class="text-danger"
+                                               ng-show="!datasource.data.hostPorts||datasource.data.hostPorts.length==0">至少要有一个地址！</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" ng-repeat="hostPort in datasource.data.hostPorts">
+                                    <div class="col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2">
+                                        <div class="input-group"
+                                             ng-class="{'has-error':(ds_form['data[hostPorts][{{$index}}][host]'].$invalid&&(ds_form['data[hostPorts][{{$index}}][host]'].$dirty||ds_form.$submitted))||(ds_form['data[hostPorts][{{$index}}][port]'].$invalid&&(ds_form['data[hostPorts][{{$index}}][port]'].$dirty||ds_form.$submitted))}">
+                                            <span class="input-group-addon">主机</span>
+                                            <input
+                                                    type="text" class="form-control" placeholder="主机"
+                                                    ng-model="hostPort[0]" name="data[hostPorts][{{$index}}][host]"
+                                                    required>
+                                            <span class="input-group-addon">端口</span>
+                                            <input type="number" class="form-control" placeholder="端口"
+                                                   ng-pattern="/^((65[1-4]\d{2})|(6[1-4]\d{3})|([1-5]\d{4})|([1-9]\d{0,3}))$/"
+                                                   ng-model="hostPort[1]" name="data[hostPorts][{{$index}}][port]"
+                                                   data-toggle="tooltip"
+                                                   required><span class="input-group-addon mouse-on" title="端口"
+                                                                  ng-click="removeHostPort($index)"><i
+                                                class="fa fa-minus fa-fw op_minus op_delete_event_relate"></i> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>ES索引</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[index]'].$invalid&&(ds_form['data[index]'].$dirty||ds_form.$submitted)}">
+                                        <input required name="data[index]" class="form-control"
+                                               ng-model="datasource.data.index">
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>ES
+                                        TYPE</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[esType]'].$invalid&&(ds_form['data[esType]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" required placeholder="esType" name="data[esType]"
+                                               class="form-control" ng-model="datasource.data.esType">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>索引列</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[field]'].$invalid&&(ds_form['data[field]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[field]"
+                                               ng-model="datasource.data.field" placeholder="时间或者数值字段" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>索引起始位置(不包含)</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[start]'].$invalid&&(ds_form['data[start]'].$dirty||ds_form.$submitted)}"
+                                         title="从索引列读取数据的起始位置,只在第一次有效">
+                                        <input type="text" class="form-control" name="data[start]"
+                                               ng-model="datasource.data.start" placeholder="从索引列读取数据的起始位置,只在第一次有效"
+                                               required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>索引步长</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[step]'].$invalid&&(ds_form['data[step]'].$dirty||ds_form.$submitted)}"
+                                         title="索引列是时间则以秒为单位，否则使用数值">
+                                        <input type="number" class="form-control" name="data[step]"
+                                               ng-pattern="/^[1-9]\d*$/"
+                                               ng-model="datasource.data.step" placeholder="索引列是时间则以秒为单位，否则使用数值"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>批大小</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[size]'].$invalid&&(ds_form['data[size]'].$dirty||ds_form.$submitted)}"
+                                         title="每批最大读取条数">
+                                        <input type="number" class="form-control" name="data[size]"
+                                               ng-pattern="/^[1-9]\d*$/"
+                                               ng-model="datasource.data.size" placeholder="每批最大读取条数"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">QueryString</label>
+
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[queryDSL]'].$invalid&&(ds_form['data[queryDSL]'].$dirty||ds_form.$submitted)}"
+                                         title="ES的Wrapper Query">
+                                        <textarea type="text" class="form-control" name="data[queryDSL]"
+                                               ng-model="datasource.data.queryDSL" placeholder='Some Query like this： {"term": {"user": "kimchy"}}'></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dataSourceContent" ng-switch-when="prometheus">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>服务地址</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[host]'].$invalid&&(ds_form['data[host]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[host]"
+                                               ng-model="datasource.data.host" placeholder="主机名或IP地址" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>端口</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[port]'].$invalid&&(ds_form['data[port]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[port]" placeholder="端口"
+                                               ng-pattern="/^((65[1-4]\d{2})|(6[1-4]\d{3})|([1-5]\d{4})|([1-9]\d{0,3}))$/"
+                                               ng-model="datasource.data.port" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>查询Expression</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[expression]'].$invalid&&(ds_form['data[expression]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[expression]"
+                                               ng-model="datasource.data.expression" placeholder="query expression"
+                                               required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>索引起始位置(包含)</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[start]'].$invalid&&(ds_form['data[start]'].$dirty||ds_form.$submitted)}"
+                                         title="从索引列读取数据的起始位置,只在第一次有效">
+                                        <input type="text" class="form-control" name="data[start]"
+                                               ng-model="datasource.data.start" placeholder="从索引列读取数据的起始位置,只在第一次有效"
+                                               required>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>索引步长</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[rangeStep]'].$invalid&&(ds_form['data[rangeStep]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[rangeStep]"
+                                               ng-pattern="/^[1-9]\d*$/"
+                                               ng-model="datasource.data.rangeStep" placeholder="索引列是时间则以秒为单位"
+                                               required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>采样步长</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[step]'].$invalid&&(ds_form['data[step]'].$dirty||ds_form.$submitted)}">
+                                        <input type="number" class="form-control" name="data[step]"
+                                               ng-pattern="/^[1-9]\d*$/"
+                                               ng-model="datasource.data.step" placeholder="索引列是时间则以秒为单位" required>
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">重启重新加载数据</label>
+                                    <div class="col-sm-3 col-md-3">
+                                        <switch id="enabled" name="data[properties][fromstart]"
+                                                ng-model="datasource.data.properties.fromstart" on="是" off="否"
+                                                class="green"></switch>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="dataSourceContent" ng-switch-when="file|net|kafka"
+                                 ng-switch-when-separator="|">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>解码器</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[codec][name]'].$invalid&&(ds_form['data[codec][name]'].$dirty||ds_form.$submitted)}">
+                                        <select name="data[codec][name]" class="form-control"
+                                                ng-model="datasource.data.codec.name" ng-change="changeCodec()">
+                                            <option value="line">单行</option>
+                                            <option value="multi">多行</option>
+                                            <option value="delimit">分隔符</option>
+                                            <option value="xml">XML格式</option>
+                                            <option value="json">JSON格式</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"
+                                           ng-if="datasource.data.codec.name=='delimit'"><em
+                                            class="hla-required-input">*</em>分隔符</label>
+
+                                    <div class="col-sm-3 col-md-3" ng-if="datasource.data.codec.name=='delimit'"
+                                         ng-class="{'has-error':ds_form['data[codec][delimit]'].$invalid&&(ds_form['data[codec][delimit]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[codec][delimit]"
+                                               ng-model="datasource.data.codec.delimit" placeholder="分隔符" required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"
+                                           ng-if="datasource.data.codec.name=='multi'">
+                                        是否从开头匹配</label>
+
+                                    <div class="col-sm-3 col-md-3" ng-if="datasource.data.codec.name=='multi'">
+                                        <switch class="green" ng-model="datasource.data.codec.inStart"
+                                                name="data[codec][inStart]" on="是" off="否"></switch>
+                                        <!--<select class="form-control" name="data[codec][inStart]" ng-model="datasource.data.codec.inStart" required>
+                                                            <option value="true">true</option>
+                                                            <option value="false">false</option>
+                                                        </select>--></div>
+                                </div>
+
+                            </div>
+                            <div class="dataSourceContent"
+                                 ng-if="datasource.data.codec.name=='multi' && datasource.data.path.codec.name!='multi'">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">最大匹配行数</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[codec][maxLineNum]'].$invalid&&(ds_form['data[codec][maxLineNum]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control"
+                                               ng-model="datasource.data.codec.maxLineNum"
+                                               name="data[codec][maxLineNum]" placeholder="最大匹配行数" required></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>正则</label>
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[codec][pattern]'].$invalid&&(ds_form['data[codec][pattern]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control"
+                                               ng-model="datasource.data.codec.pattern"
+                                               name="data[codec][pattern]" placeholder="正则" required></div>
+                                </div>
+                            </div>
+
+                            <div class="dataSourceContent" ng-switch-when="hdfs|ftp|sftp"
+                                 ng-switch-when-separator="|">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>解码器</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][codec][name]'].$invalid&&(ds_form['data[path][codec][name]'].$dirty||ds_form.$submitted)}">
+                                        <select name="data[path][codec][name]" class="form-control"
+                                                ng-model="datasource.data.path.codec.name"
+                                                ng-change="pathChangeCodec()">
+                                            <option value="line">单行</option>
+                                            <option value="multi">多行</option>
+                                            <option value="delimit">分隔符</option>
+                                            <option value="xml">XML格式</option>
+                                            <option value="json">JSON格式</option>
+                                        </select>
+                                    </div>
+
+                                    <label class="col-sm-2 col-md-2 control-label"
+                                           ng-if="datasource.data.path.codec.name=='delimit'"><em
+                                            class="hla-required-input">*</em>分隔符</label>
+
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-if="datasource.data.path.codec.name=='delimit'"
+                                         ng-class="{'has-error':ds_form['data[path][codec][delimit]'].$invalid&&(ds_form['data[path][codec][delimit]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control" name="data[path][codec][delimit]"
+                                               ng-model="datasource.data.path.codec.delimit" placeholder="分隔符"
+                                               required>
+                                    </div>
+                                    <label class="col-sm-2 col-md-2 control-label"
+                                           ng-if="datasource.data.path.codec.name=='multi'">
+                                        是否从开头匹配</label>
+
+                                    <div class="col-sm-3 col-md-3" ng-if="datasource.data.path.codec.name=='multi'">
+                                        <switch class="green" ng-model="datasource.data.path.codec.inStart"
+                                                name="data[path][codec][inStart]" on="是" off="否"></switch>
+                                        <!--<select class="form-control" name="data[path][codec][inStart]" ng-model="datasource.data.path.codec.inStart" required>
+                                                            <option value="true">true</option>
+                                                            <option value="false">false</option>
+                                                        </select>--></div>
+                                </div>
+                            </div>
+                            <div class="dataSourceContent" ng-if="datasource.data.path.codec.name=='multi'">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label">最大匹配行数</label>
+                                    <div class="col-sm-3 col-md-3"
+                                         ng-class="{'has-error':ds_form['data[path][codec][maxLineNum]'].$invalid&&(ds_form['data[path][codec][maxLineNum]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control"
+                                               ng-model="datasource.data.path.codec.maxLineNum"
+                                               name="data[path][codec][maxLineNum]" placeholder="最大匹配行数" required></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-2 control-label"><em
+                                            class="hla-required-input">*</em>正则</label>
+                                    <div class="col-sm-8 col-md-8"
+                                         ng-class="{'has-error':ds_form['data[path][codec][pattern]'].$invalid&&(ds_form['data[path][codec][pattern]'].$dirty||ds_form.$submitted)}">
+                                        <input type="text" class="form-control"
+                                               ng-model="datasource.data.path.codec.pattern"
+                                               name="data[path][codec][pattern]" placeholder="正则" required></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button ng-if="datasource.data.name != 'net'" ng-click="preview(ds_form.valid)"
+                                    type="button" class="btn btn-success btn-sm"
+                                    title="预览"><i class="fa fa-chevron-down">预览测试</i>
+                            </button>
+                            <button class="btn btn-primary " type="submit">保存</button>
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="hla-widget-metric-table">
+                    <div>
+                        <form name="search_metric_form" class="form-horizontal" ng-submit="udMetrics()" novalidate>
+                            <div class="form-group">
+                                <label class="col-sm-1 col-md-1 control-label">开始时间</label>
+                                <div class="input-group col-sm-2 col-md-2 date" style="float:left">
+                                    <input type="text" class="form-control" ng-model="metric.startTime"
+                                           datetime-picker="{format:'YYYY-MM-DD HH:mm:ss',showTodayButton:true,tooltips:{today:'今天'}}">
+                                    <span class="input-group-btn">
+                                        <button type="button" style="height: 32px" class="btn"
+                                                ng-click="metric.open1()"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+
+                                <label class="col-sm-1 col-md-1 control-label">结束时间</label>
+                                <div class="input-group col-sm-2 col-md-2" style="float:left">
+                                    <input type="text" class="form-control" ng-model="metric.endTime"
+                                           datetime-picker="{format:'YYYY-MM-DD HH:mm:ss',showTodayButton:true,tooltips:{today:'今天'}}">
+                                    <span class="input-group-btn">
+                                        <button type="button" style="height: 32px" class="btn"
+                                                ng-click="metric.open2()"><i
+                                                class="glyphicon glyphicon-calendar"></i></button>
+                                    </span>
+                                </div>
+
+                                <!--<label class="col-sm-1 col-md-1 control-label">采集频率</label>
+                                                <div class="col-sm-2 col-md-2">
+                                                    <input type="text" value="" placeholder="采集频率" name="endTime" class="form-control" ng-model="metric.interval">
+                                                </div>-->
+
+                                <div class="col-sm-1 col-md-1">
+                                    <!--<input type="text" class="form-control" ng-model="metric.testTime">-->
+                                    <button class="btn btn-primary" type="submit">确定</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <nvd3 options="options" data="data" forceY="[0]"></nvd3>
+                </div>
+                <div class="hla-widget-data-table">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>数据源名称</th>
+                            <th>类型</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="op_datasource_table" class="">
+                        <tr ng-repeat="dataSource in list.result">
+                            <th scope="row">{{$index+1}}</th>
+                            <td>{{dataSource.name}}</td>
+                            <td>{{dataSource.data.name|SourceTypeName}}</td>
+                            <td>
+                                <div class="btn-group-xs ">
+                                    <button ng-if="dataSource.isSample==0" class="btn btn-primary op_edit"
+                                            ng-click="show('edit',dataSource.id, dataSource.data.name)"
+                                            title="修改"><i
+                                            class="fa fa-file-text-o"></i></button>
+                                    <button ng-if="dataSource.isSample==0" title="删除" class="btn btn-danger op_delete"
+                                            ng-click="delete(dataSource.id)"><i class="fa fa-minus"></i>
+                                    </button>
+                                    <button class="btn btn-info op_edit" title="复制"
+                                            ng-click="show('copy',dataSource.id)">
+                                        <i class="fa fa-copy"></i></button>
+
+                                    <a class="btn btn-primary " title="下载"
+                                       data-ng-click="downloadFile(dataSource.id)"><i class="fa fa-download"></i></a>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div page method="reload"></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- confirm modal start-->
+<div class="modal fade" id="commonConfirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">{{confirm.title}}</h4>
+            </div>
+            <div class="modal-body text-danger text-center">
+                <p>{{confirm.message}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary op_yes" ng-click="confirm.ok()">确定</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="confirm.cancel()">取消
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

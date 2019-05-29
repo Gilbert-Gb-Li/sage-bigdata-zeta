@@ -1,0 +1,2 @@
+app.streaming.analyzer.logaggs=com.haima.sage.bigdata.analyzer.aggregation.streaming.StreamLogReducerAnalyzer
+app.modeling.analyzer.logaggs=com.haima.sage.bigdata.analyzer.aggregation.modeling.ModelingLogReducerAnalyzer

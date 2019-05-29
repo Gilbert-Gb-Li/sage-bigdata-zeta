@@ -1,0 +1,573 @@
+# Lexer parser support list #
+app.lexer.regex = com.haima.sage.bigdata.etl.lexer.RegexLexer
+app.lexer.xml = com.haima.sage.bigdata.etl.lexer.XMLLogLexer
+app.lexer.protobuf = com.haima.sage.bigdata.etl.lexer.ProtobufLogLexer
+app.lexer.avro = com.haima.sage.bigdata.etl.lexer.AvroLogLexer
+app.lexer.json = com.haima.sage.bigdata.etl.lexer.JSONLogLexer
+app.lexer.delimit = com.haima.sage.bigdata.etl.lexer.DelimiterLexer
+app.lexer.delimitWithKeyMap = com.haima.sage.bigdata.etl.lexer.DelimiterWithKeyMapLexer
+app.lexer.cef = com.haima.sage.bigdata.etl.lexer.CEFLogLexer
+app.lexer.nothing = com.haima.sage.bigdata.etl.lexer.NoThingLexer
+app.lexer.transfer = com.haima.sage.bigdata.etl.lexer.Transfer
+app.lexer.select = com.haima.sage.bigdata.etl.lexer.SelectLogLexer
+app.lexer.chain = com.haima.sage.bigdata.etl.lexer.ChainLogLexer
+
+#lexer filter rule   #
+app.lexer.filter.byKnowledge = com.haima.sage.bigdata.etl.lexer.filter.ByKnowledgeProcessor
+app.lexer.filter.reParser = com.haima.sage.bigdata.etl.lexer.filter.ReParserProcessor
+app.lexer.filter.replace = com.haima.sage.bigdata.etl.lexer.filter.ReplaceProcessor
+app.lexer.filter.gzip = com.haima.sage.bigdata.etl.lexer.filter.GzipProcessor
+app.lexer.filter.gunzip = com.haima.sage.bigdata.etl.lexer.filter.GunzipProcessor
+app.lexer.filter.extends = com.haima.sage.bigdata.etl.lexer.filter.ExtendsProcessor
+app.lexer.filter.list2map = com.haima.sage.bigdata.etl.lexer.filter.List2MapProcessor
+app.lexer.filter.addFields = com.haima.sage.bigdata.etl.lexer.filter.AddFieldsProcessor
+app.lexer.filter.addTags = com.haima.sage.bigdata.etl.lexer.filter.AddTagsProcessor
+app.lexer.filter.removeFields = com.haima.sage.bigdata.etl.lexer.filter.RemoveFieldsProcessor
+app.lexer.filter.removeTags = com.haima.sage.bigdata.etl.lexer.filter.RemoveTagsProcessor
+app.lexer.filter.drop = com.haima.sage.bigdata.etl.lexer.filter.DropProcessor
+app.lexer.filter.mapping = com.haima.sage.bigdata.etl.lexer.filter.MappingProcessor
+app.lexer.filter.merger = com.haima.sage.bigdata.etl.lexer.filter.MergerProcessor
+app.lexer.filter.script = com.haima.sage.bigdata.etl.lexer.filter.ScriptProcessor
+app.lexer.filter.error = com.haima.sage.bigdata.etl.lexer.filter.ErrorProcessor
+app.lexer.filter.ignore = com.haima.sage.bigdata.etl.lexer.filter.IgnoreProcessor
+app.lexer.filter.fieldCut = com.haima.sage.bigdata.etl.lexer.filter.FieldCutProcessor
+app.lexer.filter.redirect = com.haima.sage.bigdata.etl.lexer.filter.MapRedirectProcessor
+app.lexer.filter.startWith = com.haima.sage.bigdata.etl.lexer.filter.MapStartWithProcessor
+app.lexer.filter.endWith = com.haima.sage.bigdata.etl.lexer.filter.MapEndWithProcessor
+app.lexer.filter.match = com.haima.sage.bigdata.etl.lexer.filter.MapMatchProcessor
+app.lexer.filter.contain = com.haima.sage.bigdata.etl.lexer.filter.MapContainProcessor
+app.lexer.filter.scriptFilter = com.haima.sage.bigdata.etl.lexer.filter.ScriptFilterProcessor
+app.lexer.filter.fieldAdditive = com.haima.sage.bigdata.etl.lexer.filter.FieldAdditiveProcessor
+app.lexer.filter.fieldMulti = com.haima.sage.bigdata.etl.lexer.filter.FieldMultiProcessor
+# Codec stream support list #
+app.codec.delimit = com.haima.sage.bigdata.etl.codec.DelimitStream
+app.codec.json = com.haima.sage.bigdata.etl.codec.JSONStream
+app.codec.multi = com.haima.sage.bigdata.etl.codec.MultiStream
+app.codec.match = com.haima.sage.bigdata.etl.codec.MatchStream
+app.codec.line = com.haima.sage.bigdata.etl.codec.LineStream
+app.codec.xml = com.haima.sage.bigdata.etl.codec.XMLStream
+app.codec.filter = ["startsWith", "endWith", "match", "contain"]
+# Uniform store settings or rules #
+app.store.driver.url = "jdbc:h2:db/h2;AUTO_SERVER=TRUE"
+app.store.driver.driver = org.h2.Driver
+app.store.driver.connectionPool = disabled
+app.store.driver.keepAliveConnection = true
+app.store.position.class = com.haima.sage.bigdata.etl.store.position.DBReadPositionStore
+app.store.log.location = ./logs/derby.log
+# [positive , negative] #
+# positive 积极模式 每读取一个offset 及时 记录文件读取位置（掉电丢失部分数据） #
+# negative 消极模式 等待当前缓存写完成 后再记录当前位置（掉电后可能重复读部分数据） #
+app.store.position.flush = negative
+# 多少条记录一次文件读取的位置 #
+app.store.position.offset = 1000
+app.store.modeling.class = com.haima.sage.bigdata.etl.store.ModelingStore
+app.store.cache.class = com.haima.sage.bigdata.etl.store.CacheStore
+app.store.config.class = com.haima.sage.bigdata.etl.store.ConfigStore
+app.store.status.class = com.haima.sage.bigdata.etl.store.StatusStore
+app.store.api.class = com.haima.sage.bigdata.etl.store.ApiInfoStore
+app.store.collector.class = com.haima.sage.bigdata.etl.store.CollectorStore
+app.store.datasource.class = com.haima.sage.bigdata.etl.store.DataSourceStore
+app.store.configinfo.class = com.haima.sage.bigdata.etl.store.ConfigInfoStore
+app.store.metric.info.class = com.haima.sage.bigdata.etl.store.MetricInfoStore
+app.store.metric.history.class = com.haima.sage.bigdata.etl.store.MetricHistoryStore
+app.store.parser.class = com.haima.sage.bigdata.etl.store.DBParserStore
+app.store.assettype.class = com.haima.sage.bigdata.etl.store.AssetTypeStore
+app.store.security_domain.class = com.haima.sage.bigdata.etl.SecurityDomainStore
+app.store.asset.class = com.haima.sage.bigdata.etl.store.AssetStore
+app.store.writer.class = com.haima.sage.bigdata.etl.store.WriteWrapperStore
+app.store.analyzer.class = com.haima.sage.bigdata.etl.store.DBAnalyzerStore
+app.store.task.class = com.haima.sage.bigdata.etl.store.TaskWrapperStore
+app.store.taskloginfo.class = com.haima.sage.bigdata.etl.store.TaskLogInfoStore
+app.store.dictionary.class = com.haima.sage.bigdata.etl.store.DictionaryStore
+app.store.dictionary_properties.class = com.haima.sage.bigdata.etl.store.DictionaryPropertiesStore
+app.store.knowledge.class = com.haima.sage.bigdata.etl.store.KnowledgeStore
+app.store.knowledgeInfo.class = com.haima.sage.bigdata.etl.store.KnowledgeInfoStore
+app.store.topology.config.class = com.haima.sage.bigdata.etl.store.TopologyConfigStore
+app.knowledge.loader.file = com.haima.sage.bigdata.etl.server.knowledge.FileKnowledgeLoader
+app.knowledge.loader.jdbc = com.haima.sage.bigdata.etl.server.knowledge.JDBCKnowledgeLoader
+
+app.rule.unit.class = com.haima.sage.bigdata.etl.store.rules.DBRuleUnitStore
+app.rule.group.class = com.haima.sage.bigdata.etl.store.rules.DBRuleGroupStore
+app.reader.file.buffer = 1048576
+# all log separate by line can process by this，that is the default use for detect one data item #
+app.reader.txt = com.haima.sage.bigdata.etl.reader.TXTFileLogReader
+app.reader.csv = com.haima.sage.bigdata.etl.reader.CSVFileLogReader
+# for net listen #
+app.reader.net = com.haima.sage.bigdata.etl.reader.NetLogReader
+# for TRANS DATA #
+app.reader.akka = com.haima.sage.bigdata.etl.reader.AkkaLogReader
+# for std in #
+# app.reader.std  =  com.haima.sage.bigdata.etl.reader.StdLogReader #
+# all log separate by line can process by this #
+app.monitor.file = com.haima.sage.bigdata.etl.monitor.file.DirectoryMonitor
+app.monitor.std = com.haima.sage.bigdata.etl.monitor.StdMonitor
+app.monitor.net = com.haima.sage.bigdata.etl.monitor.NetMonitor
+app.writer.forward = com.haima.sage.bigdata.etl.writer.Forwarder
+app.writer.net = com.haima.sage.bigdata.etl.writer.NetDataWriter
+app.writer.std = com.haima.sage.bigdata.etl.writer.StdDataWriter
+app.writer.file = com.haima.sage.bigdata.etl.writer.FileDataWriter
+app.writer.switch = com.haima.sage.bigdata.etl.writer.SwitchDataWriter
+app.checker.file = com.haima.sage.bigdata.etl.driver.usable.FileUsabilityChecker
+app.checker.forward = com.haima.sage.bigdata.etl.driver.usable.FowardUsabilityChecker
+app.checker.net = com.haima.sage.bigdata.etl.checker.NetChecker
+akka.ask.timeout= 60000 ms
+akka.loglevel = INFO
+akka.loggers = ["akka.event.slf4j.Slf4jLogger"]
+akka.logging-filter = "akka.event.slf4j.Slf4jLoggingFilter"
+# Possibility to turn off logging of dead letters while the actor system #
+# is shutting down. Logging is only done when enabled by 'log-dead-letters' #
+# setting. #
+akka.jvm-exit-on-fatal-error = on
+akka.log-dead-letters-during-shutdown = on
+akka.actor.warn-about-java-serializer-usage = off
+akka.actor.provider = "akka.remote.RemoteActorRefProvider"
+akka.actor.default-mailbox.mailbox-type = "akka.dispatch.SingleConsumerOnlyUnboundedMailbox"
+# How often failure detection heartbeat messages should be sent #
+akka.cluster.client.heartbeat-interval = 10s
+# Number of potentially lost/delayed heartbeats that will be #
+# accepted before considering it to be an anomaly. #
+# The ClusterClient is using the akka.remote.DeadlineFailureDetector, which #
+# will trigger if there are no heartbeats within the duration #
+# heartbeat-interval + acceptable-heartbeat-pause, i.e. 15 seconds with #
+# the default settings. #
+akka.cluster.client.establishing-get-contacts-interval = 3s
+akka.cluster.client.refresh-contacts-interval = 2s
+akka.cluster.client.acceptable-heartbeat-pause = 1 s
+akka.cluster.client.reconnect-timeout = off
+akka.cluster.client.buffer-size = 10000
+
+
+akka.remote.enabled-transports = ["akka.remote.netty.tcp"]
+# Settings for the failure detector to monitor connections.
+# For TCP it is not important to have fast failure detection, since
+# most connection failures are captured by TCP itself.
+# The default DeadlineFailureDetector will trigger if there are no heartbeats within
+# the duration heartbeat-interval + acceptable-heartbeat-pause, i.e. 124 seconds
+# with the default settings.
+
+
+  # FQCN of the failure detector implementation.
+  # It must implement akka.remote.FailureDetector and have
+  # a public constructor with a com.typesafe.config.Config and
+  # akka.actor.EventStream parameter.
+akka.remote.transport-failure-detector.implementation-class = "akka.remote.DeadlineFailureDetector"
+
+  # How often keep-alive heartbeat messages should be sent to each connection.
+akka.remote.transport-failure-detector.heartbeat-interval = 1000 s
+
+  # Number of potentially lost/delayed heartbeats that will be
+  # accepted before considering it to be an anomaly.
+  # A margin to the `heartbeat-interval` is important to be able to survive sudden,
+  # occasional, pauses in heartbeat arrivals, due to for example garbage collect or
+  # network drop.
+akka.remote.transport-failure-detector.acceptable-heartbeat-pause = 6000 s
+
+
+# Settings for the Phi accrual failure detector (http://www.jaist.ac.jp/~defago/files/pdf/IS_RR_2004_010.pdf
+# [Hayashibara et al]) used for remote death watch.
+# The default PhiAccrualFailureDetector will trigger if there are no heartbeats within
+# the duration heartbeat-interval + acceptable-heartbeat-pause + threshold_adjustment,
+# i.e. around 12.5 seconds with default settings.
+
+
+  # FQCN of the failure detector implementation.
+  # It must implement akka.remote.FailureDetector and have
+  # a public constructor with a com.typesafe.config.Config and
+  # akka.actor.EventStream parameter.
+akka.remote.watch-failure-detector.implementation-class = "akka.remote.PhiAccrualFailureDetector"
+
+  # How often keep-alive heartbeat messages should be sent to each connection.
+akka.remote.watch-failure-detector.heartbeat-interval = 1 s
+
+  # Defines the failure detector threshold.
+  # A low threshold is prone to generate many wrong suspicions but ensures
+  # a quick detection in the event of a real crash. Conversely, a high
+  # threshold generates fewer mistakes but needs more time to detect
+  # actual crashes.
+akka.remote.watch-failure-detector.threshold = 10.0
+
+  # Number of the samples of inter-heartbeat arrival times to adaptively
+  # calculate the failure timeout for connections.
+akka.remote.watch-failure-detector.max-sample-size = 2000000000
+
+  # Minimum standard deviation to use for the normal distribution in
+  # AccrualFailureDetector. Too low standard deviation might result in
+  # too much sensitivity for sudden, but normal, deviations in heartbeat
+  # inter arrival times.
+akka.remote.watch-failure-detector.min-std-deviation = 1 s
+
+  # Number of potentially lost/delayed heartbeats that will be
+  # accepted before considering it to be an anomaly.
+  # This margin is important to be able to survive sudden, occasional,
+  # pauses in heartbeat arrivals, due to for example garbage collect or
+  # network drop.
+akka.remote.watch-failure-detector.acceptable-heartbeat-pause = 2 s
+
+
+  # How often to check for nodes marked as unreachable by the failure
+  # detector
+akka.remote.watch-failure-detector.unreachable-nodes-reaper-interval = 5 s
+
+  # After the heartbeat request has been sent the first failure detection
+  # will start after this period, even though no heartbeat mesage has
+  # been received.
+akka.remote.watch-failure-detector.expected-response-after = 2 s
+# After failed to establish an outbound connection, the remoting will mark the
+# address as failed. This configuration option controls how much time should
+# be elapsed before reattempting a new connection. While the address is
+# gated, all messages sent to the address are delivered to dead-letters.
+# Since this setting limits the rate of reconnects setting it to a
+# very short interval (i.e. less than a second) may result in a storm of
+# reconnect attempts.
+akka.remote.retry-gate-closed-for = 60 s
+
+# After catastrophic communication failures that result in the loss of system
+# messages or after the remote DeathWatch triggers the remote system gets
+# quarantined to prevent inconsistent behavior.
+# This setting controls how long the Quarantine marker will be kept around
+# before being removed to avoid long-term memory leaks.
+# WARNING: DO NOT change this to a small value to re-enable communication with
+# quarantined nodes. Such feature is not supported and any behavior between
+# the affected systems after lifting the quarantine is undefined.
+akka.remote.prune-quarantine-marker-after = 5 d
+
+# If system messages have been exchanged between two systems (i.e. remote death
+# watch or remote deployment has been used) a remote system will be marked as
+# quarantined after the two system has no active association, and no
+# communication happens during the time configured here.
+# The only purpose of this setting is to avoid storing system message redelivery
+# data (sequence number state, etc.) for an undefined amount of time leading to long
+# term memory leak. Instead, if a system has been gone for this period,
+# or more exactly
+# - there is no association between the two systems (TCP connection, if TCP transport is used)
+# - neither side has been attempting to communicate with the other
+# - there are no pending system messages to deliver
+# for the amount of time configured here, the remote system will be quarantined and all state
+# associated with it will be dropped.
+akka.remote.quarantine-after-silence = 6 d
+
+# This setting defines the maximum number of unacknowledged system messages
+# allowed for a remote system. If this limit is reached the remote system is
+# declared to be dead and its UID marked as tainted.
+akka.remote.system-message-buffer-size = 100000000
+# This setting defines the maximum idle time after an individual
+# acknowledgement for system messages is sent. System message delivery
+# is guaranteed by explicit acknowledgement messages. These acks are
+# piggybacked on ordinary traffic messages. If no traffic is detected
+# during the time period configured here, the remoting will send out
+# an individual ack.
+akka.remote.system-message-ack-piggyback-timeout = 1 s
+
+# This setting defines the time after internal management signals
+# between actors (used for DeathWatch and supervision) that have not been
+# explicitly acknowledged or negatively acknowledged are resent.
+# Messages that were negatively acknowledged are always immediately
+# resent.
+akka.remote.resend-interval = 2 s
+
+# Maximum number of unacknowledged system messages that will be resent
+# each 'resend-interval'. If you watch many (> 1000) remote actors you can
+# increase this value to for example 600, but a too large limit (e.g. 10000)
+# may flood the connection and might cause false failure detection to trigger.
+# Test such a configuration by watching all actors at the same time and stop
+# all watched actors at the same time.
+akka.remote.resend-limit = 10000
+
+# WARNING: this setting should not be not changed unless all of its consequences
+# are properly understood which assumes experience with remoting internals
+# or expert advice.
+# This setting defines the time after redelivery attempts of internal management
+# signals are stopped to a remote system that has been not confirmed to be alive by
+# this system before.
+akka.remote.initial-system-message-delivery-timeout = 3 m
+
+
+akka.remote.compression-scheme = "zlib" # Options: "zlib" (lzf to come), leave out for no compression #
+akka.remote.zlib-compression-level = 6  # Options: 0-9 (1 being fastest and 9 being the most compressed), default is 6 #
+akka.remote.maximum-payload-bytes = 30000000 bytes
+
+
+# Sets the send buffer size of the Sockets, default is 0b #
+akka.remote.netty.tcp.send-buffer-size = 30000000b
+# Sets the receive buffer size of the Sockets, default is 0b #
+akka.remote.netty.tcp.receive-buffer-size = 30000000b
+# Maximum message size the transport will accept, but at least 32000 bytes. #
+# Please note that UDP does not support arbitrary large datagrams, #
+# so this setting has to be chosen carefully when using UDP. #
+# Both send-buffer-size and receive-buffer-size settings has to #
+# be adjusted to be able to buffer messages of maximum size. #
+akka.remote.netty.tcp.maximum-frame-size = 30000000b
+akka.remote.netty.tcp.message-frame-size = 30000000b
+# Enable SSL/TLS encryption. #
+# This must be enabled on both the client and server to work. #
+akka.remote.netty.ssl.enable-ssl = true
+# This is the Java Key Store used by the server connection #
+akka.remote.netty.ssl.security.key-store = "kapp.keystore"
+# This password is used for decrypting the key store #
+akka.remote.netty.ssl.security.key-store-password = "raysdata@2014"
+# This password is used for decrypting the key #
+akka.remote.netty.ssl.security.key-password = "raysdata@2014"
+# This is the Java Key Store used by the client connection #
+akka.remote.netty.ssl.security.trust-store = "tapp.keystore"
+# This password is used for decrypting the trust store #
+akka.remote.netty.ssl.security.trust-store-password = "raysdata@2014"
+# Protocol to use for SSL encryption, choose from: #
+# Java 6 & 7: #
+#   'SSLv3', 'TLSv1' #
+# Java 7: #
+#   'TLSv1.1', 'TLSv1.2' #
+akka.remote.netty.ssl.security.protocol = "TLSv1"
+# Example: ["TLS_RSA_WITH_AES_128_CBC_SHA", "TLS_RSA_WITH_AES_256_CBC_SHA"] #
+# You need to install the JCE Unlimited Strength Jurisdiction Policy Files to use AES 256. #
+# More info here: #
+# http://docs.oracle.com/javase/7/docs/technotes/guides/security/SunProviders.html#SunJCEProvider #
+akka.remote.netty.ssl.security.enabled-algorithms = ["TLS_RSA_WITH_AES_128_CBC_SHA"]
+# There are three options, in increasing order of security: #
+# "" or SecureRandom  = > (default) #
+# "SHA1PRNG"  = > Can be slow because of blocking issues on Linux #
+# "AES128CounterSecureRNG"  = > fastest startup and based on AES encryption #
+# algorithm #
+# "AES256CounterSecureRNG" #
+# The following use one of 3 possible seed sources, depending on #
+# availability: /dev/random, random.org and SecureRandom (provided by Java) #
+# "AES128CounterInetRNG" #
+# "AES256CounterInetRNG" (Install JCE Unlimited Strength Jurisdiction #
+# Policy Files first) #
+# Setting a value here may require you to supply the appropriate cipher #
+# suite (see enabled-algorithms section above) #
+akka.remote.netty.ssl.security.random-number-generator = ""
+# Dispatcher 默认派发器: default #
+akka.dispatcher.default.type = Dispatcher
+# 使用何种ExecutionService #
+akka.dispatcher.default.executor = "fork-join-executor"
+# executor  =  "fork-join-executor" #
+# 配置 fork join 池 #
+# 容纳基于倍数的并行数量的线程数下限 #
+akka.dispatcher.default.fork-join-executor.parallelism-min = 1
+#并行数（线程）: ceil(可用CPU数＊倍数） #
+akka.dispatcher.default.fork-join-executor.parallelism-factor = 1.0
+#容纳基于倍数的并行数量的线程数上限 #
+akka.dispatcher.default.fork-join-executor.parallelism-max = 10
+# Dispatcher  监控派发器：monitor #
+akka.dispatcher.monitor.type = Dispatcher
+# 使用何种ExecutionService #
+akka.dispatcher.monitor.executor = "fork-join-executor"
+# executor  =  "fork-join-executor" #
+# 配置 fork join 池 #
+# 容纳基于倍数的并行数量的线程数下限 #
+akka.dispatcher.monitor.fork-join-executor.parallelism-min = 1
+#并行数（线程）: ceil(可用CPU数＊倍数） #
+akka.dispatcher.monitor.fork-join-executor.parallelism-factor = 1.0
+#容纳基于倍数的并行数量的线程数上限 #
+akka.dispatcher.monitor.fork-join-executor.parallelism-max = 10
+# Dispatcher 处理派发器：processor #
+akka.dispatcher.processor.type = Dispatcher
+# 使用何种ExecutionService #
+akka.dispatcher.processor.executor = "fork-join-executor"
+# executor  =  "fork-join-executor" #
+# 配置 fork join 池 #
+# 容纳基于倍数的并行数量的线程数下限 #
+akka.dispatcher.processor.fork-join-executor.parallelism-min = 1
+#并行数（线程）: ceil(可用CPU数＊倍数） #
+akka.dispatcher.processor.fork-join-executor.parallelism-factor = 10.0
+#容纳基于倍数的并行数量的线程数上限 #
+akka.dispatcher.processor.fork-join-executor.parallelism-max = 100
+# Dispatcher  服务器派发器：server #
+akka.dispatcher.server.type = Dispatcher
+# 使用何种ExecutionService #
+akka.dispatcher.server.executor = "fork-join-executor"
+# executor  =  "fork-join-executor" #
+# 配置 fork join 池 #
+# 容纳基于倍数的并行数量的线程数下限 #
+akka.dispatcher.server.fork-join-executor.parallelism-min = 1
+# 并行数（线程）: ceil(可用CPU数＊倍数） #
+akka.dispatcher.server.fork-join-executor.parallelism-factor = 1.0
+# 容纳基于倍数的并行数量的线程数上限 #
+akka.dispatcher.server.fork-join-executor.parallelism-max = 10
+# Throughput 定义了线程切换到另一个actor之前处理的消息数上限 #
+# 设置成1表示尽可能公平. #
+akka.dispatcher.server.throughput = 100
+# Dispatcher  性能指标派发器：metric #
+akka.dispatcher.metric.type = Dispatcher
+# 使用何种ExecutionService #
+akka.dispatcher.metric.executor = "fork-join-executor"
+# executor  =  "fork-join-executor" #
+# 配置 fork join 池 #
+# 容纳基于倍数的并行数量的线程数下限 #
+akka.dispatcher.metric.fork-join-executor.parallelism-min = 1
+# 并行数（线程） ... ceil(可用CPU数＊倍数） #
+akka.dispatcher.metric.fork-join-executor.parallelism-factor = 1.0
+# 容纳基于倍数的并行数量的线程数上限 #
+akka.dispatcher.metric.fork-join-executor.parallelism-max = 10
+# Throughput 定义了线程切换到另一个actor之前处理的消息数上限 #
+# 设置成1表示尽可能公平. #
+akka.dispatcher.metric.throughput = 1
+# Dispatcher  词法分析派发器：executor #
+akka.dispatcher.executor.type = Dispatcher
+# 使用何种ExecutionService #
+akka.dispatcher.executor.executor = "fork-join-executor"
+# executor  =  "fork-join-executor" #
+# 配置 fork join 池 #
+# 容纳基于倍数的并行数量的线程数下限 #
+akka.dispatcher.executor.fork-join-executor.parallelism-min = 1
+# 并行数（线程）:ceil(可用CPU数＊倍数） #
+akka.dispatcher.executor.fork-join-executor.parallelism-factor = 1.0
+# 容纳基于倍数的并行数量的线程数上限 #
+akka.dispatcher.executor.fork-join-executor.parallelism-max = 10
+# Throughput 定义了线程切换到另一个actor之前处理的消息数上限 #
+# 设置成1表示尽可能公平. #
+akka.dispatcher.executor.throughput = 1
+# include "akka-http-version" #
+# The value of the `Server` header to produce. #
+# Set to the empty string to disable rendering of the server header. #
+akka.http.server.server-header = raysdata-sage-bigdata-etl-3.0/10.10.5#${akka.http.version} #spray-can/${spray.version}
+# Enables/disables SSL encryption. #
+# If enabled the server uses the implicit `ServerSSLEngineProvider` member #
+# of the `Bind` command to create `SSLEngine` instances for the underlying #
+# IO connection. #
+akka.http.server.ssl-encryption = off
+# The maximum number of requests that are accepted (and dispatched to #
+# the application) on one single connection before the first request #
+# has to be completed. #
+# Incoming requests that would cause the pipelining limit to be exceeded #
+# are not read from the connections socket so as to build up "back-pressure" #
+# to the client via TCP flow control. #
+# A setting of 1 disables HTTP pipelining, since only one request per #
+# connection can be "open" (i.e. being processed by the application) at any #
+# time. Set to higher values to enable HTTP pipelining. #
+# Set to 'disabled' for completely disabling pipelining limits #
+# (not recommended on public-facing servers due to risk of DoS attacks). #
+# This value must be > 0 and <= 128. #
+akka.http.server.pipelining-limit = 64
+# The time after which an idle connection will be automatically closed. #
+# Set to `infinite` to completely disable idle connection timeouts. #
+akka.http.server.idle-timeout = 30 s
+# If a request hasn't been responded to after the time period set here #
+# a `spray.http.Timedout` message will be sent to the timeout handler. #
+# Set to `infinite` to completely disable request timeouts. #
+akka.http.server.request-timeout = 20 s
+# After a `Timedout` message has been sent to the timeout handler and the #
+# request still hasn't been completed after the time period set here #
+# the server will complete the request itself with an error response. #
+# Set to `infinite` to disable timeout timeouts. #
+akka.http.server.timeout-timeout = 2 s
+# The period during which a service must respond to a `ChunkedRequestStart` message #
+# with a `RegisterChunkHandler` message. During the registration period reading from #
+# the network is suspended. It is still possible that some chunks have already been #
+# received which will be buffered until the registration is received or the timeout is #
+# triggered. If the timeout is triggered the connection is immediately aborted. #
+akka.http.server.chunkhandler-registration-timeout = 500 ms
+# The path of the actor to send `spray.http.Timedout` messages to. #
+# If empty all `Timedout` messages will go to the "regular" request #
+# handling actor. #
+akka.http.server.timeout-handler = ""
+# The "granularity" of timeout checking for both idle connections timeouts #
+# as well as request timeouts, should rarely be needed to modify. #
+# If set to `infinite` request and connection timeout checking is disabled. #
+akka.http.server.reaping-cycle = 250 ms
+# Enables/disables support for statistics collection and querying. #
+# Even though stats keeping overhead is small, #
+# for maximum performance switch off when not needed. #
+akka.http.server.stats-support = on
+# Enables/disables the addition of a `Remote-Address` header #
+# holding the clients (remote) IP address. #
+akka.http.server.remote-address-header = off
+# Enables/disables the addition of a `Raw-Request-URI` header holding the #
+# original raw request URI as the client has sent it. #
+akka.http.server.raw-request-uri-header = off
+# Enables/disables automatic handling of HEAD requests. #
+# If this setting is enabled the server dispatches HEAD requests as GET #
+# requests to the application and automatically strips off all message #
+# bodies from outgoing responses. #
+# Note that, even when this setting is off the server will never send #
+# out message bodies on responses to HEAD requests. #
+akka.http.server.transparent-head-requests = on
+# Enables/disables an alternative response streaming mode that doesn't #
+# use `Transfer-Encoding: chunked` but rather renders the individual #
+# MessageChunks coming in from the application as parts of the original #
+# response entity. #
+# Enabling this mode causes all connections to be closed after a streaming #
+# response has been finished since there is no other way to signal the #
+# response end to the client. #
+# Note that chunkless-streaming is implicitly enabled when streaming #
+# responses to HTTP/1.0 clients (since they don't support #
+# `Transfer-Encoding: chunked`) #
+akka.http.server.chunkless-streaming = off
+# Enables/disables the returning of more detailed error messages to #
+# the client in the error response. #
+# Should be disabled for browser-facing APIs due to the risk of XSS attacks #
+# and (probably) enabled for internal or non-browser APIs. #
+# Note that spray will always produce log messages containing the full #
+# error details. #
+akka.http.server.verbose-error-messages = off
+akka.http.server.verbose-error-logging = on
+# If this setting is non-zero the HTTP server automatically aggregates #
+# incoming request chunks into full HttpRequests before dispatching them to #
+# the application. If the size of the aggregated requests surpasses the #
+# specified limit the server responds with a `413 Request Entity Too Large` #
+# error response before closing the connection. #
+# Set to zero to disable automatic request chunk aggregation and have #
+# ChunkedRequestStart, MessageChunk and ChunkedMessageEnd messages be #
+# dispatched to the handler. #
+akka.http.server.request-chunk-aggregation-limit = 1m
+# The initial size if the buffer to render the response headers in. #
+# Can be used for fine-tuning response rendering performance but probably #
+# doesn't have to be fiddled with in most applications. #
+akka.http.server.response-header-size-hint = 512
+# For HTTPS connections this setting specified the maximum number of #
+# bytes that are encrypted in one go. Large responses are broken down in #
+# chunks of this size so as to already begin sending before the response has #
+# been encrypted entirely. #
+akka.http.server.max-encryption-chunk-size = 1m
+# The time period within which the TCP binding process must be completed. #
+# Set to `infinite` to disable. #
+akka.http.server.bind-timeout = 1s
+# The time period within which the TCP unbinding process must be completed. #
+# Set to `infinite` to disable. #
+akka.http.server.unbind-timeout = 1s
+# The time period within which a connection handler must have been #
+# registered after the bind handler has received a `Connected` event. #
+# Set to `infinite` to disable. #
+akka.http.server.registration-timeout = 1s
+# The time after which a connection is aborted (RST) after a parsing error #
+# occurred. The timeout prevents a connection which is already known to be #
+# erroneous from receiving evermore data even if all of the data will be ignored. #
+# However, in case of a connection abortion the client usually doesn't properly #
+# receive the error response. This timeout is a trade-off which allows the client #
+# some time to finish its request and receive a proper error response before the #
+# connection is forcibly closed to free resources. #
+akka.http.server.parsing-error-abort-timeout = 2s
+# If this setting is empty the server only accepts requests that carry a #
+# non-empty `Host` header. Otherwise it responds with `400 Bad Request`. #
+# Set to a non-empty value to be used in lieu of a missing or empty `Host` #
+# header to make the server accept such requests. #
+# Note that the server will never accept HTTP/1.1 request without a `Host` #
+# header, i.e. this setting only affects HTTP/1.1 requests with an empty #
+# `Host` header as well as HTTP/1.0 requests. #
+# Examples: `www.spray.io` or `example.com:8080` #
+akka.http.server.default-host-header = ""
+# Enables/disables automatic back-pressure handling by write buffering and #
+# receive throttling #
+akka.http.server.automatic-back-pressure-handling = on
+# The reciprocal rate of requested Acks per NoAcks. E.g. the default value #
+# '10' means that every 10th write request is acknowledged. This affects the #
+# number of writes each connection has to buffer even in absence of back-pressure. #
+akka.http.server.back-pressure.noack-rate = 10
+# The lower limit the write queue size has to shrink to before reads are resumed. #
+# Use 'infinite' to disable the low-watermark so that reading is resumed instantly #
+# after the next successful write. #
+akka.http.server.back-pressure.reading-low-watermark = infinite
+# Enables more verbose DEBUG logging for debugging SSL related issues. #
+akka.http.server.ssl-tracing = on
+# Modify to tweak parsing settings on the server-side only. #
+# parsing = ${spray.can.parsing} #
+akka.http.host-connector.max-connections = 500
+akka.http.host-connector.max-retries = 3
+akka.http.client.request-timeout = 40s
+akka.http.client.connecting-timeout = 2s
+akka.http.client.parsing.max-response-reason-length = 2014
+akka.http.client.ssl-tracing = on
+app-dispatcher.mailbox-requirement = "com.haima.sage.bigdata.etl.monitor.file.LocalFileMessageQueueSemantics"
+akka.actor.mailbox.requirements."com.haima.sage.bigdata.etl.monitor.file.LocalFileMessageQueueSemantics" = app-dispatcher-mailbox
+app-dispatcher-mailbox.mailbox-type = "com.haima.sage.bigdata.etl.monitor.file.LocalFileMailbox"
+app.monitor-file.max.cache = 1000000

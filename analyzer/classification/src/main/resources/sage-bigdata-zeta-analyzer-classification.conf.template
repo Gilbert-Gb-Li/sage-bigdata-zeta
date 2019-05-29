@@ -1,0 +1,2 @@
+app.streaming.analyzer.svm=com.haima.sage.bigdata.analyzer.classification.streaming.StreamSVMAnalyzer
+app.modeling.analyzer.svm=com.haima.sage.bigdata.analyzer.classification.modeling.ModelingSVMAnalyzer

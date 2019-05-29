@@ -1,0 +1,2 @@
+APACHE %{IPORHOST:c_ip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:@timestamp}\] \"(?:%{WORD:method} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\" %{NUMBER:response} (?:%{NUMBER:bytes}|-)( %{QS:referrer} %{QS:agent}( %{NUMBER:read} %{NUMBER:write})?)?
+TOMCAT %{IPORHOST:c_ip} - %{USERNAME:remote_user} \[%{HTTPDATE:@timestamp}\] %{QS:request} %{INT:status} %{INT:body_bytes_sent}

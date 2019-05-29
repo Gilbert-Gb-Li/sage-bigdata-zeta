@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html ng-app="login" xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+
+<head>
+
+    <title>海马云zeta 大数据分析系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/es5-shim/2.2.0/es5-shim.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- build:css styles/login.min.css -->
+    <link rel="stylesheet" type="text/css" href="styles/c_reset.css">
+    <link rel="stylesheet" type="text/css" href="styles/c_login.css">
+    <!-- endbuild -->
+</head>
+
+<body class="login-body" ng-controller="LoginController as login">
+<!--<div class="container-fluid">
+  <div class="col-md-1"></div>
+  <div class="col-md-3">
+
+  </div>
+</div>-->
+<div class="login">
+    <img src="images/logo.png" class="logo"/>
+    <div class="con">
+        <h1>Zeta 大数据分析系统</h1>
+        <form>
+            <div>
+                <input type="text" ng-model="login.username" placeholder="请输入账号"/>
+                <p ng-show="login.error" class="ng-cloak">账号输入有误</p>
+            </div>
+            <div>
+                <input type="password" ng-model="login.password" placeholder="请输入密码"/>
+                <p ng-show="login.error" class="ng-cloak">密码输入有误</p>
+            </div>
+            <div ng-show="login.error">
+                <p class="alert alert-danger error" role="alert" ng-bind="login.error"></p>
+            </div>
+        </form>
+        <a ng-click="login.login()" class="btn">登录</a>
+    </div>
+</div>
+<!-- build:js scripts/components.login.min.js -->
+<!-- bower:js -->
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-cookies/angular-cookies.min.js"></script>
+
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:js scripts/app.login.min.js -->
+<script src="scripts/app.login.js"></script>
+<!-- endbuild -->
+</body>
+
+</html>

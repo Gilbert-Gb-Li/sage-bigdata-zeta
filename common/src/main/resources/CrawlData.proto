@@ -1,0 +1,31 @@
+syntax = "proto2";
+message CrawlData {
+    //数据来源：app端固定值为"app"
+    required string dataSource = 1;
+    //爬虫版本
+    required string spiderVersion = 2;
+    //实例的containerId
+    optional string containerId = 3;
+    //实例的cloudServiceId
+    optional string cloudServiceId = 4;
+    //用于Saver查找产生该条数据的deepLink
+    optional string resourceKey = 5;
+    //数据类型： 1为抓取的业务数据  2为dump的页面数据
+    required int32 dataType = 6;
+    //应用的包名
+    optional string appPackageName = 76;
+    //应用的版本号
+    optional string appVersion = 8;
+    //标识实际抓取的数据的具体类型，由app确定
+    required string schema = 9;
+
+    //实际数据
+    message Content {
+        //抓取时间
+        required int64 timestamp = 1;
+        //抓取的业务数据为json格式,  dump数据为xml，所有数据Gzip压缩处理，Base64编码
+        required bytes data = 2;
+    }
+    //支持批量传输
+    repeated Content content = 10;
+}

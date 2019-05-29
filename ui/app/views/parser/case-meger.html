@@ -1,0 +1,64 @@
+<div style="padding-left: 40px;">
+  <div class="input-group col-sm-4 col-md-4" style="float:left;padding-top: 5px; padding-right:2px;padding-left: 0px;"
+       ng-repeat="field in case.rule.fields track by $index">
+    <div class=" input-group col-sm-3 col-md-3"
+         style="float:left;padding-top: 5px; padding-right:2px;padding-left: 0px;">
+      <span ng-if="$index>0" style="float:left;padding-top: 5px; padding-right:2px;padding-left: 0px;">
+        <i style="padding-left: 20px" class=" fa fa-plus"></i>
+      </span>
+      <span ng-if="$index==0" style="float:left;padding-top: 5px; padding-right:2px;padding-left: 0px;">
+       <i>字段:</i>
+
+      </span>
+    </div>
+
+    <div class="input-group col-sm-9 col-md-9"
+         ng-class="{'has-error':
+         add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}]'].$invalid&&
+         (add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}]'].$dirty||
+            add_form.$submitted)}">
+      <input placeholder="要合并的字段" ng-model="case.rule.fields[$index]"
+             class="form-control ui-autocomplete"
+             name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}]"
+             uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8" required>
+      <span class="input-group-addon btn btn-inverse"
+            ng-disabled="case.rule.fields.length<=2"
+            ng-click="case.rule.fields.length<=2|| removeCaseOne(filterIndex,caseIndex,$index)">
+        <i class="fa fa-remove"></i>
+      </span>
+    </div>
+
+  </div>
+  <label class="col-sm-3 col-md-3" style="padding-left: 0;padding-top: 7px;"><span
+    class=" btn btn-primary btn-sm bg-success" style="margin-left: 50%;" ng-click="addCaseOne(filterIndex,$index)"
+    title="添加内容">&nbsp;&nbsp; <i class="fa fa-plus"></i>&nbsp;&nbsp;</span></label>
+</div>
+<div style="display: inline;padding-left: 0px;padding-right:2px;padding-top:5px;float: right"
+     class="col-sm-8 col-md-8 control-box">
+
+  <div class="input-group" style="float:left"
+       ng-class="{'has-error':(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.sep'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.sep'].$dirty||add_form.$submitted))
+       ||(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field'].$dirty||add_form.$submitted))}"
+  >
+  <span
+    class="input-group-addon">
+    WITH
+      </span>
+    <input type="text" class="required form-control"
+           ng-model="case.rule.sep"
+           name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.sep"
+
+
+           placeholder="特殊值说明:\s->空格,\n->换行,\t ->tab" required>
+    <span
+      class="input-group-addon">合并为
+    </span>
+    <input class="form-control"
+           name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field"
+           ng-model="case.rule.field"
+           placeholder="合并后的字段名称" required>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,96 @@
+{
+  "currentPage": 1,
+  "totalPage": 3,
+  "totalCount": 21,
+  "result": [
+    {
+      "ruleContent": "{\n  \"name\" : \"nothing\",\n  \"filter\" : [ ]\n}",
+      "orderid": 27,
+      "name": "赵规则",
+      "logTypeName": "mysql数据库",
+      "id": "852f1cf445b9469ab430ccc7c5edba2e",
+      "logTypeId": "mysql"
+    },
+    {
+      "ruleContent": "{\n  \"name\" : \"delimit\",\n  \"filter\" : [ {\n    \"name\" : \"merger\",\n    \"fields\" : [ \"date\", \"time\" ],\n    \"field\" : \"@timestamp\"\n  } ],\n  \"delimit\" : \" \",\n  \"fields\" : [ \"date\", \"time\", \"level\", \"message\" ]\n}",
+      "orderid": 26,
+      "can_delete": "false",
+      "name": "sql",
+      "logTypeName": "sqlserver数据库",
+      "id": "86284a14259b4dc78729ccbe230c31c6",
+      "logTypeId": "sqlserver"
+    },
+    {
+      "ruleContent": "{\n  \"name\" : \"nothing\",\n  \"filter\" : [ ]\n}",
+      "orderid": 25,
+      "can_delete": "false",
+      "name": "不解析",
+      "logTypeName": "IDS",
+      "id": "a87dbc933c6e44b1a3dc81430f981389",
+      "logTypeId": "ids"
+    },
+    {
+      "ruleContent": "{\n  \"name\" : \"delimit\",\n  \"filter\" : [ {\n    \"name\" : \"merger\",\n    \"fields\" : [ \"date\", \"time\" ],\n    \"field\" : \"@timestamp\"\n  } ],\n  \"delimit\" : \" \",\n  \"fields\" : [ \"date\", \"time\", \"s_ip\", \"cs_method\", \"cs_uri_stem\", \"s_port\", \"c_ip\", \"cs_version\", \"cs_user_agent\", \"cs_referer\", \"sc_status\", \"sc_bytes\", \"cs_bytes\", \"time_taken\" ]\n}",
+      "orderid": 24,
+      "can_delete": "false",
+      "name": "IIS-Parser",
+      "logTypeName": "IIS",
+      "id": "4eb510e12ba646c281c1479d46ae0fe4",
+      "logTypeId": "iis"
+    },
+    {
+      "ruleContent": "{\n  \"name\" : \"regex\",\n  \"filter\" : [ {\n    \"name\" : \"merger\",\n    \"fields\" : [ \"date\", \"time\" ],\n    \"field\" : \"@timestamp\"\n  } ],\n  \"value\" : \"%{DATE:date} %{TIME:time} %{HOSTNAME:hostname} %{DATA:level} %{NUMBER:event_id} %{ALL:msg}\"\n}",
+      "orderid": 23,
+      "can_delete": "false",
+      "name": "fileserver",
+      "logTypeName": "FileServer",
+      "id": "af5a4ccf7a8c4658a653e1a2a44ba135",
+      "logTypeId": "9c9adfc199994592882e1212ef8f4603"
+    },
+    {
+      "ruleContent": "{\n  \"name\" : \"nothing\",\n  \"filter\" : [ {\n    \"name\" : \"redirect\",\n    \"cases\" : [ {\n      \"name\" : \"case\",\n      \"value\" : \"172.16.219.3\",\n      \"rule\" : {\n        \"name\" : \"analyzer\",\n        \"field\" : \"raw\",\n        \"parser\" : null,\n        \"ruleId\" : \"ee028b7583d24bb39f4f2544c2f94a4d\"\n      }\n    }, {\n      \"name\" : \"case\",\n      \"value\" : \"172.16.219.1\",\n      \"rule\" : {\n        \"name\" : \"analyzer\",\n        \"field\" : \"raw\",\n        \"parser\" : null,\n        \"ruleId\" : \"456b8683e8044cc8978e996618b77e00\"\n      }\n    }, {\n      \"name\" : \"case\",\n      \"value\" : \"172.16.219.7\",\n      \"rule\" : {\n        \"name\" : \"analyzer\",\n        \"field\" : \"raw\",\n        \"parser\" : null,\n        \"ruleId\" : \"af5a4ccf7a8c4658a653e1a2a44ba135\"\n      }\n    } ],\n    \"field\" : \"host\"\n  } ]\n}",
+      "orderid": 22,
+      "can_delete": "false",
+      "name": "vpn-ad-parser",
+      "logTypeName": "VPN",
+      "id": "0d64cb1127324ecab27567f5b0ad3d03",
+      "logTypeId": "vpn"
+    },
+    {
+      "ruleContent": "{\n  \"name\" : \"regex\",\n  \"filter\" : [ {\n    \"name\" : \"merger\",\n    \"fields\" : [ \"date\", \"time\" ],\n    \"field\" : \"@timestamp\"\n  } ],\n  \"value\" : \"%{DATE:date} %{TIME:time} %{HOSTNAME:hostname} %{DATA:level} %{NUMBER:event_id} %{ALL:msg}\"\n}",
+      "orderid": 21,
+      "can_delete": "false",
+      "name": "ad",
+      "logTypeName": "AD",
+      "id": "456b8683e8044cc8978e996618b77e00",
+      "logTypeId": "1a57a977645c419d82c1cfff70dab743"
+    },
+    {
+      "ruleContent": "{\n  \"name\" : \"regex\",\n  \"filter\" : [ {\n    \"name\" : \"merger\",\n    \"fields\" : [ \"date\", \"time\" ],\n    \"field\" : \"@timestamp\"\n  } ],\n  \"value\" : \"%{DATE:date} %{TIME:time} %{HOSTNAME:hostname} %{DATA:level} %{NUMBER:event_id} %{ALL:msg}\"\n}",
+      "orderid": 20,
+      "can_delete": "false",
+      "name": "vpn",
+      "logTypeName": "VPN",
+      "id": "ee028b7583d24bb39f4f2544c2f94a4d",
+      "logTypeId": "vpn"
+    },
+    {
+      "ruleContent": "{\n  \"name\" : \"delimit\",\n  \"filter\" : [ {\n    \"name\" : \"addFields\",\n    \"fields\" : {\n      \"a\" : \"a\"\n    }\n  } ],\n  \"delimit\" : \" \",\n  \"fields\" : [ \"f1\" ]\n}",
+      "orderid": 19,
+      "ruleType": "delimitWithKeyMap",
+      "name": "Open VPN",
+      "logTypeName": "VPN",
+      "id": "70433e2c96d246cc8c0fc48dff56a2eb",
+      "logTypeId": "vpn"
+    },
+    {
+      "ruleContent": ",",
+      "orderid": 18,
+      "ruleType": "delimitWithKeyMap",
+      "name": "OA",
+      "logTypeName": "OA系统",
+      "id": "4e7778193feb4e0099af572563ada67b",
+      "logTypeId": "oa"
+    }
+  ]
+}

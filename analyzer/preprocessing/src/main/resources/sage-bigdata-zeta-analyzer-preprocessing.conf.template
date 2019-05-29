@@ -1,0 +1,8 @@
+app.analyzer.word-segmentation.split=com.haima.sage.bigdata.analyzer.preprocessing.model.SplitTokenizerProcessor
+app.analyzer.word-segmentation.ansj=com.haima.sage.bigdata.analyzer.preprocessing.model.AnsjTokenizerProcessor
+app.streaming.analyzer.vectorization=com.haima.sage.bigdata.analyzer.streaming.preprocessing.StreamVectorizationAnalyzer
+app.modeling.analyzer.vectorization=com.haima.sage.bigdata.analyzer.preprocessing.modeling.ModelingVectorizationAnalyzer
+app.streaming.analyzer.scalar=com.haima.sage.bigdata.analyzer.preprocessing.streaming.StreamScalarAnalyzer
+app.modeling.analyzer.scalar=com.haima.sage.bigdata.analyzer.preprocessing.modeling.ModelingScalarAnalyzer
+app.modeling.analyzer.word-segmentation=com.haima.sage.bigdata.analyzer.preprocessing.modeling.ModelingWordSegmentationAnalyzer
+app.streaming.analyzer.word-segmentation=com.haima.sage.bigdata.analyzer.streaming.preprocessing.StreamWordSegmentationAnalyzer

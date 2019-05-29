@@ -1,0 +1,11 @@
+<div style="padding-top:2px;" class="col-sm-12 col-md-12 input-group"
+     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.ref'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.ref'].$dirty||add_form.$submitted)}">
+    <span class="input-group-addon" for="case_ref">解析规则:</span>
+    <select id="case_ref" class="form-control" ng-model="case.rule.ref"
+            name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.ref" required>
+        <option value="{{x.id}}" ng-repeat="x in parsers" ng-hide="x.id==rule.id">
+            {{x.name}}
+        </option>
+    </select>
+</div>
+

@@ -1,0 +1,1203 @@
+<doc>
+  <head>
+    <title>Mibble Version Information</title>
+  </head>
+
+  <body>
+
+    <h1>Version <param name="version"/> (<param name="date"/>):</h1>
+
+    <list>
+      <item>
+        <title>Added AES encryption to MibbleBrowser</title>
+        <text>The MibbleBrowser application now supports AES encryption of
+        messages. Thanks to Richard Thompson for suggesting this.
+        <ref issue="24" /></text>
+      </item>
+
+      <item>
+        <title>Changed bundled SNMP API to Westhawk SNMP 6.1</title>
+        <text>The bundled Westhawk SNMP library has been updated to version
+        6.1 to enable AES privacy. This library is only used by the example
+        MibbleBrowser application and isn't required for MIB parsing.</text>
+      </item>
+
+      <item>
+        <title>Fixed NPE when imported MIB not found</title>
+        <text>The <code>MibImport</code> class unfortunately threw a
+        <code>NullPointerException</code> when an imported MIB wasn't found.
+        Thanks to Yonghao Yu for fixing and reporting this.
+        <ref issue="23" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.10 (2017-01-26):</h1>
+
+    <list>
+      <item>
+        <title>Added multiple UI improvements to MibbleBrowser</title>
+        <text>The MibbleBrowser application has been improved by adding a set
+        of patches and suggestions made by Dartware LLC. It now reloads the
+        set of open MIB files more reliably and allows simple loading of the
+        built-in IETF and IANA MIBs. Many thanks to Richard E. Brown and
+        Dartware LLC for these improvements</text>
+      </item>
+
+      <item>
+        <title>Added MIB import tree printout to MibblePrinter</title>
+        <text>A new <code>--mibtree</code> option has been added to the
+        MibblePrinter application to simplify viewing of all the imported
+        MIBs (dependency tree).</text>
+      </item>
+
+      <item>
+        <title>Added methods for input MIB and symbol text</title>
+        <text>The <code>Mib.getText()</code> and <code>MibSymbol.getText()</code>
+        methods have been added to retrieve the input (unparsed) MIB file
+        text. Thanks to Herbie Porter for suggesting this.
+        <ref issue="18" /></text>
+      </item>
+
+      <item>
+        <title>Added OID search methods to MibLoader &amp; other classes</title>
+        <text>The <code>MibLoader</code>, <code>MibValueSymbol</code> and
+        <code>ObjectIdentifierValue</code> classes have been improved with
+        new <code>getOid()</code>, <code>find()</code> and other methods to
+        simplify search and access to the loaded OID tree.
+        <ref issue="11" /></text>
+      </item>
+
+      <item>
+        <title>Added new access methods to MibLoader class</title>
+        <text>The <code>MibLoader</code> class has been improved with new
+        <code>getMibs()</code> methods for accessing a maps of loaded MIB
+        files (optionally filtered). Thanks to Anshul Gupta for
+        suggesting this. <ref issue="9" /></text>
+      </item>
+
+      <item>
+        <title>Added MibLocator &amp; MibSource classes</title>
+        <text>The <code>MibLocator</code> and <code>MibSource</code> classes
+        have been added to enable easy search of MIB modules in a directory
+        or on a resource path. Variants of these classes have previously
+        been used internally by the <code>MibLoader</code>.</text>
+      </item>
+
+      <item>
+        <title>Added MibTree &amp; MibTreeNode classes</title>
+        <text>The <code>MibTree</code> and <code>MibTreeNode</code> classes
+        have been added to provide a simple JTree implementation of a MIB
+        tree (used in MibbleBrowser).</text>
+      </item>
+
+      <item>
+        <title>Added SMIv1 and SMIv2 incompatibility warning</title>
+        <text>Warnings are now issued when importing SMIv1 symbols into a
+        SMIv2 context (or vice versa). A number of bundled IETF MIBs have
+        also been corrected to avoid triggering this warning.
+        <ref issue="4" /></text>
+      </item>
+
+      <item>
+        <title>Added warning for duplicate definitions of symbols</title>
+        <text>A warning is now issued when two or more MIB symbols have the
+        same value or when an OID is redefined across MIBs. The bundled
+        <code>ISDN-MIB</code> has also been corrected to avoid triggering
+        this warning. Thanks to Aleksandar Pesic for finding this issue.
+        <ref issue="22" /></text>
+      </item>
+
+      <item>
+        <title>Changed to Java 7 &amp; Generics</title>
+        <text>The whole library has been updated to Java 7, with added Java
+        Generics for all methods returning lists or collections. This change
+        should be fully backwards-compatible, but now requires a Java 7
+        environment to run. <ref issue="10" /></text>
+      </item>
+
+      <item>
+        <title>Changed missing import errors to warnings</title>
+        <text>Failure to locate an imported MIB or symbol is now a warning
+        instead of an error. This makes it possible to load some additional
+        MIBs, as the missing symbols may be found in other MIBs imported or
+        in the default SMI MIB. Errors will still be issued if the symbol
+        is used (and couldn't be located). <ref issue="2" /></text>
+      </item>
+
+      <item>
+        <title>Fixed compareTo in ObjectIdentifierValue</title>
+        <text>The <code>ObjectIdentifierValue</code> class didn't use proper
+        numerical comparison of the numerical parts. This caused some
+        two-digit OID parts to appear previous to some single-digit ones.
+        <ref issue="13" /></text>
+      </item>
+
+      <item>
+        <title>Fixed MibLoader to allow multi-instance usage</title>
+        <text>The <code>MibLoader</code> class improperly used a global ASN.1
+        parser, instead of an instance-specific one. This made it impossible
+        to use multiple instances of MibLoader to provide parallelism.
+        <ref issue="21" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.9.4 (2016-09-27):</h1>
+
+    <list>
+      <item>
+        <title>Clarified source code licensing for commercial use</title>
+        <text>Updated to Grammatica to version 1.6 (BSD licensed) and
+        simplified source code headers and similar for clarity. The
+        commercially licensed package no longer contains any references
+        to GNU GPL.</text>
+      </item>
+
+      <item>
+        <title>Updated bundled IANA and IETF MIB files</title>
+        <text>The IANA and IETF MIB files bundled with Mibble have been
+        updated to match those available in the <code>libsmi</code> project
+        source tree (as of 2016-09-27).</text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.9.3 (2011-12-08):</h1>
+
+    <list>
+      <item>
+        <title>Fixed NPE issue for empty directories</title>
+        <text>The <code>MibLoader</code> class didn't properly handle empty
+        or invalid directories. This caused an NPE when attempting to load
+        MIB files in some cases. <ref issue="1" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.9.2 (2009-04-11):</h1>
+
+    <list>
+      <item>
+        <title>Changed missing SMI import from error to warning</title>
+        <text>Some MIB files lacks a proper SMI MIB import, previously causing
+        a parse error due to unresolved symbols. This has now been fixed by
+        silently importing RFC1155-SMI when no other SNMP SMI module has been
+        imported, causing each of these errors to be reported as a warning
+        instead. <ref bug="7113" /></text>
+      </item>
+
+      <item>
+        <title>Fixed NPE issue when checking for null directories</title>
+        <text>The <code>MibLoader</code> class didn't properly handle null
+        directories in the <code>hasDir</code> method. This caused an NPE
+        when attempting to load MIB files from the current directory without
+        using a directory prefix on the file name. <ref bug="26146" /></text>
+      </item>
+
+      <item>
+        <title>Fixed omitted character in extract from error MIBs</title>
+        <text>The first character in each MIB line extracted and printed in
+        error messages was previously omitted, causing the error location to
+        be off by one character. This error was introduced when correcting
+        <ref bug="16252" /> in version 2.7. <ref bug="26150" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.9.1 (2009-04-04):</h1>
+
+    <list>
+      <item>
+        <title>Fixed issue with input streams not closed on error</title>
+        <text>The <code>MibLoader</code> class didn't properly close the
+        input file streams if a parse exception was encountered. Thanks to
+        Masanori Sekido for reporting this. <ref bug="26082" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.9 (2009-03-19):</h1>
+
+    <list>
+      <item>
+        <title>Added complete comment extraction and printing</title>
+        <text>The comments from all MIB constructs are now extracted and
+        stored in the respective objects. No comments are ever lost, but
+        may be assigned to a parent object in the parsed data structure.
+        The <code>MibWriter</code> pretty-printer has also been extended
+        to print all available comments. Thanks to Cisco for requesting
+        and financing this work. <ref bug="18844" /></text>
+      </item>
+
+      <item>
+        <title>Added new convenience methods in MibLoader class</title>
+        <text>The <code>MibLoader</code> class has been improved with a
+        number of new convenience methods to enable improved access to
+        the MIB search path and easier unloading of all MIBs (freeing
+        the memory used).</text>
+      </item>
+
+      <item>
+        <title>Improved parsing speed significantly</title>
+        <text>The <code>MibLoader</code> class is now much faster when
+        parsing MIB files, mostly due to speedups in Grammatica 1.5 but
+        also thanks to a number of speed optimizations in Mibble
+        proper. Make sure to reuse the same <code>MibLoader</code>
+        instance when parsing multiple MIB files for optimum effect of
+        these improvements.</text>
+      </item>
+
+      <item>
+        <title>Improved the Mibble Browser user interface</title>
+        <text>The Mibble Browser test application has been improved in
+        various ways to make it easier to work with. It is now also
+        packaged into a separate jar file for easy startup by double-click
+        on most platforms. Thanks to Richard E. Brown for a long list of
+        suggested UI improvements.</text>
+      </item>
+
+      <item>
+        <title>Changed some bundled IANA and IETF MIB files</title>
+        <text>A number of IANA and IETF MIB files bundled with Mibble have
+        been added or updated to match those distributed in
+        <code>libsmi</code> 0.4.8 (2008-04-18). Thanks to Elyes
+        Lehtihet for the reminder. <ref bug="19905" /> &amp;
+        <ref bug="24435" /></text>
+      </item>
+
+      <item>
+        <title>Changed bundled SNMP API to Westhawk SNMP 6.0</title>
+        <text>The MibbleBrowser SNMP support has been updated to use the
+        newer version 6.0 of the Westhawk SNMP stack. This fixes a few
+        issue with SNMP context ID. Thanks to Vincent Lane for reporting
+        this. <ref bug="24385" /></text>
+      </item>
+
+      <item>
+        <title>Changed startup scripts for better auto-detection</title>
+        <text>The various shell startup scripts for Linux, Mac and Windows
+        have been updated to have better auto-detection of the location
+        of Java and the application itself. Thanks to Richard E. Brown for
+        commenting on this.</text>
+      </item>
+
+      <item>
+        <title>Fixed syntax error for inline ASN.1 comments</title>
+        <text>When an inline ASN.1 comment was ended on the same line and
+        followed by another construct, a syntax error would result. The
+        ASN.1 parser in Mibble has now been fixed to handled inline comments
+        properly. Thanks to Karl Weber for reporting this.
+        <ref bug="22841" /></text>
+      </item>
+
+      <item>
+        <title>Fixed NPE when parsing unresolved referenced types</title>
+        <text>When a textual convention or similar contained an unresolved
+        type reference, a NullPointerException could occur when using the
+        defined type elsewhere (like in a <code>SEQUENCE</code> type). This
+        has now been corrected and a new reference error is shown instead.
+        Thanks to Markus Barchfeld for reporting this.
+        <ref bug="18843" /></text>
+      </item>
+
+      <item>
+        <title>Fixed missing padding for some hex and binary constants</title>
+        <text>After <ref bug="17834" /> there were still some cases where
+        padding would be removed from specified hexadecimal and binary
+        values in MIB files. A fix has now been implemented that takes all
+        size constraint values into consideration, not just the lower
+        bound. Thanks to M. S. Thiraviyakumar for reporting this and
+        providing a fix. <ref bug="22854" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.8 (2007-01-10):</h1>
+
+    <list>
+      <item>
+        <title>Added default ccitt and joint-iso-ccitt symbols</title>
+        <text>The <code>ccitt</code> and <code>joint-iso-ccitt</code> OID
+        symbols have been added to the default context. The
+        <code>zeroDotZero</code> and similar symbols are now also
+        automatically connected to the correct root symbol. Thanks to Bernd
+        Sorgenfrei for reporting this. <ref bug="16827" /></text>
+      </item>
+
+      <item>
+        <title>Added enumeration comment extraction and printing</title>
+        <text>The MIB comments around enumeration or bit set value are now
+        extracted and stored in the respective symbols. The
+        <code>MibWriter</code> pretty-printer has also been extended to
+        print these comments. Thanks to Eshwar Yedavalli and Cisco for
+        requesting and financing this feature. <ref bug="17879" /></text>
+      </item>
+
+      <item>
+        <title>Added symbolic bit set value printing</title>
+        <text>The bit set values are now printed with symbolic names
+        instead of numbers by the <code>MibWriter</code> pretty-printer.
+        <ref bug="17835" /></text>
+      </item>
+
+      <item>
+        <title>Changed some bundled IANA MIB files</title>
+        <text>A number of IANA MIB files bundled with Mibble have been added
+        or updated. These are <code>IANAifType-MIB</code>,
+        <code>IANA-PRINTER-MIB</code>, <code>IANA-ITU-ALARM-TC-MIB</code>
+        and <code>IANA-IPPM-METRICS-REGISTRY-MIB</code>. Thanks to Bernd
+        Sorgenfrei for reporting this and providing a pointer to the new
+        versions. <ref bug="16826" /></text>
+      </item>
+
+      <item>
+        <title>Changed some bundled IETF MIB files</title>
+        <text>A number of IETF MIB files bundled with Mibble have been added
+        or updated. These are <code>INET-ADDRESS-MIB</code>,
+        <code>IP-FORWARD-MIB</code>, <code>SNMP-USM-AES-MIB</code>,
+        <code>TCP-MIB</code> and <code>UDP-MIB</code>.
+        <ref bug="16826" /></text>
+      </item>
+
+      <item>
+        <title>Fixed incorrect Mib.getRootSymbol method</title>
+        <text>The <code>Mib.getRootSymbol()</code> method returned an invalid
+        root symbol in some cases and was unreliable. Thanks to Bernd
+        Sorgenfrei for reporting and fixing this. <ref bug="16824" /></text>
+      </item>
+
+      <item>
+        <title>Fixed duplicate loading of implicitly loaded MIBs</title>
+        <text>Due to a bug in <code>MibLoader</code> that was introduced in
+        version 2.7, some MIBs could be loaded several times. This caused
+        higher loading times, more memory usage and duplicate MIBs being
+        returned by <code>MibLoader.getAllMibs()</code>. Thanks to Bernd
+        Sorgenfrei for reporting and fixing this. <ref bug="16825" /></text>
+      </item>
+
+      <item>
+        <title>Fixed parse error on references in AGENT-CAPABILITIES</title>
+        <text>A parse error was thrown when using symbolic references in the
+        <code>DEFVAL</code>, <code>SYNTAX</code> or
+        <code>CREATION-REQUIRES</code> clauses inside an
+        <code>AGENT-CAPABILITIES</code> macro. This has now been corrected so
+        that the correct symbol name references are available. Thanks to
+        Eshwar Yedavalli and Cisco for reporting this and financing the bug fix.
+        <ref bug="17705" /> &amp; <ref bug="17943" /></text>
+      </item>
+
+      <item>
+        <title>Fixed incorrect printing of binary and hexadecimal values</title>
+        <text>The <code>MibWriter</code> class printed binary and hexadecimal
+        values with their shortest possible length, omitting any required
+        zero (0) padding. The code now considers the defining type to determine
+        the required amount of padding. Thanks to Eshwar Yedavalli and Cisco
+        for reporting this and financing the bug fix.<ref bug="17834" /></text>
+      </item>
+
+      <item>
+        <title>Fixed bad value error for some SNMP operations</title>
+        <text>When attempting a <code>SET</code> operation on a counter or a
+        gauge value, the <code>MibbleBrowser</code> would return a "bad value
+        error". This has now been corrected by using the proper WestHawk SNMP
+        calls. Thanks to Paul Faid for finding and fixing this.
+        <ref bug="18591" /></text>
+      </item>
+
+      <item>
+        <title>Fixed incorrect value validation for size constraints</title>
+        <text>The <code>SizeConstraint.isCompatible(MibValue)</code> method
+        always returned false, regardless of the value provided. This has now
+        been corrected, so that the actual length of an octet string value is
+        checked. Thanks to Paul Faid for reporting this.
+        <ref bug="18741" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.7 (2006-05-28):</h1>
+
+    <list>
+      <item>
+        <title>Added MIB loader support for loading from a single file</title>
+        <text>The <code>MibLoader</code> class now properly supports loading
+        MIB modules from a single file even if the modules have references
+        to each other. Previously it was only possible to load multiple MIBs
+        in a single file if the referenced MIB modules were placed at the top
+        of the file. Thanks to Ted Kaczmarek for suggesting this.
+        <ref bug="16417" /></text>
+      </item>
+
+      <item>
+        <title>Added detection of explicitly vs implicitly loaded MIBs</title>
+        <text>The <code>Mib</code> class now contains a new
+        <code>isLoaded()</code> method to enable easy separation between
+        explicitly and implicitly loaded MIBs. The latter are MIB modules
+        that have been loaded due to an import declaration. The MibblePrinter
+        application has also been updated to print all explicitly loaded
+        MIBs instead of just the first MIB module in each file.
+        <ref bug="16419" /></text>
+      </item>
+
+      <item>
+        <title>Added numeric OID value cache for improved performance</title>
+        <text>The <code>ObjectIdentifierValue</code> class now caches the
+        result of the <code>toString()</code> method in order to improve
+        performance. Thanks to Mohamed Ben-Hedi Sghaier for providing a fix
+        for this. <ref bug="16418" /></text>
+      </item>
+
+      <item>
+        <title>Added simple method for finding MIB importers</title>
+        <text>The <code>Mib.getImportingMibs()</code> method has been added
+        to provide a simple API for finding MIB importers. If the returned
+        list is empty, the MIB is safe for unloading.
+        <ref bug="16543" /></text>
+      </item>
+
+      <item>
+        <title>Added easy access to the root object identifier</title>
+        <text>The <code>MibLoader.getRootOid()</code> method has been added
+        to make it easier to access the root object identifier value (i.e.
+        the predefined <code>iso</code> value. <ref bug="16544" /></text>
+      </item>
+
+      <item>
+        <title>Added easy lookup of referenced textual conventions</title>
+        <text>The <code>SnmpTextualConvention.findReference()</code> method
+        has been added to enable easy lookup of referenced textual conventions.
+        <ref bug="16643" /></text>
+      </item>
+
+      <item>
+        <title>Changed toString() to print enumeration names</title>
+        <text>The <code>BitSetType</code> and <code>IntegerType</code> classes
+        have been modified to print both enumeration names and values in the
+        <code>toString()</code> method. Both the MibbleBrowser and
+        MibblePrinter applications are affected by this, making it easier to
+        interpret SNMP results returned. <ref bug="16420" /></text>
+      </item>
+
+      <item>
+        <title>Fixed issue with MIB unloading not removing references</title>
+        <text>The <code>MibLoader.unload()</code> method didn't properly
+        remove all references to the MIB as the object identifier tree
+        remained linked. This has now been corrected so that an unloaded
+        MIB will be completely removed and eligible for garbage collection.
+        Thanks to Eshwar Yedavalli for reporting this.
+        <ref bug="16285" /></text>
+      </item>
+
+      <item>
+        <title>Fixed IndexOutOfBoundsException for some error logs</title>
+        <text>When loading MIB files with invalid line termination sequences
+        the <code>MibLoaderLog</code> couldn't properly locate and load the
+        context line for any errors. This has been fixed so that only
+        linefeed (LF, 0x0A) is counted in line numbers when reading context
+        lines. Thanks to Ted Kaczmarek for reporting this.
+        <ref bug="16252" /></text>
+      </item>
+
+      <item>
+        <title>Fixed parse error for some ASCII control characters</title>
+        <text>When loading MIB files with some unsupported ASCII control
+        characters, the parser failed with a parse exception. The parser has
+        now been modified to ignore a number of common control codes in ASCII,
+        such as form-feed, vertical tab, substitute and others. Thanks to
+        Gary Pientka for reporting this. <ref bug="16681" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.6 (2005-12-10):</h1>
+
+    <list>
+      <item>
+        <title>Added a MIB pretty printer</title>
+        <text>A SMIv2 pretty printer has been added to Mibble. It can
+        be accessed either with the <code>MibblePrinter</code>
+        utility application, or directly with the new
+        <code>MibWriter</code> class. Thanks to Cisco for financing this
+        work. <ref bug="14638" /></text>
+      </item>
+
+      <item>
+        <title>Added new Mib convenience method</title>
+        <text>The <code>Mib</code> class in the Mibble API has been
+        improved by the addition of a new <code>getRootSymbol()</code>
+        method for retrieving the root value symbol.
+        <ref bug="14831" /></text>
+      </item>
+
+      <item>
+        <title>Added new MibValueSymbol convenience methods</title>
+        <text>The <code>MibValueSymbol</code> class in the Mibble API
+        has been improved by the addition of new methods for
+        retrieving child symbols. This will facilitate some accesses
+        that could previously be a bit cumbersome to write.
+        <ref bug="13151" /></text>
+      </item>
+
+      <item>
+        <title>Added MIB import information retrieval</title>
+        <text>The <code>Mib</code> class now contains a method
+        <code>getAllImports()</code> that allows retrieval of the
+        import declarations for a MIB. The class
+        <code>MibImport</code> has also been added to the public API.
+        <ref bug="14637" /></text>
+      </item>
+
+      <item>
+        <title>Added module and symbol comment retrieval</title>
+        <text>The <code>Mib</code> and <code>MibSymbol</code> classes
+        in the Mibble API have been improved by allowing the
+        retrieval of MIB file comments. This will enable full access
+        to any ASN.1 comment text that were previously ignored.
+        <ref bug="14636" /></text>
+      </item>
+
+      <item>
+        <title>Added macro symbol retrieval</title>
+        <text>The <code>MibMacroSymbol</code> class has been added to
+        the Mibble API, so that there is now three types of symbols.
+        This will enable full access to all imported symbols.
+        <ref bug="14727" /></text>
+      </item>
+
+      <item>
+        <title>Added SnmpCompliance type separation API</title>
+        <text>The <code>SnmpCompliance</code> class didn't allow an
+        application to distinguish between GROUP and OBJECT
+        compliances easily. A new method <code>isGroup()</code> has
+        been added to the API so that this is now possible.
+        <ref bug="14765" /></text>
+      </item>
+
+      <item>
+        <title>Added SMI version number retrieval</title>
+        <text>The <code>Mib</code> class now has a new method
+        <code>getSmiVersion</code> that returns the SMI version that
+        was used for defining the MIB. This makes it easier to
+        perform different validations for different MIB:s.
+        <ref bug="15078" /></text>
+      </item>
+
+      <item>
+        <title>Added hashCode() and compareTo() implementations</title>
+        <text>The <code>hashCode()</code> method has been added to
+        all classes implementing <code>equals()</code>. Also, the
+        <code>MibValue</code> class is now <code>Comparable</code>
+        making it easier to compare values. <ref bug="13222" /></text>
+      </item>
+
+      <item>
+        <title>Changed to support IMPLIED in index lists</title>
+        <text>A new class <code>SnmpIndex</code> has been added to
+        encapsulate an index type or value. The method
+        <code>SnmpObjectType.getIndex()</code> has been modified to
+        return a list of these new index objects, which will break
+        existing code using this method. <ref bug="10870" /></text>
+      </item>
+
+      <item>
+        <title>Changed several SNMP text returning methods</title>
+        <text>The <code>getDescription()</code> and similar methods
+        in several SNMP type classes have been modified to remove a
+        cleaner version of the text (with indentation removed). This
+        was introduced in 2.5 for one field, but has now been
+        expanded to more fields. Use the corresponding
+        <code>getUnformattedXXX()</code> methods for the original
+        behaviour. <ref bug="14728" /></text>
+      </item>
+
+      <item>
+        <title>Changed enumeration symbol ordering</title>
+        <text>The <code>getAllSymbols()</code> method in the
+        <code>BitSetType</code> and <code>IntegerType</code> classes
+        has been modified to return the symbol list in the same order
+        as the symbols appears in the MIB file. The internal list
+        representation was changed to <code>LinkedHashMap</code>,
+        so JDK 1.4 is now required. <ref bug="13221" /></text>
+      </item>
+
+      <item>
+        <title>Changed OID validation for mismatched names</title>
+        <text>When two OID:s used different names for the same
+        component, this was previously considered a MIB loading error.
+        The error message for this has been clarified and it is now
+        just a warning instead of an error. <ref bug="13309" /></text>
+      </item>
+
+      <item>
+        <title>Changed binary and hexadecimal value classes</title>
+        <text>Two new <code>MibValue</code> classes have been
+        introduced to store binary and hexadecimal numbers. Both
+        inherit the old <code>NumberValue</code> class, but modify
+        the implementation of <code>toString()</code> to print the
+        value in the correct ASN.1 representation. This might break
+        old code, but the old behaviour is available by using
+        <code>value.toObject().toString()</code> instead. Thanks to
+        Andreas Schönbach for suggesting this. <ref bug="15139" /></text>
+      </item>
+
+      <item>
+        <title>Fixed NullPointerException on some invalid OID:s</title>
+        <text>When two OID:s used different names for the same
+        component, a NullPointerException was thrown when defining
+        value symbols using the second OID. This has been fixed so
+        that type or value validation errors should no longer be able
+        to cause NPE:s in later stages. <ref bug="13309" /></text>
+      </item>
+
+      <item>
+        <title>Fixed parse error for hex values in enumerations</title>
+        <text>When using binary or hexadecimal values as integer
+        enumerated values, the parser displayed a syntax error. This
+        has now been fixed, so that both binary and hexadecimal
+        values are allowed. Thanks to Andreas Schönbach for reporting
+        this. <ref bug="15027" /></text>
+      </item>
+
+      <item>
+        <title>Fixed issue with MIB file not being set in loader log</title>
+        <text>The MIB file was sometime set to null in the
+        <code>MibLoaderLog</code> entries. This could cause
+        NullPointerExceptions when attepting to print an error or
+        a warning message. This has been fixed so that NPE:s will no
+        longer occur in these cases and the MIB loader should now
+        properly set the MIB file in all log entries.
+        <ref bug="10824" /></text>
+      </item>
+
+      <item>
+        <title>Fixed size constraint type validity checking</title>
+        <text>The <code>SizeConstraint</code> didn't accept the
+        <code>StringType</code> as compatible, which has now been
+        fixed. All constraints are now also checked for validity
+        upon type initialization. <ref bug="10823" /></text>
+      </item>
+
+      <item>
+        <title>Fixed MibbleBrowser file chooser directory</title>
+        <text>The file chooser dialog in the MibbleBrowser always
+        started in the user home directory instead of the current
+        directory. This has now been fixed and the application also
+        remembers where the directory where the last MIB was loaded.
+        <ref bug="11767" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.5 (2004-10-26):</h1>
+
+    <list>
+      <item>
+        <title>Added SNMPv2c &amp; SNMPv3 to the MIB browser</title>
+        <text>The MIB browser application has been updated in a
+        variety of ways, adding support for SNMPv2c &amp; SNMPv3,
+        command-line MIB loading and improved tree walking. The
+        graphical interface has also been totally reworked so it
+        should now both look better and provide more visual feedback.
+        The browser is now also available in the commercial version.
+        <ref bug="10732" /> &amp; <ref bug="10748" /></text>
+      </item>
+
+      <item>
+        <title>Added support for multiple MIB modules in a single file</title>
+        <text>The library now supports loading multiple MIB modules
+        from a single file, as required per the ASN.1 standard. It
+        is still strongly recommended to place each MIB module in its
+        own file however. Thanks to Frank Fock for reporting this.
+        <ref bug="10261" /></text>
+      </item>
+
+      <item>
+        <title>Added new base class for SNMP macro types</title>
+        <text>Added a new <code>SnmpType</code> class as a new base
+        class for all the SNMP macro types. So far the API it
+        provides is rather minimal, but it makes it easier to
+        distinguish between ASN.1 types and SNMP macro types. Thanks
+        to Thomas Åhlén for suggesting this.
+        <ref bug="10731" /></text>
+      </item>
+
+      <item>
+        <title>Added new convenience methods to some classes</title>
+        <text>The <code>MibValueSymbol</code>,
+        <code>ObjectIdentifierValue</code> and <code>SnmpAccess</code>
+        classes in the Mibble API have been improved by the addition
+        of new methods. This will facilitate some searches or tests
+        that could previously be a bit cumbersome to write.
+        <ref bug="10634" /></text>
+      </item>
+
+      <item>
+        <title>Added OID tree printing to MibblePrinter</title>
+        <text>The <code>MibblePrinter</code> test application has been
+        extended to allow several input files and now also contains an
+        option to print the complete OID tree. Thanks to Thomas Åhlén
+        for the original idea. <ref bug="10651" /></text>
+      </item>
+
+      <item>
+        <title>Changed semantics of getDescription() method</title>
+        <text>The <code>getDescription()</code> method has been
+        changed to return a cleaner version of the description text.
+        All unneeded indentation is removed and tab characters are
+        now replaced with spaces. The old semantics is available from
+        the new <code>getUnformattedDescription()</code> method.
+        <ref bug="10790" /></text>
+      </item>
+
+      <item>
+        <title>Changed the location of the bundled MIB files</title>
+        <text>The MIB files bundled with Mibble have been moved to
+        a separate JAR-file. This makes it easier to replace, update
+        or remove them without modifying other parts of Mibble. As a
+        result of this, the parser JAR-file has also been renamed.
+        <ref bug="10648" /></text>
+      </item>
+
+      <item>
+        <title>Changed the bundled MIB file content</title>
+        <text>The MIB files bundled with Mibble have been updated.
+        Many new IANA and IETF MIB files have been added and quite a
+        few existing MIBs have been modified to the corresponding
+        latest version. Thanks to Thomas Åhlén for pointing this out.
+        <ref bug="10647" /></text>
+      </item>
+
+      <item>
+        <title>Fixed issue with OIDs not being merged properly</title>
+        <text>The OID tree was previously missing child components
+        (symbols) in some cases. This could occur when the same OID
+        was defined in two MIB files, something commonly used to
+        avoid circular imports. Now all the OIDs are properly merged
+        to any depth, making sure that none are ignored. Thanks to
+        Thomas Åhlén for finding this. <ref bug="9962" /></text>
+      </item>
+
+      <item>
+        <title>Fixed issue with MIBs being loaded as often as imported</title>
+        <text>Previously it was possible that some base MIBs, that
+        were used in several places, got loaded several times by the
+        <code>MibLoader</code>. This didn't affect the correctness of
+        the results, but wasted time and memory. The MibLoader has
+        now been corrected to avoid this and therefore loads many MIB
+        files faster. <ref bug="10673" /></text>
+      </item>
+
+      <item>
+        <title>Fixed OID searching in Mib.getSymbolByOid()</title>
+        <text>The Mib.getSymbolByOid() method handled OIDs with table
+        indices erroneously due to a conceptual error. This has now
+        been corrected, but has unfortunately led to a slight API
+        change, removing the exactMatch parameter in the method call.
+        <ref bug="10765" /></text>
+      </item>
+
+      <item>
+        <title>Fixed documentation terminology and feature list</title>
+        <text>Various pieces of documentation previously used the
+        wrong terminology for SMIv1 and SMIv2, which has now been
+        corrected. Also, the feature list has been updated to be a
+        bit more informative, although documentation will primarily
+        be added to the website from now on. Thanks to David T.
+        Perkins and Frank Fock for pointing out these shortcomings.
+        <ref bug="10170" /> &amp; <ref bug="10262" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.4 (2004-05-27):</h1>
+
+    <list>
+      <item>
+        <title>Relicensed to GNU GPL</title>
+        <text>Most of the source code has been relicensed to GNU GPL,
+        removing the previous linking exception. As an alternative to
+        using the GNU GPL license, a non-exclusive commercial license
+        for Mibble can be purchased. A FAQ explaining the implications
+        of this is available on the Mibble web site.</text>
+      </item>
+
+      <item>
+        <title>Added simpler OID to symbol lookup</title>
+        <text>A new method <code>getSymbolByOid</code> has been added
+        to the <code>Mib</code> class to simplify the lookup of
+        symbols from OIDs. This method handles table row number inside
+        OIDs, that the <code>getSymbolByValue</code> method couldn't
+        handle. <ref bug="9117" /></text>
+      </item>
+
+      <item>
+        <title>Changed MIB loader to search inside files</title>
+        <text>If the <code>MibLoader</code> fails to locate a MIB file
+        based on its name, it will now resort to read the first few
+        lines from all files in the search path until a matching MIB
+        name is found. Opening many files may be a potential
+        performance bottleneck, so it is still recommended best
+        practice to name MIB files according to the MIB module name.
+        <ref bug="8862" /></text>
+      </item>
+
+      <item>
+        <title>Changed some symbol import errors to warnings</title>
+        <text>Missing imports for symbols where the other symbols are
+        imported from the right MIB is no longer an error. A recovery
+        mechanism has been added searching for an undefined symbol in
+        all imported MIB files, issuing a warning instead of an error
+        if the symbol was found. <ref bug="8863" /></text>
+      </item>
+
+      <item>
+        <title>Changed to a simpler Ant build file</title>
+        <text>The <code>build.xml</code> file for Apache Ant
+        distributed with Mibble has been simplified. It now also
+        contains some documentation to make it easier to use.
+        <ref bug="9097" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.3 (2004-03-10):</h1>
+
+    <list>
+      <item>
+        <title>Added graphical MIB browser</title>
+        <text>A graphical MIB browser has been added that allows for
+        easy viewing of a MIB contents, while also sending SNMP
+        requests for objects. Many thanks to Watsh Rajneesh and HP
+        India for contributing the code. Thanks also to Charles F.
+        Schatz for providing an alternate implementation.
+        <ref bug="4366" /></text>
+      </item>
+
+      <item>
+        <title>Added shell scripts for launching utilities</title>
+        <text>Shell scripts for Unix and Windows have been added
+        for launching the Mibble utility programs. The original
+        scripts were contributed by Watsh Rajneesh.
+        <ref bug="6961" /></text>
+      </item>
+
+      <item>
+        <title>Added API for loading MIBs from more sources</title>
+        <text>Added new <code>addResourceDir()</code> method to the
+        MibLoader class, allowing usage of the Java ClassLoader for
+        locating and loading MIB files. Also, new
+        <code>load(URL)</code> and <code>load(Reader)</code> methods
+        has been added to simplify loading MIBs from other sources.
+        The MibblePrinter and MibbleValidator programs have also been
+        extended to also support URLs. Thanks to Yun Freund for
+        suggesting this. <ref bug="7746" /></text>
+      </item>
+
+      <item>
+        <title>Added support for unloading MIBs</title>
+        <text>Added new <code>unload()</code> methods to the MibLoader
+        class. It is now possible to remove references to a single MIB
+        without losing the references to all MIBs.
+        <ref bug="7616" /></text>
+      </item>
+
+      <item>
+        <title>Added method for retrieving all OID children</title>
+        <text>Added new <code>getAllChildren()</code> method to the
+        ObjectIdentifierValue class. This makes it easier to retrieve
+        all OID children at once. <ref bug="8046" /></text>
+      </item>
+
+      <item>
+        <title>Modified the API for MibLoader.load() slightly</title>
+        <text>The various <code>load()</code> methods in the MibLoader
+        class have had their API slightly modified. They are now
+        declared to throw IOException instead of the previous
+        FileNotFoundException in order to accomodate the new
+        <code>load(URL)</code> and <code>load(Reader)</code> methods.
+        <ref bug="7746" /></text>
+      </item>
+
+      <item>
+        <title>Modified OID child ordering</title>
+        <text>The ObjectIdentifierValue child ordering has been
+        changed from undefined to numerical order. The new
+        implementation is actually faster than the previous one, due
+        to more clever object comparison than previously used.
+        <ref bug="8090" /></text>
+      </item>
+
+      <item>
+        <title>Fixed issue with not always finding loaded MIBs</title>
+        <text>Previously when loading named MIBs, the search path was
+        first used to locate the MIB file. If the MIB file couldn't be
+        found in the path, an exception is thrown. The MibLoader has
+        now been extended to first check the loaded MIB names, thereby
+        making it possible to manually load MIB files not adhering to
+        the MIB file naming standard. Thanks to Zemian Deng for
+        pointing this out. <ref bug="6959" /></text>
+      </item>
+
+      <item>
+        <title>Fixed problem loading MIBs from current directory</title>
+        <text>When loading MIB files from the current directory with
+        the MibblePrinter or MibbleValidator application, the
+        directory wasn't correctly added to the MibLoader path. This
+        has now been fixed, so MIB imports now works correctly even
+        for file names without a directory portion.
+        <ref bug="6528" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.2 (2003-11-03):</h1>
+
+    <list>
+      <item>
+        <title>Added support for ASN1.1 type tags</title>
+        <text>All primitive type now have default ASN.1 type tags and
+        these may also be overridden by tags in the MIB files. New
+        methods <code>isPrimitive()</code> and <code>getTag()</code>
+        has been added to <code>MibType</code>. Thanks to Sudhir
+        Khurana for pointing this out. <ref bug="5001" /> &amp;
+        <ref bug="5003" /></text>
+      </item>
+
+      <item>
+        <title>Added validation of sequence elements</title>
+        <text>Sequence element names previously weren't validated
+        against the containing MIB. This has now been changed so
+        that sequence elements inside an OBJECT TYPE will be looked
+        up in the MIB. If no symbol with that name could be found,
+        a new default symbol is created. Thanks to Charles F. Schatz
+        for finding and reporting this. <ref bug="5904" /></text>
+      </item>
+
+      <item>
+        <title>Added access to referenced type and value symbols</title>
+        <text>When resolving type and value references, the
+        referenced symbol name was previously lost and only the type
+        or value information was extracted. This has been fixed and
+        new convenience methods <code>isReferenceTo()</code> in the
+        MibType and MibValue classes have been added. Thanks to
+        Charles F. Schatz for suggesting this.
+        <ref bug="6112" /></text>
+      </item>
+
+      <item>
+        <title>Added a number of missing accessor methods</title>
+        <text>Several primitive types lacked accessor methods for
+        retrieving the constraints, defined values and similar. The
+        MIB symbols lacked a getMib() method. These accessor methods
+        have now been added. <ref bug="5007" /></text>
+      </item>
+
+      <item>
+        <title>Changed the logging API</title>
+        <text>The logging API was simplified by removal of the log
+        printing classes. The same functionality is now present
+        directly in the <code>MibLoaderLog</code> class. A new method
+        <code>entries()</code> allows direct retrieval of all log
+        entries from the log, providing a more generic approach than
+        the previous one. <ref bug="6116" /></text>
+      </item>
+
+      <item>
+        <title>Improved Javadoc API documentation</title>
+        <text>The Javadoc API documentation has been generally
+        improved in various places. References to appropriate RFC
+        documents have been added along with initial package
+        overviews. <ref bug="6155" /></text>
+      </item>
+
+      <item>
+        <title>Updated to version 1.4 of Grammatica</title>
+        <text>The Grammatica library distributed with Mibble has been
+        updated to version 1.4 (from 1.3). The build file has been
+        simplified as a result of this. <ref bug="5000" /></text>
+      </item>
+
+      <item>
+        <title>Removed some previously public methods</title>
+        <text>A number of internal methods were previously public
+        although there was no need for them to be. This has been
+        fixed by making them private or package protected. Code that
+        called these methods should be modified to use the correct
+        public counterparts.</text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.1 (2003-08-22):</h1>
+
+    <list>
+      <item>
+        <title>Corrected MIB symbol value search</title>
+        <text>Searching for MIB symbols by value never returned any
+        results in the previous version. Thanks to Nigel Mellor for
+        finding and fixing this. <ref bug="4893" /></text>
+      </item>
+
+      <item>
+        <title>Updated to version 1.3 of Grammatica</title>
+        <text>The Grammatica library distributed with Mibble has been
+        updated to version 1.3 (from 1.2). Minor changes have been
+        made to the parser to accomodate this.
+        <ref bug="4903" /></text>
+      </item>
+    </list>
+
+
+    <h1>Version 2.0 (2003-07-19):</h1>
+
+    <list>
+      <item>
+        <title>Complete rewrite with API and name change</title>
+        <text>The project has been renamed to Mibble, and the library
+        has been completely rewritten from scratch. The API:s have
+        also been replaced to correct a number of serious flaws in
+        the previous design.</text>
+      </item>
+
+      <item>
+        <title>Added complete support for SNMPv2 and SNMPv3</title>
+        <text>All types and constructs in SNMPv2 and SNMPv3 are now
+        supported.</text>
+      </item>
+
+      <item>
+        <title>Added a real MIB import mechanism</title>
+        <text>Symbol imports are now handled by reading and parsing
+        the MIB file. Standard IANA and IETF MIB files have been
+        added to the JAR library, in order to always have these
+        imports available.</text>
+      </item>
+
+      <item>
+        <title>Added full access to all type information</title>
+        <text>All of the type information can now be easily accessed
+        through methods in the type classes.</text>
+      </item>
+
+      <item>
+        <title>Added syntactical and semantical error recovery</title>
+        <text>The MIB parser now attempts to recover from errors in
+        the MIB file. All encountered errors are available after the
+        parsing is complete. This change was made available by using
+        Grammatica instead of JavaCC to generate the parser.</text>
+      </item>
+
+      <item>
+        <title>Added warnings for wrong identifier case</title>
+        <text>A warning is now issued if the first character in a
+        type identifier is lower-case, or if the first character in a
+        value identifier is upper-case.</text>
+      </item>
+
+      <item>
+        <title>Added HTML release notes</title>
+        <text>The release notes are now generated to both text and
+        HTML format from an XML representation.</text>
+      </item>
+
+      <item>
+        <title>Changed parser generator to Grammatica</title>
+        <text>The JavaCC parser generator has been replaced with
+        Grammatica. This was done as JavaCC isn't free software, and
+        Grammatica was chosen as it provides a simple grammar syntax,
+        a decent parsing and analysis framework, and very high
+        quality error handling.</text>
+      </item>
+
+      <item>
+        <title>Removed the old symbol tree model</title>
+        <text>The symbol tree model has been removed as it was not
+        compatible with the new API:s.</text>
+      </item>
+    </list>
+
+
+    <h1>Version 1.2 (2003-03-27):</h1>
+
+    <list>
+      <item>
+        <title>Relicensing to GPL + linking exception</title>
+        <text>Relicensed all the source code to GPL plus a linking
+        exception. See the new LICENSE.txt file for details.</text>
+      </item>
+
+      <item>
+        <title>Removed JavaCC requirement from Ant build file</title>
+        <text>Removed the strict dependency of JavaCC from Ant build
+        file (build.xml). The JavaCC parser generator will be replaced
+        in a future version of the library.</text>
+      </item>
+    </list>
+
+
+    <h1>Version 1.1 (2003-01-06):</h1>
+
+    <list>
+      <item>
+        <title>Updated MIB syntax to SNMPv2</title>
+        <text>The MIB file parser can now handle several new macros,
+        such as MODULE-IDENTITY, OBJECT-IDENTITY, NOTIFICATION-TYPE,
+        OBJECT-GROUP, NOTIFICATION-GROUP, MODULE-COMPLIANCE and the
+        improved OBJECT-TYPE macro (as of SNMPv2).</text>
+      </item>
+
+      <item>
+        <title>Updated MIB syntax with textual conventions</title>
+        <text>The MIB file parser can now handle the
+        TEXTUAL-CONVENTION macro type.</text>
+      </item>
+
+      <item>
+        <title>API changes breaking backwards compability</title>
+        <text>The MIB class was renamed to Mib and several new
+        methods were added to allow easy access to the information
+        in the MIB file. Some old methods were also renamed to better
+        match the new methods.</text>
+      </item>
+
+      <item>
+        <title>Improved code style</title>
+        <text>All the source code has been reindented to use four (4)
+        spaces, and various minor code style improvements have been
+        made in the source tree.</text>
+      </item>
+
+      <item>
+        <title>Improved API documentation</title>
+        <text>The API documentation has been somewhat improved by
+        adding package descriptions and improving the class
+        comments.</text>
+      </item>
+
+      <item>
+        <title>Added MIB example code</title>
+        <text>An example class has been added to demonstrate how the
+        library can be used.</text>
+      </item>
+
+      <item>
+        <title>Added initial test cases</title>
+        <text>Some initial test cases have been added, making
+        regression testing easier. Much work is still missing on the
+        test cases, though.</text>
+      </item>
+    </list>
+
+
+    <h1>Version 1.0 (2002-08-14):</h1>
+
+    <list>
+      <item>
+        <title>First public release</title>
+        <text>The first public release of this library.</text>
+      </item>
+    </list>
+
+  </body>
+</doc>

@@ -1,0 +1,47 @@
+{
+  "pageNumber": 1,
+  "pageCount": 1,
+  "pageSize": 10,
+  "allCount": 3,
+  "result": [
+    {
+      "id": "67cea88b6f2a4a3785b2ae0774d07285",
+      "beginIpAddress": "192.168.2.188",
+      "endIpAddress": "192.168.2.254",
+      "beginIpNumber": 3232236220,
+      "endIpNumber": 3232236286,
+      "physicalLocation": "南京分公司",
+      "mapX": "38",
+      "mapY": "12",
+      "country": "中国",
+      "city": "南京",
+      "orderid": 14
+    },
+    {
+      "id": "e1a3a4354ad944328aefc3b5ec062efe",
+      "beginIpAddress": "172.16.7.0",
+      "endIpAddress": "172.16.7.255",
+      "beginIpNumber": 2886731520,
+      "endIpNumber": 2886731775,
+      "physicalLocation": "成都分公司",
+      "mapX": "30.6667",
+      "mapY": "104.0667",
+      "country": "China",
+      "city": "CHENGDU",
+      "orderid": 2
+    },
+    {
+      "id": "3681df96c26e4240b701fc9ba4051b5c",
+      "beginIpAddress": "172.16.8.0",
+      "endIpAddress": "172.16.8.255",
+      "beginIpNumber": 2886731776,
+      "endIpNumber": 2886732031,
+      "physicalLocation": "北京总公司",
+      "mapX": "39.9289",
+      "mapY": "116.3883",
+      "country": "China",
+      "city": "BEIJING",
+      "orderid": 1
+    }
+  ]
+}

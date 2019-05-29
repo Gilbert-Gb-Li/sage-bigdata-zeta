@@ -1,0 +1,127 @@
+<div class="row">
+  <div class="col-sm-12 col-md-12">
+    <div class="hla-widget">
+      <div class="hla-widget-head">
+        <div class="btn-group-xs pull-right">
+          <button title="增加" class="btn btn-success" type="button" ng-click="add()"><i class="fa fa-plus"></i></button>
+          <button title="查询" class="btn btn-primary" ng-click="search()"><i class="fa fa-search"></i></button>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="hla-widget-content">
+        <div class="hla-widget-search-table">
+          <form name="search_dic_form" class="form-horizontal" ng-submit="searchDictionary()" novalidate>
+            <div class="form-group">
+              <label class="col-sm-2 col-md-2 control-label" for="assetname">中文名称*</label>
+              <div class="col-sm-3 col-md-3">
+                <input name="name" type="text" value="" placeholder="中文名称" class="form-control"
+                       ng-model="searchDictionaryForm.name">
+
+              </div>
+              <!-- <div ng-show="search_dic_form.$invalid&&search_dic_form.$submitted"style="line-height:24px;color:red;float: left; "
+                       >请填写中文名称!
+               </div>-->
+              <label class="col-sm-2 col-md-2 control-label" for="dickey">值*</label>
+              <div class="col-sm-3 col-md-3">
+                <input name="key" type="text" value="" placeholder="值" class="form-control"
+                       ng-model="searchDictionaryForm.key">
+              </div>
+              <div class="col-sm-2 col-md-2">
+                <button id="op_search_dictionary_button" class="btn btn-primary" type="submit">查询</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="hla-widget-add-table">
+          <form name="add_dic_form" id="op_edit_asset_form" class="form-horizontal" ng-submit="add_dictionary()"
+                novalidate>
+            <div class="form-group">
+              <label for="physicalLocation" class="col-sm-2 col-md-2 control-label"><em
+                class="hla-required-input">*</em>中文名称</label>
+              <div class="col-sm-3 col-md-3"
+                   ng-class="{'has-error':add_dic_form.name.$invalid&&(add_dic_form.name.$dirty||add_dic_form.$submitted)}">
+                <input name="name" type="text" class="form-control" ng-model="dictionary.name" placeholder="中文名称"
+                       value="" required>
+              </div>
+              <label for="physicalLocation" class="col-sm-2 col-md-2 control-label"><em
+                class="hla-required-input">*</em>值</label>
+              <div class="col-sm-3 col-md-3"
+                   ng-class="{'has-error':add_dic_form.key.$invalid&&(add_dic_form.key.$dirty||add_dic_form.$submitted)}">
+                <input name="key" type="text" class="form-control" ng-model="dictionary.key" placeholder="值" value=""
+                       required>
+              </div>
+            </div>
+            <div class="form-group op_event_relate">
+              <div id="properties">
+                <div ng-repeat="property in dictionary.properties" class="clearfix" style="margin-bottom: 15px;">
+                  <div class="col-sm-8 col-md-8 col-sm-offset-2 col-md-offset-2" style="padding-right: 0;">
+                    <div class="input-group">
+                      <span class="input-group-addon">字段名</span>
+                      <input name="word"
+                             ng-class="{'has-error':add_dic_form.word.$invalid&&(add_dic_form.word.$dirty||add_dic_form.$submitted)}"
+                             type="text" class="form-control" placeholder="字段" ng-model="property.key" required>
+                      <span class="input-group-addon">字段值</span>
+                      <input name="value"
+                             ng-class="{'has-error':add_dic_form.name.$invalid&&(add_dic_form.name.$dirty||add_dic_form.$submitted)}"
+                             type="text" class="form-control" placeholder="字段值" ng-model="property.value" required>
+                      <span class="input-group-addon">类型</span>
+                      <select class="form-control" ng-model="property.vtype">
+                        <option value="date">日期</option>
+                        <option value="long">数字</option>
+                        <option value="String">文本</option>
+                        <option value="ip">IP地址</option>
+                      </select>
+                    </div>
+                  </div>
+                  <span style="float: left;width: auto;padding:8px 12px;" class="input-group-addon mouse-on" title="删除"
+                        ng-click="removeHostEncoding($index)"><i
+                    class="fa fa-minus fa-fw op_minus op_delete_event_relate"></i> </span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="physicalLocation" class="col-sm-2 col-md-2 control-label"></label>
+              <div class="col-sm-4 col-md-4">
+                <span class="btn btn-success" ng-click="addProperty()" title="添加字段属性" style="float: left;"><i
+                  class="fa fa-plus "></i>添加字段属性</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">保存</button>
+            </div>
+          </form>
+        </div>
+        <div class="hla-widget-data-table">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>中文名称</th>
+              <th>值</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="op_asset_table" class="">
+
+            <tr ng-repeat="dictionary in list.result">
+              <th scope="row">{{$index+1}}</th>
+              <td>{{dictionary.name}}</td>
+              <td>{{dictionary.key}}</td>
+              <td>
+                <div class="btn-group-xs">
+                  <button title="修改" class="btn btn-warning op_edit" ng-click="edit(dictionary.id)"><i
+                    class="fa fa-file-text-o"></i></button>
+                  <button title="删除" class="btn btn-danger op_delete" ng-click="delete(dictionary.id)"><i
+                    class="fa fa-minus"></i></button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div page method="reload"></div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>

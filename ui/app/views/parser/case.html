@@ -1,0 +1,296 @@
+<div style="display: inline;padding-left: 0px" class="col-sm-3 col-md-3 control-box"
+     ng-class="{'has-error':add_form['filter[{{$index}}].field'].$invalid&&(add_form['filter[{{$index}}].field'].$dirty||add_form.$submitted)}">
+    <div class="input-group">
+        <input class="form-control ui-autocomplete-input"
+               uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+               ng-model="filter.field"
+               name="filter[{{$index}}].field"
+               placeholder="请填写字段名称" required>
+        <span class="input-group-addon"><i class="fa fa-sign-in"></i></span>
+    </div>
+</div>
+<div style="display: inline;padding-top:5px;padding-left: 20px" class="col-sm-12 col-md-12 control-box"
+     ng-repeat="case in filter.cases" ng-init="caseIndex=$index">
+    <div>
+        <div class="input-group col-sm-10 col-md-10" style="padding-top:5px;"
+             ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{$index}}].value'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{$index}}].value'].$dirty||add_form.$submitted)}">
+            <input ng-model="case.name" value="case" type="hidden">
+            <span class="input-group-addon">CASE:</span>
+            <input ng-model="case.value" placeholder="匹配的值" class="form-control"
+                   name="filter[{{filterIndex}}].cases[{{$index}}].value"
+                   required>
+            <span class="input-group-addon"><i class="fa fa-link"></i></span>
+            <select class="form-control" ng-model="case.rule.name"
+                    ng-change="caseChange(filterIndex,$index)">
+                <option value="addFields">添加字段</option>
+                <option value="removeFields">删除字段</option>
+                <option value="gzip">字段数据压缩</option>
+                <option value="gunzip">字段数据解压缩</option>
+
+                <option value="mapping">字段重命名</option>
+                <option value="merger">合并字段</option>
+                <option value="fieldCut">字段裁剪</option>
+                <option value="replace">字段值替换</option>
+                <option value="fieldMulti">字段乘法</option>
+                <option value="fieldAdditive">字段加法</option>
+                <option value="extends">数组扩展到多条</option>
+                <option value="list2map">数组转MAP</option>
+                <option value="script">脚本解析</option>
+                <option value="byKnowledge">知识库补充</option>
+                <option value="reParser">字段再解析</option>
+                <option value="drop">删除</option>
+            </select><span class="input-group-addon btn btn-danger" ng-disabled="filter.cases.length==1"
+                           ng-click="filter.cases.length==1||removeCase(filterIndex,$index)">
+                <i class="fa fa-minus"></i></span>
+        </div>
+        <div ng-switch="case.rule.name">
+            <div ng-switch-when="byKnowledge">
+                <label class="col-sm-2 col-md-2 control-label">知识库:</label>
+                <div class="col-sm-4 col-md-4">
+                    <select class="form-control" ng-model="case.rule.id"
+                            name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.id" required>
+                        <option value="{{x.id}}" ng-repeat="x in knowledges" ng-hide="x.id==case.rule.id">
+                            {{x.name}}
+                        </option>
+                    </select>
+                </div>
+                <label class="col-sm-2 col-md-2 control-label">
+                    使用脚本:
+                </label>
+                <div class="col-sm-4 col-md-4">
+                    <switch class="green" ng-model="case.rule.isScript" ng-change="knowledgeChange(case.rule)"
+                            name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.isScript" on="是"
+                            off="否"></switch>
+                </div>
+                <label class="col-sm-2 col-md-2 control-label">
+                    <div ng-switch="case.rule.isScript">
+                        <div ng-switch-when="true">脚本内容:
+                            <select ng-model="case.rule.column" class="form-control ">
+                                <option value="js">javascript</option>
+                                <option value="scala">scala</option>
+                            </select>
+                        </div>
+                        <div ng-switch-default="">数据字段:</div>
+                    </div>
+
+                </label>
+
+                <div ng-switch="case.rule.isScript">
+                    <div ng-switch-when="true">
+                        <div class="col-sm-10 col-md-10" ng-switch="case.rule.column">
+                            <div ng-switch-when="js" ui-ace="{ require: ['ace/ext/language_tools','ace/ext/themelist'],
+                                                      advanced: {
+                                                          enableSnippets: true,
+                                                          enableBasicAutocompletion: true,
+                                                          enableLiveAutocompletion: true
+                                                      },
+                                                      useWrapMode : true,
+                                                      showGutter: false,
+                                                      theme:'chrome',
+                                                      mode: 'javascript',
+                                                      firstLineNumber: 5,
+                                                      onLoad: aceLoaded,
+                                                      onChange: aceChanged
+                                                      }" name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.value"
+                                 ng-model="case.rule.value">
+
+                            </div>
+                            <div class="col-sm-10 col-md-10" ng-switch="case.rule.column">
+                                <div ng-switch-when="scala" ui-ace="{ require: ['ace/ext/language_tools','ace/ext/themelist'],
+                                                      advanced: {
+                                                          enableSnippets: true,
+                                                          enableBasicAutocompletion: true,
+                                                          enableLiveAutocompletion: true
+                                                      },
+                                                      useWrapMode : true,
+                                                      showGutter: false,
+                                                      theme:'chrome',
+                                                      mode: 'javascript',
+                                                      firstLineNumber: 5,
+                                                      onLoad: aceLoaded,
+                                                      onChange: aceChanged
+                                                      }" name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.value"
+                                     ng-model="case.rule.value"></div>
+                                <span><em>说明:</em>可以访问内置数据对象event:Map；
+                                可以put(key,value),remove(key),get(key);
+                               js: 处理完成的数据都放到event即可,对于知识库有内置对象`cache`:List[Map]
+                            scala: 最后一行返回event对象,对于知识库有内置对象`cache`:List[Map]</span>
+                            </div>
+
+                        </div>
+                        <div ng-switch-default="">
+                            <div class="col-sm-4 col-md-4">
+                                <input class="form-control"
+                                       ng-model="case.rule.value"
+                                       name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.value"
+                                       placeholder=""
+                                       required/>
+                            </div>
+                            <label class="col-sm-2 col-md-2 control-label">
+                                知识库字段:
+                            </label>
+                            <div class="col-sm-4 col-md-4">
+                                <input class="form-control" ng-model="case.rule.column"
+                                       name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.column" placeholder=""
+                                       required>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div ng-switch-when="addFields">
+                <div style="padding-left:20px;" class="media" ng-include="'views/parser/case-tuple.html'"></div>
+            </div>
+            <div class="col-sm-10 col-md-10 control-box" data-original-title="" ng-switch-when="removeFields">
+                <div class="input-group col-sm-5 col-md-5" style="float:left;padding-top: 5px; padding-left:2px"
+                     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[$index]'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[$index]'].$dirty||add_form.$submitted)}"
+                     ng-repeat="field in case.rule.fields track by $index">
+                    <input placeholder="字段名称" ng-model="case.rule.fields[$index]" class="form-control"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[$index]"
+                           required>
+                    <span class="input-group-addon btn btn-inverse" ng-disabled="case.rule.fields.length==1"
+                          ng-click="case.rule.fields.length==1||removeCaseOne(filterIndex,caseIndex,$index)"><i
+                            class="fa fa-remove"></i></span>
+                </div>
+                <label class="col-sm-1 col-md-1" style="padding-left: -2px;padding-top:5px;"><span
+                        class="btn btn-primary btn-sm bg-success" ng-click="addCaseOne(filterIndex,caseIndex)"
+                        title="添加字段">&nbsp;&nbsp;
+                                    <i class="fa fa-plus"></i>&nbsp;&nbsp;</span></label>
+
+            </div>
+            <div class="col-sm-10 col-md-10 control-box" data-original-title="" ng-switch-when="gzip">
+                <div class="input-group col-sm-5 col-md-5" style="float:left;padding-top: 5px; padding-left:2px"
+                     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[$index]'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[$index]'].$dirty||add_form.$submitted)}"
+                     ng-repeat="field in case.rule.fields track by $index">
+                    <input placeholder="字段名称" ng-model="case.rule.fields[$index]" class="form-control"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[$index]"
+                           required>
+                    <span class="input-group-addon btn btn-inverse" ng-disabled="case.rule.fields.length==1"
+                          ng-click="case.rule.fields.length==1||removeCaseOne(filterIndex,caseIndex,$index)"><i
+                            class="fa fa-remove"></i></span>
+                </div>
+                <label class="col-sm-1 col-md-1" style="padding-left: -2px;padding-top:5px;"><span
+                        class="btn btn-primary btn-sm bg-success" ng-click="addCaseOne(filterIndex,caseIndex)"
+                        title="添加字段">&nbsp;&nbsp;
+                                    <i class="fa fa-plus"></i>&nbsp;&nbsp;</span></label>
+
+            </div>
+            <div class="col-sm-10 col-md-10 control-box" data-original-title="" ng-switch-when="gunzip">
+                <div class="input-group col-sm-5 col-md-5" style="float:left;padding-top: 5px; padding-left:2px"
+                     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[$index]'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[$index]'].$dirty||add_form.$submitted)}"
+                     ng-repeat="field in case.rule.fields track by $index">
+                    <input placeholder="字段名称" ng-model="case.rule.fields[$index]" class="form-control"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[$index]"
+                           required>
+                    <span class="input-group-addon btn btn-inverse" ng-disabled="case.rule.fields.length==1"
+                          ng-click="case.rule.fields.length==1||removeCaseOne(filterIndex,caseIndex,$index)"><i
+                            class="fa fa-remove"></i></span>
+                </div>
+                <label class="col-sm-1 col-md-1" style="padding-left: -2px;padding-top:5px;"><span
+                        class="btn btn-primary btn-sm bg-success" ng-click="addCaseOne(filterIndex,caseIndex)"
+                        title="添加字段">&nbsp;&nbsp;
+                                    <i class="fa fa-plus"></i>&nbsp;&nbsp;</span></label>
+
+            </div>
+            <div style="padding-top:2px" class="col-sm-12 col-md-12" data-original-title="" ng-switch-when="mapping">
+                <div class="input-group col-sm-5 col-md-5" style="float:left;padding-top:5px; padding-left:2px"
+                     ng-class="{'has-error':
+                 (  add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}].r[0]'].$invalid ||
+                    add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}].r[1]'].$invalid)&&
+                  ( add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}].r[0]'].$dirty||
+                    add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}].r[1]'].$dirty||
+                    add_form.$submitted)}"
+                     ng-repeat="field in case.rule.fields">
+                    <input placeholder="原始字段" ng-model="field[0]" class="form-control"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}].r[0]"
+                           required>
+                    <span class="input-group-addon"><i class="fa fa-link"></i></span>
+                    <input placeholder="重命名后字段名称" ng-model="field[1]" class="form-control"
+                           name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields[{{$index}}].r[1]" required>
+                    <span class="input-group-addon btn btn-inverse" ng-disabled="case.rule.fields.length==1"
+                          ng-click="case.rule.fields.length==1||removeCaseTuple(filterIndex,caseIndex,$index)"><i
+                            class="fa fa-remove"></i></span>
+                </div>
+                <label class="col-sm-1 col-md-1" style="padding-left: 10px;padding-top: 5px"><span
+                        class="btn btn-primary btn-sm bg-success" ng-click="addCaseTuple(filterIndex,$index)"
+                        title="添加内容">&nbsp;&nbsp;
+                                    <i class="fa fa-plus"></i>&nbsp;&nbsp;</span></label>
+            </div>
+            <div style="padding-top:2px" class="col-sm-12 col-md-12" data-original-title="" ng-switch-when="merger">
+                <div class="media" ng-include="'views/parser/case-meger.html'"></div>
+            </div>
+
+            <div style="display: inline ;padding-top:5px" class="col-sm-10 col-md-10 control-box"
+                 ng-switch-when="fieldCut">
+                <div class="media" ng-include="'views/parser/case-fieldCut.html'"></div>
+            </div>
+            <div style="display: inline ;padding-top:5px" class="col-sm-10 col-md-10 control-box"
+                 ng-switch-when="replace">
+                <div class="media" ng-include="'views/parser/case-replace.html'"></div>
+            </div>
+            <div style="display: inline ;padding-top:5px" class="col-sm-10 col-md-10 control-box"
+                 ng-switch-when="fieldMulti">
+                <div class="media" ng-include="'views/parser/case-add&multi.html'"></div>
+            </div>
+            <div style="display: inline ;padding-top:5px" class="col-sm-10 col-md-10 control-box"
+                 ng-switch-when="fieldAdditive">
+                <div class="media" ng-include="'views/parser/case-add&multi.html'"></div>
+            </div>
+            <div style="display: inline ;padding-top:5px" class="col-sm-10 col-md-10 control-box"
+                 ng-switch-when="extends">
+                <div class="input-group col-sm-3 col-md-3 "
+                     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field'].$dirty||add_form.$submitted)}"
+                     style="float:left;padding-bottom:5px;">
+                    <span class="input-group-addon">字段</span>
+                    <input class="form-control ui-autocomplete-input"
+                           ng-model="case.rule.field"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           placeholder="字段名称"
+                           name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field" required>
+                </div>
+            </div>
+            <div style="padding-top:2px;" class="col-sm-10 col-md-10 control-box" ng-switch-when="list2map">
+                <div class="input-group col-sm-83 col-md-8 " style="float:left"
+                     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field'].$dirty||add_form.$submitted)}">
+                    <span class="input-group-addon">原始字段</span>
+                    <input class="form-control ui-autocomplete"
+                           name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.field"
+                           ng-model="case.rule.field"
+                           uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+                           placeholder="字段名称" required>
+                    <label class="input-group-addon"><em
+                            class="hla-required-input">*</em>字段列表:</label>
+                </div>
+                <div style="float:left" class='col-sm-8 col-md-8'
+                     ng-class="{'has-error':add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields'].$invalid&&(add_form['filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields'].$dirty||add_form.$submitted)}">
+                            <textarea placeholder="字段列表" class="form-control"
+                                      name="filter[{{filterIndex}}].cases[{{caseIndex}}].rule.fields"
+                                      ng-model="case.rule.fields" required></textarea>
+
+                </div>
+            </div>
+            <div style="padding-top:2px" class="col-sm-10 col-md-10 control-box" ng-switch-when="reParser">
+                <div class="media" ng-include="'views/parser/case-parser.html'"></div>
+            </div>
+            <div>
+                <div style="padding-top:2px" class="col-sm-10 col-md-10 control-box" ng-switch-when="script">
+                    <div class="media" ng-include="'views/parser/case-script.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<label class="col-sm-3 col-md-3" style="margin-top: 5px">
+  <span class="btn btn-primary btn-sm bg-success" title="添加" ng-click="addCase($index)"><i
+          class="fa fa-plus"></i>CASE</span></label><label class="col-sm-3 col-md-3 control-label"></label>
+<div class="" ng-include="'views/parser/filter-default.html'"></div>
+
+

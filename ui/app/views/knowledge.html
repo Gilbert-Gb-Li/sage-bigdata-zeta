@@ -1,0 +1,186 @@
+<style>
+
+</style>
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="hla-main">知识库管理</div>
+        <div class="hla-widget">
+            <div class="hla-widget-head">
+                <div class="btn-group-xs pull-right">
+                    <button title="增加" class="btn btn-success" type="button" id="op_add_knowledge_button"
+                            ng-click="show('add')"><i class="fa fa-plus"></i></button>
+                    <button title="上传" class="btn btn-success" type="button" id="op_upload_knowledge_button"
+                            ng-click="show('upload')"><i class="fa fa-upload"></i></button>
+                    <button title="查询" class="btn btn-primary btn-group-lg" id="op_show_knowledge_search"
+                            ng-click="show('search')"><i class="fa fa-search"></i></button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="hla-widget-content">
+                <div ng-show="message"
+                     ng-class="{'alert-danger':message.status!='200','alert-success':message.status=='200'}"
+                     class="col-sm-12 col-md-12 alert"
+                     role="alert" style="margin-top: 10px">
+                    {{message.message}}
+                </div>
+                <div class="hla-widget-upload-table form-horizontal" style="margin-bottom: 10px">
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-4">
+
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <input file-input type="file" file-model="myFile" id="fileInput" name="fileInput"
+                                   class="file" accept="application/json">
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-4">
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <p><b>说明：</b>对于有依赖关系的数据，要先上传依赖的数据然后再上传当前的数据； 依赖关系为：数据通道-> {[解析规则|分析规则],数据源,数据存储,采集器}"
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-4 col-md-4">
+
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <button class="btn btn-success" ng-click="uploadFile()">上传</button>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="hla-widget-search-table">
+                    <form name="search_ds_form" class="form-horizontal" ng-submit="reload()" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label">知识库名称</label>
+                            <div class="col-sm-3 col-md-3">
+                                <input type="text" value="" placeholder="数据通道名称" name="name" class="form-control"
+                                       ng-model="page.search.name">
+                            </div>
+
+                            <div class="col-sm-2 col-md-2">
+                                <button class="btn btn-primary" type="submit">查询
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="hla-widget-add-table">
+                    <div ng-show="ds_form.$invalid&&ds_form.$submitted"
+                         class="col-sm-12 col-md-12 alert alert-danger" role="alert">
+                        表单填写有误，请检查表单!
+                    </div>
+                    <form name="ds_form" class="form-horizontal" ng-submit="save(ds_form.$valid)" novalidate>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>知识库名称</label>
+
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.name.$invalid&&(ds_form.name.$dirty||ds_form.$submitted)}">
+                                <input name="name" type="text" placeholder="知识库名称" class="form-control"
+                                       ng-model="knowledge.name" required>
+                            </div>
+
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>采集器</label>
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.collectorName.$invalid&&(ds_form.collectorName.$dirty||ds_form.$submitted)}">
+                                <select name="collectorName" class="form-control op_log_collector_list"
+                                        ng-options="x.id as (x.host+':'+x.port)  for x in collectors"
+                                        ng-model="knowledge.collector" required>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>数据源</label>
+
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.datasourceName.$invalid&&(ds_form.datasourceName.$dirty||ds_form.$submitted)}">
+                                <select name="datasourceName" class="form-control op_log_rule_list"
+                                        ng-options="x.id as x.name  for x in datasources"
+                                        ng-model="knowledge.datasource" required>
+                                </select>
+                            </div>
+                            <label class="col-sm-2 col-md-2 control-label"><em
+                                    class="hla-required-input">*</em>解析规则</label>
+
+                            <div class="col-sm-3 col-md-3"
+                                 ng-class="{'has-error':ds_form.parserName.$invalid&&(ds_form.parserName.$dirty||ds_form.$submitted)}">
+                                <select name="parserName" class="form-control op_log_rule_list"
+                                        ng-options="x.id as x.name  for x in resolverList"
+                                        ng-model="knowledge.parser" required>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"> <!--ng-if="!knowledge.status || knowledge.status=='STOPPED'"-->
+                            <!-- <button class="btn btn-primary" type="button" ng-click="usableCheck()">检查</button>-->
+                            <button class="btn btn-primary ">保存</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="hla-widget-data-table">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>知识库名称</th>
+                            <th>运行状态</th>
+                            <th>启动/停止</th>
+                            <th>编辑</th>
+                        </tr>
+                        </thead>
+                        <tbody id="op_knowledge_table" class="">
+                        <tr ng-repeat="item in list.result">
+                            <th scope="row">{{$index+1}}</th>
+                            <td>{{item.name}}</td>
+                            <td>{{item.status|StatusName}}</td>
+                            <td >
+                                <div class="btn-group-xs " ng-switch="item.status">
+                                    <button ng-switch-when="FINISHED|FAIL|NOT_EXEC|STOPPED" ng-switch-when-separator="|"  class="btn btn-success op_start"
+                                            ng-click="operate('load',item.id)" title="启动"><i
+                                            class="fa fa-play-circle"></i></button>
+                                    <button ng-switch-when="RUNNING|STOPPING|STARTING" ng-switch-when-separator="|" class="btn btn-inverse op_stop"
+                                            ng-click="operate('stop',item.id)" title="停止"><i
+                                            class="fa fa-stop"></i></button>
+                                    <div ng-switch-when="WORKER_STOPPED|UNAVAILABLE" ng-switch-when-separator="|">不可用</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="btn-group-xs ">
+                                    <button class="btn btn-primary op_edit"
+                                            ng-click="show('edit',item.id)" title="修改"><i
+                                            class="fa fa-file-text-o"></i></button>
+                                    <button ng-if="item.isSample==0" title="删除" class="btn btn-danger op_delete"
+                                            ng-click="delete(item.id)"><i class="fa fa-minus"></i>
+                                    </button>
+                                    <button class="btn btn-info op_edit" title="复制"
+                                            ng-click="show('copy',item.id)">
+                                        <i class="fa fa-copy"></i></button>
+                                    <a class="btn btn-primary " title="下载"
+                                       data-ng-click="downloadFile(item.id)"><i class="fa fa-download"></i></a>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div page method="reload"></div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

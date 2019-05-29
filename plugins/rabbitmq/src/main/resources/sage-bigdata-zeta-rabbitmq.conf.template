@@ -1,0 +1,3 @@
+app.monitor.rabbitmq=com.haima.sage.bigdata.etl.monitor.RabbitMQMonitor
+app.writer.rabbitmq=com.haima.sage.bigdata.etl.writer.RabbitMQLogWriter
+app.checker.rabbitmq=com.haima.sage.bigdata.etl.driver.usable.RabbitMQUsabilityChecker

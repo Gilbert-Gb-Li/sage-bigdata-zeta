@@ -1,0 +1,26 @@
+<div class="input-group col-sm-3 col-md-3 " style="float:left"
+     ng-class="{'has-error':add_form['filter[{{$index}}].field'].$invalid&&(add_form['filter[{{$index}}].field'].$dirty||add_form.$submitted)}">
+  <span
+    class="input-group-addon">字段</span>
+  <input class="form-control ui-autocomplete"
+         name="filter[{{$index}}].field"
+         ng-model="filter.field"
+         uib-typeahead="state for state in previewFields | filter:$viewValue | limitTo:8"
+         placeholder="字段名称" required>
+</div>
+<div class="input-group col-sm-4 col-md-4 " style="float:left"
+     ng-class="{'has-error':add_form['filter[{{$index}}].from'].$invalid&&(add_form['filter[{{$index}}].from'].$dirty||add_form.$submitted)}">
+  <span class="input-group-addon">要替换的值</span>
+  <input class="form-control" type="text"
+         name="filter[{{$index}}].from"
+         ng-model="filter.from"
+         placeholder="要替换的值" required>
+</div>
+<div class="input-group col-sm-4 col-md-4 " style="float:left"
+     ng-class="{'has-error':add_form['filter[{{$index}}].to'].$invalid&&(add_form['filter[{{$index}}].to'].$dirty||add_form.$submitted)}">
+  <span class="input-group-addon">替换后的值</span>
+  <input class="form-control" type="text"
+         ng-model="filter.to"
+         name="filter[{{$index}}].to"
+         placeholder="替换后的值">
+</div>

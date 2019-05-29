@@ -1,0 +1,118 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>{{#account}}{{name}}{{/account}}'s account</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="{{staticResourcesPath}}/custom.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Porter <small>{{#porter}}v{{version}}{{/porter}}</small></h1>
+        <span class="pull-right">
+            <a href="/?porter.action=logout">Logout</a>
+        </span>
+    </div>
+    <h2><img src="{{avatarUrl}}" class="img-responsive img-thumbnail"> {{#account}}{{name}}'s{{/account}} account</h2>
+    {{#infoMessage}}
+        <div class="alert alert-{{level}}">
+            <p>{{message}}</p>
+            <ul>
+                {{#messageItems}}
+                    <li>{{.}}</li>
+                {{/messageItems}}
+            </ul>
+        </div>
+    {{/infoMessage}}
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="dl">
+                {{#adminProps}}
+                    <dt>{{label}}:</dt>
+                    <dd>{{value}}</dd>
+                {{/adminProps}}
+            </dl>
+        </div>
+        <div class="col-md-6">
+            <img src="{{staticResourcesPath}}/openid.png" class="porter-openid-image">
+            <strong>Your OpenID is</strong> <code>{{userOpenId}}</code>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form role="form" action="{{actionUrl}}" method="post">
+                <h4>Change password</h4>
+                <input type="hidden" name="porter.action" value="changeSecret"/>
+                <div class="form-group">
+                    <label for="currentpassword" class="sr-only">New Password</label>
+                    <input type="password" class="form-control" id="currentpassword" name="porter.currentpassword" placeholder="Current password"/>
+                </div>
+                <div class="form-group">
+                    <label for="password1" class="sr-only">New Password</label>
+                    <input type="password" class="form-control" id="password1" name="porter.password1" placeholder="New password"/>
+                </div>
+                <div class="form-group">
+                    <label for="password2" class="sr-only">Repeat</label>
+                    <input type="password" class="form-control" id="password2" name="porter.password2" placeholder="Repeat new password"/>
+                </div>
+                <div class="form-group">
+                    <input type="submit" name="porter.submitType" class="btn btn-primary" value="Change Password"/>
+                </div>
+            </form>
+            <hr/>
+            <form role="form" action="{{actionUrl}}" method="post">
+                <h4>Clear remembered realms</h4>
+                <p>Clears remembered OpenId realm decisions.</p>
+                <input type="hidden" name="porter.action" value="clearRememberedRealms"/>
+                <input type="submit" class="btn btn-primary" value="Clear"/>
+            </form>
+            <hr/>
+            <form role="form" action="{{actionUrl}}" method="post">
+                <h4>Remove Account</h4>
+                <p class="text-danger">This will remove the account permanently and is not recoverable.</p>
+                <input type="hidden" name="porter.action" value="removeAccount"/>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="porter.removeAccount"> Yes, I really want to do that.</input>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-danger" value="Remove Account"/>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h4>Account Properties</h4>
+            <div>
+                <a href="{{actionUrl}}?porter.action=deleteAvatar" class="btn btn-warning btn-block">Delete Avatar Image</a>
+            </div>
+            <form role="form" action="{{actionUrl}}" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="porter.action" value="updateProperties"/>
+                {{#properties}}
+                    <div class="form-group">
+                        <label for="{{name}}">{{label}}</label>
+                        {{#select}}
+                            <select name="{{name}}" id="{{name}}" class="form-control">
+                                {{#values}}
+                                    <option value="{{id}}" {{#selected}}selected="selected"{{/selected}}>{{name}}</option>
+                                {{/values}}
+                            </select>
+                        {{/select}}
+                        {{^select}}
+                            <input type="{{type}}" class="form-control" id="{{name}}" name="{{name}}" placeholder="{{label}}" value="{{value}}">
+                        {{/select}}
+                    </div>
+                {{/properties}}
+                <div class="form-group">
+                    <input type="submit" name="porter.submitType" class="btn btn-primary" value="Save"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
